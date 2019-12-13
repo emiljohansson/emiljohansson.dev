@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "name": "emiljohansson.dev",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    },
+    {
+      "src": "api/**/*.ts",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [{
+    "src": "/api/two-factor/validate",
+    "dest": "/api/two-factor/?validate=true"
+  }, {
+    "src": "/api/two-factor/generate",
+    "dest": "/api/two-factor/?generate=true"
+  }]
+}

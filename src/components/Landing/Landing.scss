@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+.Landing {
+  &__link {
+    margin: 0 auto;
+
+    // &,
+    // &:hover {
+    //   color: $white;
+    // }
+  }
+
+  &__github {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    height: 100vh;
+    text-align: center;
+  }
+
+  &__apps {
+    height: 100vh;
+    padding: 1rem;
+    margin: 0;
+
+    li {
+      margin-left: 1.5rem;
+    }
+  }
+}

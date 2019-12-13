@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.PageTemplate {
+  &__text {
+    background-color: transparent;
+    border: 0;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 2rem;
+    height: 100%;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+  }
+}

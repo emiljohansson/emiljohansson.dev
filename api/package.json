@@ -1,0 +1,13 @@
+{
+  "name": "api.emiljohansson.dev",
+  "version": "1.0.0",
+  "author": "emiljohansson.dev@gmail.com",
+  "description": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@emiljohansson/random-string": "1.1.2"
+  }
+}

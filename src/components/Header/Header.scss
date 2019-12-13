@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+
+.Header {
+  background-color: $white;
+  display: flex;
+  font-size: 1.4rem;
+  line-height: 0;
+  padding: spacing(3);
+  width: 100%;
+
+  &__back,
+  .HeaderAction {
+    line-height: 1;
+    padding: 0;
+
+    &,
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__actions {
+    margin-left: auto;
+  }
+}
