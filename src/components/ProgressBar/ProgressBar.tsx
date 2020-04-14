@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { EventEmitter } from 'events'
+import { motion } from 'framer-motion'
 import './ProgressBar.scss'
 import Header from '../Header/Header'
 import Content from '../Content/Content'
@@ -65,12 +66,13 @@ function ProgressBar () {
       <Header />
       <section className={`${name}__text`}>
         <div className={`${name}__bar-container`}>
-          <div
+          <motion.div
             className={`${name}__bar`}
-            style={{
+            animate={{
               backgroundColor: color,
-              width: progress + '%'
+              width: progress + '%',
             }}
+            transition={{ duration: 0.4 }}
           />
         </div>
         <div>
