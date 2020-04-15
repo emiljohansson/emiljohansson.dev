@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react'
-import './CurrentTime.scss'
+import styled from 'styled-components'
 import Header from '../Header/Header'
 import Content from '../Content/Content'
+import Section from '../Section'
 
-const name: string = 'CurrentTime'
+const Meridiem = styled.span`
+  font-size: 50%;
+  margin-bottom: -18px;
+`
 
 function useInterval (callback: () => void, delay: number) {
   const savedCallback: any = useRef()
@@ -58,16 +62,16 @@ function CurrentTime () {
     setMeridiem(`${meridiem}`)
   })
 
-  return <span>{time}<span className={`${name}__meridiem`}>{meridiem}</span></span>
+  return <span>{time}<Meridiem>{meridiem}</Meridiem></span>
 }
 
 function CurrentTimeBase () {
   return (
     <Content>
       <Header />
-      <section className={`${name}__text`}>
+      <Section>
         <CurrentTime />
-      </section>
+      </Section>
     </Content>
   )
 }

@@ -1,19 +1,21 @@
 import * as React from 'react'
-import './HeaderAction.scss'
+import styled from 'styled-components'
+import { spacers } from '../../styles/variables'
 
-const name: string = 'HeaderAction'
+const Button = styled.button`
+  background-color: transparent;
+  border: 0;
+  margin-left: ${spacers[3]};
+`
 
 function Header ({
   children,
   onClick
 }: any) {
   return (
-    <button
-      className={`${name}`}
-      onClick={onClick}
-    >
+    <Button onClick={onClick}>
       {children}
-    </button>
+    </Button>
   )
 }
 

@@ -48,3 +48,15 @@ export const fonts ={
 // @import "../vendor/bootstrap/variables",
 // @import "../vendor/bootstrap/mixins",
 // @import "./functions",
+
+const spacer = 1
+export const spacers = [
+  0,
+  (spacer * .25),
+  (spacer * .5),
+  spacer,
+  (spacer * 1.5),
+  (spacer * 3)
+].map(value => `${value}rem`)
+
+console.log(spacers)
