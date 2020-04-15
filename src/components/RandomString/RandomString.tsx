@@ -4,6 +4,7 @@ import './RandomString.scss'
 import Header from '../Header/Header'
 import HeaderAction from '../HeaderAction/HeaderAction'
 import Content from '../Content/Content'
+import Section from '../Section'
 
 const name: string = 'RandomString'
 
@@ -34,7 +35,7 @@ function RandomString () {
           <i className="fas fa-copy" />
         </HeaderAction>
       </Header>
-      <section>
+      <Section>
         <input
           ref={inputEl}
           className="sr-only"
@@ -43,7 +44,7 @@ function RandomString () {
           readOnly
         />
         <div className={`${name}__text`}>{value}</div>
-      </section>
+      </Section>
     </Content>
   )
 }

@@ -1,9 +1,8 @@
 import * as React from 'react'
-import './TwoWayAuthEnter.scss'
+import styled from 'styled-components'
 import Header from '../../Header/Header'
 import Content from '../../Content/Content'
-
-const name: string = 'TwoWayAuthEnter'
+import Section from '../../Section'
 
 enum State {
   idle,
@@ -45,6 +44,13 @@ function EnteredContent (props: any) {
   )
 }
 
+const LocalSection = styled(Section)`
+  font-size: 3rem;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+`
+
 function TwoWayAuthEnter () {
   const [ value, setValue ] = React.useState('')
   const [ state, setState ] = React.useState(State.idle)
@@ -83,7 +89,7 @@ function TwoWayAuthEnter () {
   return (
     <Content>
       <Header />
-      <section className={`${name}`}>
+      <LocalSection>
         <form
           action="#"
           method="POST"
@@ -104,7 +110,7 @@ function TwoWayAuthEnter () {
             state={state}
           />
         </form>
-      </section>
+      </LocalSection>
     </Content>
   )
 }

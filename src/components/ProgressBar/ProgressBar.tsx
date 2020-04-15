@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 import Header from '../Header/Header'
 import Content from '../Content/Content'
+import Section from '../Section'
 
 function useProgress (min: number, max: number, emitter: EventEmitter): number {
   const [ value, setValue ] = useState(0)
@@ -35,20 +36,6 @@ function FixedProgressView ({ progress }: any) {
   }
   return progress
 }
-
-const Section = styled.section`
-  background-color: transparent;
-  border: 0;
-  display: flex;
-  align-items: center;
-  flex: 1;
-  flex-direction: row;
-  justify-content: center;
-  font-size: 2rem;
-  height: 100%;
-  outline: none;
-  font-variant-numeric: tabular-nums;
-`
 
 const BarContainer = styled.div`
   border-right: 2px solid ${colors.gray500};

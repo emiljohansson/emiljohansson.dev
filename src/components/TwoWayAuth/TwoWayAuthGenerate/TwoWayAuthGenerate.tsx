@@ -1,9 +1,24 @@
 import * as React from 'react'
-import './TwoWayAuthGenerate.scss'
+import { motion } from 'framer-motion'
+import styled from 'styled-components'
 import Header from '../../Header/Header'
 import Content from '../../Content/Content'
+import Section from '../../Section'
 
-const name: string = 'TwoWayAuthGenerate'
+const ColumnSection = styled(Section)`
+  flex-direction: column;
+`
+
+const BarContainer = styled.div`
+  height: 2px;
+  width: 400px;
+`
+
+const Bar = styled(motion.div)`
+  height: 100%;
+  margin: 0 auto;
+  transition: all 1s linear;
+`
 
 function TwoWayAuthGenerate () {
   const [ value, setValue ] = React.useState('')
@@ -44,19 +59,18 @@ function TwoWayAuthGenerate () {
   return (
     <Content>
       <Header />
-      <section>
-        <div className={`${name}__text`}>
-          <div>{value}</div>
-          <div className={`${name}__bar-container`}>
-            <div
-              className={`${name}__bar`}
-              style={{
-                backgroundColor: color,
-                width: percentage + '%'
-              }}></div>
-          </div>
-        </div>
-      </section>
+      <ColumnSection>
+        <div>{value}</div>
+        <BarContainer>
+          <Bar
+            animate={{
+              backgroundColor: color,
+              width: percentage + '%',
+            }}
+            transition={{ duration: 0.4 }}
+          />
+        </BarContainer>
+      </ColumnSection>
     </Content>
   )
 }

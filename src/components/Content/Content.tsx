@@ -1,13 +1,19 @@
 import * as React from 'react'
-import './Content.scss'
+import styled from 'styled-components'
+
+const Article = styled.article`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`
 
 function Content ({
   children
 }: React.Props<any>) {
   return (
-    <article className="Content">
+    <Article>
       {children}
-    </article>
+    </Article>
   )
 }
 
