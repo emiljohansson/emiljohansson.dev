@@ -1,12 +1,9 @@
 import * as React from 'react'
 import randomString from '@emiljohansson/random-string'
-import './RandomString.scss'
 import Header from '../Header/Header'
 import HeaderAction from '../HeaderAction/HeaderAction'
 import Content from '../Content/Content'
 import Section from '../Section'
-
-const name: string = 'RandomString'
 
 function copyToClipboard (el: HTMLInputElement | null) {
   if (!el) {
@@ -43,7 +40,7 @@ function RandomString () {
           value={value}
           readOnly
         />
-        <div className={`${name}__text`}>{value}</div>
+        {value}
       </Section>
     </Content>
   )

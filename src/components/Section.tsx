@@ -8,7 +8,7 @@ export default styled.section`
   flex: 1;
   flex-direction: row;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 3rem;
   height: 100%;
   outline: none;
   overflow: auto;
