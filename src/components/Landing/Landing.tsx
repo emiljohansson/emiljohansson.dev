@@ -1,21 +1,40 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
-import './Landing.scss'
+import styled from 'styled-components'
 
-const name: string = 'Landing'
+const Github = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  height: 100vh;
+  text-align: center;
+`
+
+const MainLink = styled.a`
+  margin: 0 auto;
+`
+
+const List = styled.ul`
+  height: 100vh;
+  padding: 1rem;
+  margin: 0;
+
+  li {
+    margin-left: 1.5rem;
+  }
+`
 
 const Landing = () => (
   <>
-    <div className={`${name}__github`}>
-      <a
+    <Github>
+      <MainLink
         href="https://github.com/emiljohansson"
         target="_blank"
-        className={`${name}__link`}
       >
         <i className="fab fa-github" /> emiljohansson
-      </a>
-    </div>
-    <ul className={`${name}__apps`}>
+      </MainLink>
+    </Github>
+    <List>
       <li>
         <Link
           to="/random-string/"
@@ -52,7 +71,7 @@ const Landing = () => (
           className="link"
         >Chat</Link>
       </li> */}
-    </ul>
+    </List>
   </>
 )
 
