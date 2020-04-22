@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import { Github as GithubIcon } from '@styled-icons/boxicons-logos/Github'
 
 const Github = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ const Landing = () => (
         href="https://github.com/emiljohansson"
         target="_blank"
       >
-        <i className="fab fa-github" /> emiljohansson
+        <GithubIcon size="38" /> emiljohansson
       </MainLink>
     </Github>
     <List>

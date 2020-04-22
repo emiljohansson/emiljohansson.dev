@@ -22,7 +22,7 @@ export const colors = {
   teal:    '#20c997',
   cyan:    '#17a2b8',
 
-  // 'primary':       '#282a36',
+  primary: '#282a36',
   // 'secondary':     $gray600,
   // 'success':       $green,
   // 'info':          $cyan,
@@ -41,8 +41,6 @@ export const fonts ={
 // $body-bg:          $white,
 // $body-color:       $gray900,
 // $font-weight-base: 300,
-
-// $fa-font-path:        "../vendor/fontawesome/webfonts",
 
 // @import "../vendor/bootstrap/functions",
 // @import "../vendor/bootstrap/variables",

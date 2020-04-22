@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { Sync } from '@styled-icons/material/Sync'
+import { FileCopy } from '@styled-icons/material/FileCopy'
 import randomString from '@emiljohansson/random-string'
 import Header from '../Header/Header'
 import HeaderAction from '../HeaderAction/HeaderAction'
@@ -24,12 +26,12 @@ function RandomString () {
         <HeaderAction
           onClick={() => setValue(randomString())}
         >
-          <i className="fas fa-sync" />
+          <Sync size="30" title="Refresh" />
         </HeaderAction>
         <HeaderAction
           onClick={() => copyToClipboard(inputEl.current)}
         >
-          <i className="fas fa-copy" />
+          <FileCopy size="30" title="Copy" />
         </HeaderAction>
       </Header>
       <Section>

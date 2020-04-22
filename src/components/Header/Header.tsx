@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { spacers } from '../../styles/variables'
+import { ArrowBack } from '@styled-icons/material/ArrowBack'
+import { spacers, colors } from '../../styles/variables'
 
 const HeaderRoot = styled.header`
   background-color: $white;
@@ -18,7 +19,7 @@ const BackLink = styled(Link)`
 
   &,
   &:hover {
-    color: $primary;
+    color: ${colors.primary};
   }
 `
 
@@ -34,7 +35,7 @@ function Header ({
       <BackLink
         to="/"
       >
-        <i className="fas fa-arrow-left" />
+        <ArrowBack size="30" title="Back" />
       </BackLink>
       <Actions>
         {children}
