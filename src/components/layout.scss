@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400");
+// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400");
 
 @import "../styles/variables";
 
@@ -38,14 +38,6 @@
 @import "../vendor/fontawesome/scss/fontawesome";
 @import "../vendor/fontawesome/scss/solid";
 @import "../vendor/fontawesome/scss/brands";
-
-html,
-body,
-#___gatsby,
-#gatsby-focus-wrapper,
-main {
-  height: 100%;
-}
 
 // .link {
 //   &,
