@@ -97,7 +97,6 @@ function TwoWayAuthEnter () {
         >
           <input
             ref={inputEl}
-            className=""
             type="text"
             onChange={onChange}
           />

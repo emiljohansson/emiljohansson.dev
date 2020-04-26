@@ -39,37 +39,31 @@ const Landing = () => (
       <li>
         <Link
           to="/random-string/"
-          className="link"
         >Random String</Link>
       </li>
       <li>
         <Link
           to="/current-time/"
-          className="link"
         >Current Time</Link>
       </li>
       <li>
         <Link
           to="/two-way-auth-generate/"
-          className="link"
         >Two-Factor Authentication - Generate Code</Link>
       </li>
       <li>
         <Link
           to="/two-way-auth-enter/"
-          className="link"
         >Two-Factor Authentication - Enter Code</Link>
       </li>
       <li>
         <Link
           to="/progress-bar/"
-          className="link"
         >Progress Bar</Link>
       </li>
       {/* <li>
         <Link
           to="/chat/"
-          className="link"
         >Chat</Link>
       </li> */}
     </List>

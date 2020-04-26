@@ -6,6 +6,7 @@ import Header from '../Header/Header'
 import HeaderAction from '../HeaderAction/HeaderAction'
 import Content from '../Content/Content'
 import Section from '../Section'
+import SrOnly from '../SrOnly'
 
 function copyToClipboard (el: HTMLInputElement | null) {
   if (!el) {
@@ -35,9 +36,9 @@ function RandomString () {
         </HeaderAction>
       </Header>
       <Section>
-        <input
+        <SrOnly
+          as="input"
           ref={inputEl}
-          className="sr-only"
           type="text"
           value={value}
           readOnly
