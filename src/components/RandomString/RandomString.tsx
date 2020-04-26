@@ -18,8 +18,12 @@ function copyToClipboard (el: HTMLInputElement | null) {
 }
 
 function RandomString () {
-  const [ value, setValue ] = React.useState(randomString())
+  const [ value, setValue ] = React.useState('')
   const inputEl = React.useRef(null)
+
+  React.useLayoutEffect(() => {
+    setValue(randomString())
+  }, [])
 
   return (
     <Content>

@@ -56,5 +56,3 @@ export const spacers = [
   (spacer * 1.5),
   (spacer * 3)
 ].map(value => `${value}rem`)
-
-console.log(spacers)
