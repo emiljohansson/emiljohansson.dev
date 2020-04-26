@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { createGlobalStyle } from 'styled-components'
-import './layout.scss'
 
 interface Props {
   children: any
