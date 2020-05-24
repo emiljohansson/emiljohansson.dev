@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import ProgressBar from '../components/ProgressBar/ProgressBar'
+import ProgressBar from '../components/ProgressBar'
 
 const SecondPage = () => (
   <Layout>

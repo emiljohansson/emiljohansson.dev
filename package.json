@@ -13,7 +13,6 @@
     "xnow-build": "npm run build",
     "dev": "gatsby develop -p 3000",
     "now-dev": "gatsby develop -p 3000",
-    "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run dev",
     "serve": "gatsby serve",
     "chat-server": "node chat-server",

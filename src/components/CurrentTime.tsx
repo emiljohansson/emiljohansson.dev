@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
-import Header from '../Header/Header'
-import Content from '../Content/Content'
-import Section from '../Section'
+import Header from './Header'
+import Content from './Content'
+import Section from './Section'
 
 const Meridiem = styled.span`
   font-size: 50%;

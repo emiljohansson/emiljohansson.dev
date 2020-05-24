@@ -2,11 +2,11 @@ import * as React from 'react'
 import { Sync } from '@styled-icons/material/Sync'
 import { FileCopy } from '@styled-icons/material/FileCopy'
 import randomString from '@emiljohansson/random-string'
-import Header from '../Header/Header'
-import HeaderAction from '../HeaderAction/HeaderAction'
-import Content from '../Content/Content'
-import Section from '../Section'
-import SrOnly from '../SrOnly'
+import Header from './Header'
+import HeaderAction from './HeaderAction'
+import Content from './Content'
+import Section from './Section'
+import SrOnly from './SrOnly'
 
 function copyToClipboard (el: HTMLInputElement | null) {
   if (!el) {

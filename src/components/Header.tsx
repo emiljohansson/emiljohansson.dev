@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { ArrowBack } from '@styled-icons/material/ArrowBack'
-import { spacers, colors } from '../../styles/variables'
+import { spacers, colors } from '../styles/variables'
 
 const HeaderRoot = styled.header`
   background-color: $white;

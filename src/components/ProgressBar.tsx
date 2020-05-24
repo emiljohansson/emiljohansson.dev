@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { EventEmitter } from 'events'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { colors } from '../../styles/variables'
-import Header from '../Header/Header'
-import Content from '../Content/Content'
-import Section from '../Section'
+import { colors } from '../styles/variables'
+import Header from './Header'
+import Content from './Content'
+import Section from './Section'
 
 function useProgress (min: number, max: number, emitter: EventEmitter): number {
   const [ value, setValue ] = useState(0)

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import TwoWayAuthEnter from '../components/TwoWayAuth/TwoWayAuthEnter/TwoWayAuthEnter'
+import TwoWayAuthEnter from '../components/TwoWayAuthEnter'
 
 const SecondPage = () => (
   <Layout>

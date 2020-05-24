@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import RandomString from '../components/RandomString/RandomString'
+import RandomString from '../components/RandomString'
 
 const SecondPage = () => (
   <Layout>
