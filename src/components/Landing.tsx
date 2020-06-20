@@ -61,6 +61,11 @@ const Landing = () => (
           to="/progress-bar/"
         >Progress Bar</Link>
       </li>
+      <li>
+        <Link
+          to="/confirm-button/"
+        >Confirm Button</Link>
+      </li>
       {/* <li>
         <Link
           to="/chat/"
