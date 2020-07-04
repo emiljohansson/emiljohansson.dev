@@ -1,6 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { createGlobalStyle } from 'styled-components'
+import { fonts } from '../styles/variables'
 
 interface Props {
   children: any
@@ -20,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: ${fonts.baseFontFamily};
     font-size: 1rem;
     font-weight: 300;
     line-height: 1.5;
@@ -28,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
     text-align: left;
     background-color: #fff;
   }
-  
+
   html,
   body,
   #___gatsby,

@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 
-export default styled.section`
+export default styled.section<{
+  direction?: string
+}>`
   background-color: transparent;
   border: 0;
   display: flex;
   align-items: center;
   flex: 1;
-  flex-direction: row;
+  flex-direction: ${props => props.direction || 'row'};
   justify-content: center;
   font-size: 3rem;
   height: 100%;

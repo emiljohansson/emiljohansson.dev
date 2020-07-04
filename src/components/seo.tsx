@@ -77,7 +77,9 @@ function SEO({ description, lang, meta, keywords, title }: any) {
             : []
         )
         .concat(meta)}
-    />
+    >
+      <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap" rel="stylesheet" />
+    </Helmet>
   )
 }
 
