@@ -9,36 +9,43 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "xnow-build": "npm run build",
-    "dev": "gatsby develop -p 3000",
-    "now-dev": "gatsby develop -p 3000",
-    "start": "npm run dev",
-    "serve": "gatsby serve",
-    "chat-server": "node chat-server",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "chat-server": "node chat-server"
   },
   "dependencies": {
     "@emiljohansson/random-string": "1.1.2",
     "@hot-loader/react-dom": "16.8.6",
     "babel-plugin-styled-components": "1.10.7",
+    "date-fns": "^2.11.1",
     "framer-motion": "1.10.3",
-    "gatsby": "^2.22.9",
-    "gatsby-plugin-offline": "2.2.4",
-    "gatsby-plugin-react-helmet": "3.1.2",
-    "gatsby-plugin-styled-components": "3.2.1",
-    "gatsby-plugin-typescript": "2.1.2",
-    "gatsby-source-filesystem": "^2.3.8",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-helmet": "6.0.0",
-    "styled-components": "5.1.0",
-    "styled-icons": "10.2.1"
+    "gray-matter": "^4.0.2",
+    "next": "^10.0.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "remark": "^12.0.0",
+    "remark-html": "^12.0.0",
+    "styled-components": "^5.2.1",
+    "styled-icons": "10.2.1",
+    "swr": "^0.5.4",
+    "twin.macro": "^2.3.0"
   },
   "devDependencies": {
-    "@now/node": "0.12.0",
-    "@types/node": "12.6.8",
-    "@types/react-helmet": "5.0.8",
-    "@types/styled-components": "5.1.0"
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-transform-react-jsx": "^7.12.17",
+    "@types/node": "^14.14.35",
+    "@types/react": "^17.0.3",
+    "@types/styled-components": "^5.1.9",
+    "autoprefixer": "^10.2.5",
+    "babel-plugin-macros": "^2.8.0",
+    "postcss": "^8.2.8",
+    "tailwindcss": "^2.0.4",
+    "typescript": "^4.2.3"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
   }
 }
