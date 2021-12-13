@@ -32,7 +32,7 @@ function CurrentTimeBase ({ initialValue }) {
   return (
     <Content>
       <Header />
-      <Section>
+      <Section size="large">
         <CurrentTime
           initialTime={initialValue}
         />

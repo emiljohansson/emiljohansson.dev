@@ -14,6 +14,14 @@ export default styled('section', {
   fontVariantNumeric: 'tabular-nums',
 
   variants: {
+    size: {
+      normal: {
+        fontSize: '2rem',
+      },
+      large: {
+        fontSize: '3rem',
+      },
+    },
     direction: {
       row: {
         flexDirection: 'row',
@@ -24,6 +32,7 @@ export default styled('section', {
     },
   },
   defaultVariants: {
+    size: 'normal',
     direction: 'row',
   }
 })

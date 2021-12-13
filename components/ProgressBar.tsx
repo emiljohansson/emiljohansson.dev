@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { EventEmitter } from 'events'
 import { motion } from 'framer-motion'
 import { styled } from '@/stitches'

@@ -10,7 +10,7 @@ const Layout: FunctionComponent = ({ children }) => {
       <link rel="icon" href="/favicon.ico" />
       <meta
         name="description"
-        content="Learn how to build a personal website using Next.js"
+        content="Emil's development playground."
       />
       <meta
         property="og:image"

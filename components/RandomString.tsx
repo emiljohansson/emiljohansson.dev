@@ -35,7 +35,7 @@ function RandomString ({ initialValue }) {
           <span className="sr-only">Copy</span>
         </HeaderAction>
       </Header>
-      <Section>
+      <Section size="large">
         <input
           ref={inputEl}
           className="sr-only"
