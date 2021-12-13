@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import randomString from '@emiljohansson/random-string'
-import Layout from '../components/Layout'
-import RandomString from '../components/RandomString'
+import Layout from '@/components/Layout'
+import RandomString from '@/components/RandomString'
 
 export async function getServerSideProps() {
   return {

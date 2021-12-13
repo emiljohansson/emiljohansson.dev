@@ -1,30 +1,30 @@
 import Link from 'next/link'
-import styled from 'styled-components'
-import { Github as GithubIcon } from '@styled-icons/boxicons-logos/Github'
-import Layout from '../components/Layout'
+import { styled } from '@/stitches'
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import Layout from '@/components/Layout'
 import Head from 'next/head'
 
-const Github = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 2rem;
-  height: 100vh;
-  text-align: center;
-`
+const Github = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  fontSize: '2rem',
+  height: '100vh',
+  textAlign: 'center',
+})
 
-const MainLink = styled.a`
-  margin: 0 auto;
-`
+const MainLink = styled('a', {
+  margin: '0 auto',
+})
 
-const List = styled.ul`
-  height: 100vh;
-  padding: 1rem;
-  margin: 0;
+const List = styled('ul', {
+  height: '100vh',
+  padding: '1rem',
+  margin: '0',
 
-  li {
-    margin-left: 1.5rem;
+  'li': {
+    marginLeft: '1.5rem',
   }
-`
+})
 
 const IndexPage = () => (
   <Layout>
@@ -38,10 +38,14 @@ const IndexPage = () => (
         href="https://github.com/emiljohansson"
         target="_blank"
       >
-        <GithubIcon size="38" /> emiljohansson
+        <GitHubLogoIcon
+          width="38"
+          height="38"
+          className="inline-block"
+        /> emiljohansson
       </MainLink>
     </Github>
-    <List>
+    <List className="list-disc">
       <li>
         <Link
           href="/random-string"

@@ -1,26 +1,21 @@
 import { FunctionComponent } from 'react'
-import styled from 'styled-components'
+import { styled } from '@/stitches'
 
-const Button = styled.button`
-  background-color: transparent;
-  border: 0;
-
-  &:last-child {
-    margin: 0;
-  }
-`
+const Button = styled('button', {
+  backgroundColor: 'transparent',
+  border: '0',
+  marginLeft: '0.5rem',
+})
 
 const Header: FunctionComponent<{
   onClick: () => void
 }> = ({
   children,
   onClick,
-}) => {
-  return (
-    <Button onClick={onClick}>
-      {children}
-    </Button>
-  )
-}
+}) => (
+  <Button onClick={onClick}>
+    {children}
+  </Button>
+)
 
 export default Header

@@ -1,5 +1,5 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
-import styled from 'styled-components'
+import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
@@ -10,6 +10,11 @@ enum State {
   valid,
   invalid
 }
+
+const Input = styled('input', {
+  width: '340px',
+  textAlign: 'center',
+})
 
 async function post (url: string, body: any) {
   return fetch(url, {
@@ -22,9 +27,7 @@ async function post (url: string, body: any) {
   })
 }
 
-function EnteredContent (props: any) {
-  const state: State = props.state
-
+function EnteredContent ({ state }: { state: State }) {
   function getState (): string {
     switch (state) {
       case State.loading:
@@ -43,13 +46,6 @@ function EnteredContent (props: any) {
     </div>
   )
 }
-
-const LocalSection = styled(Section)`
-  font-size: 3rem;
-  height: 100vh;
-  width: 100%;
-  text-align: center;
-`
 
 function TwoWayAuthEnter () {
   const [ value, setValue ] = useState('')
@@ -89,13 +85,18 @@ function TwoWayAuthEnter () {
   return (
     <Content>
       <Header />
-      <LocalSection>
+      <Section
+        css={{
+          textAlign: 'center',
+        }}
+      >
         <form
           action="#"
           method="POST"
           onSubmit={onSubmit}
+          className="flex flex-col"
         >
-          <input
+          <Input
             ref={inputEl}
             type="text"
             onChange={onChange}
@@ -109,7 +110,7 @@ function TwoWayAuthEnter () {
             state={state}
           />
         </form>
-      </LocalSection>
+      </Section>
     </Content>
   )
 }

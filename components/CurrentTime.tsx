@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import styled from 'styled-components'
+import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
-import useCurrentTime from '../lib/useCurrentTime'
+import useCurrentTime from '@/lib/useCurrentTime'
 
-const Meridiem = styled.span`
-  font-size: 50%;
-  margin-bottom: -18px;
-`
+const Meridiem = styled('span', {
+  fontSize: '50%',
+  marginBottom: '-18px',
+})
 
 function CurrentTime ({ initialTime }) {
   const [time, setTime] = useState(createTime(initialTime))

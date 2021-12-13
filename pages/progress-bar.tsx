@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Layout from '../components/Layout'
-import ProgressBar from '../components/ProgressBar'
+import Layout from '@/components/Layout'
+import ProgressBar from '@/components/ProgressBar'
 
 const SecondPage = () => (
   <Layout>

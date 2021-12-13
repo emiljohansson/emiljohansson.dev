@@ -1,12 +1,10 @@
 import { useState, useRef } from 'react'
-import { Sync } from '@styled-icons/material/Sync'
-import { FileCopy } from '@styled-icons/material/FileCopy'
+import { CopyIcon, UpdateIcon } from '@radix-ui/react-icons'
 import randomString from '@emiljohansson/random-string'
 import Header from './Header'
 import HeaderAction from './HeaderAction'
 import Content from './Content'
 import Section from './Section'
-import SrOnly from './SrOnly'
 
 function copyToClipboard (el: HTMLInputElement | null) {
   if (!el) {
@@ -27,18 +25,20 @@ function RandomString ({ initialValue }) {
         <HeaderAction
           onClick={() => setValue(randomString())}
         >
-          <Sync size="30" title="Refresh" />
+          <UpdateIcon width={30} height={30} />
+          <span className="sr-only">Refresh</span>
         </HeaderAction>
         <HeaderAction
           onClick={() => copyToClipboard(inputEl.current)}
         >
-          <FileCopy size="30" title="Copy" />
+          <CopyIcon width={30} height={30} />
+          <span className="sr-only">Copy</span>
         </HeaderAction>
       </Header>
       <Section>
-        <SrOnly
-          as="input"
+        <input
           ref={inputEl}
+          className="sr-only"
           type="text"
           value={value}
           readOnly

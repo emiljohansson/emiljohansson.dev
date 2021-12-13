@@ -1,42 +1,43 @@
 import { FunctionComponent } from 'react'
 import Link from 'next/link'
-import styled from 'styled-components'
-import { ArrowBack } from '@styled-icons/material/ArrowBack'
+import { styled } from '@/stitches'
+import { ArrowLeftIcon } from '@radix-ui/react-icons'
 import { spacers, colors } from '../src/styles/variables'
 
-const HeaderRoot = styled.header`
-  background-color: $white;
-  display: flex;
-  font-size: 1.4rem;
-  line-height: 0;
-  padding: ${spacers[3]};
-  width: 100%;
-`
+const HeaderRoot = styled('header', {
+  backgroundColor: colors.white,
+  display: 'flex',
+  fontSize: '1.4rem',
+  lineHeight: '0',
+  padding: spacers[3],
+  width: '100%',
+})
 
-const BackLink = styled(Link)`
-  line-height: 1;
-  padding: 0;
+const BackLink = styled('a', {
+  lineHeight: 1,
+  padding: 0,
 
-  &,
-  &:hover {
-    color: ${colors.primary};
-  }
-`
+  '&, &:hover': {
+    color: colors.primary,
+  },
+})
 
-const Actions = styled.div`
-  margin-left: auto;
-`
+const Actions = styled('div', {
+  marginLeft: 'auto'
+})
 
 const Header: FunctionComponent = ({ children }) => {
   return (
     <HeaderRoot>
-      <BackLink
+      <Link
         href="/"
+        passHref
       >
-        <a>
-          <ArrowBack size="30" title="Back" />
-        </a>
-      </BackLink>
+        <BackLink>
+          <ArrowLeftIcon width={30} height={30} />
+          <span className="sr-only">Back</span>
+        </BackLink>
+      </Link>
       <Actions>
         {children}
       </Actions>

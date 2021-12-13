@@ -1,11 +1,11 @@
-import React, { useState, useEffect, createContext, useContext, useReducer, ChangeEvent, useRef } from 'react'
-import styled from 'styled-components'
-import Layout from '../components/Layout'
-import Section from '../components/Section'
-import Header from '../components/Header'
-import Content from '../components/Content'
-import { fonts } from '../src/styles/variables'
+import { useState, useEffect, createContext, useContext, useReducer, ChangeEvent, useRef, FunctionComponent } from 'react'
 import Head from 'next/head'
+import { styled } from '@/stitches'
+import Layout from '@/components/Layout'
+import Section from '@/components/Section'
+import Header from '@/components/Header'
+import Content from '@/components/Content'
+import { fonts } from '../src/styles/variables'
 
 function generateBombPositions (size: number, numberOfBombs: number) {
   const list: number[] = []
@@ -165,58 +165,63 @@ const Tile = ({
 
   return (
     <StyledTile
-      isActivated={isActivated}
-      isEven={isEven}
-      isDead={isDead}
-      isFlagged={isFlagged}
       onContextMenu={(event)=> {
         event.preventDefault()
         onRightClick()
       }}
       onClick={onLeftClick}
-      radius={context.radius}
-      fontSize={context.fontSize}
+      css={{
+        fontSize: `${context.fontSize}rem`,
+        height: `${context.radius}px`,
+        width: `${context.radius}px`,
+        backgroundColor: getTileBackgroundColor({
+          isFlagged,
+          isDead,
+          isActivated,
+          isEven,
+        })
+      }}
     >{isActivated ? display : ''}</StyledTile>
   )
 }
 
-const FlexRow = styled.div<{
-  radius: number
-}>`
-  display: flex;
-  flex-direction: row;
-  height: ${props => props.radius}px;
-`
+const StyledFlexRow = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+})
 
-const StyledTile = styled.button<{
-  isActivated?: boolean
-  isEven?: boolean
-  isDead?: boolean
-  isFlagged?: boolean
-  radius: number
-  fontSize: number
-}>`
-  background-color: ${
-    props => {
-      if (props.isFlagged) {
-        return '#1982C4'
-      }
-      if (props.isDead) {
-        return '#FF595E'
-      }
-      if (props.isActivated) {
-        return props.isEven ? '#8AC926' : '#98D831'
-      }
-      return props.isEven ? 'aliceblue' : 'antiquewhite'
-    }
-  };
-  border: 3px solid rgba(0, 0, 0, 0.1);
-  font-size: ${props => props.fontSize}rem;
-  height: ${props => props.radius}px;
-  width: ${props => props.radius}px;
-  line-height: 1.2;
-  text-align: center;
-`
+const FlexRow: FunctionComponent<{ radius: number }> = ({ children, radius }) => {
+  return <StyledFlexRow css={{
+    height: `${radius}px`
+  }}>
+    {children}
+  </StyledFlexRow>
+}
+
+const StyledTile = styled('button', {
+  backgroundColor: '#1982C4',
+  border: '3px solid rgba(0, 0, 0, 0.1)',
+  lineHeight: '1.2',
+  textAlign: 'center',
+})
+
+const getTileBackgroundColor = ({
+  isFlagged,
+  isDead,
+  isActivated,
+  isEven,
+}) => {
+  if (isFlagged) {
+    return '#1982C4'
+  }
+  if (isDead) {
+    return '#FF595E'
+  }
+  if (isActivated) {
+    return isEven ? '#8AC926' : '#98D831'
+  }
+  return isEven ? 'aliceblue' : 'antiquewhite'
+}
 
 function isEven(i: number, j: number): boolean {
   if (i % 2 === 0) {
@@ -225,13 +230,13 @@ function isEven(i: number, j: number): boolean {
   return j % 2 !== 0
 }
 
-const StyledBoard = styled.div`
-  font-family: 'MuseoModerno';
-  font-weight: 300;
-  font-size: 2.6rem;
-  user-select: none;
-  position: relative;
-`
+const StyledBoard = styled('div', {
+  fontFamily: 'MuseoModerno',
+  fontWeight: '300',
+  fontSize: '2.6rem',
+  userSelect: 'none',
+  position: 'relative',
+})
 
 enum GameState {
   passive,
@@ -260,13 +265,13 @@ function getGameState (board, difficulty: Difficulty): GameState {
   return GameState.active
 }
 
-const GameOverMessage = styled.div`
-  font-family: ${fonts.baseFontFamily};
-  position: absolute;
-  top: 100%;
-  text-align: center;
-  width: 100%;
-`
+const GameOverMessage = styled('div', {
+  fontFamily: fonts.baseFontFamily,
+  position: 'absolute',
+  top: '100%',
+  textAlign: 'center',
+  width: '100%',
+})
 
 function useInterval (callback, delay) {
   const savedCallback = useRef(() => {})

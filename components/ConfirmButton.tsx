@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import styled, { css } from 'styled-components'
+import { styled } from '@/stitches';
 import { motion } from 'framer-motion'
 
-const relative = css({
-  position: 'relative',
-})
+// const relative = css({
+//   position: 'relative',
+// })
 
 // const fontSize = css({
 //   fontSize: ${this.prop},
@@ -12,7 +12,7 @@ const relative = css({
 
 const duration = 3
 
-const Button = styled.button({
+const Button = styled('button', {
   border: '3px solid black',
   borderRadius: '100px',
   padding: '20px',
@@ -24,7 +24,7 @@ const Button = styled.button({
   }
 })
 
-const ButtonInner = styled(motion.div)({
+const ButtonInner = styled(motion.div, {
   background: '#293845',
   height: '100%',
   width: '100%',
@@ -35,7 +35,7 @@ const ButtonInner = styled(motion.div)({
   zIndex: 1,
 })
 
-const ButtonText = styled.div({
+const ButtonText = styled('div', {
   // relative,
   fontSize: '1.7rem',
   zIndex: 2,

@@ -1,24 +1,20 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import styled from 'styled-components'
+import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
 
-const ColumnSection = styled(Section)`
-  flex-direction: column;
-`
+const BarContainer = styled('div', {
+  height: '2px',
+  width: '400px',
+})
 
-const BarContainer = styled.div`
-  height: 2px;
-  width: 400px;
-`
-
-const Bar = styled(motion.div)`
-  height: 100%;
-  margin: 0 auto;
-  transition: all 1s linear;
-`
+const Bar = styled(motion.div, {
+  height: '100%',
+  margin: '0 auto',
+  transition: 'all 1s linear',
+})
 
 function TwoWayAuthGenerate () {
   const [ value, setValue ] = useState('')
@@ -59,7 +55,7 @@ function TwoWayAuthGenerate () {
   return (
     <Content>
       <Header />
-      <ColumnSection>
+      <Section direction="column">
         <div>{value}</div>
         <BarContainer>
           <Bar
@@ -70,7 +66,7 @@ function TwoWayAuthGenerate () {
             transition={{ duration: 0.4 }}
           />
         </BarContainer>
-      </ColumnSection>
+      </Section>
     </Content>
   )
 }

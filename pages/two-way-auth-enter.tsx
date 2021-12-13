@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Layout from '../components/Layout'
-import TwoWayAuthEnter from '../components/TwoWayAuthEnter'
+import Layout from '@/components/Layout'
+import TwoWayAuthEnter from '@/components/TwoWayAuthEnter'
 
 const SecondPage = () => (
   <Layout>

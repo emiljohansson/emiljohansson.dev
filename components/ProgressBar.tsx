@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { EventEmitter } from 'events'
 import { motion } from 'framer-motion'
-import styled from 'styled-components'
+import { styled } from '@/stitches'
 import { colors } from '../src/styles/variables'
 import Header from './Header'
 import Content from './Content'
@@ -37,18 +37,18 @@ function FixedProgressView ({ progress }: any) {
   return progress
 }
 
-const BarContainer = styled.div`
-  border-right: 2px solid ${colors.gray500};
-  border-left: 2px solid ${colors.gray500};
-  height: 15px;
-  width: 400px;
-  margin: 0 1rem;
-`
+const BarContainer = styled('div', {
+  borderRight: '2px solid ${colors.gray500}',
+  borderLeft: '2px solid ${colors.gray500}',
+  height: '15px',
+  width: '400px',
+  margin: '0 1rem',
+})
 
-const Bar = styled(motion.div)`
-  height: 100%;
-  width: 0%;
-`
+const Bar = styled(motion.div, {
+  height: '100%',
+  width: '0%',
+})
 
 function ProgressBar () {
   const emitter: EventEmitter = new EventEmitter()

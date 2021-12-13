@@ -3,15 +3,13 @@
 ## Current Stack
 - Next.js
 - Typescript
-- styled-components
+- Tailwind
+- Radix UI
+  - Stitches
+  - Icons
+- Framer Motion
 
 ## TODO
-- CSS
-  - Tailwind?
-  - twin.macro
-  - styled-system?
-  - radix ui
-- Framer Motion
 - Cypress
   - accessibility
   - lighthouse

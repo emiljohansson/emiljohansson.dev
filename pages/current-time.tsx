@@ -1,7 +1,7 @@
-import Layout from '../components/Layout'
-import CurrentTime from '../components/CurrentTime'
 import Head from 'next/head'
-import getCurrentTime from '../lib/getCurrentTime'
+import Layout from '@/components/Layout'
+import CurrentTime from '@/components/CurrentTime'
+import getCurrentTime from '@/lib/getCurrentTime'
 
 export async function getServerSideProps() {
   return {

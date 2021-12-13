@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import Layout from '../components/Layout'
-import ConfirmButton from '../components/ConfirmButton'
-import Section from '../components/Section'
-import Header from '../components/Header'
-import Content from '../components/Content'
+import { useState } from 'react'
 import Head from 'next/head'
+import { styled } from '@/stitches';
+import Layout from '@/components/Layout'
+import Content from '@/components/Content'
+import ConfirmButton from '@/components/ConfirmButton'
+import Section from '@/components/Section'
+import Header from '@/components/Header'
 
 const spacers = {
   0: 0,
@@ -30,7 +30,7 @@ const mx = createSpacingFn(['marginLeft', 'marginRight']);
 // const m = createSpacingFn(['margin']);
 // const px = createSpacingFn(['padding-left', 'padding-right']);
 
-const FlexColumn = styled.div({
+const FlexColumn = styled('div', {
   ...mx(2),
   display: 'flex',
   flexDirection: 'column',
@@ -46,6 +46,7 @@ const ConfirmButtonPage = () => {
         <meta name="description" content="Confirm button" />
       </Head>
       <Content>
+        <h1 className="sr-only">Confirm Button</h1>
         <Header />
         <Section>
           <FlexColumn>
