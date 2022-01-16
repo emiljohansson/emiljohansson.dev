@@ -1,0 +1,36 @@
+{
+  "name": "emiljohansson.dev-next",
+  "description": "Playground for Emil Johansson",
+  "version": "1.2.1",
+  "author": "emiljohansson.dev@gmail.com",
+  "keywords": [
+    "emil",
+    "johansson"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "chat-server": "node chat-server"
+  },
+  "dependencies": {
+    "@emiljohansson/random-string": "1.1.2",
+    "@radix-ui/react-icons": "^1.0.3",
+    "@stitches/react": "^1.2.6",
+    "framer-motion": "1.10.3",
+    "lib": "*",
+    "next": "^12.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "@types/react": "^17.0.3",
+    "autoprefixer": "^10.4.0",
+    "next-transpile-modules": "^9.0.0",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^2.2.19",
+    "typescript": "^4.5.3"
+  }
+}

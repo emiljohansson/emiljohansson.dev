@@ -3,7 +3,7 @@ import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
-import useCurrentTime from '@/lib/useCurrentTime'
+import useCurrentTime from 'lib/useCurrentTime'
 
 const Meridiem = styled('span', {
   fontSize: '50%',
@@ -11,8 +11,8 @@ const Meridiem = styled('span', {
 })
 
 function CurrentTime ({ initialTime }) {
-  const [time, setTime] = useState(createTime(initialTime))
-  const [meridiem, setMeridiem] = useState(initialTime.meridiem)
+  const [time, setTime] = useState<string>(createTime(initialTime))
+  const [meridiem, setMeridiem] = useState<string>(initialTime.meridiem)
 
   useCurrentTime(({
     hours,

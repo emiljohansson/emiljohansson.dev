@@ -21,7 +21,6 @@
     "incremental": true,
     "paths": {
       "@/components/*": ["./components/*"],
-      "@/lib/*": ["./lib/*"],
       "@/stitches": ["./stitches.config"]
     }
   },
