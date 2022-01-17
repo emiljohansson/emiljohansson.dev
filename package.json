@@ -13,7 +13,8 @@
     "dev": "turbo run dev --parallel",
     "start": "turbo run start",
     "test": "turbo run test",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "workspaces": [
     "packages/*",
@@ -23,18 +24,24 @@
     "baseBranch": "origin/master",
     "pipeline": {
       "build": {
-        "dependsOn": ["^build"],
+        "dependsOn": [
+          "^build"
+        ],
         "outputs": [
           "dist/**",
           ".next/**"
         ]
       },
       "test": {
-        "dependsOn": ["^build"],
+        "dependsOn": [
+          "^build"
+        ],
         "outputs": []
       },
       "start": {
-        "dependsOn": ["^build"],
+        "dependsOn": [
+          "^build"
+        ],
         "outputs": []
       },
       "lint": {
@@ -46,6 +53,7 @@
     }
   },
   "devDependencies": {
+    "prettier": "^2.5.1",
     "turbo": "^1.0.28"
   }
 }
