@@ -1,5 +1,5 @@
 export const colors = {
-  white:    '#fff',
+  white: '#fff',
   gray100: '#f8f9fa',
   gray200: '#e9ecef',
   gray300: '#dee2e6',
@@ -9,18 +9,18 @@ export const colors = {
   gray700: '#495057',
   gray800: '#343a40',
   gray900: '#212529',
-  black:    '#000',
+  black: '#000',
 
-  blue:    '#007bff',
-  indigo:  '#6610f2',
-  purple:  '#6f42c1',
-  pink:    '#e83e8c',
-  red:     '#dc3545',
-  orange:  '#fd7e14',
-  yellow:  '#ffc107',
-  green:   '#28a745',
-  teal:    '#20c997',
-  cyan:    '#17a2b8',
+  blue: '#007bff',
+  indigo: '#6610f2',
+  purple: '#6f42c1',
+  pink: '#e83e8c',
+  red: '#dc3545',
+  orange: '#fd7e14',
+  yellow: '#ffc107',
+  green: '#28a745',
+  teal: '#20c997',
+  cyan: '#17a2b8',
 
   primary: '#282a36',
   // 'secondary':     $gray600,
@@ -50,9 +50,9 @@ export const fonts = {
 const spacer = 1
 export const spacers = [
   0,
-  (spacer * .25),
-  (spacer * .5),
+  spacer * 0.25,
+  spacer * 0.5,
   spacer,
-  (spacer * 1.5),
-  (spacer * 3)
-].map(value => `${value}rem`)
+  spacer * 1.5,
+  spacer * 3,
+].map((value) => `${value}rem`)

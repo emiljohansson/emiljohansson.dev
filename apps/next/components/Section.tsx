@@ -1,4 +1,4 @@
-import { styled } from '@/stitches';
+import { styled } from '@/stitches'
 
 export default styled('section', {
   backgroundColor: 'transparent',
@@ -34,5 +34,5 @@ export default styled('section', {
   defaultVariants: {
     size: 'normal',
     direction: 'row',
-  }
+  },
 })

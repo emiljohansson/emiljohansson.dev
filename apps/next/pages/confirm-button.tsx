@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Head from 'next/head'
-import { styled } from '@/stitches';
+import { styled } from '@/stitches'
 import Layout from '@/components/Layout'
 import Content from '@/components/Content'
 import ConfirmButton from '@/components/ConfirmButton'
@@ -17,15 +17,15 @@ const spacers = {
   6: 2,
 }
 
-const createSpacingFn = parameters => spacer => {
+const createSpacingFn = (parameters) => (spacer) => {
   const value = spacers[spacer]
 
   return parameters.reduce((result, param) => {
     result[param] = `${value}rem`
     return result
   }, {})
-};
-const mx = createSpacingFn(['marginLeft', 'marginRight']);
+}
+const mx = createSpacingFn(['marginLeft', 'marginRight'])
 // const mt = createSpacingFn(['margin-top']);
 // const m = createSpacingFn(['margin']);
 // const px = createSpacingFn(['padding-left', 'padding-right']);
@@ -38,7 +38,7 @@ const FlexColumn = styled('div', {
 })
 
 const ConfirmButtonPage = () => {
-  const [ confirmed, setConfirmed ] = useState(false)
+  const [confirmed, setConfirmed] = useState(false)
   return (
     <Layout>
       <Head>
@@ -50,10 +50,8 @@ const ConfirmButtonPage = () => {
         <Header />
         <Section>
           <FlexColumn>
-            <ConfirmButton
-              onComfirm={() => setConfirmed(true)}
-            />
-            <div>Submitted: { confirmed.toString() }</div>
+            <ConfirmButton onComfirm={() => setConfirmed(true)} />
+            <div>Submitted: {confirmed.toString()}</div>
           </FlexColumn>
         </Section>
       </Content>

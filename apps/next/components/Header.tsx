@@ -23,24 +23,19 @@ const BackLink = styled('a', {
 })
 
 const Actions = styled('div', {
-  marginLeft: 'auto'
+  marginLeft: 'auto',
 })
 
 const Header: FunctionComponent = ({ children }) => {
   return (
     <HeaderRoot>
-      <Link
-        href="/"
-        passHref
-      >
+      <Link href="/" passHref>
         <BackLink>
           <ArrowLeftIcon width={30} height={30} />
           <span className="sr-only">Back</span>
         </BackLink>
       </Link>
-      <Actions>
-        {children}
-      </Actions>
+      <Actions>{children}</Actions>
     </HeaderRoot>
   )
 }

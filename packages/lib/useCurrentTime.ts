@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import getCurrentTime from './getCurrentTime'
 
-function useInterval (callback: () => void, delay: number) {
+function useInterval(callback: () => void, delay: number) {
   const savedCallback = useRef<() => void>()
 
   // Remember the latest callback.
@@ -21,7 +21,7 @@ function useInterval (callback: () => void, delay: number) {
   }, [delay])
 }
 
-export default function useCurrentTime (callback: (props: any) => void) {
+export default function useCurrentTime(callback: (props: any) => void) {
   useInterval(() => {
     callback(getCurrentTime())
   }, 1000)

@@ -1,38 +1,38 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import randomString from '@emiljohansson/random-string'
 
-let lastUpdated: number = -1
-let value: string = ''
+let lastUpdated = -1
+let value = ''
 
-const lifespanInSeconds: number = 15
+const lifespanInSeconds = 15
 
-function getLastUpdated (): number {
+function getLastUpdated() {
   return lastUpdated
 }
 
-function getValue (): string {
+function getValue() {
   return value
 }
 
-function setValue (newValue: string): void {
+function setValue(newValue: string) {
   updateLastUpdated()
   value = newValue
 }
 
-function updateLastUpdated (): void {
+function updateLastUpdated() {
   lastUpdated = getNewUpdatedTime()
 }
 
-function getNewUpdatedTime (): number {
+function getNewUpdatedTime() {
   const date: Date = new Date()
   return date.getTime()
 }
 
-function isWithinTimespan (time: number, seconds: number = 0): boolean {
+function isWithinTimespan(time: number, seconds = 0) {
   return getDiffInSeconds(time) <= seconds
 }
 
-function getDiffInSeconds (time: number): number {
+function getDiffInSeconds(time: number) {
   const lastUpdated: Date = new Date(time)
   const now: Date = new Date()
   const diff: number = (now as any) - (lastUpdated as any)
@@ -40,9 +40,7 @@ function getDiffInSeconds (time: number): number {
 }
 
 export default function (req: NextApiRequest, res: NextApiResponse) {
-  const {
-    fn
-  } = req.query
+  const { fn } = req.query
 
   if (fn === 'generate') {
     generateCode(req, res)
@@ -59,12 +57,15 @@ export default function (req: NextApiRequest, res: NextApiResponse) {
 
   res.status(200).json({
     status: 'success',
-    data: null
+    data: null,
   })
 }
 
-function generateCode (req: NextApiRequest, res: NextApiResponse) {
-  if (!getLastUpdated() || !isWithinTimespan(getLastUpdated(), lifespanInSeconds)) {
+function generateCode(req: NextApiRequest, res: NextApiResponse) {
+  if (
+    !getLastUpdated() ||
+    !isWithinTimespan(getLastUpdated(), lifespanInSeconds)
+  ) {
     setValue('')
   }
   if (!getValue()) {
@@ -75,22 +76,29 @@ function generateCode (req: NextApiRequest, res: NextApiResponse) {
     data: {
       value: getValue(),
       expires: lifespanInSeconds - getDiffInSeconds(getLastUpdated()),
-      lifespan: lifespanInSeconds
-    }
+      lifespan: lifespanInSeconds,
+    },
   })
 }
 
-function validateCode (req: NextApiRequest, res: NextApiResponse, value: string): void {
-  function end (isValid: boolean): void {
+function validateCode(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  value: string
+): void {
+  function end(isValid: boolean): void {
     res.status(200).json({
       status: 'success',
       data: {
-        isValid
-      }
+        isValid,
+      },
     })
   }
 
-  if (!getLastUpdated() || !isWithinTimespan(getLastUpdated(), lifespanInSeconds)) {
+  if (
+    !getLastUpdated() ||
+    !isWithinTimespan(getLastUpdated(), lifespanInSeconds)
+  ) {
     end(false)
     return
   }
@@ -104,4 +112,3 @@ function validateCode (req: NextApiRequest, res: NextApiResponse, value: string)
   }
   end(isValid)
 }
-

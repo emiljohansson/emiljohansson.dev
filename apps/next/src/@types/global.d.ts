@@ -31,13 +31,11 @@ declare module '*.json' {
 }
 
 declare module '@storybook/react/demo' {
-  export class Button extends React.Component<React.HTMLProps<Button>> {
-  }
+  export class Button extends React.Component<React.HTMLProps<Button>> {}
 
   export interface WelcomeProps {
-    showApp: React.MouseEventHandler<Welcome>;
+    showApp: React.MouseEventHandler<Welcome>
   }
 
-  export class Welcome extends React.Component<WelcomeProps> {
-  }
+  export class Welcome extends React.Component<WelcomeProps> {}
 }

@@ -6,8 +6,8 @@ import RandomString from '@/components/RandomString'
 export async function getServerSideProps() {
   return {
     props: {
-      value: randomString()
-    }
+      value: randomString(),
+    },
   }
 }
 
@@ -18,9 +18,7 @@ const SecondPage = ({ value }) => {
         <title>Random String</title>
         <meta name="description" content="Genrates a random string" />
       </Head>
-      <RandomString
-        initialValue={value}
-      />
+      <RandomString initialValue={value} />
     </Layout>
   )
 }

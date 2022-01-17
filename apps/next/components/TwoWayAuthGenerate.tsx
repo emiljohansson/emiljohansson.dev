@@ -16,10 +16,10 @@ const Bar = styled(motion.div, {
   transition: 'all 1s linear',
 })
 
-function TwoWayAuthGenerate () {
-  const [ value, setValue ] = useState('')
-  const [ timeLeft, setTimeLeft ] = useState(-1)
-  const [ lifespan, setLifespan ] = useState(-1)
+function TwoWayAuthGenerate() {
+  const [value, setValue] = useState('')
+  const [timeLeft, setTimeLeft] = useState(-1)
+  const [lifespan, setLifespan] = useState(-1)
 
   useEffect(() => {
     if (timeLeft < 0) {
@@ -31,7 +31,7 @@ function TwoWayAuthGenerate () {
     return () => clearTimeout(timer)
   }, [timeLeft])
 
-  async function retrieve (): Promise<void> {
+  async function retrieve(): Promise<void> {
     try {
       const response: any = await fetch('/api/two-factor/generate')
       const json: any = await response.json()
@@ -45,7 +45,7 @@ function TwoWayAuthGenerate () {
   }
 
   const percentage: number = (timeLeft / lifespan) * 100
-  let color: string = 'rgb(137, 242, 152)'
+  let color = 'rgb(137, 242, 152)'
   if (percentage <= 25) {
     color = 'rgb(237, 103, 94)'
   } else if (percentage <= 50) {

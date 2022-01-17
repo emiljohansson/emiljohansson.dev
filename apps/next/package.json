@@ -12,6 +12,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "chat-server": "node chat-server"
   },
   "dependencies": {
@@ -28,6 +29,8 @@
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "autoprefixer": "^10.4.0",
+    "config": "*",
+    "eslint": "^8.7.0",
     "next-transpile-modules": "^9.0.0",
     "postcss": "^8.4.5",
     "tailwindcss": "^2.2.19",

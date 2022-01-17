@@ -6,8 +6,8 @@ import getCurrentTime from 'lib/getCurrentTime'
 export async function getServerSideProps() {
   return {
     props: {
-      value: getCurrentTime()
-    }
+      value: getCurrentTime(),
+    },
   }
 }
 
@@ -18,9 +18,7 @@ const CurrentTimePage = ({ value }) => {
         <title>Current Time</title>
         <meta name="description" content="Current Time" />
       </Head>
-      <CurrentTime
-        initialValue={value}
-      />
+      <CurrentTime initialValue={value} />
     </Layout>
   )
 }

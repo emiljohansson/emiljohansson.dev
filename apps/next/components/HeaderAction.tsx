@@ -9,13 +9,6 @@ const Button = styled('button', {
 
 const Header: FunctionComponent<{
   onClick: () => void
-}> = ({
-  children,
-  onClick,
-}) => (
-  <Button onClick={onClick}>
-    {children}
-  </Button>
-)
+}> = ({ children, onClick }) => <Button onClick={onClick}>{children}</Button>
 
 export default Header

@@ -1,6 +1,7 @@
 # emiljohansson.dev
 
 ## Current Stack
+
 - Next.js
 - Typescript
 - Tailwind
@@ -10,6 +11,7 @@
 - Framer Motion
 
 ## TODO
+
 - Cypress
   - accessibility
   - lighthouse

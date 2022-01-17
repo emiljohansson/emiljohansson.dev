@@ -6,7 +6,7 @@ import HeaderAction from './HeaderAction'
 import Content from './Content'
 import Section from './Section'
 
-function copyToClipboard (el: HTMLInputElement | null) {
+function copyToClipboard(el: HTMLInputElement | null) {
   if (!el) {
     return
   }
@@ -15,22 +15,18 @@ function copyToClipboard (el: HTMLInputElement | null) {
   el.selectionEnd = el.selectionStart
 }
 
-function RandomString ({ initialValue }) {
-  const [ value, setValue ] = useState(initialValue)
+function RandomString({ initialValue }) {
+  const [value, setValue] = useState(initialValue)
   const inputEl = useRef(null)
 
   return (
     <Content>
       <Header>
-        <HeaderAction
-          onClick={() => setValue(randomString())}
-        >
+        <HeaderAction onClick={() => setValue(randomString())}>
           <UpdateIcon width={30} height={30} />
           <span className="sr-only">Refresh</span>
         </HeaderAction>
-        <HeaderAction
-          onClick={() => copyToClipboard(inputEl.current)}
-        >
+        <HeaderAction onClick={() => copyToClipboard(inputEl.current)}>
           <CopyIcon width={30} height={30} />
           <span className="sr-only">Copy</span>
         </HeaderAction>

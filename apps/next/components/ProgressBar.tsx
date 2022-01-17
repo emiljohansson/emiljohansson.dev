@@ -2,16 +2,15 @@ import { useState, useEffect } from 'react'
 import { EventEmitter } from 'events'
 import { motion } from 'framer-motion'
 import { styled } from '@/stitches'
-import { colors } from '../src/styles/variables'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
 
-function useProgress (min: number, max: number, emitter: EventEmitter): number {
-  const [ value, setValue ] = useState(0)
+function useProgress(min: number, max: number, emitter: EventEmitter) {
+  const [value, setValue] = useState(0)
 
   useEffect(() => {
-    function onUpdate (value: any): void {
+    function onUpdate(value: number) {
       setValue(Number(((value / max) * 100).toFixed(0)))
     }
     emitter.addListener('update', onUpdate)
@@ -23,18 +22,36 @@ function useProgress (min: number, max: number, emitter: EventEmitter): number {
   return value
 }
 
-function FixedProgressView ({ progress }: any) {
+function FixedProgressView({ progress }: { progress: number }) {
   if (progress < 10) {
-    return <span><span style={{
-      visibility: 'hidden'
-    }}>00</span>{progress}</span>
+    return (
+      <span>
+        <span
+          style={{
+            visibility: 'hidden',
+          }}
+        >
+          00
+        </span>
+        {progress}
+      </span>
+    )
   }
   if (progress < 100) {
-    return <span><span style={{
-      visibility: 'hidden'
-    }}>0</span>{progress}</span>
+    return (
+      <span>
+        <span
+          style={{
+            visibility: 'hidden',
+          }}
+        >
+          0
+        </span>
+        {progress}
+      </span>
+    )
   }
-  return progress
+  return <>progress</>
 }
 
 const BarContainer = styled('div', {
@@ -50,12 +67,12 @@ const Bar = styled(motion.div, {
   width: '0%',
 })
 
-function ProgressBar () {
+function ProgressBar() {
   const emitter: EventEmitter = new EventEmitter()
   const progress: number = useProgress(0, 100, emitter)
 
   useEffect(() => {
-    let count: number = 0
+    let count = 0
     const interval: any = setInterval(() => {
       count += Math.floor(Math.random() * 20)
       if (count > 100) {
@@ -67,7 +84,7 @@ function ProgressBar () {
     return () => clearInterval(interval)
   }, [])
 
-  let color: string = 'rgb(137, 242, 152)'
+  let color = 'rgb(137, 242, 152)'
   if (progress <= 25) {
     color = 'rgb(237, 103, 94)'
   } else if (progress <= 50) {
@@ -88,9 +105,7 @@ function ProgressBar () {
           />
         </BarContainer>
         <div>
-          <FixedProgressView
-            progress={progress}
-          />%
+          <FixedProgressView progress={progress} />%
         </div>
       </Section>
     </Content>

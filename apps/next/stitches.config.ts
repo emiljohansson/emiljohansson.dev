@@ -1,4 +1,4 @@
-import { createStitches } from '@stitches/react';
+import { createStitches } from '@stitches/react'
 
 export const { styled, getCssText, css, globalCss } = createStitches({
   theme: {
@@ -15,4 +15,4 @@ export const { styled, getCssText, css, globalCss } = createStitches({
       3: '17px',
     },
   },
-});
+})

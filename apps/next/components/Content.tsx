@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { styled } from '@/stitches';
+import { styled } from '@/stitches'
 
 const Article = styled('article', {
   display: 'flex',
@@ -8,11 +8,7 @@ const Article = styled('article', {
 })
 
 const Content: FunctionComponent = ({ children }) => {
-  return (
-    <Article>
-      {children}
-    </Article>
-  )
+  return <Article>{children}</Article>
 }
 
 export default Content

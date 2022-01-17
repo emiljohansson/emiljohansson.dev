@@ -21,9 +21,9 @@ const List = styled('ul', {
   padding: '1rem',
   margin: '0',
 
-  'li': {
+  li: {
     marginLeft: '1.5rem',
-  }
+  },
 })
 
 const IndexPage = () => (
@@ -31,67 +31,50 @@ const IndexPage = () => (
     <Head>
       <title>Welcome to emiljohansson.dev | emiljohansson.dev</title>
       <meta name="description" content="Playground for Emil Johansson" />
-      <meta name="keywords" content="emil, johansson, developer, front-end, front end" />
+      <meta
+        name="keywords"
+        content="emil, johansson, developer, front-end, front end"
+      />
     </Head>
     <Github>
-      <MainLink
-        href="https://github.com/emiljohansson"
-        target="_blank"
-      >
-        <GitHubLogoIcon
-          width="38"
-          height="38"
-          className="inline-block"
-        /> emiljohansson
+      <MainLink href="https://github.com/emiljohansson" target="_blank">
+        <GitHubLogoIcon width="38" height="38" className="inline-block" />{' '}
+        emiljohansson
       </MainLink>
     </Github>
     <List className="list-disc">
       <li>
-        <Link
-          href="/random-string"
-        >
+        <Link href="/random-string">
           <a>Random String</a>
         </Link>
       </li>
       <li>
-        <Link
-          href="/current-time"
-        >
+        <Link href="/current-time">
           <a>Current Time</a>
         </Link>
       </li>
       <li>
-        <Link
-          href="/two-way-auth-generate"
-        >
+        <Link href="/two-way-auth-generate">
           <a>Two-Factor Authentication - Generate Code</a>
         </Link>
       </li>
       <li>
-        <Link
-          href="/two-way-auth-enter"
-        >
+        <Link href="/two-way-auth-enter">
           <a>Two-Factor Authentication - Enter Code</a>
         </Link>
       </li>
       <li>
-        <Link
-          href="/progress-bar"
-        >
+        <Link href="/progress-bar">
           <a>Progress Bar</a>
         </Link>
       </li>
       <li>
-        <Link
-          href="/confirm-button"
-        >
+        <Link href="/confirm-button">
           <a>Confirm Button</a>
         </Link>
       </li>
       <li>
-        <Link
-          href="/ms"
-        >
+        <Link href="/ms">
           <a>ms</a>
         </Link>
       </li>

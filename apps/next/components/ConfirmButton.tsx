@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { styled } from '@/stitches';
+import { styled } from '@/stitches'
 import { motion } from 'framer-motion'
 
 // const relative = css({
@@ -20,8 +20,8 @@ const Button = styled('button', {
   overflow: 'hidden',
 
   '&:focus': {
-    outline: 'none'
-  }
+    outline: 'none',
+  },
 })
 
 const ButtonInner = styled(motion.div, {
@@ -45,16 +45,14 @@ interface Props {
   onComfirm: () => void
 }
 
-function ConfirmButton ({
-  onComfirm
-}: Props) {
-  const [ active, setActive ] = useState(false)
+function ConfirmButton({ onComfirm }: Props) {
+  const [active, setActive] = useState(false)
 
   useEffect(() => {
     if (!active) return
     const timer = setInterval(() => {
       onComfirm()
-    }, duration * 1000);
+    }, duration * 1000)
     return () => clearInterval(timer)
   }, [active])
 
