@@ -10,7 +10,7 @@ const Meridiem = styled('span', {
   marginBottom: '-18px',
 })
 
-function CurrentTime({ initialTime }) {
+function CurrentTime ({ initialTime }) {
   const [time, setTime] = useState<string>(createTime(initialTime))
   const [meridiem, setMeridiem] = useState<string>(initialTime.meridiem)
 
@@ -29,7 +29,7 @@ function CurrentTime({ initialTime }) {
 
 const createTime = ({ hours, minutes }) => `${hours}:${minutes}`
 
-function CurrentTimeBase({ initialValue }) {
+function CurrentTimeBase ({ initialValue }) {
   return (
     <Content>
       <Header />

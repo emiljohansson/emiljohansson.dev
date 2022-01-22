@@ -6,7 +6,7 @@ import HeaderAction from './HeaderAction'
 import Content from './Content'
 import Section from './Section'
 
-function copyToClipboard(el: HTMLInputElement | null) {
+function copyToClipboard (el: HTMLInputElement | null) {
   if (!el) {
     return
   }
@@ -15,7 +15,7 @@ function copyToClipboard(el: HTMLInputElement | null) {
   el.selectionEnd = el.selectionStart
 }
 
-function RandomString({ initialValue }) {
+function RandomString ({ initialValue }) {
   const [value, setValue] = useState(initialValue)
   const inputEl = useRef(null)
 

@@ -6,33 +6,33 @@ let value = ''
 
 const lifespanInSeconds = 15
 
-function getLastUpdated() {
+function getLastUpdated () {
   return lastUpdated
 }
 
-function getValue() {
+function getValue () {
   return value
 }
 
-function setValue(newValue: string) {
+function setValue (newValue: string) {
   updateLastUpdated()
   value = newValue
 }
 
-function updateLastUpdated() {
+function updateLastUpdated () {
   lastUpdated = getNewUpdatedTime()
 }
 
-function getNewUpdatedTime() {
+function getNewUpdatedTime () {
   const date: Date = new Date()
   return date.getTime()
 }
 
-function isWithinTimespan(time: number, seconds = 0) {
+function isWithinTimespan (time: number, seconds = 0) {
   return getDiffInSeconds(time) <= seconds
 }
 
-function getDiffInSeconds(time: number) {
+function getDiffInSeconds (time: number) {
   const lastUpdated: Date = new Date(time)
   const now: Date = new Date()
   const diff: number = (now as any) - (lastUpdated as any)
@@ -61,7 +61,7 @@ export default function (req: NextApiRequest, res: NextApiResponse) {
   })
 }
 
-function generateCode(req: NextApiRequest, res: NextApiResponse) {
+function generateCode (req: NextApiRequest, res: NextApiResponse) {
   if (
     !getLastUpdated() ||
     !isWithinTimespan(getLastUpdated(), lifespanInSeconds)
@@ -81,12 +81,12 @@ function generateCode(req: NextApiRequest, res: NextApiResponse) {
   })
 }
 
-function validateCode(
+function validateCode (
   req: NextApiRequest,
   res: NextApiResponse,
-  value: string
+  value: string,
 ): void {
-  function end(isValid: boolean): void {
+  function end (isValid: boolean): void {
     res.status(200).json({
       status: 'success',
       data: {

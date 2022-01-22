@@ -45,7 +45,7 @@ interface Props {
   onComfirm: () => void
 }
 
-function ConfirmButton({ onComfirm }: Props) {
+function ConfirmButton ({ onComfirm }: Props) {
   const [active, setActive] = useState(false)
 
   useEffect(() => {

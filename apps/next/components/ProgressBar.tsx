@@ -6,11 +6,11 @@ import Header from './Header'
 import Content from './Content'
 import Section from './Section'
 
-function useProgress(min: number, max: number, emitter: EventEmitter) {
+function useProgress (min: number, max: number, emitter: EventEmitter) {
   const [value, setValue] = useState(0)
 
   useEffect(() => {
-    function onUpdate(value: number) {
+    function onUpdate (value: number) {
       setValue(Number(((value / max) * 100).toFixed(0)))
     }
     emitter.addListener('update', onUpdate)
@@ -22,7 +22,7 @@ function useProgress(min: number, max: number, emitter: EventEmitter) {
   return value
 }
 
-function FixedProgressView({ progress }: { progress: number }) {
+function FixedProgressView ({ progress }: { progress: number }) {
   if (progress < 10) {
     return (
       <span>
@@ -55,7 +55,9 @@ function FixedProgressView({ progress }: { progress: number }) {
 }
 
 const BarContainer = styled('div', {
+  // eslint-disable-next-line no-template-curly-in-string
   borderRight: '2px solid ${colors.gray500}',
+  // eslint-disable-next-line no-template-curly-in-string
   borderLeft: '2px solid ${colors.gray500}',
   height: '15px',
   width: '400px',
@@ -67,7 +69,7 @@ const Bar = styled(motion.div, {
   width: '0%',
 })
 
-function ProgressBar() {
+function ProgressBar () {
   const emitter: EventEmitter = new EventEmitter()
   const progress: number = useProgress(0, 100, emitter)
 

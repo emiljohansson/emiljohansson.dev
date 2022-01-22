@@ -3,7 +3,7 @@ import randomString from '@emiljohansson/random-string'
 import Layout from '@/components/Layout'
 import RandomString from '@/components/RandomString'
 
-export async function getServerSideProps() {
+export async function getServerSideProps () {
   return {
     props: {
       value: randomString(),

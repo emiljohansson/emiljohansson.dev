@@ -1,4 +1,4 @@
-export default function Invoices() {
+export default function Invoices () {
   return (
     <div>
       <div>text: initial</div>
