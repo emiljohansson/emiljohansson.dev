@@ -13,11 +13,11 @@ export const meta: MetaFunction = () => {
   return { title: 'New Remix App' }
 }
 
-export function links() {
+export function links () {
   return [{ rel: 'stylesheet', href: tailwind }]
 }
 
-export default function App() {
+export default function App () {
   return (
     <html lang="en">
       <head>

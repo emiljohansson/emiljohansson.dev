@@ -16,7 +16,41 @@ import Header from '@/components/Header'
 import Content from '@/components/Content'
 import { fonts } from '../src/styles/variables'
 
-function generateBombPositions(size: number, numberOfBombs: number) {
+interface BoardStyle {
+  radius: number
+  fontSize: number
+}
+
+const boards = {
+  easy: {
+    radius: 50,
+    fontSize: 2.3,
+  } as BoardStyle,
+  medium: {
+    radius: 40,
+    fontSize: 1.8,
+  } as BoardStyle,
+  hard: {
+    radius: 35,
+    fontSize: 1.3,
+  } as BoardStyle,
+}
+
+enum SelectedDifficulty {
+  loading,
+  easy,
+  medium,
+  hard,
+}
+
+interface Difficulty {
+  title: string
+  bombs: number
+  rows: number
+  columns: number
+}
+
+function generateBombPositions (size: number, numberOfBombs: number) {
   const list: number[] = []
   while (list.length < numberOfBombs) {
     const value = Math.floor(Math.random() * size)
@@ -40,10 +74,10 @@ interface TileObject {
   activate: (setTile: (newTile: TileObject) => void) => void
 }
 
-function useBoard(
+function useBoard (
   numberOfRows: number,
   numberOfColumns: number,
-  bombs: number[]
+  bombs: number[],
 ) {
   const rows: [TileObject, (newTileObject: TileObject) => void][][] = []
 
@@ -58,7 +92,7 @@ function useBoard(
         i,
         j,
         currentPosition,
-        numberOfColumns
+        numberOfColumns,
       )
       currentRow.push([tile, setTile])
     }
@@ -71,12 +105,12 @@ function useBoard(
   return board
 }
 
-function useTile(
+function useTile (
   bombs: number[],
   i: number,
   j: number,
   currentPosition: number,
-  numberOfColumns: number
+  numberOfColumns: number,
 ): [TileObject, (newTileObject: TileObject) => void] {
   const tile = {
     id: `${i}_${j}`,
@@ -86,7 +120,7 @@ function useTile(
     dead: false,
     flagged: false,
     linked: [] as [TileObject, (newTileObject: TileObject) => void][],
-    activate(setTile) {
+    activate (setTile) {
       this.activated = true
       this.flagged = false
       this.linked.forEach(([linkedTile, setLinkedTile]) => {
@@ -104,8 +138,8 @@ function useTile(
   return useState(tile)
 }
 
-function linkBlanks(
-  rows: [TileObject, (newTileObject: TileObject) => void][][]
+function linkBlanks (
+  rows: [TileObject, (newTileObject: TileObject) => void][][],
 ) {
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i]
@@ -118,22 +152,20 @@ function linkBlanks(
   }
 }
 
-function linkBlank(
+function linkBlank (
   tile: TileObject,
   rows: [TileObject, (newTileObject: TileObject) => void][][],
   i,
-  j
+  j,
 ) {
   const numberOfColumns = rows[i].length
   if (i - 1 >= 0) {
     if (j - 1 >= 0) {
-      if (!getTileObject(rows[i - 1][j - 1]).hasBomb)
-        tile.linked.push(rows[i - 1][j - 1])
+      if (!getTileObject(rows[i - 1][j - 1]).hasBomb) { tile.linked.push(rows[i - 1][j - 1]) }
     }
     if (!getTileObject(rows[i - 1][j]).hasBomb) tile.linked.push(rows[i - 1][j])
     if (j + 1 < numberOfColumns) {
-      if (!getTileObject(rows[i - 1][j + 1]).hasBomb)
-        tile.linked.push(rows[i - 1][j + 1])
+      if (!getTileObject(rows[i - 1][j + 1]).hasBomb) { tile.linked.push(rows[i - 1][j + 1]) }
     }
   }
   if (j - 1 >= 0) {
@@ -144,25 +176,23 @@ function linkBlank(
   }
   if (i + 1 < rows.length) {
     if (j - 1 >= 0) {
-      if (!getTileObject(rows[i + 1][j - 1]).hasBomb)
-        tile.linked.push(rows[i + 1][j - 1])
+      if (!getTileObject(rows[i + 1][j - 1]).hasBomb) { tile.linked.push(rows[i + 1][j - 1]) }
     }
     if (!getTileObject(rows[i + 1][j]).hasBomb) tile.linked.push(rows[i + 1][j])
     if (j + 1 < numberOfColumns) {
-      if (!getTileObject(rows[i + 1][j + 1]).hasBomb)
-        tile.linked.push(rows[i + 1][j + 1])
+      if (!getTileObject(rows[i + 1][j + 1]).hasBomb) { tile.linked.push(rows[i + 1][j + 1]) }
     }
   }
 }
 
-function getTileObject(
-  column: [TileObject, (newTileObject: TileObject) => void]
+function getTileObject (
+  column: [TileObject, (newTileObject: TileObject) => void],
 ): TileObject {
   const [tile] = column
   return tile
 }
 
-function getDisplayValue(bombs, i, j, numberOfColumns) {
+function getDisplayValue (bombs, i, j, numberOfColumns) {
   let result = 0
   if (i - 1 >= 0) {
     if (j - 1 >= 0) {
@@ -266,7 +296,7 @@ const getTileBackgroundColor = ({ isFlagged, isDead, isActivated, isEven }) => {
   return isEven ? 'aliceblue' : 'antiquewhite'
 }
 
-function isEven(i: number, j: number): boolean {
+function isEven (i: number, j: number): boolean {
   if (i % 2 === 0) {
     return j % 2 === 0
   }
@@ -288,7 +318,7 @@ enum GameState {
   lost,
 }
 
-function getGameState(board, difficulty: Difficulty): GameState {
+function getGameState (board, difficulty: Difficulty): GameState {
   let activatedTiles = 0
   for (let i = 0; i < board.length; i++) {
     const row = board[i]
@@ -316,7 +346,7 @@ const GameOverMessage = styled('div', {
   width: '100%',
 })
 
-function useInterval(callback, delay) {
+function useInterval (callback, delay) {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const savedCallback = useRef(() => {})
 
@@ -326,7 +356,7 @@ function useInterval(callback, delay) {
 
   useEffect(() => {
     if (delay === null) return
-    function tick() {
+    function tick () {
       savedCallback.current()
     }
     const id = setInterval(tick, delay)
@@ -341,8 +371,8 @@ const Board = ({ difficulty }) => {
     difficulty.columns,
     generateBombPositions(
       difficulty.rows * difficulty.columns,
-      difficulty.bombs
-    )
+      difficulty.bombs,
+    ),
   )
   const context = useContext(BoardContext)
   const [time, setTime] = useState(0)
@@ -412,41 +442,7 @@ const Board = ({ difficulty }) => {
   )
 }
 
-interface BoardStyle {
-  radius: number
-  fontSize: number
-}
-
-const boards = {
-  easy: {
-    radius: 50,
-    fontSize: 2.3,
-  } as BoardStyle,
-  medium: {
-    radius: 40,
-    fontSize: 1.8,
-  } as BoardStyle,
-  hard: {
-    radius: 35,
-    fontSize: 1.3,
-  } as BoardStyle,
-}
-
 const BoardContext = createContext(boards.easy)
-
-enum SelectedDifficulty {
-  loading,
-  easy,
-  medium,
-  hard,
-}
-
-interface Difficulty {
-  title: string
-  bombs: number
-  rows: number
-  columns: number
-}
 
 const easy = {
   title: 'Easy',
@@ -480,9 +476,9 @@ const initialState = {
   board: boards.easy,
 }
 
-function difficultyReducer(
+function difficultyReducer (
   state: DifficultyState,
-  action: { type: SelectedDifficulty; queueType?: SelectedDifficulty }
+  action: { type: SelectedDifficulty; queueType?: SelectedDifficulty },
 ) {
   if (action.type === SelectedDifficulty.loading) {
     return {
@@ -512,7 +508,7 @@ function difficultyReducer(
 const MSPage = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useReducer(
     difficultyReducer,
-    initialState
+    initialState,
   )
 
   useEffect(() => {
@@ -556,13 +552,15 @@ const MSPage = () => {
             <option value={SelectedDifficulty.medium}>{medium.title}</option>
             <option value={SelectedDifficulty.hard}>{hard.title}</option>
           </select>
-          {selectedDifficulty.type === SelectedDifficulty.loading ? (
+          {selectedDifficulty.type === SelectedDifficulty.loading
+            ? (
             <div></div>
-          ) : (
+              )
+            : (
             <BoardContext.Provider value={selectedDifficulty.board}>
               <Board difficulty={selectedDifficulty.level} />
             </BoardContext.Provider>
-          )}
+              )}
         </Section>
       </Content>
     </Layout>

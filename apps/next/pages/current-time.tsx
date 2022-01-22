@@ -3,7 +3,7 @@ import Layout from '@/components/Layout'
 import CurrentTime from '@/components/CurrentTime'
 import getCurrentTime from 'lib/getCurrentTime'
 
-export async function getServerSideProps() {
+export async function getServerSideProps () {
   return {
     props: {
       value: getCurrentTime(),

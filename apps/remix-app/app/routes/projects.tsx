@@ -37,7 +37,7 @@ export const action: ActionFunction = async ({ request }) => {
   return project
 }
 
-export default function Index() {
+export default function Index () {
   const projects = useLoaderData()
   const { state } = useTransition()
   const busy = state === 'submitting'

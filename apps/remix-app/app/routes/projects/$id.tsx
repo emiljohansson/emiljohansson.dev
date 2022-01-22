@@ -6,12 +6,12 @@ type LoaderData = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function getUserId(request: Request) {
+async function getUserId (request: Request) {
   return 1
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function findUnique(query: { where: { id?: string } }) {
+async function findUnique (query: { where: { id?: string } }) {
   return {
     id: 1,
     text: 'abc item',
@@ -33,7 +33,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   return data
 }
 
-export default function Invoice() {
+export default function Invoice () {
   const data = useLoaderData<LoaderData>()
 
   return (

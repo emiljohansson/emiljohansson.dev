@@ -16,7 +16,7 @@ const Bar = styled(motion.div, {
   transition: 'all 1s linear',
 })
 
-function TwoWayAuthGenerate() {
+function TwoWayAuthGenerate () {
   const [value, setValue] = useState('')
   const [timeLeft, setTimeLeft] = useState(-1)
   const [lifespan, setLifespan] = useState(-1)
@@ -31,7 +31,7 @@ function TwoWayAuthGenerate() {
     return () => clearTimeout(timer)
   }, [timeLeft])
 
-  async function retrieve(): Promise<void> {
+  async function retrieve (): Promise<void> {
     try {
       const response: any = await fetch('/api/two-factor/generate')
       const json: any = await response.json()
