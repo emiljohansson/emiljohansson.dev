@@ -13,8 +13,7 @@
     "dev": "turbo run dev --parallel",
     "start": "turbo run start",
     "test": "turbo run test",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "lint": "turbo run lint"
   },
   "workspaces": [
     "packages/*",
@@ -53,7 +52,7 @@
     }
   },
   "devDependencies": {
-    "prettier": "^2.5.1",
+    "eslint": "^8.7.0",
     "turbo": "^1.0.28"
   }
 }
