@@ -21,7 +21,7 @@ const projects: Project[] = [
   },
 ]
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async () => {
   return projects
 }
 

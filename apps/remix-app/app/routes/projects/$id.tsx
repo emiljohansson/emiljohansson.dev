@@ -5,11 +5,13 @@ type LoaderData = {
   isOwner: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getUserId(request: Request) {
   return 1
 }
 
-async function findUnique(query: any) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function findUnique(query: { where: { id?: string } }) {
   return {
     id: 1,
     text: 'abc item',
@@ -17,9 +19,9 @@ async function findUnique(query: any) {
 }
 
 export const loader: LoaderFunction = async ({ request, params }) => {
-  console.log('----loader for id')
   const userId = await getUserId(request)
   const item = await findUnique({ where: { id: params.id } })
+
   if (!item) {
     throw new Response('What a joke! Not found.', { status: 404 })
   }
@@ -27,7 +29,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     text: item.text,
     isOwner: userId === item.id,
   }
-  console.log(data)
 
   return data
 }
