@@ -51,7 +51,7 @@ function FixedProgressView ({ progress }: { progress: number }) {
       </span>
     )
   }
-  return <>progress</>
+  return <>100</>
 }
 
 const BarContainer = styled('div', {
@@ -70,12 +70,12 @@ const Bar = styled(motion.div, {
 })
 
 function ProgressBar () {
-  const emitter: EventEmitter = new EventEmitter()
-  const progress: number = useProgress(0, 100, emitter)
+  const emitter = new EventEmitter()
+  const progress = useProgress(0, 100, emitter)
 
   useEffect(() => {
     let count = 0
-    const interval: any = setInterval(() => {
+    const interval = setInterval(() => {
       count += Math.floor(Math.random() * 20)
       if (count > 100) {
         count = 100

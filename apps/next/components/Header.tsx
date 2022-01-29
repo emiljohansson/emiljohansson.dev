@@ -2,10 +2,9 @@ import { FunctionComponent } from 'react'
 import Link from 'next/link'
 import { styled } from '@/stitches'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
-import { spacers, colors } from '../src/styles/variables'
+import { spacers } from '../src/styles/variables'
 
 const HeaderRoot = styled('header', {
-  backgroundColor: colors.white,
   display: 'flex',
   fontSize: '1.4rem',
   lineHeight: '0',
@@ -16,10 +15,6 @@ const HeaderRoot = styled('header', {
 const BackLink = styled('a', {
   lineHeight: 1,
   padding: 0,
-
-  '&, &:hover': {
-    color: colors.primary,
-  },
 })
 
 const Actions = styled('div', {
