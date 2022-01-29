@@ -19,40 +19,9 @@
     "packages/*",
     "apps/*"
   ],
-  "turbo": {
-    "baseBranch": "origin/master",
-    "pipeline": {
-      "build": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": [
-          "dist/**",
-          ".next/**"
-        ]
-      },
-      "test": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": []
-      },
-      "start": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": []
-      },
-      "lint": {
-        "outputs": []
-      },
-      "dev": {
-        "cache": false
-      }
-    }
-  },
   "devDependencies": {
     "eslint": "^8.7.0",
-    "turbo": "^1.0.28"
-  }
+    "turbo": "^1.1.1"
+  },
+  "packageManager": "npm@8.3.0"
 }
