@@ -52,22 +52,17 @@ const IndexPage = () => {
           content="emil, johansson, developer, front-end, front end"
         />
       </Head>
-      <label className="dark:text-white float-right cursor-pointer inline-block p-2">
-        <input
-          type="checkbox"
-          className="hidden"
-          id="dark"
-          name="theme"
-          checked={darkMode}
-          onChange={(event) => setDarkMode(event.target.checked)}
-        />
+      <button
+        className="dark:text-white float-right cursor-pointer inline-block p-2"
+        onClick={() => setDarkMode(!darkMode)}
+      >
         <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
         {
           darkMode
             ? <MoonIcon className="block" width="24" height="24" />
             : <SunIcon className="block" width="24" height="24" />
         }
-      </label>
+      </button>
       <Github>
         <MainLink>
           <Link href="https://github.com/emiljohansson" passHref>
