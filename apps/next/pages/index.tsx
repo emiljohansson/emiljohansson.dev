@@ -53,7 +53,7 @@ const IndexPage = () => {
         />
       </Head>
       <button
-        className="dark:text-white float-right cursor-pointer inline-block p-2 m-3"
+        className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
         onClick={() => setDarkMode(!darkMode)}
       >
         <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
