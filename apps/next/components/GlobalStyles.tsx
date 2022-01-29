@@ -17,16 +17,15 @@ const globalStyles = globalCss({
     fontSize: '1rem',
     fontWeight: 300,
     lineHeight: 1.5,
-    color: '#212529',
     textAlign: 'left',
     backgroundColor: '#fff',
   },
   'html,\nbody,\n#__next,\nmain': { height: '100%' },
   a: {
-    backgroundColor: 'transparent',
-    color: '#282a36',
     textDecoration: 'none',
-    '&:hover': { textDecoration: 'underline' },
+    '&:hover': {
+      textDecoration: 'underline',
+    },
   },
   'a,\nbutton,\ninput': {
     '&:focus': { outline: '-webkit-focus-ring-color auto 5px' },

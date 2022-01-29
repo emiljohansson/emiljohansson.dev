@@ -1,6 +1,6 @@
 export const colors = {
   white: '#fff',
-  gray100: "#f8f9fa",
+  gray100: '#f8f9fa',
   gray200: '#e9ecef',
   gray300: '#dee2e6',
   gray400: '#ced4da',
@@ -34,7 +34,7 @@ export const colors = {
 
 // fonts
 export const fonts = {
-  baseFontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+  baseFontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 }
 
 // base
