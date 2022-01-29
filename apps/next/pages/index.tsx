@@ -13,7 +13,7 @@ const Github = styled('div', {
   textAlign: 'center',
 })
 
-const MainLink = styled('a', {
+const MainLink = styled('h1', {
   margin: '0 auto',
 })
 
@@ -53,7 +53,7 @@ const IndexPage = () => {
         />
       </Head>
       <button
-        className="dark:text-white float-right cursor-pointer inline-block p-2"
+        className="dark:text-white float-right cursor-pointer inline-block p-2 m-3"
         onClick={() => setDarkMode(!darkMode)}
       >
         <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
@@ -66,7 +66,7 @@ const IndexPage = () => {
       <Github>
         <MainLink>
           <Link href="https://github.com/emiljohansson" passHref>
-            <a target="_blank" rel="noreferrer">
+            <a className="px-2 pb-2" target="_blank" rel="noreferrer">
               <GitHubLogoIcon width="38" height="38" className="inline-block" />{' '}
               emiljohansson
             </a>
