@@ -44,7 +44,7 @@ export default function Index () {
 
   return (
     <>
-      <div>
+      <div className="bg-slate-300 text-blue-400">
         {projects.map(({ slug, title }: Project) => (
           <Link key={slug} to={slug}>
             {title}
