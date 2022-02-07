@@ -50,6 +50,10 @@ interface Difficulty {
   columns: number
 }
 
+function noop () {
+  // do nothing
+}
+
 function generateBombPositions (size: number, numberOfBombs: number) {
   const list: number[] = []
   while (list.length < numberOfBombs) {
@@ -347,8 +351,7 @@ const GameOverMessage = styled('div', {
 })
 
 function useInterval (callback, delay) {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const savedCallback = useRef(() => {})
+  const savedCallback = useRef(noop)
 
   useEffect(() => {
     savedCallback.current = callback
