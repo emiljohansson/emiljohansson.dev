@@ -24,7 +24,7 @@ function updateLastUpdated () {
 }
 
 function getNewUpdatedTime () {
-  const date: Date = new Date()
+  const date = new Date()
   return date.getTime()
 }
 
@@ -33,13 +33,13 @@ function isWithinTimespan (time: number, seconds = 0) {
 }
 
 function getDiffInSeconds (time: number) {
-  const lastUpdated: Date = new Date(time)
-  const now: Date = new Date()
-  const diff: number = (now as any) - (lastUpdated as any)
+  const lastUpdated = new Date(time)
+  const now = new Date()
+  const diff = now.getTime() - lastUpdated.getTime()
   return Math.floor(diff / 1000)
 }
 
-export default function (req: NextApiRequest, res: NextApiResponse) {
+export default function TwoFactor (req: NextApiRequest, res: NextApiResponse) {
   const { fn } = req.query
 
   if (fn === 'generate') {

@@ -90,7 +90,6 @@ function useBoard (
     for (let j = 0; j < numberOfColumns; j++) {
       const currentPosition = i * 10 + j
       // TODO fix possible loop
-      // eslint-disable-next-line react-hooks/rules-of-hooks
       const [tile, setTile] = useTile(
         bombs,
         i,

@@ -23,7 +23,11 @@ function useInterval (callback: () => void, delay: number) {
   }, [delay])
 }
 
-export default function useCurrentTime (callback: (props: any) => void) {
+export default function useCurrentTime (callback: (props: {
+  hours: number,
+  minutes: string | number,
+  meridiem: string,
+}) => void) {
   useInterval(() => {
     callback(getCurrentTime())
   }, 1000)

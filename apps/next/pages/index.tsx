@@ -25,7 +25,7 @@ const List = styled('ul', {
   },
 })
 
-const IndexPage = () => {
+const HomePage = () => {
   const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined)
 
   useEffect(() => {
@@ -121,4 +121,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default HomePage
