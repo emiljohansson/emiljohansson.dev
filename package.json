@@ -13,6 +13,7 @@
     "dev": "turbo run dev --parallel",
     "start": "turbo run start",
     "test": "turbo run test",
+    "test:ci": "turbo run test:ci",
     "lint": "turbo run lint"
   },
   "workspaces": [
@@ -20,7 +21,12 @@
     "apps/*"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.19.0",
     "eslint": "^8.7.0",
+    "lighthouse": "^9.3.1",
+    "playwright": "^1.19.0",
+    "playwright-lighthouse": "^2.1.1",
+    "start-server-and-test": "^1.14.0",
     "turbo": "^1.1.1"
   },
   "packageManager": "npm@8.3.0"
