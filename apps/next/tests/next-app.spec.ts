@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
+import { chromium } from 'playwright'
 import { playAudit } from 'playwright-lighthouse'
-import playwright from 'playwright'
+import { injectAxe, checkA11y } from 'axe-playwright'
 
 test.describe('emiljohansson.dev', () => {
   test('test', async ({ page }) => {
@@ -31,9 +32,9 @@ test.describe('emiljohansson.dev', () => {
   })
 })
 
-test.describe('audit example', () => {
-  test('open browser', async () => {
-    const browser = await playwright.chromium.launch({
+test.describe('audit', () => {
+  test('root page', async () => {
+    const browser = await chromium.launch({
       args: ['--remote-debugging-port=9222'],
     })
     const page = await browser.newPage()
@@ -49,6 +50,19 @@ test.describe('audit example', () => {
       },
       port: 9222,
     })
+
+    await browser.close()
+  })
+})
+
+test.describe('accessibility', () => {
+  test('root page', async () => {
+    const browser = await chromium.launch()
+    const page = await browser.newPage()
+    await page.goto('/')
+    await injectAxe(page)
+
+    await checkA11y(page)
 
     await browser.close()
   })

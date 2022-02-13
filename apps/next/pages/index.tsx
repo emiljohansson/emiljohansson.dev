@@ -106,8 +106,8 @@ const HomePage = () => {
         </MainLink>
       </Github>
       <List className="list-disc p-3 m-0">
-        {projects.map(({ text, href }) => (
-          <li className="mb-2">
+        {projects.map(({ text, href }, index) => (
+          <li className="mb-2" key={index}>
             <Link href={href}>
               <a>{text}</a>
             </Link>
