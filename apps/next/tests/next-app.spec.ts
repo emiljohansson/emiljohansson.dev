@@ -43,7 +43,7 @@ test.describe('audit', () => {
     await playAudit({
       page: page,
       thresholds: {
-        performance: 100,
+        performance: 95,
         accessibility: 100,
         'best-practices': 100,
         seo: 100,
