@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: 
+    branches:
       - master
       - feature/**
       - tests-e2e
@@ -20,8 +20,10 @@ jobs:
       run: npm ci
     - name: Install Playwright
       run: npx playwright install --with-deps
+    - name: Build
+      run: npm run build
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npm run test:ci
     - uses: actions/upload-artifact@v2
       if: always()
       with:

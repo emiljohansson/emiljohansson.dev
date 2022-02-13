@@ -16,6 +16,12 @@
       ],
       "outputs": []
     },
+    "test:ci": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": []
+    },
     "start": {
       "dependsOn": [
         "^build"

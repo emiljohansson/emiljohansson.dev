@@ -13,7 +13,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:ci": "start-server-and-test start http://localhost:3000 \"playwright test\""
   },
   "dependencies": {
     "@emiljohansson/random-string": "1.1.2",
