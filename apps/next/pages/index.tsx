@@ -5,6 +5,37 @@ import { GitHubLogoIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import Layout from '@/components/Layout'
 import Head from 'next/head'
 
+const projects = [
+  {
+    href: '/random-string',
+    text: 'Random String',
+  },
+  {
+    href: '/current-time',
+    text: 'Current Time',
+  },
+  {
+    href: '/two-way-auth-generate',
+    text: 'Two-Factor Authentication - Generate Code',
+  },
+  {
+    href: '/two-way-auth-enter',
+    text: 'Two-Factor Authentication - Enter Code',
+  },
+  {
+    href: '/progress-bar',
+    text: 'Progress Bar',
+  },
+  {
+    href: '/confirm-button',
+    text: 'Confirm Button',
+  },
+  {
+    href: '/ms',
+    text: 'ms',
+  },
+]
+
 const Github = styled('div', {
   display: 'flex',
   alignItems: 'center',
@@ -55,6 +86,7 @@ const HomePage = () => {
       <button
         className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
         onClick={() => setDarkMode(!darkMode)}
+        data-test-id="toggle-dark-mode"
       >
         <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
         {
@@ -74,48 +106,13 @@ const HomePage = () => {
         </MainLink>
       </Github>
       <List className="list-disc p-3 m-0">
-        <li>
-          <Link href="/random-string">
-            <a>Random String</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/current-time">
-            <a>Current Time</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/two-way-auth-generate">
-            <a>Two-Factor Authentication - Generate Code</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/two-way-auth-enter">
-            <a>Two-Factor Authentication - Enter Code</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/progress-bar">
-            <a>Progress Bar</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/confirm-button">
-            <a>Confirm Button</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/ms">
-            <a>ms</a>
-          </Link>
-        </li>
-        {/* <li>
-          <Link
-            href="/chat"
-          >
-            <a>Chat</a>
-          </Link>
-        </li> */}
+        {projects.map(({ text, href }) => (
+          <li className="mb-2">
+            <Link href={href}>
+              <a>{text}</a>
+            </Link>
+          </li>
+        ))}
       </List>
     </Layout>
   )
