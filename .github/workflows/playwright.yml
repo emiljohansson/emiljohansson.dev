@@ -6,7 +6,6 @@ on:
     branches:
       - master
       - feature/**
-      - tests-e2e
 jobs:
   test:
     timeout-minutes: 60
