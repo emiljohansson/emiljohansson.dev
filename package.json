@@ -20,7 +20,11 @@
     "apps/*"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.19.0",
     "eslint": "^8.7.0",
+    "lighthouse": "^9.3.1",
+    "playwright": "^1.19.0",
+    "playwright-lighthouse": "^2.1.1",
     "turbo": "^1.1.1"
   },
   "packageManager": "npm@8.3.0"
