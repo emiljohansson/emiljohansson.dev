@@ -22,7 +22,7 @@
     "@stitches/react": "^1.2.6",
     "framer-motion": "^6.2.3",
     "lib": "*",
-    "next": "^12.0.10",
+    "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^3.0.18"
