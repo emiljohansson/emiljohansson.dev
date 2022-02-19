@@ -2,7 +2,7 @@
   "name": "design-app",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=3002 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
