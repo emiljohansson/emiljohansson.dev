@@ -3,7 +3,7 @@ import { chromium } from 'playwright'
 import { playAudit } from 'playwright-lighthouse'
 import { injectAxe, checkA11y } from 'axe-playwright'
 
-test.describe('emiljohansson.dev', () => {
+test.describe('home', () => {
   test('test', async ({ page }) => {
     // Go to http://localhost:3000/
     await page.goto('/')
@@ -34,8 +34,9 @@ test.describe('emiljohansson.dev', () => {
 
 test.describe('audit', () => {
   test('root page', async () => {
+    const port = 9001
     const browser = await chromium.launch({
-      args: ['--remote-debugging-port=9222'],
+      args: [`--remote-debugging-port=${port}`],
     })
     const page = await browser.newPage()
     await page.goto('/')
@@ -48,7 +49,7 @@ test.describe('audit', () => {
         'best-practices': 100,
         seo: 100,
       },
-      port: 9222,
+      port,
     })
 
     await browser.close()

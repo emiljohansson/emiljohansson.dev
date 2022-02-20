@@ -1,12 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { add } from 'lib/src/math'
 
 const toNumber = (value: string): number => parseFloat(value)
-const add = (a: number, b: number) => a + b
 
 export default function Math (req: NextApiRequest, res: NextApiResponse) {
-  const query = req.query.q as string
+  const query = req.body.q as string
 
   const sum = query.split('+').map(toNumber).reduce(add)
 
-  res.end(`${req.query.q}=${sum}`)
+  res.status(200).json({
+    query,
+    sum,
+  })
 }
