@@ -14,7 +14,10 @@
     "start": "next start",
     "lint": "next lint",
     "test": "playwright test",
-    "test:ci": "start-server-and-test start http://localhost:3000 \"playwright test\""
+    "test:e2e": "playwright test",
+    "test:unit": "jest",
+    "test:ci": "npm run test:e2e:ci",
+    "test:e2e:ci": "start-server-and-test start http://localhost:3000 \"playwright test\""
   },
   "dependencies": {
     "@emiljohansson/random-string": "1.1.2",
