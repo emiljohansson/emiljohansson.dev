@@ -34,6 +34,10 @@ const projects = [
     href: '/ms',
     text: 'ms',
   },
+  {
+    href: '/calculate',
+    text: 'calculate',
+  },
 ]
 
 const Github = styled('div', {

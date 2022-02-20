@@ -3,7 +3,7 @@ import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
-import useCurrentTime from 'lib/useCurrentTime'
+import useCurrentTime from 'lib/src/useCurrentTime'
 
 const Meridiem = styled('span', {
   fontSize: '50%',
