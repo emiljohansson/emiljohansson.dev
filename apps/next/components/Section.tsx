@@ -1,38 +1,20 @@
-import { styled } from '@/stitches'
+import { FunctionComponent } from 'react'
+import { classNames } from 'lib/src/classNames'
 
-export default styled('section', {
-  backgroundColor: 'transparent',
-  border: '0',
-  display: 'flex',
-  alignItems: 'center',
-  flex: '1',
-  justifyContent: 'center',
-  fontSize: '3rem',
-  height: '100%',
-  outline: 'none',
-  overflow: 'auto',
-  fontVariantNumeric: 'tabular-nums',
+const Section: FunctionComponent<{
+  size?: 'normal' | 'large',
+  direction?: 'row' | 'column',
+}> = ({ children, direction = 'row', size = 'normal' }) => (
+  <section className={classNames(
+    'flex items-center justify-center h-full',
+    {
+      'flex-col': direction === 'column',
+      'text-3xl': size === 'normal',
+      'text-5xl': size === 'large',
+    },
+  )}>
+    {children}
+  </section>
+)
 
-  variants: {
-    size: {
-      normal: {
-        fontSize: '2rem',
-      },
-      large: {
-        fontSize: '3rem',
-      },
-    },
-    direction: {
-      row: {
-        flexDirection: 'row',
-      },
-      column: {
-        flexDirection: 'column',
-      },
-    },
-  },
-  defaultVariants: {
-    size: 'normal',
-    direction: 'row',
-  },
-})
+export default Section

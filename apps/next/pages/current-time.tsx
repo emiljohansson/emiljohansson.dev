@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 import CurrentTime from '@/components/CurrentTime'
 import getCurrentTime from 'lib/src/getCurrentTime'
+import { Time } from 'src/@types/time'
 
 export async function getServerSideProps () {
   return {
@@ -11,7 +12,7 @@ export async function getServerSideProps () {
   }
 }
 
-const CurrentTimePage = ({ value }) => {
+const CurrentTimePage = ({ value }: { value: Time }) => {
   return (
     <Layout>
       <Head>

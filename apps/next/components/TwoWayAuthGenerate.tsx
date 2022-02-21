@@ -25,7 +25,7 @@ function TwoWayAuthGenerate () {
     if (timeLeft < 0) {
       retrieve()
     }
-    const timer: any = setTimeout(() => {
+    const timer = setTimeout(() => {
       setTimeLeft(timeLeft - 1)
     }, 1000)
     return () => clearTimeout(timer)
@@ -33,9 +33,9 @@ function TwoWayAuthGenerate () {
 
   async function retrieve (): Promise<void> {
     try {
-      const response: any = await fetch('/api/two-factor/generate')
-      const json: any = await response.json()
-      const data: any = json.data
+      const response = await fetch('/api/two-factor/generate')
+      const json = await response.json()
+      const data = json.data
       setValue(data.value)
       setTimeLeft(data.expires)
       setLifespan(data.lifespan)
