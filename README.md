@@ -21,6 +21,19 @@
 * Animations
   * Framer Motion
 * Testing
-  * Playwright
-  * Lighthouse
-  * AXE
+  * End to end
+    * Playwright
+    * Lighthouse
+    * AXE
+  * Unit testing
+    * Jest
+
+
+## TODO's
+
+[] husky
+[] pnpm
+[] preact
+[] rename branch from `master` to `main`
+[] rename `nextapp` to `next-app`
+[] remove styled components and stitches
