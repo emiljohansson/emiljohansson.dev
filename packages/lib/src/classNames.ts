@@ -1,5 +1,5 @@
 export const classNames = (...args: (string | { [key: string]: boolean })[]) => {
-  const classes = []
+  const classes: string[] = []
   for (const arg of args) {
     if (typeof arg === 'string') {
       classes.push(arg)
