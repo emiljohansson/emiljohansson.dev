@@ -1,16 +1,13 @@
 import { useState } from 'react'
-import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
 import useCurrentTime from 'lib/src/useCurrentTime'
+import { Time } from 'src/@types/time'
 
-const Meridiem = styled('span', {
-  fontSize: '50%',
-  marginBottom: '-18px',
-})
+const createTime = ({ hours, minutes }) => `${hours}:${minutes}`
 
-function CurrentTime ({ initialTime }) {
+function CurrentTime ({ initialTime }: { initialTime: Time }) {
   const [time, setTime] = useState<string>(createTime(initialTime))
   const [meridiem, setMeridiem] = useState<string>(initialTime.meridiem)
 
@@ -21,15 +18,19 @@ function CurrentTime ({ initialTime }) {
 
   return (
     <>
+      <style jsx>{`
+        .meridiem {
+          margin-bottom: -18px;
+        }
+      `}</style>
+
       {time}
-      <Meridiem>{meridiem}</Meridiem>
+      <span className="text-3/6 meridiem">{meridiem}</span>
     </>
   )
 }
 
-const createTime = ({ hours, minutes }) => `${hours}:${minutes}`
-
-function CurrentTimeBase ({ initialValue }) {
+function CurrentTimeBase ({ initialValue }: { initialValue: Time }) {
   return (
     <Content>
       <Header />

@@ -1,5 +1,4 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
-import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
@@ -11,12 +10,7 @@ enum State {
   invalid,
 }
 
-const Input = styled('input', {
-  width: '340px',
-  textAlign: 'center',
-})
-
-async function post (url: string, body: any) {
+async function post (url: string, body) {
   return fetch(url, {
     method: 'POST',
     headers: {
@@ -40,7 +34,7 @@ function EnteredContent ({ state }: { state: State }) {
     return 'idle'
   }
 
-  return <div>{getState()}</div>
+  return <div className="text-center">{getState()}</div>
 }
 
 function TwoWayAuthEnter () {
@@ -62,11 +56,11 @@ function TwoWayAuthEnter () {
     event.preventDefault()
     setState(State.loading)
     try {
-      const response: any = await post('/api/two-factor/validate', {
+      const response = await post('/api/two-factor/validate', {
         value,
       })
-      const json: any = await response.json()
-      const data: any = json.data
+      const json = await response.json()
+      const data = json.data
       // const isValid: boolean = await serverInstance.validate(value)
       const isValid: boolean = data.isValid
       setState(isValid ? State.valid : State.invalid)
@@ -77,19 +71,20 @@ function TwoWayAuthEnter () {
 
   return (
     <Content>
+      <style jsx>{`
+        .input {
+          width: '340px',
+        }
+      `}</style>
       <Header />
-      <Section
-        css={{
-          textAlign: 'center',
-        }}
-      >
+      <Section>
         <form
           action="#"
           method="POST"
           onSubmit={onSubmit}
           className="flex flex-col"
         >
-          <Input ref={inputEl} type="text" onChange={onChange} />
+          <input ref={inputEl} className="text-center input" type="text" onChange={onChange} />
           <button type="submit">Validate</button>
           <EnteredContent state={state} />
         </form>

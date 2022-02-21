@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   darkMode: 'class',
   content: [
@@ -26,8 +28,15 @@ module.exports = {
           dark: '#383838',
         },
       },
+      fontSize: {
+        '3/6': '50%',
+      },
     },
   },
   plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('size', '&:size')
+      addVariant('direction', '&:direction')
+    }),
   ],
 }
