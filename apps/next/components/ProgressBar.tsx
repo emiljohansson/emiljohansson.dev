@@ -6,7 +6,7 @@ import Header from './Header'
 import Content from './Content'
 import Section from './Section'
 
-function useProgress (min: number, max: number, emitter: EventEmitter) {
+function useProgress (max: number, emitter: EventEmitter) {
   const [value, setValue] = useState(0)
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const Bar = styled(motion.div, {
 
 function ProgressBar () {
   const emitter = new EventEmitter()
-  const progress = useProgress(0, 100, emitter)
+  const progress = useProgress(100, emitter)
 
   useEffect(() => {
     let count = 0
