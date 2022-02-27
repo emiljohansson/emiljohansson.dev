@@ -30,5 +30,6 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    '@typescript-eslint/no-explicit-any': 'error',
   },
 }

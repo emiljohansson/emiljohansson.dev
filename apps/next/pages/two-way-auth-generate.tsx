@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 import TwoWayAuthGenerate from '@/components/TwoWayAuthGenerate'
 
-const SecondPage = () => (
+const TwoWayAuthGeneratePage = () => (
   <Layout>
     <Head>
       <title>Generate Two-Factor Authentication</title>
@@ -12,4 +12,4 @@ const SecondPage = () => (
   </Layout>
 )
 
-export default SecondPage
+export default TwoWayAuthGeneratePage

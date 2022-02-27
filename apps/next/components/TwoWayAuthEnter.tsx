@@ -10,7 +10,7 @@ enum State {
   invalid,
 }
 
-async function post (url: string, body) {
+async function post (url: string, body: unknown) {
   return fetch(url, {
     method: 'POST',
     headers: {
