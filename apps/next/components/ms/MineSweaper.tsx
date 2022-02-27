@@ -62,7 +62,7 @@ type Rows = [Tile, (newTileObject: Tile) => void][][]
 const boards = {
   easy: {
     radius: 50,
-    fontSize: 2.2,
+    fontSize: 2.3,
   } as BoardStyle,
   medium: {
     radius: 40,
@@ -70,7 +70,7 @@ const boards = {
   } as BoardStyle,
   hard: {
     radius: 35,
-    fontSize: 1.3,
+    fontSize: 1.6,
   } as BoardStyle,
 }
 
@@ -316,6 +316,11 @@ const StyledTile = styled('button', {
   border: '3px solid rgba(0, 0, 0, 0.1)',
   lineHeight: '1.2',
   textAlign: 'center',
+
+  '&:focus': {
+    outline: 'none',
+    border: '3px solid rgba(0, 0, 0, 0.4)',
+  },
 })
 
 const getTileBackgroundColor = ({
@@ -469,7 +474,7 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
             })}
           </FlexRow>
         ))}
-        <div>{time}</div>
+        <div className="mt-3">{time}</div>
         <GameOverMessage>
           {gameState === GameState.lost ? 'You lost!' : ''}
           {gameState === GameState.won ? 'You won!' : ''}
