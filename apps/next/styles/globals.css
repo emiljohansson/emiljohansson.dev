@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "MuseoModerno";
+  src: url("/fonts/MuseoModerno-Light.ttf");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}

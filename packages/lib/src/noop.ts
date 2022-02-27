@@ -1,3 +1,5 @@
-export default function noop () {
+function noop () {
   // do nothing
 }
+
+export default noop
