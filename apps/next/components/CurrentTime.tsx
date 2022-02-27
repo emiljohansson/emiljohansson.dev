@@ -5,7 +5,13 @@ import Section from './Section'
 import useCurrentTime from 'lib/src/useCurrentTime'
 import { Time } from 'src/@types/time'
 
-const createTime = ({ hours, minutes }) => `${hours}:${minutes}`
+const createTime = ({
+  hours,
+  minutes,
+}: {
+  hours: number
+  minutes: string | number
+}) => `${hours}:${minutes}`
 
 function CurrentTime ({ initialTime }: { initialTime: Time }) {
   const [time, setTime] = useState<string>(createTime(initialTime))

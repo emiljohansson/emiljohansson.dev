@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 import ProgressBar from '@/components/ProgressBar'
 
-const SecondPage = () => (
+const ProgressBarPage = () => (
   <Layout>
     <Head>
       <title>Progress Bar</title>
@@ -12,4 +12,4 @@ const SecondPage = () => (
   </Layout>
 )
 
-export default SecondPage
+export default ProgressBarPage

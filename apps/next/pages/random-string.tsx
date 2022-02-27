@@ -11,7 +11,7 @@ export async function getServerSideProps () {
   }
 }
 
-const SecondPage = ({ value }) => {
+const RandomStringPage = ({ value }: { value: string }) => {
   return (
     <Layout>
       <Head>
@@ -23,4 +23,4 @@ const SecondPage = ({ value }) => {
   )
 }
 
-export default SecondPage
+export default RandomStringPage

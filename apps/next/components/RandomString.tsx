@@ -15,7 +15,7 @@ function copyToClipboard (el: HTMLInputElement | null) {
   el.selectionEnd = el.selectionStart
 }
 
-function RandomString ({ initialValue }) {
+function RandomString ({ initialValue }: { initialValue: string }) {
   const [value, setValue] = useState(initialValue)
   const inputEl = useRef(null)
 
