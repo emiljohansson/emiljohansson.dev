@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
@@ -27,6 +28,9 @@ module.exports = {
           300: '#e6e6ea',
           dark: '#383838',
         },
+      },
+      fontFamily: {
+        'museo-moderno': ['MuseoModerno', 'cursive'],
       },
       fontSize: {
         '3/6': '50%',

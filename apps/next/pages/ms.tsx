@@ -4,7 +4,7 @@ import Layout from '@/components/Layout'
 import Section from '@/components/Section'
 import Header from '@/components/Header'
 import Content from '@/components/Content'
-import MineSweaper from '@/components/ms/MineSweaper'
+import MineSweaper from '@/components/MineSweaper'
 
 const MSPage = () => {
   return (

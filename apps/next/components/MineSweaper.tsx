@@ -5,12 +5,9 @@ import {
   useContext,
   useReducer,
   ChangeEvent,
-  useRef,
   FunctionComponent,
 } from 'react'
-import { styled } from '@/stitches'
-import { fonts } from '../../src/styles/variables'
-import noop from 'lib/src/noop'
+import useInterval from 'lib/src/useInterval'
 import includes from 'lib/src/includes'
 
 enum SelectedDifficulty {
@@ -57,9 +54,31 @@ interface Tile {
   activate: (setTile: (newTile: Tile) => void) => void
 }
 
+interface StatesProps {
+  isFlagged: boolean
+  isDead: boolean
+  isActivated: boolean
+  isEven: boolean
+}
+
+interface TileProps extends StatesProps {
+  display: string | number
+  onLeftClick: () => void
+  onRightClick: () => void
+}
+
 type Rows = [Tile, (newTileObject: Tile) => void][][]
 
-const boards = {
+enum Colors {
+  flagged = '#1982C4',
+  dead = '#FF595E',
+  activeEven = '#8AC926',
+  activeOdd = '#98D831',
+  uncheckedEven = 'aliceblue',
+  uncheckedOdd = 'antiquewhite',
+}
+
+const boardStyles = {
   easy: {
     radius: 50,
     fontSize: 2.3,
@@ -72,6 +91,33 @@ const boards = {
     radius: 35,
     fontSize: 1.6,
   } as BoardStyle,
+}
+
+const BoardContext = createContext(boardStyles.easy)
+
+const easy = {
+  title: 'Easy',
+  bombs: 10,
+  rows: 8,
+  columns: 10,
+} as Difficulty
+const medium = {
+  title: 'Medium',
+  bombs: 40,
+  rows: 14,
+  columns: 18,
+} as Difficulty
+const hard = {
+  title: 'Hard',
+  bombs: 99,
+  rows: 20,
+  columns: 24,
+} as Difficulty
+
+const initialState: DifficultyState = {
+  type: SelectedDifficulty.easy,
+  level: easy,
+  board: boardStyles.easy,
 }
 
 function generateBombPositions (size: number, numberOfBombs: number) {
@@ -149,9 +195,7 @@ function useTile (
   return useState(tile)
 }
 
-function linkBlanks (
-  rows: Rows,
-) {
+function linkBlanks (rows: Rows) {
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i]
     for (let j = 0; j < row.length; j++) {
@@ -212,9 +256,7 @@ function linkBlank (
   }
 }
 
-function getTileObject (
-  column: [Tile, (newTileObject: Tile) => void],
-): Tile {
+function getTileObject (column: [Tile, (newTileObject: Tile) => void]): Tile {
   const [tile] = column
   return tile
 }
@@ -256,101 +298,76 @@ const Tile = ({
   isActivated,
   isDead,
   isFlagged,
-}: {
-  display: string | number
-  onLeftClick: () => void
-  onRightClick: () => void
-  isEven: boolean
-  isActivated: boolean
-  isDead: boolean
-  isFlagged: boolean
-}) => {
+}: TileProps) => {
   const context = useContext(BoardContext)
 
   return (
-    <StyledTile
-      onContextMenu={(event) => {
-        event.preventDefault()
-        onRightClick()
-      }}
-      onClick={onLeftClick}
-      css={{
-        fontSize: `${context.fontSize}rem`,
-        height: `${context.radius}px`,
-        width: `${context.radius}px`,
-        backgroundColor: getTileBackgroundColor({
-          isFlagged,
-          isDead,
-          isActivated,
-          isEven,
-        }),
-      }}
-    >
-      {isActivated ? display : ''}
-    </StyledTile>
+    <>
+      <style jsx>{`
+        button {
+          background-color: ${Colors.flagged};
+          border: 3px solid rgba(0, 0, 0, 0.1);
+        }
+        button:focus {
+          border-color: rgba(0, 0, 0, 0.4);
+        }
+      `}</style>
+      <button
+        className="leading-none text-center focus:outline-none"
+        onContextMenu={(event) => {
+          event.preventDefault()
+          onRightClick()
+        }}
+        onClick={onLeftClick}
+        style={{
+          fontSize: `${context.fontSize}rem`,
+          height: `${context.radius}px`,
+          width: `${context.radius}px`,
+          backgroundColor: getTileBackgroundColor({
+            isFlagged,
+            isDead,
+            isActivated,
+            isEven,
+          }),
+        }}
+      >
+        {isActivated ? display : ''}
+      </button>
+    </>
   )
 }
-
-const StyledFlexRow = styled('div', {
-  display: 'flex',
-  flexDirection: 'row',
-})
 
 const FlexRow: FunctionComponent<{ radius: number }> = ({
   children,
   radius,
 }) => {
   return (
-    <StyledFlexRow
-      css={{
+    <div className="flex flex-row"
+      style={{
         height: `${radius}px`,
       }}
     >
       {children}
-    </StyledFlexRow>
+    </div>
   )
 }
-
-const StyledTile = styled('button', {
-  backgroundColor: '#1982C4',
-  border: '3px solid rgba(0, 0, 0, 0.1)',
-  lineHeight: '1.2',
-  textAlign: 'center',
-
-  '&:focus': {
-    outline: 'none',
-    border: '3px solid rgba(0, 0, 0, 0.4)',
-  },
-})
 
 const getTileBackgroundColor = ({
   isFlagged,
   isDead,
   isActivated,
   isEven,
-}: {
-  isFlagged: boolean
-  isDead: boolean
-  isActivated: boolean
-  isEven: boolean
-}) => {
+}: StatesProps) => {
   if (isFlagged) {
-    return '#1982C4'
+    return Colors.flagged
   }
   if (isDead) {
-    return '#FF595E'
+    return Colors.dead
   }
   if (isActivated) {
-    return isEven ? '#8AC926' : '#98D831'
+    return isEven ? Colors.activeEven : Colors.activeOdd
   }
-  return isEven ? 'aliceblue' : 'antiquewhite'
-}
-
-function isEven (i: number, j: number): boolean {
-  if (i % 2 === 0) {
-    return j % 2 === 0
-  }
-  return j % 2 !== 0
+  return isEven ? Colors.uncheckedEven : Colors.uncheckedOdd
 }
 
 function getGameState (rows: Rows, difficulty: Difficulty): GameState {
@@ -373,38 +390,12 @@ function getGameState (rows: Rows, difficulty: Difficulty): GameState {
   return GameState.active
 }
 
-const GameOverMessage = styled('div', {
-  fontFamily: fonts.baseFontFamily,
-  position: 'absolute',
-  top: '100%',
-  textAlign: 'center',
-  width: '100%',
-})
-
-function useInterval (callback: () => void, delay: number) {
-  const savedCallback = useRef(noop)
-
-  useEffect(() => {
-    savedCallback.current = callback
-  })
-
-  useEffect(() => {
-    if (delay === null) return
-    function tick () {
-      savedCallback.current()
-    }
-    const id = setInterval(tick, delay)
-    return () => clearInterval(id)
-  }, [delay])
+function tileIsEven (i: number, j: number): boolean {
+  if (i % 2 === 0) {
+    return j % 2 === 0
+  }
+  return j % 2 !== 0
 }
-
-const StyledBoard = styled('div', {
-  fontFamily: 'MuseoModerno, cursive',
-  fontWeight: '300',
-  fontSize: '2.6rem',
-  userSelect: 'none',
-  position: 'relative',
-})
 
 const Board = ({ difficulty }: { difficulty: Difficulty }) => {
   const [gameState, setGameState] = useState(GameState.passive)
@@ -437,78 +428,47 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
   }, delay)
 
   return (
-    <>
-      <StyledBoard>
-        {board.map((rows, i) => (
-          <FlexRow key={`row-${i}`} radius={context.radius}>
-            {rows.map(([tile, setTile], j) => {
-              return (
-                <Tile
-                  key={`col-${i}-${j}`}
-                  display={tile.value > 0 ? tile.value : ''}
-                  onLeftClick={() => {
-                    if (gameState > GameState.active) return
-                    if (tile.activated || tile.flagged) return
-                    if (tile.hasBomb) {
-                      tile.dead = true
-                    }
-                    tile.activate(setTile)
-                    if (gameState === GameState.passive) {
-                      setGameState(GameState.active)
-                    }
-                  }}
-                  onRightClick={() => {
-                    if (tile.activated) return
-                    if (gameState !== GameState.active) return
-                    tile.flagged = !tile.flagged
-                    setTile({
-                      ...tile,
-                    })
-                  }}
-                  isEven={isEven(i, j)}
-                  isActivated={tile.activated}
-                  isDead={tile.dead}
-                  isFlagged={tile.flagged}
-                />
-              )
-            })}
-          </FlexRow>
-        ))}
-        <div className="mt-3">{time}</div>
-        <GameOverMessage>
-          {gameState === GameState.lost ? 'You lost!' : ''}
-          {gameState === GameState.won ? 'You won!' : ''}
-        </GameOverMessage>
-      </StyledBoard>
-    </>
+    <div className="font-museo-moderno font-light text-4xl relative select-none">
+      {board.map((rows, i) => (
+        <FlexRow key={`row-${i}`} radius={context.radius}>
+          {rows.map(([tile, setTile], j) => (
+            <Tile
+              key={`col-${i}-${j}`}
+              display={tile.value > 0 ? tile.value : ''}
+              onLeftClick={() => {
+                if (gameState > GameState.active) return
+                if (tile.activated || tile.flagged) return
+                if (tile.hasBomb) {
+                  tile.dead = true
+                }
+                tile.activate(setTile)
+                if (gameState === GameState.passive) {
+                  setGameState(GameState.active)
+                }
+              }}
+              onRightClick={() => {
+                if (tile.activated) return
+                if (gameState !== GameState.active) return
+                tile.flagged = !tile.flagged
+                setTile({
+                  ...tile,
+                })
+              }}
+              isEven={tileIsEven(i, j)}
+              isActivated={tile.activated}
+              isDead={tile.dead}
+              isFlagged={tile.flagged}
+            />
+          ))}
+        </FlexRow>
+      ))}
+      <div className="mt-3">{time}</div>
+      <div className="font-sans absolute top-full w-full text-center">
+        {gameState === GameState.lost ? 'You lost!' : ''}
+        {gameState === GameState.won ? 'You won!' : ''}
+      </div>
+    </div>
   )
-}
-
-const BoardContext = createContext(boards.easy)
-
-const easy = {
-  title: 'Easy',
-  bombs: 10,
-  rows: 8,
-  columns: 10,
-} as Difficulty
-const medium = {
-  title: 'Medium',
-  bombs: 40,
-  rows: 14,
-  columns: 18,
-} as Difficulty
-const hard = {
-  title: 'Hard',
-  bombs: 99,
-  rows: 20,
-  columns: 24,
-} as Difficulty
-
-const initialState: DifficultyState = {
-  type: SelectedDifficulty.easy,
-  level: easy,
-  board: boards.easy,
 }
 
 function difficultyReducer (
@@ -527,14 +487,14 @@ function difficultyReducer (
     return {
       type: SelectedDifficulty.medium,
       level: medium,
-      board: boards.medium,
+      board: boardStyles.medium,
     }
   }
   if (action.type === SelectedDifficulty.hard) {
     return {
       type: SelectedDifficulty.hard,
       level: hard,
-      board: boards.hard,
+      board: boardStyles.hard,
     }
   }
   return initialState
