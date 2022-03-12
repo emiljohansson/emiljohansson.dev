@@ -7,8 +7,8 @@ import {
   ChangeEvent,
   FunctionComponent,
 } from 'react'
-import useInterval from 'lib/src/useInterval'
-import includes from 'lib/src/includes'
+import useInterval from 'lib/hooks/useInterval'
+import { includes } from 'lib/utils/array'
 
 enum SelectedDifficulty {
   loading,

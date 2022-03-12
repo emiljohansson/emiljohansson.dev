@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { classNames } from 'lib/src/classNames'
+import { classNames } from 'lib/utils/string'
 
 const Section: FunctionComponent<{
   size?: 'normal' | 'large',

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
-import useCurrentTime from 'lib/src/useCurrentTime'
+import useCurrentTime from 'lib/hooks/useCurrentTime'
 import { Time } from 'src/@types/time'
 
 const createTime = ({
