@@ -7,6 +7,7 @@ module.exports = {
     './app/**/*.{ts,tsx,js,jsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
+    '../shared/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -41,6 +42,7 @@ module.exports = {
     plugin(function ({ addVariant }) {
       addVariant('size', '&:size')
       addVariant('direction', '&:direction')
+      addVariant('data-disabled', '&[data-disabled]')
     }),
   ],
 }
