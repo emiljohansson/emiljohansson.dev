@@ -22,14 +22,15 @@
     "incremental": true,
     "paths": {
       "@/components/*": ["./components/*"],
-      "@/stitches": ["./stitches.config"]
+      "@/stitches": ["./stitches.config"],
+      "@/shared/*": ["../shared/*"],
     }
   },
   "include": [
     "next-env.d.ts",
     "twin.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
   ],
   "exclude": [
     "node_modules"

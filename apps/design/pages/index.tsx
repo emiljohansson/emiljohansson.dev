@@ -3,6 +3,7 @@ import Head from 'next/head'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
+import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from '@/shared/Select'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
@@ -57,7 +58,9 @@ const Home: NextPage = () => {
         <article>
           <h2>Checkbox</h2>
           <div className="flex items-center">
-            <CheckboxPrimitive.Root className="bg-white w-6 h-6 rounded flex items-center justify-center shadow" defaultChecked id="c1">
+            <CheckboxPrimitive.Root
+              className="bg-white cursor-default w-6 h-6 rounded flex items-center justify-center shadow hover:bg-gray-50"
+              defaultChecked id="c1">
               <CheckboxPrimitive.Indicator>
                 <CheckIcon className="text-orange" />
               </CheckboxPrimitive.Indicator>
@@ -72,7 +75,7 @@ const Home: NextPage = () => {
           <RadioGroup defaultValue="default">
             <div className="flex items-center mb-2">
               <RadioGroupRadio
-                className="bg-white w-6 h-6 rounded-full flex items-center justify-center shadow"
+                className="bg-white cursor-default w-6 h-6 rounded-full flex items-center justify-center shadow hover:bg-gray-50"
                 value="default"
                 id="r1"
               >
@@ -83,6 +86,7 @@ const Home: NextPage = () => {
                   w-full
                   h-full
                   relative
+                  cursor-default
 
                   after:block
                   after:w-2/4
@@ -98,7 +102,7 @@ const Home: NextPage = () => {
             </div>
             <div className="flex items-center mb-2">
               <RadioGroupRadio
-                className="bg-white w-6 h-6 rounded-full flex items-center justify-center shadow"
+                className="bg-white cursor-default w-6 h-6 rounded-full flex items-center justify-center shadow hover:bg-gray-50"
                 value="test"
                 id="r2"
               >
@@ -123,6 +127,48 @@ const Home: NextPage = () => {
               >Compact</label>
             </div>
           </RadioGroup>
+        </article>
+        <article>
+          <h2>Select</h2>
+          <Select>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+            <SelectItem value="grapes">Grapes</SelectItem>
+            <SelectItem value="pineapple">Pineapple</SelectItem>
+          </Select>
+          <br />
+          <Select defaultValue="blueberry">
+            <SelectGroup>
+              <SelectLabel>Fruits</SelectLabel>
+              <SelectItem value="apple">Apple</SelectItem>
+              <SelectItem value="banana">Banana</SelectItem>
+              <SelectItem value="blueberry">Blueberry</SelectItem>
+              <SelectItem value="grapes">Grapes</SelectItem>
+              <SelectItem value="pineapple">Pineapple</SelectItem>
+            </SelectGroup>
+
+            <SelectSeparator />
+
+            <SelectGroup>
+              <SelectLabel>Vegetables</SelectLabel>
+              <SelectItem value="aubergine">Aubergine</SelectItem>
+              <SelectItem value="broccoli">Broccoli</SelectItem>
+              <SelectItem value="carrot" disabled>Carrot</SelectItem>
+              <SelectItem value="courgette">Courgette</SelectItem>
+              <SelectItem value="leek">Leek</SelectItem>
+            </SelectGroup>
+
+            <SelectSeparator />
+
+            <SelectGroup>
+              <SelectLabel>Meat</SelectLabel>
+              <SelectItem value="beef">Beef</SelectItem>
+              <SelectItem value="chicken">Chicken</SelectItem>
+              <SelectItem value="lamb">Lamb</SelectItem>
+              <SelectItem value="pork">Pork</SelectItem>
+            </SelectGroup>
+          </Select>
         </article>
       </main>
     </>
