@@ -1,4 +1,4 @@
-import { classNames } from '../src/classNames'
+import { classNames } from '../utils/string'
 
 test('strings and key: booleans', () => {
   expect(classNames('foo', 'bar')).toBe('foo bar')

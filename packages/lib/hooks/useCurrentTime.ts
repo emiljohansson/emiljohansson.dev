@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import getCurrentTime from './getCurrentTime'
+import { getCurrentTime } from '../utils/date'
 
 function useInterval (callback: () => void, delay: number) {
   const savedCallback = useRef<() => void>()
