@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { styled } from '@/stitches'
 import { GitHubLogoIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import Layout from '@/components/Layout'
 import Head from 'next/head'
@@ -39,26 +38,6 @@ const projects = [
     text: 'calculate',
   },
 ]
-
-const Github = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  fontSize: '2rem',
-  height: '100vh',
-  textAlign: 'center',
-})
-
-const MainLink = styled('h1', {
-  margin: '0 auto',
-})
-
-const List = styled('ul', {
-  height: '100vh',
-
-  li: {
-    marginLeft: '1.5rem',
-  },
-})
 
 const HomePage = () => {
   const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined)
@@ -99,25 +78,25 @@ const HomePage = () => {
             : <SunIcon className="block" width="24" height="24" />
         }
       </button>
-      <Github>
-        <MainLink>
+      <div className="flex items-center text-3xl h-screen">
+        <h1 className="mx-auto">
           <Link href="https://github.com/emiljohansson" passHref>
             <a className="px-2 pb-2" target="_blank" rel="noreferrer">
               <GitHubLogoIcon width="38" height="38" className="inline-block" />{' '}
               emiljohansson
             </a>
           </Link>
-        </MainLink>
-      </Github>
-      <List className="list-disc p-3 m-0">
+        </h1>
+      </div>
+      <ul className="h-screen list-disc p-3 m-0">
         {projects.map(({ text, href }, index) => (
-          <li className="mb-2" key={index}>
+          <li className="mb-2 ml-6" key={index}>
             <Link href={href}>
               <a>{text}</a>
             </Link>
           </li>
         ))}
-      </List>
+      </ul>
     </Layout>
   )
 }

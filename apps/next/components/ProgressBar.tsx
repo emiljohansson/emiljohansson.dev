@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { EventEmitter } from 'events'
 import { motion } from 'framer-motion'
-import { styled } from '@/stitches'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
@@ -54,21 +53,6 @@ function FixedProgressView ({ progress }: { progress: number }) {
   return <>100</>
 }
 
-const BarContainer = styled('div', {
-  // eslint-disable-next-line no-template-curly-in-string
-  borderRight: '2px solid ${colors.gray500}',
-  // eslint-disable-next-line no-template-curly-in-string
-  borderLeft: '2px solid ${colors.gray500}',
-  height: '15px',
-  width: '400px',
-  margin: '0 1rem',
-})
-
-const Bar = styled(motion.div, {
-  height: '100%',
-  width: '0%',
-})
-
 function ProgressBar () {
   const emitter = new EventEmitter()
   const progress = useProgress(100, emitter)
@@ -97,17 +81,20 @@ function ProgressBar () {
     <Content>
       <Header />
       <Section>
-        <BarContainer>
-          <Bar
-            animate={{
-              backgroundColor: color,
-              width: progress + '%',
-            }}
-            transition={{ duration: 0.4 }}
-          />
-        </BarContainer>
-        <div>
-          <FixedProgressView progress={progress} />%
+        <div className="flex items-center">
+          <div className="h-5 w-96 mr-3">
+            <motion.div
+              className="h-full w-0"
+              animate={{
+                backgroundColor: color,
+                width: progress + '%',
+              }}
+              transition={{ duration: 0.4 }}
+            />
+          </div>
+          <div>
+            <FixedProgressView progress={progress} />%
+          </div>
         </div>
       </Section>
     </Content>
