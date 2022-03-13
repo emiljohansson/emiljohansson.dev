@@ -9,3 +9,10 @@
   font-weight: 300;
   font-display: swap;
 }
+
+html,
+body,
+#__next,
+main {
+  height: 100%;
+}

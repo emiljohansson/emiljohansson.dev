@@ -17,7 +17,6 @@
 * Styling
   * Radix UI
   * Radix Icons
-  * Stitches
 * Animations
   * Framer Motion
 * Testing
@@ -37,3 +36,4 @@
 - [ ] rename branch from `master` to `main`
 - [ ] rename `nextapp` to `next-app`
 - [ ] remove styled components and stitches
+- [ ] avn

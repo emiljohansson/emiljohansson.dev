@@ -23,7 +23,6 @@
   "dependencies": {
     "@emiljohansson/random-string": "1.1.2",
     "@radix-ui/react-icons": "1.0.3",
-    "@stitches/react": "1.2.6",
     "framer-motion": "6.2.3",
     "lib": "*",
     "next": "12.1.0",
