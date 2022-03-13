@@ -6,7 +6,7 @@ import { injectAxe, checkA11y } from 'axe-playwright'
 test.describe('/calculate', () => {
   test('1+2', async ({ page }) => {
     // Go to http://localhost:3000/
-    await page.goto('http://localhost:3000/')
+    await page.goto('/')
 
     // Click text=calculate
     await Promise.all([
@@ -39,16 +39,16 @@ test.describe('/calculate', () => {
 })
 
 test.describe('audit', () => {
-  test('page', async () => {
+  test('page', async ({ baseURL }) => {
     const port = 9002
     const browser = await chromium.launch({
       args: [`--remote-debugging-port=${port}`],
     })
     const page = await browser.newPage()
-    await page.goto('/calculate')
+    await page.goto(`${baseURL}/calculate`)
 
     await playAudit({
-      page: page,
+      page,
       thresholds: {
         performance: 95,
         accessibility: 100,
@@ -63,10 +63,10 @@ test.describe('audit', () => {
 })
 
 test.describe('accessibility', () => {
-  test('page', async () => {
+  test('page', async ({ baseURL }) => {
     const browser = await chromium.launch()
     const page = await browser.newPage()
-    await page.goto('/calculate')
+    await page.goto(`${baseURL}/calculate`)
     await injectAxe(page)
 
     await checkA11y(page)

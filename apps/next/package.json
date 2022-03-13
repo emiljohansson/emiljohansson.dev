@@ -14,6 +14,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "playwright test",
+    "test:debug": "PWDEBUG=1 playwright test",
     "test:e2e": "playwright test",
     "test:unit": "jest",
     "test:ci": "npm run test:e2e:ci",
