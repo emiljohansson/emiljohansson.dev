@@ -4,11 +4,11 @@ import {
   createContext,
   useContext,
   useReducer,
-  ChangeEvent,
   FunctionComponent,
 } from 'react'
 import useInterval from 'lib/hooks/useInterval'
 import { includes } from 'lib/utils/array'
+import { Select, SelectItem } from '@/shared/Select'
 
 enum SelectedDifficulty {
   loading,
@@ -528,18 +528,20 @@ const MineSweaper = () => {
       >
         Restart
       </button>
-      <select
-        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+
+      <Select
+        defaultValue={SelectedDifficulty.easy.toString()}
+        onValueChange={(newValue) => {
           setSelectedDifficulty({
             type: SelectedDifficulty.loading,
-            queueType: Number(event.target.value),
+            queueType: Number(newValue),
           })
         }}
       >
-        <option value={SelectedDifficulty.easy}>{easy.title}</option>
-        <option value={SelectedDifficulty.medium}>{medium.title}</option>
-        <option value={SelectedDifficulty.hard}>{hard.title}</option>
-      </select>
+        <SelectItem value={SelectedDifficulty.easy}>{easy.title}</SelectItem>
+        <SelectItem value={SelectedDifficulty.medium}>{medium.title}</SelectItem>
+        <SelectItem value={SelectedDifficulty.hard}>{hard.title}</SelectItem>
+      </Select>
       {
         selectedDifficulty.type === SelectedDifficulty.loading
           ? <div></div>

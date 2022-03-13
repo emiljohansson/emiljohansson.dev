@@ -4,6 +4,7 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
 import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from '@/shared/Select'
+import { Progress } from '@/shared/Progress'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
@@ -60,7 +61,8 @@ const Home: NextPage = () => {
           <div className="flex items-center">
             <CheckboxPrimitive.Root
               className="bg-white cursor-default w-6 h-6 rounded flex items-center justify-center shadow hover:bg-gray-50"
-              defaultChecked id="c1">
+              defaultChecked id="c1"
+            >
               <CheckboxPrimitive.Indicator>
                 <CheckIcon className="text-orange" />
               </CheckboxPrimitive.Indicator>
@@ -130,7 +132,7 @@ const Home: NextPage = () => {
         </article>
         <article>
           <h2>Select</h2>
-          <Select>
+          <Select defaultValue="apple">
             <SelectItem value="apple">Apple</SelectItem>
             <SelectItem value="banana">Banana</SelectItem>
             <SelectItem value="blueberry">Blueberry</SelectItem>
@@ -169,6 +171,14 @@ const Home: NextPage = () => {
               <SelectItem value="pork">Pork</SelectItem>
             </SelectGroup>
           </Select>
+        </article>
+        <article>
+          <h2>Progress</h2>
+          <div className="flex items-center">
+            <Progress progress={42} />
+            {/* <div className="flex items-center h-14 p-6 mx-auto rounded bg-gradient-to-r from-purple-700 to-orange">
+            </div> */}
+          </div>
         </article>
       </main>
     </>

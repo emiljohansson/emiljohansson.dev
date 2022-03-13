@@ -17,7 +17,9 @@ module.exports = {
           DEFAULT: '#e94f37',
           tart: '#fe4a49',
         },
-        yellow: '#fed766',
+        // yellow: {
+        //   DEFAULT: '#fed766',
+        // },
         black: {
           rich: '#131B23',
         },
