@@ -10,11 +10,15 @@ import {
   ScrollUpButton,
   ScrollDownButton,
 } from '@radix-ui/react-select'
+import type { SelectProps } from '@radix-ui/react-select'
 
 const scrollButtonClassNames = 'flex items-center justify-center h-7 bg-white'
 
-const Select: FunctionComponent<{ defaultValue?: string }> = ({ children, defaultValue }) => (
-  <Root defaultValue={defaultValue}>
+const Select: FunctionComponent<SelectProps> = ({ children, defaultValue, onValueChange }) => (
+  <Root
+    defaultValue={defaultValue}
+    onValueChange={onValueChange}
+  >
     <Trigger
       className="
         inline-flex

@@ -48,14 +48,14 @@ const StyledItemIndicator: FunctionComponent = ({ children }) => (
 )
 
 const SelectItem: FunctionComponent<{
-  value: string
+  value: string | number
   disabled?: boolean
 }> = ({
   children,
   value,
   disabled,
 }) => (
-  <StyledItem value={value} disabled={disabled}>
+  <StyledItem value={value.toString()} disabled={disabled}>
     <ItemText>{children}</ItemText>
     <StyledItemIndicator>
       <CheckIcon />
