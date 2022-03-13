@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import ProgressBar from '@/components/ProgressBar'
+import Header from '../components/Header'
+import Content from '../components/Content'
+import Section from '../components/Section'
 
 const ProgressBarPage = () => (
   <Layout>
@@ -8,7 +11,13 @@ const ProgressBarPage = () => (
       <title>Progress Bar</title>
       <meta name="description" content="Progress bar" />
     </Head>
-    <ProgressBar />
+    <Content>
+      <Header />
+      <Section size="large">
+        <h1 className="sr-only">Progress bar</h1>
+        <ProgressBar />
+      </Section>
+    </Content>
   </Layout>
 )
 

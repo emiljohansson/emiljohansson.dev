@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react'
-import Header from './Header'
-import Content from './Content'
-import Section from './Section'
 import { Progress } from '@/shared/Progress'
 
 const useIncrementalProgress = () => {
@@ -44,17 +41,12 @@ function ProgressBar () {
   const progress = useIncrementalProgress()
 
   return (
-    <Content>
-      <Header />
-      <Section>
-        <div className="flex items-center">
-          <Progress progress={progress} />
-          <div className="ml-2">
-            <FixedProgressView progress={progress} />
-          </div>
-        </div>
-      </Section>
-    </Content>
+    <div className="flex items-center">
+      <Progress progress={progress} />
+      <div className="ml-2">
+        <FixedProgressView progress={progress} />
+      </div>
+    </div>
   )
 }
 

@@ -13,13 +13,14 @@ export const Progress = ({ progress }: { progress: number }) => {
     <Root
       value={progress}
       className="relative overflow-hidden bg-black-rich/50 rounded-full w-96 h-6"
+      title="Progress"
     >
       <Indicator
         asChild
-        className="bg-white h-full"
+        className="h-full"
       >
         <motion.div
-          className={classNames('h-full w-0', colorClass)}
+          className={classNames('test-emil  h-full w-0', colorClass)}
           animate={{
             width: progress + '%',
           }}
