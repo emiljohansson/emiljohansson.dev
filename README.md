@@ -31,9 +31,9 @@
 
 ## TODO's
 
-[] husky
-[] pnpm
-[] preact
-[] rename branch from `master` to `main`
-[] rename `nextapp` to `next-app`
-[] remove styled components and stitches
+- [ ] husky
+- [ ] pnpm
+- [ ] preact
+- [ ] rename branch from `master` to `main`
+- [ ] rename `nextapp` to `next-app`
+- [ ] remove styled components and stitches
