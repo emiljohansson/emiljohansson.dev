@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { add } from 'lib/src/math'
+import { add } from 'lib/utils/math'
 
 const toNumber = (value: string): number => parseFloat(value)
 

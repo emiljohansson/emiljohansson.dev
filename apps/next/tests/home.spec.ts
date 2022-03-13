@@ -33,16 +33,16 @@ test.describe('home', () => {
 })
 
 test.describe('audit', () => {
-  test('root page', async () => {
+  test('root page', async ({ baseURL }) => {
     const port = 9001
     const browser = await chromium.launch({
       args: [`--remote-debugging-port=${port}`],
     })
     const page = await browser.newPage()
-    await page.goto('/')
+    await page.goto(baseURL)
 
     await playAudit({
-      page: page,
+      page,
       thresholds: {
         performance: 95,
         accessibility: 100,
@@ -57,10 +57,10 @@ test.describe('audit', () => {
 })
 
 test.describe('accessibility', () => {
-  test('root page', async () => {
+  test('root page', async ({ baseURL }) => {
     const browser = await chromium.launch()
     const page = await browser.newPage()
-    await page.goto('/')
+    await page.goto(baseURL)
     await injectAxe(page)
 
     await checkA11y(page)
