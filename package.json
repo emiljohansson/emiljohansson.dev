@@ -12,7 +12,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "start": "turbo run start",
-    "test": "turbo run test --scope=nextapp",
+    "test": "turbo run test --scope=next-app",
     "test:ci": "turbo run test:ci",
     "lint": "turbo run lint"
   },
