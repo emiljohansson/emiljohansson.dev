@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import { GitHubLogoIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import Layout from '@/components/Layout'
-import Head from 'next/head'
+import { motion } from 'framer-motion'
 
 const projects = [
   {
@@ -39,21 +40,27 @@ const projects = [
   },
 ]
 
+const darkClassName = 'dark'
+
+let savedDarkMode: boolean | undefined
+
 const HomePage = () => {
-  const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined)
+  const [darkMode, setDarkMode] = useState<boolean | undefined>(savedDarkMode)
 
   useEffect(() => {
     if (darkMode === undefined) {
-      setDarkMode(document.documentElement.classList.contains('dark'))
+      setDarkMode(document.documentElement.classList.contains(darkClassName))
+      savedDarkMode = document.documentElement.classList.contains(darkClassName)
       return
     }
     localStorage.setItem(
       'theme',
       darkMode
-        ? 'dark'
+        ? darkClassName
         : '',
     )
-    document.documentElement.classList.toggle('dark', localStorage.theme === 'dark')
+    document.documentElement.classList.toggle(darkClassName, localStorage.theme === darkClassName)
+    savedDarkMode = document.documentElement.classList.contains(darkClassName)
   }, [darkMode])
 
   return (
@@ -66,18 +73,32 @@ const HomePage = () => {
           content="emil, johansson, developer, front-end, front end"
         />
       </Head>
-      <button
+      <motion.button
         className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
         onClick={() => setDarkMode(!darkMode)}
         data-test-id="toggle-dark-mode"
       >
-        <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
-        {
-          darkMode
-            ? <MoonIcon className="block" width="24" height="24" />
-            : <SunIcon className="block" width="24" height="24" />
-        }
-      </button>
+        <motion.div
+          initial={{
+            scale: darkMode === undefined ? 0.5 : 1,
+            opacity: darkMode === undefined ? 0 : 1,
+            y: darkMode === undefined ? '-100%' : 0,
+          }}
+          animate={{
+            scale: darkMode === undefined ? 0.5 : 1,
+            opacity: darkMode === undefined ? 0 : 1,
+            y: darkMode === undefined ? '-100%' : 0,
+          }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
+          {
+            darkMode
+              ? <MoonIcon className="block" width="24" height="24" />
+              : <SunIcon className="block" width="24" height="24" />
+          }
+        </motion.div>
+      </motion.button>
       <div className="flex items-center text-3xl h-screen">
         <h1 className="mx-auto">
           <Link href="https://github.com/emiljohansson" passHref>
