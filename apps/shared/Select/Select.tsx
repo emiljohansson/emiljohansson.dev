@@ -32,6 +32,9 @@ const Select: FunctionComponent<SelectProps> = ({ children, defaultValue, onValu
         px-4
         h-8
         hover:bg-gray-50
+        dark:bg-white
+        dark:hover:bg-blue-50
+        dark:text-orange
       "
       aria-label="Food"
     >

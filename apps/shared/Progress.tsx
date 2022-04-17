@@ -20,7 +20,7 @@ export const Progress = ({ progress }: { progress: number }) => {
         className="h-full"
       >
         <motion.div
-          className={classNames('test-emil  h-full w-0', colorClass)}
+          className={classNames('h-full w-0', colorClass)}
           animate={{
             width: progress + '%',
           }}

@@ -1,5 +1,5 @@
-
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import Layout from '@/components/Layout'
 import Section from '@/components/Section'
 import Header from '@/components/Header'
@@ -7,6 +7,12 @@ import Content from '@/components/Content'
 import MineSweaper from '@/components/MineSweaper'
 
 const MSPage = () => {
+  const [isReady, setIsReady] = useState(false)
+
+  useEffect(() => {
+    setIsReady(true)
+  }, [])
+
   return (
     <Layout>
       <Head>
@@ -22,7 +28,7 @@ const MSPage = () => {
       <Content>
         <Header />
         <Section direction="column">
-          <MineSweaper />
+          {isReady && <MineSweaper />}
         </Section>
       </Content>
     </Layout>

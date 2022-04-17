@@ -27,11 +27,9 @@
   * Unit testing
     * Jest
 
-
 ## TODO's
 
 - [ ] husky
 - [ ] pnpm
 - [ ] preact
 - [ ] rename branch from `master` to `main`
-- [ ] rename `nextapp` to `next-app`
