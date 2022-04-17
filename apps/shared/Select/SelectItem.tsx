@@ -6,15 +6,24 @@ import {
 } from '@radix-ui/react-select'
 import { CheckIcon } from '@radix-ui/react-icons'
 
-const StyledItem: FunctionComponent<{ value: string, disabled?: boolean }> = ({ children, value, disabled }) => (
+const SelectItem: FunctionComponent<{
+  value: string | number
+  disabled?: boolean
+}> = ({
+  children,
+  value,
+  disabled,
+}) => (
   <Item
-    value={value}
+    value={value.toString()}
     disabled={disabled}
     className="
       border-0
       text-sm
       focus:bg-orange
       focus:text-white
+      dark:text-orange
+      dark:focus:text-white
       focus-visible:outline-none
       rounded
       flex
@@ -28,39 +37,20 @@ const StyledItem: FunctionComponent<{ value: string, disabled?: boolean }> = ({ 
       data-disabled:pointer-events-none
     "
   >
-    {children}
-  </Item>
-)
-
-const StyledItemIndicator: FunctionComponent = ({ children }) => (
-  <ItemIndicator
-    className="
-      absolute
-      left-0
-      inline-flex
-      items-center
-      justify-center
-      w-6
-    "
-  >
-    {children}
-  </ItemIndicator>
-)
-
-const SelectItem: FunctionComponent<{
-  value: string | number
-  disabled?: boolean
-}> = ({
-  children,
-  value,
-  disabled,
-}) => (
-  <StyledItem value={value.toString()} disabled={disabled}>
     <ItemText>{children}</ItemText>
-    <StyledItemIndicator>
+    <ItemIndicator
+      className="
+        absolute
+        left-0
+        inline-flex
+        items-center
+        justify-center
+        w-6
+      "
+    >
       <CheckIcon />
-    </StyledItemIndicator>
-  </StyledItem>
+    </ItemIndicator>
+  </Item>
 )
 
 export default SelectItem

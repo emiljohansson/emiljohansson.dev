@@ -7,7 +7,6 @@ import {
   FunctionComponent,
 } from 'react'
 import useInterval from 'lib/hooks/useInterval'
-import { includes } from 'lib/utils/array'
 import { Select, SelectItem } from '@/shared/Select'
 
 enum SelectedDifficulty {
@@ -62,7 +61,9 @@ interface StatesProps {
 }
 
 interface TileProps extends StatesProps {
+  id: string
   display: string | number
+  value: number
   onLeftClick: () => void
   onRightClick: () => void
 }
@@ -77,6 +78,8 @@ enum Colors {
   uncheckedEven = 'aliceblue',
   uncheckedOdd = 'antiquewhite',
 }
+
+const isDebugging = false
 
 const boardStyles = {
   easy: {
@@ -120,34 +123,41 @@ const initialState: DifficultyState = {
   board: boardStyles.easy,
 }
 
-function generateBombPositions (size: number, numberOfBombs: number) {
-  const list: number[] = []
-  while (list.length < numberOfBombs) {
-    const value = Math.floor(Math.random() * size)
-    if (!includes(list, value)) {
-      list.push(value)
+function generateBombPositions (numberOfRows: number, numberOfColumns: number, numberOfBombs: number) {
+  const list: boolean[][] = Array.from(
+    Array(numberOfRows),
+    () => Array.from(
+      Array(numberOfColumns),
+    ).map(() => false),
+  )
+  while (numberOfBombs > 0) {
+    const row = Math.floor(Math.random() * numberOfRows)
+    const column = Math.floor(Math.random() * numberOfColumns)
+    if (!list[row][column]) {
+      list[row][column] = true
+      numberOfBombs--
     }
   }
-  return list.sort((a, b) => a - b)
+  return list
 }
 
 function useBoard (
   numberOfRows: number,
   numberOfColumns: number,
-  bombs: number[],
+  bombs: boolean[][],
 ) {
   const rows: Rows = []
 
-  for (let i = 0; i < numberOfRows; i++) {
+  for (let row = 0; row < numberOfRows; row++) {
     const currentRow: [Tile, (newTileObject: Tile) => void][] = []
-    for (let j = 0; j < numberOfColumns; j++) {
-      const currentPosition = i * 10 + j
+    for (let column = 0; column < numberOfColumns; column++) {
+      // const currentPosition = i * 10 + j
       // TODO fix possible loop
       const [tile, setTile] = useTile(
         bombs,
-        i,
-        j,
-        currentPosition,
+        row,
+        column,
+        numberOfRows,
         numberOfColumns,
       )
       currentRow.push([tile, setTile])
@@ -162,17 +172,17 @@ function useBoard (
 }
 
 function useTile (
-  bombs: number[],
-  i: number,
-  j: number,
-  currentPosition: number,
+  bombs: boolean[][],
+  row: number,
+  column: number,
+  numberOfRows: number,
   numberOfColumns: number,
 ): [Tile, (newTileObject: Tile) => void] {
   const tile: Tile = {
-    id: `${i}_${j}`,
+    id: `${row}_${column}`,
     value: -1,
-    hasBomb: includes(bombs, currentPosition),
-    activated: false,
+    hasBomb: bombs[row][column],
+    activated: isDebugging,
     dead: false,
     flagged: false,
     linked: [] as [Tile, (newTileObject: Tile) => void][],
@@ -190,7 +200,7 @@ function useTile (
     },
   }
   if (!tile.hasBomb) {
-    tile.value = getDisplayValue(bombs, i, j, numberOfColumns)
+    tile.value = getDisplayValue(bombs, row, column, numberOfRows, numberOfColumns)
   }
   return useState(tile)
 }
@@ -261,37 +271,39 @@ function getTileObject (column: [Tile, (newTileObject: Tile) => void]): Tile {
   return tile
 }
 
-function getDisplayValue (bombs: number[], i: number, j: number, numberOfColumns: number) {
+function getDisplayValue (bombs: boolean[][], i: number, j: number, numberOfRows: number, numberOfColumns: number) {
   let result = 0
   if (i - 1 >= 0) {
     if (j - 1 >= 0) {
-      if (includes(bombs, (i - 1) * 10 + j - 1)) result++
+      if (bombs[i - 1][j - 1]) result++
     }
-    if (includes(bombs, (i - 1) * 10 + j)) result++
+    if (bombs[i - 1][j]) result++
     if (j + 1 < numberOfColumns) {
-      if (includes(bombs, (i - 1) * 10 + j + 1)) result++
+      if (bombs[i - 1][j + 1]) result++
     }
   }
   if (j - 1 >= 0) {
-    if (includes(bombs, i * 10 + j - 1)) result++
+    if (bombs[i][j - 1]) result++
   }
   if (j + 1 < numberOfColumns) {
-    if (includes(bombs, i * 10 + j + 1)) result++
+    if (bombs[i][j + 1]) result++
   }
-  if (i + 1 < bombs.length) {
+  if (i + 1 < numberOfRows) {
     if (j - 1 >= 0) {
-      if (includes(bombs, (i + 1) * 10 + j - 1)) result++
+      if (bombs[i + 1][j - 1]) result++
     }
-    if (includes(bombs, (i + 1) * 10 + j)) result++
+    if (bombs[i + 1][j]) result++
     if (j + 1 < numberOfColumns) {
-      if (includes(bombs, (i + 1) * 10 + j + 1)) result++
+      if (bombs[i + 1][j + 1]) result++
     }
   }
   return result
 }
 
 const Tile = ({
+  id,
   display,
+  value,
   onLeftClick,
   onRightClick,
   isEven,
@@ -313,6 +325,8 @@ const Tile = ({
         }
       `}</style>
       <button
+        data-testid={`tile-${id}`}
+        data-debug-value={(isDebugging ? value : '')}
         className="leading-none text-center focus:outline-none"
         onContextMenu={(event) => {
           event.preventDefault()
@@ -399,13 +413,15 @@ function tileIsEven (i: number, j: number): boolean {
 
 const Board = ({ difficulty }: { difficulty: Difficulty }) => {
   const [gameState, setGameState] = useState(GameState.passive)
+  const [bombs] = useState<boolean[][]>(generateBombPositions(
+    difficulty.rows,
+    difficulty.columns,
+    difficulty.bombs,
+  ))
   const board = useBoard(
     difficulty.rows,
     difficulty.columns,
-    generateBombPositions(
-      difficulty.rows * difficulty.columns,
-      difficulty.bombs,
-    ),
+    bombs,
   )
   const context = useContext(BoardContext)
   const [time, setTime] = useState(0)
@@ -434,7 +450,9 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
           {rows.map(([tile, setTile], j) => (
             <Tile
               key={`col-${i}-${j}`}
+              id={tile.id}
               display={tile.value > 0 ? tile.value : ''}
+              value={tile.value}
               onLeftClick={() => {
                 if (gameState > GameState.active) return
                 if (tile.activated || tile.flagged) return
@@ -456,7 +474,7 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
               }}
               isEven={tileIsEven(i, j)}
               isActivated={tile.activated}
-              isDead={tile.dead}
+              isDead={tile.dead || (isDebugging && tile.hasBomb)}
               isFlagged={tile.flagged}
             />
           ))}
@@ -544,7 +562,7 @@ const MineSweaper = () => {
       </Select>
       {
         selectedDifficulty.type === SelectedDifficulty.loading
-          ? <div></div>
+          ? <></>
           : (
             <BoardContext.Provider value={selectedDifficulty.board}>
               <Board difficulty={selectedDifficulty.level} />
