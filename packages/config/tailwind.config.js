@@ -7,6 +7,10 @@ const plugin = require('tailwindcss/plugin')
 // dark #1e1d2b
 // less dark #252736
 
+// level 1 #202228
+// level 2 #242832
+// level 3 #2a2e36
+
 module.exports = {
   darkMode: 'class',
   content: [

@@ -1,6 +1,7 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
 const Header: FunctionComponent<{
+  children?: ReactNode
   onClick: () => void
 }> = ({ children, onClick }) => <button
   className="ml-2"
