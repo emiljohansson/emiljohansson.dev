@@ -1,12 +1,14 @@
+import type {
+  ActionFunction,
+  LoaderFunction,
+} from '@remix-run/node'
 import {
   Form,
   Link,
   Outlet,
-  LoaderFunction,
   useLoaderData,
   useTransition,
-  ActionFunction,
-} from 'remix'
+} from '@remix-run/react'
 
 type Project = {
   slug: string
