@@ -1,6 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const plugin = require('tailwindcss/plugin')
 
+// dark #222128
+// darker #16151a
+
+// dark #1e1d2b
+// less dark #252736
+
 module.exports = {
   darkMode: 'class',
   content: [
@@ -21,7 +27,7 @@ module.exports = {
         //   DEFAULT: '#fed766',
         // },
         black: {
-          rich: '#131B23',
+          rich: '#1e1d2b',
         },
         blue: '#e9f1f7',
         'blue-star-command': '#2274a5',
