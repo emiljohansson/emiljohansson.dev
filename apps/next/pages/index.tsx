@@ -2,8 +2,17 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { GitHubLogoIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
+import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import Layout from '@/components/Layout'
 import { motion } from 'framer-motion'
+
+// const AccessibleIcon = ({ children, label }): AccessibleIconPrimitive.AccessibleIcon => {
+//   <AccessibleIconPrimitive.Root
+//     label={label}
+//   >
+//     {children}
+//   </AccessibleIconPrimitive.Root>
+// }
 
 const projects = [
   {
@@ -38,11 +47,19 @@ const projects = [
     href: '/calculate',
     text: 'calculate',
   },
+  {
+    href: '/rsc',
+    text: 'React Server Components',
+  },
 ]
 
 const darkClassName = 'dark'
 
 let savedDarkMode: boolean | undefined
+
+// background: #252736;
+// padding: 18px;
+// border-radius: 16px;
 
 const HomePage = () => {
   const [darkMode, setDarkMode] = useState<boolean | undefined>(savedDarkMode)
@@ -99,12 +116,31 @@ const HomePage = () => {
           }
         </motion.div>
       </motion.button>
-      <div className="flex items-center text-3xl h-screen">
+      <div className="flex items-center text-5xl h-screen font-bold">
         <h1 className="mx-auto">
           <Link href="https://github.com/emiljohansson" passHref>
             <a className="px-2 pb-2" target="_blank" rel="noreferrer">
-              <GitHubLogoIcon width="38" height="38" className="inline-block" />{' '}
-              emiljohansson
+              <AccessibleIcon
+                label="GitHub"
+              >
+                <GitHubLogoIcon
+                  color="#ad52dd"
+                  width="50"
+                  height="50"
+                  className="inline-block"
+                />
+              </AccessibleIcon>
+              {' '}
+              <style jsx>{`
+                .title {
+                  background: linear-gradient(97.2deg,#ad52dd -8.65%,#e64937 110.27%);
+                  background-clip: border-box;
+                  background-clip: border-box;
+                  -webkit-text-fill-color: transparent;
+                  -webkit-background-clip: text;
+                }
+              `}</style>
+              <span className="title">emiljohansson</span>
             </a>
           </Link>
         </h1>
