@@ -6,5 +6,7 @@ module.exports = withTM({
   swcMinify: true,
   experimental: {
     externalDir: true,
+    // runtime: 'nodejs',
+    // serverComponents: true,
   },
 })

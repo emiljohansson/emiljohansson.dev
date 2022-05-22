@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
 
-const Header: FunctionComponent = ({ children }) => {
+const Header: FunctionComponent<{ children?: ReactNode }> = ({ children }) => {
   return (
     <header className="flex font p-4">
       <Link href="/" passHref>
