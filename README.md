@@ -32,4 +32,4 @@
 - [ ] husky
 - [ ] pnpm
 - [ ] preact
-- [ ] rename branch from `master` to `main`
+- [x] rename branch from `master` to `main`
