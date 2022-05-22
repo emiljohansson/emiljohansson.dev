@@ -7,6 +7,6 @@ module.exports = withTM({
   experimental: {
     externalDir: true,
     // runtime: 'nodejs',
-    // serverComponents: true,
+    serverComponents: true,
   },
 })
