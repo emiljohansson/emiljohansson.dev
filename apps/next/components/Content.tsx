@@ -1,6 +1,6 @@
-import type { FunctionComponent, ReactNode } from 'react'
+import type { FunctionComponent } from 'lib/@types'
 
-const Content: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+const Content: FunctionComponent = ({ children }) => {
   return <article className="flex flex-col h-full">{children}</article>
 }
 
