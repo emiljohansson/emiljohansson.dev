@@ -47,10 +47,10 @@ const projects = [
     href: '/calculate',
     text: 'calculate',
   },
-  {
-    href: '/rsc',
-    text: 'React Server Components',
-  },
+  // {
+  //   href: '/rsc',
+  //   text: 'React Server Components',
+  // },
 ]
 
 const darkClassName = 'dark'
