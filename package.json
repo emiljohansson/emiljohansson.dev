@@ -17,7 +17,7 @@
     "lint": "turbo run lint"
   },
   "engines": {
-    "node": ">16.0.0",
+    "node": "16.x",
     "pnpm": ">=7"
   },
   "workspaces": [
