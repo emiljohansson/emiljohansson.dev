@@ -1,0 +1,2299 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 8,
+    "total": 8,
+    "workspacePrefix": "/home/emiljohansson/now/emiljohansson.dev"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "shared",
+      "private": true,
+      "scripts": {
+        "lint": "eslint ./**/*.tsx"
+      }
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev/apps/shared"
+  },
+  "2 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "config",
+      "version": "1.0.0",
+      "main": "eslint-preset.js",
+      "license": "MIT",
+      "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "5.10.0",
+        "@typescript-eslint/parser": "5.10.0",
+        "eslint": "8.15.0",
+        "eslint-config-next": "12.1.6",
+        "eslint-config-standard": "17.0.0",
+        "eslint-plugin-import": "2.25.4",
+        "eslint-plugin-n": "^15.2.0",
+        "eslint-plugin-node": "11.1.0",
+        "eslint-plugin-promise": "6.0.0",
+        "eslint-plugin-react": "7.28.0"
+      }
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev/packages/config"
+  },
+  "3 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "tsconfig",
+      "version": "0.0.0",
+      "private": true,
+      "main": "index.js",
+      "files": [
+        "base.json",
+        "nextjs.json",
+        "react-library.json"
+      ]
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev/packages/tsconfig"
+  },
+  "4 debug pnpm:package-manifest": {
+    "initial": {
+      "private": true,
+      "name": "remix-app",
+      "description": "",
+      "license": "",
+      "scripts": {
+        "build": "npm run build:css && remix build && rollup -c",
+        "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+        "dev": "concurrently \"npm run dev:css\" \"PORT=3001 remix dev\"",
+        "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+        "postinstall": "remix setup node",
+        "start": "remix-serve build",
+        "lint": "eslint app"
+      },
+      "dependencies": {
+        "@remix-run/react": "1.5.1",
+        "@remix-run/serve": "1.5.1",
+        "@remix-run/vercel": "1.5.1",
+        "react": "18.1.0",
+        "react-dom": "18.1.0",
+        "remix": "1.5.1",
+        "rollup": "2.66.1"
+      },
+      "devDependencies": {
+        "@remix-run/dev": "1.5.1",
+        "@rollup/plugin-commonjs": "21.0.1",
+        "@rollup/plugin-json": "4.1.0",
+        "@rollup/plugin-node-resolve": "13.1.3",
+        "@types/react": "18.0.9",
+        "@types/react-dom": "18.0.4",
+        "autoprefixer": "10.4.2",
+        "concurrently": "7.0.0",
+        "config": "*",
+        "eslint": "8.15.0",
+        "postcss": "8.4.6",
+        "tailwindcss": "3.0.18",
+        "typescript": "4.6.2"
+      },
+      "engines": {
+        "node": ">=14"
+      },
+      "sideEffects": false
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev/apps/remix-app"
+  },
+  "5 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "lib",
+      "version": "0.0.0",
+      "license": "MIT",
+      "scripts": {
+        "lint": "eslint ./{src,tests}/*.ts",
+        "test": "jest --coverage",
+        "test:watch": "jest --coverage --watchAll",
+        "test:ci": "npm run test"
+      },
+      "devDependencies": {
+        "@types/react": "18.0.9",
+        "@types/react-dom": "18.0.4",
+        "config": "*",
+        "tsconfig": "*",
+        "tsup": "5.11.13",
+        "typescript": "4.6.2"
+      }
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev/packages/lib"
+  },
+  "6 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "design-app",
+      "private": true,
+      "scripts": {
+        "dev": "PORT=3002 next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "dependencies": {
+        "@radix-ui/react-checkbox": "latest",
+        "@radix-ui/react-progress": "latest",
+        "@radix-ui/react-radio-group": "latest",
+        "@radix-ui/react-select": "latest",
+        "lib": "*",
+        "next": "12.1.6",
+        "react": "18.1.0",
+        "react-dom": "18.1.0"
+      },
+      "devDependencies": {
+        "@tailwindcss/typography": "0.5.1",
+        "@types/node": "17.0.33",
+        "@types/react": "18.0.9",
+        "@types/react-dom": "18.0.4",
+        "autoprefixer": "10.4.2",
+        "config": "*",
+        "eslint": "8.15.0",
+        "postcss": "8.4.6",
+        "tailwindcss": "3.0.18",
+        "typescript": "4.6.2"
+      }
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev/apps/design"
+  },
+  "7 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "next-app",
+      "description": "Playground for Emil Johansson",
+      "version": "1.2.1",
+      "author": "emiljohansson.dev@gmail.com",
+      "keywords": [
+        "emil",
+        "johansson"
+      ],
+      "license": "MIT",
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "playwright test",
+        "test:debug": "PWDEBUG=1 playwright test",
+        "test:e2e": "playwright test",
+        "test:unit": "jest",
+        "test:ci": "npm run test:e2e:ci",
+        "test:e2e:ci": "start-server-and-test start http://localhost:3000 \"playwright test\""
+      },
+      "dependencies": {
+        "@emiljohansson/random-string": "1.1.2",
+        "@radix-ui/react-accessible-icon": "^0.1.5-rc.21",
+        "@radix-ui/react-icons": "latest",
+        "@radix-ui/react-progress": "latest",
+        "@radix-ui/react-select": "latest",
+        "framer-motion": "6.2.3",
+        "lib": "workspace:*",
+        "next": "12.1.6",
+        "react": "18.1.0",
+        "react-dom": "18.1.0",
+        "tailwindcss": "3.0.18"
+      },
+      "devDependencies": {
+        "@types/node": "17.0.33",
+        "@types/react": "18.0.9",
+        "@types/react-dom": "18.0.4",
+        "autoprefixer": "10.4.2",
+        "config": "workspace:*",
+        "eslint": "8.15.0",
+        "next-transpile-modules": "9.0.0",
+        "postcss": "8.4.6",
+        "tsconfig": "workspace:*",
+        "typescript": "4.6.2"
+      }
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev/apps/next"
+  },
+  "8 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "emiljohansson.dev",
+      "description": "Playground for Emil Johansson",
+      "version": "1.2.1",
+      "author": "emiljohansson.dev@gmail.com",
+      "keywords": [
+        "emil",
+        "johansson"
+      ],
+      "license": "MIT",
+      "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev --parallel",
+        "start": "turbo run start",
+        "test": "turbo run test --scope=next-app",
+        "test:ci": "turbo run test:ci",
+        "lint": "turbo run lint"
+      },
+      "engines": {
+        "node": ">16.0.0",
+        "pnpm": ">=7"
+      },
+      "workspaces": [
+        "packages/*",
+        "apps/*"
+      ],
+      "devDependencies": {
+        "@playwright/test": "1.19.0",
+        "@types/jest": "27.4.0",
+        "axe-playwright": "1.1.9",
+        "jest": "27.5.1",
+        "lighthouse": "9.3.1",
+        "playwright": "1.19.0",
+        "playwright-lighthouse": "2.1.1",
+        "start-server-and-test": "1.14.0",
+        "ts-jest": "27.1.3",
+        "turbo": "1.1.1"
+      },
+      "packageManager": "pnpm@7.1.3"
+    },
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev"
+  },
+  "9 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/home/emiljohansson/.local/share/pnpm/store/v3",
+    "virtualStoreDir": "/home/emiljohansson/now/emiljohansson.dev/node_modules/.pnpm"
+  },
+  "10 debug pnpm:stage": {
+    "prefix": "/home/emiljohansson/now/emiljohansson.dev",
+    "stage": "resolution_started"
+  },
+  "11 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-config-standard/17.0.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-config-standard",
+      "rawSpec": "17.0.0"
+    }
+  },
+  "12 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-standard/17.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "13 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-node/11.1.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-node",
+      "rawSpec": "11.1.0"
+    }
+  },
+  "14 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-node/11.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "15 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-import/2.25.4",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-import",
+      "rawSpec": "2.25.4"
+    }
+  },
+  "16 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-import/2.25.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "17 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-promise/6.0.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-promise",
+      "rawSpec": "6.0.0"
+    }
+  },
+  "18 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-promise/6.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "19 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-react/7.28.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-react",
+      "rawSpec": "7.28.0"
+    }
+  },
+  "20 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.28.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "21 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@rollup/plugin-commonjs/21.0.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@rollup/plugin-commonjs",
+      "rawSpec": "21.0.1"
+    }
+  },
+  "22 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rollup/plugin-commonjs/21.0.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "23 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@rollup/plugin-json/4.1.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@rollup/plugin-json",
+      "rawSpec": "4.1.0"
+    }
+  },
+  "24 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rollup/plugin-json/4.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "25 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@rollup/plugin-node-resolve/13.1.3",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@rollup/plugin-node-resolve",
+      "rawSpec": "13.1.3"
+    }
+  },
+  "26 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rollup/plugin-node-resolve/13.1.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "27 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@remix-run/dev/1.5.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@remix-run/dev",
+      "rawSpec": "1.5.1"
+    }
+  },
+  "28 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/dev/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "29 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react/18.0.9",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@types/react",
+      "rawSpec": "18.0.9"
+    }
+  },
+  "30 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/react/18.0.9",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "31 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react-dom/18.0.4",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@types/react-dom",
+      "rawSpec": "18.0.4"
+    }
+  },
+  "32 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/react-dom/18.0.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "33 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint/8.15.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint",
+      "rawSpec": "8.15.0"
+    }
+  },
+  "34 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint/8.15.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "35 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-config-next/12.1.6",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-config-next",
+      "rawSpec": "12.1.6"
+    }
+  },
+  "36 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-next/12.1.6",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "37 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/autoprefixer/10.4.2",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "autoprefixer",
+      "rawSpec": "10.4.2"
+    }
+  },
+  "38 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/autoprefixer/10.4.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "39 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/concurrently/7.0.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "concurrently",
+      "rawSpec": "7.0.0"
+    }
+  },
+  "40 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/concurrently/7.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "41 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss/8.4.6",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "postcss",
+      "rawSpec": "8.4.6"
+    }
+  },
+  "42 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss/8.4.6",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "43 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@remix-run/react/1.5.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@remix-run/react",
+      "rawSpec": "1.5.1"
+    }
+  },
+  "44 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/react/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "45 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@remix-run/serve/1.5.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@remix-run/serve",
+      "rawSpec": "1.5.1"
+    }
+  },
+  "46 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/serve/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "47 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@remix-run/vercel/1.5.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@remix-run/vercel",
+      "rawSpec": "1.5.1"
+    }
+  },
+  "48 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/vercel/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "49 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint/8.15.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "eslint",
+      "rawSpec": "8.15.0"
+    }
+  },
+  "50 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/remix/1.5.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "remix",
+      "rawSpec": "1.5.1"
+    }
+  },
+  "51 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remix/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "52 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react/18.1.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "react",
+      "rawSpec": "18.1.0"
+    }
+  },
+  "53 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/react/18.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "54 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react-dom/18.1.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "react-dom",
+      "rawSpec": "18.1.0"
+    }
+  },
+  "55 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/react-dom/18.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "56 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tailwindcss/3.0.18",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "tailwindcss",
+      "rawSpec": "3.0.18"
+    }
+  },
+  "57 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tailwindcss/3.0.18",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "58 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react/18.0.9",
+    "wanted": {
+      "dependentId": "packages/lib",
+      "name": "@types/react",
+      "rawSpec": "18.0.9"
+    }
+  },
+  "59 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react-dom/18.0.4",
+    "wanted": {
+      "dependentId": "packages/lib",
+      "name": "@types/react-dom",
+      "rawSpec": "18.0.4"
+    }
+  },
+  "60 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/eslint-plugin/5.10.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "@typescript-eslint/eslint-plugin",
+      "rawSpec": "5.10.0"
+    }
+  },
+  "61 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/eslint-plugin/5.10.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "62 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/parser/5.10.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "@typescript-eslint/parser",
+      "rawSpec": "5.10.0"
+    }
+  },
+  "63 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/parser/5.10.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "64 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-standard/17.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "65 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tsup/5.11.13",
+    "wanted": {
+      "dependentId": "packages/lib",
+      "name": "tsup",
+      "rawSpec": "5.11.13"
+    }
+  },
+  "66 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsup/5.11.13",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "67 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rollup/2.66.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "rollup",
+      "rawSpec": "2.66.1"
+    }
+  },
+  "68 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rollup/2.66.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "69 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@tailwindcss/typography/0.5.1",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@tailwindcss/typography",
+      "rawSpec": "0.5.1"
+    }
+  },
+  "70 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@tailwindcss/typography/0.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "71 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-node/11.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "72 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react-dom/18.0.4",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@types/react-dom",
+      "rawSpec": "18.0.4"
+    }
+  },
+  "73 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react/18.0.9",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@types/react",
+      "rawSpec": "18.0.9"
+    }
+  },
+  "74 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/autoprefixer/10.4.2",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "autoprefixer",
+      "rawSpec": "10.4.2"
+    }
+  },
+  "75 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss/8.4.6",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "postcss",
+      "rawSpec": "8.4.6"
+    }
+  },
+  "76 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/node/17.0.33",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@types/node",
+      "rawSpec": "17.0.33"
+    }
+  },
+  "77 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/node/17.0.33",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "78 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint/8.15.0",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "eslint",
+      "rawSpec": "8.15.0"
+    }
+  },
+  "79 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/typescript/4.6.2",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "typescript",
+      "rawSpec": "4.6.2"
+    }
+  },
+  "80 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/typescript/4.6.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "81 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-import/2.25.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "82 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tailwindcss/3.0.18",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "tailwindcss",
+      "rawSpec": "3.0.18"
+    }
+  },
+  "83 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-n/15.2.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-n",
+      "rawSpec": "^15.2.0"
+    }
+  },
+  "84 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-n/15.2.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "85 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tsconfig/7.0.0",
+    "wanted": {
+      "dependentId": "packages/lib",
+      "name": "tsconfig",
+      "rawSpec": "*"
+    }
+  },
+  "86 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsconfig/7.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "87 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-promise/6.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "88 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react/18.1.0",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "react",
+      "rawSpec": "18.1.0"
+    }
+  },
+  "89 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react/18.0.9",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@types/react",
+      "rawSpec": "18.0.9"
+    }
+  },
+  "90 debug pnpm:_dependency_resolved": {
+    "resolution": "link:../../packages/config",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "config",
+      "rawSpec": "workspace:*"
+    }
+  },
+  "91 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react-dom/18.1.0",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "react-dom",
+      "rawSpec": "18.1.0"
+    }
+  },
+  "92 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/react-dom/18.0.4",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@types/react-dom",
+      "rawSpec": "18.0.4"
+    }
+  },
+  "93 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/node/17.0.33",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@types/node",
+      "rawSpec": "17.0.33"
+    }
+  },
+  "94 debug pnpm:_dependency_resolved": {
+    "resolution": "link:../../packages/tsconfig",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "tsconfig",
+      "rawSpec": "workspace:*"
+    }
+  },
+  "95 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/autoprefixer/10.4.2",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "autoprefixer",
+      "rawSpec": "10.4.2"
+    }
+  },
+  "96 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/next-transpile-modules/9.0.0",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "next-transpile-modules",
+      "rawSpec": "9.0.0"
+    }
+  },
+  "97 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/next-transpile-modules/9.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "98 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.28.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "99 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rollup/plugin-commonjs/21.0.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "100 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss/8.4.6",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "postcss",
+      "rawSpec": "8.4.6"
+    }
+  },
+  "101 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint/8.15.0",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "eslint",
+      "rawSpec": "8.15.0"
+    }
+  },
+  "102 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rollup/plugin-json/4.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "103 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rollup/plugin-node-resolve/13.1.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "104 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@emiljohansson/random-string/1.1.2",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@emiljohansson/random-string",
+      "rawSpec": "1.1.2"
+    }
+  },
+  "105 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@emiljohansson/random-string/1.1.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "106 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/typescript/4.6.2",
+    "wanted": {
+      "dependentId": "packages/lib",
+      "name": "typescript",
+      "rawSpec": "4.6.2"
+    }
+  },
+  "107 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/dev/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "108 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/lib/4.3.3",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "lib",
+      "rawSpec": "*"
+    }
+  },
+  "109 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/lib/4.3.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "110 debug pnpm:_dependency_resolved": {
+    "resolution": "link:../../packages/lib",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "lib",
+      "rawSpec": "workspace:*"
+    }
+  },
+  "111 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/next/12.1.6",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "next",
+      "rawSpec": "12.1.6"
+    }
+  },
+  "112 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/next/12.1.6",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "113 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/config/3.3.7",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "config",
+      "rawSpec": "*"
+    }
+  },
+  "114 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/config/3.3.7",
+    "wanted": {
+      "dependentId": "packages/lib",
+      "name": "config",
+      "rawSpec": "*"
+    }
+  },
+  "115 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/config/3.3.7",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "config",
+      "rawSpec": "*"
+    }
+  },
+  "116 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/config/3.3.7",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "117 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-icons/1.1.1",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@radix-ui/react-icons",
+      "rawSpec": "latest"
+    }
+  },
+  "118 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@radix-ui/react-icons/1.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "119 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/react/18.0.9",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "120 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/react-dom/18.0.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "121 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/framer-motion/6.2.3",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "framer-motion",
+      "rawSpec": "6.2.3"
+    }
+  },
+  "122 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/framer-motion/6.2.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "123 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/jest/27.4.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@types/jest",
+      "rawSpec": "27.4.0"
+    }
+  },
+  "124 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/jest/27.4.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "125 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-accessible-icon/0.1.5-rc.21",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@radix-ui/react-accessible-icon",
+      "rawSpec": "^0.1.5-rc.21"
+    }
+  },
+  "126 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@radix-ui/react-accessible-icon/0.1.5-rc.21",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "127 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react/18.1.0",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "react",
+      "rawSpec": "18.1.0"
+    }
+  },
+  "128 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react-dom/18.1.0",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "react-dom",
+      "rawSpec": "18.1.0"
+    }
+  },
+  "129 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@playwright/test/1.19.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@playwright/test",
+      "rawSpec": "1.19.0"
+    }
+  },
+  "130 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@playwright/test/1.19.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "131 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tailwindcss/3.0.18",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "tailwindcss",
+      "rawSpec": "3.0.18"
+    }
+  },
+  "132 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/axe-playwright/1.1.9",
+    "wanted": {
+      "dependentId": ".",
+      "name": "axe-playwright",
+      "rawSpec": "1.1.9"
+    }
+  },
+  "133 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/axe-playwright/1.1.9",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "134 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/jest/27.5.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "jest",
+      "rawSpec": "27.5.1"
+    }
+  },
+  "135 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/jest/27.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "136 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/playwright-lighthouse/2.1.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "playwright-lighthouse",
+      "rawSpec": "2.1.1"
+    }
+  },
+  "137 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/playwright-lighthouse/2.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "138 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/typescript/4.6.2",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "typescript",
+      "rawSpec": "4.6.2"
+    }
+  },
+  "139 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/start-server-and-test/1.14.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "start-server-and-test",
+      "rawSpec": "1.14.0"
+    }
+  },
+  "140 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/start-server-and-test/1.14.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "141 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/ts-jest/27.1.3",
+    "wanted": {
+      "dependentId": ".",
+      "name": "ts-jest",
+      "rawSpec": "27.1.3"
+    }
+  },
+  "142 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ts-jest/27.1.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "143 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-n/15.2.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-n",
+      "rawSpec": ">=15.0.0 <16.0.0"
+    }
+  },
+  "144 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-progress/0.1.4",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@radix-ui/react-progress",
+      "rawSpec": "latest"
+    }
+  },
+  "145 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-progress/0.1.4",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@radix-ui/react-progress",
+      "rawSpec": "latest"
+    }
+  },
+  "146 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@radix-ui/react-progress/0.1.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "147 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo/1.1.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "turbo",
+      "rawSpec": "1.1.1"
+    }
+  },
+  "148 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo/1.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "149 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/lighthouse/9.3.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "lighthouse",
+      "rawSpec": "9.3.1"
+    }
+  },
+  "150 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/lighthouse/9.3.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "151 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/next/12.1.6",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "next",
+      "rawSpec": "12.1.6"
+    }
+  },
+  "152 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-import/2.25.4",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-import",
+      "rawSpec": ">=2.25.2 <3.0.0"
+    }
+  },
+  "153 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-checkbox/0.1.5",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@radix-ui/react-checkbox",
+      "rawSpec": "latest"
+    }
+  },
+  "154 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@radix-ui/react-checkbox/0.1.5",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "155 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-radio-group/0.1.5",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@radix-ui/react-radio-group",
+      "rawSpec": "latest"
+    }
+  },
+  "156 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@radix-ui/react-radio-group/0.1.5",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "157 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/playwright/1.19.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "playwright",
+      "rawSpec": "1.19.0"
+    }
+  },
+  "158 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/playwright/1.19.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "159 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rollup/2.66.1",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "rollup",
+      "rawSpec": ">=2.42.0 <3.0.0"
+    }
+  },
+  "160 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint/8.15.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint",
+      "rawSpec": ">=8.0.1 <9.0.0"
+    }
+  },
+  "161 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint/8.15.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "162 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-next/12.1.6",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "163 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/typescript/4.6.2",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "typescript",
+      "rawSpec": "4.6.2"
+    }
+  },
+  "164 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/autoprefixer/10.4.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "165 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@vercel/node/1.15.3",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "@vercel/node",
+      "rawSpec": ">=1.8.3 <2.0.0"
+    }
+  },
+  "166 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@vercel/node/1.15.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "167 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/bundle-require/3.0.4",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "bundle-require",
+      "rawSpec": "^3.0.2"
+    }
+  },
+  "168 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/bundle-require/3.0.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "169 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/concurrently/7.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "170 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/jest/27.5.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "jest",
+      "rawSpec": ">=27.0.0 <28.0.0"
+    }
+  },
+  "171 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss/8.4.6",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "172 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/react/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "173 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/serve/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "174 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/vercel/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "175 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remix/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "176 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/react/18.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "177 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/react-dom/18.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "178 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tailwindcss/3.0.18",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "179 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/parser/5.10.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "180 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/execa/5.1.1",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "execa",
+      "rawSpec": "^5.0.0"
+    }
+  },
+  "181 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/execa/5.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "182 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/chokidar/3.5.3",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "chokidar",
+      "rawSpec": "^3.5.1"
+    }
+  },
+  "183 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/chokidar/3.5.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "184 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/parser/5.10.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "@typescript-eslint/parser",
+      "rawSpec": ">=5.0.0 <6.0.0"
+    }
+  },
+  "185 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/esbuild/0.14.39",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "esbuild",
+      "rawSpec": "^0.14.2"
+    }
+  },
+  "186 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/esbuild/0.14.39",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "187 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/eslint-plugin/5.10.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "188 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react-dom/18.1.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "react-dom",
+      "rawSpec": ">=16.8.0"
+    }
+  },
+  "189 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rollup/2.74.1",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "rollup",
+      "rawSpec": "^2.60.0"
+    }
+  },
+  "190 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rollup/2.74.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "191 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/4.3.4",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "debug",
+      "rawSpec": "^4.3.1"
+    }
+  },
+  "192 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/debug/4.3.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "193 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/globby/11.1.0",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "globby",
+      "rawSpec": "^11.0.3"
+    }
+  },
+  "194 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/globby/11.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "195 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss-load-config/3.1.4",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "postcss-load-config",
+      "rawSpec": "^3.0.1"
+    }
+  },
+  "196 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss-load-config/3.1.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "197 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/joycon/3.1.1",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "joycon",
+      "rawSpec": "^3.0.1"
+    }
+  },
+  "198 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/joycon/3.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "199 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/sucrase/3.21.0",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "sucrase",
+      "rawSpec": "^3.20.3"
+    }
+  },
+  "200 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/sucrase/3.21.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "201 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsup/5.11.13",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "202 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rollup/2.66.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "203 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/strip-json-comments/0.0.30",
+    "wanted": {
+      "dependentId": "/tsconfig/7.0.0",
+      "name": "@types/strip-json-comments",
+      "rawSpec": "0.0.30"
+    }
+  },
+  "204 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/strip-json-comments/0.0.30",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "205 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tree-kill/1.2.2",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "tree-kill",
+      "rawSpec": "^1.2.2"
+    }
+  },
+  "206 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tree-kill/1.2.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "207 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@tailwindcss/typography/0.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "208 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/node/17.0.33",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "209 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve-from/5.0.0",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "resolve-from",
+      "rawSpec": "^5.0.0"
+    }
+  },
+  "210 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/resolve-from/5.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "211 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/playwright-core/1.22.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "playwright-core",
+      "rawSpec": ">1.0.0"
+    }
+  },
+  "212 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/playwright-core/1.22.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "213 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/typescript/4.6.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "214 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/next/12.1.6",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "next",
+      "rawSpec": ">=10.2.0"
+    }
+  },
+  "215 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/source-map/0.7.3",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "source-map",
+      "rawSpec": "^0.7.3"
+    }
+  },
+  "216 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/source-map/0.7.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "217 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/autoprefixer/10.4.2",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "autoprefixer",
+      "rawSpec": ">=10.0.2 <11.0.0"
+    }
+  },
+  "218 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react/18.1.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "react",
+      "rawSpec": ">=18.1.0 <19.0.0"
+    }
+  },
+  "219 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/strip-bom/3.0.0",
+    "wanted": {
+      "dependentId": "/tsconfig/7.0.0",
+      "name": "@types/strip-bom",
+      "rawSpec": "^3.0.0"
+    }
+  },
+  "220 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/strip-bom/3.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "221 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss/8.4.6",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "postcss",
+      "rawSpec": ">=8.1.0 <9.0.0"
+    }
+  },
+  "222 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss/8.4.6",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "postcss",
+      "rawSpec": ">=8.1.0 <9.0.0"
+    }
+  },
+  "223 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react/18.1.0",
+    "wanted": {
+      "dependentId": "apps/remix-app",
+      "name": "react",
+      "rawSpec": ">=18.1.0 <19.0.0"
+    }
+  },
+  "224 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/strip-bom/3.0.0",
+    "wanted": {
+      "dependentId": "/tsconfig/7.0.0",
+      "name": "strip-bom",
+      "rawSpec": "^3.0.0"
+    }
+  },
+  "225 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/strip-bom/3.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "226 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/strip-json-comments/2.0.1",
+    "wanted": {
+      "dependentId": "/tsconfig/7.0.0",
+      "name": "strip-json-comments",
+      "rawSpec": "^2.0.0"
+    }
+  },
+  "227 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/strip-json-comments/2.0.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "228 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/cac/6.7.12",
+    "wanted": {
+      "dependentId": "/tsup/5.11.13",
+      "name": "cac",
+      "rawSpec": "^6.7.12"
+    }
+  },
+  "229 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/cac/6.7.12",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "230 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-promise/6.0.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-promise",
+      "rawSpec": ">=6.0.0 <7.0.0"
+    }
+  },
+  "231 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/resolve/1.17.1",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-node-resolve/13.1.3",
+      "name": "@types/resolve",
+      "rawSpec": "1.17.1"
+    }
+  },
+  "232 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/resolve/1.17.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "233 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint/8.15.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint",
+      "rawSpec": ">=7.2.0 <8.0.0 || >=8.0.0 <9.0.0"
+    }
+  },
+  "234 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react/18.1.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "react",
+      "rawSpec": ">=17.0.2 <18.0.0 || >=18.0.0-0 <19.0.0"
+    }
+  },
+  "235 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react-dom/18.1.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "react-dom",
+      "rawSpec": ">=17.0.2 <18.0.0 || >=18.0.0-0 <19.0.0"
+    }
+  },
+  "236 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-n/15.2.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "237 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsconfig/7.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "238 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/next-transpile-modules/9.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "239 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@emiljohansson/random-string/1.1.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "240 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/lib/4.3.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "241 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/builtin-modules/3.3.0",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-node-resolve/13.1.3",
+      "name": "builtin-modules",
+      "rawSpec": "^3.1.0"
+    }
+  },
+  "242 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/builtin-modules/3.3.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "243 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react/18.1.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "react",
+      "rawSpec": ">=18.1.0 <19.0.0"
+    }
+  },
+  "244 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@babel/core/7.17.8",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "@babel/core",
+      "rawSpec": "7.17.8"
+    }
+  },
+  "245 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@babel/core/7.17.8",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "246 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/glob/7.2.3",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-commonjs/21.0.1",
+      "name": "glob",
+      "rawSpec": "^7.1.6"
+    }
+  },
+  "247 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/glob/7.2.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "248 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/estree-walker/2.0.2",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-commonjs/21.0.1",
+      "name": "estree-walker",
+      "rawSpec": "^2.0.1"
+    }
+  },
+  "249 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/estree-walker/2.0.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "250 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/1.22.0",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-commonjs/21.0.1",
+      "name": "resolve",
+      "rawSpec": "^1.17.0"
+    }
+  },
+  "251 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/1.22.0",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-node-resolve/13.1.3",
+      "name": "resolve",
+      "rawSpec": "^1.19.0"
+    }
+  },
+  "252 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/resolve/1.22.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "253 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-reference/1.2.1",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-commonjs/21.0.1",
+      "name": "is-reference",
+      "rawSpec": "^1.2.1"
+    }
+  },
+  "254 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-reference/1.2.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "255 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/commondir/1.0.1",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-commonjs/21.0.1",
+      "name": "commondir",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "256 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/commondir/1.0.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "257 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/magic-string/0.25.9",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-commonjs/21.0.1",
+      "name": "magic-string",
+      "rawSpec": "^0.25.7"
+    }
+  },
+  "258 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/magic-string/0.25.9",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "259 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/chokidar/3.5.3",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "chokidar",
+      "rawSpec": "^3.5.1"
+    }
+  },
+  "260 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@babel/plugin-syntax-jsx/7.16.7",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "@babel/plugin-syntax-jsx",
+      "rawSpec": "7.16.7"
+    }
+  },
+  "261 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@babel/plugin-syntax-jsx/7.16.7",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "262 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/esbuild/0.14.22",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "esbuild",
+      "rawSpec": "0.14.22"
+    }
+  },
+  "263 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/esbuild/0.14.22",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "264 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/typescript/4.6.4",
+    "wanted": {
+      "dependentId": ".",
+      "name": "typescript",
+      "rawSpec": ">=3.8.0 <5.0.0"
+    }
+  },
+  "265 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/typescript/4.6.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "266 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@babel/preset-typescript/7.16.7",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "@babel/preset-typescript",
+      "rawSpec": "7.16.7"
+    }
+  },
+  "267 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@babel/preset-typescript/7.16.7",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "268 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/deepmerge/4.2.2",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-node-resolve/13.1.3",
+      "name": "deepmerge",
+      "rawSpec": "^4.2.2"
+    }
+  },
+  "269 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/deepmerge/4.2.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "270 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-module/1.0.0",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-node-resolve/13.1.3",
+      "name": "is-module",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "271 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-module/1.0.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "272 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@remix-run/server-runtime/1.5.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "@remix-run/server-runtime",
+      "rawSpec": "1.5.1"
+    }
+  },
+  "273 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@remix-run/server-runtime/1.5.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "274 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/cacache/15.3.0",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "cacache",
+      "rawSpec": "^15.0.5"
+    }
+  },
+  "275 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/cacache/15.3.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "276 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/exit-hook/2.2.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "exit-hook",
+      "rawSpec": "2.2.1"
+    }
+  },
+  "277 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/exit-hook/2.2.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "278 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/express/4.17.3",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "express",
+      "rawSpec": "4.17.3"
+    }
+  },
+  "279 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/express/4.17.3",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "280 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/fast-glob/3.2.11",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "fast-glob",
+      "rawSpec": "3.2.11"
+    }
+  },
+  "281 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fast-glob/3.2.11",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "282 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/dotenv/16.0.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "dotenv",
+      "rawSpec": "^16.0.0"
+    }
+  },
+  "283 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/dotenv/16.0.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "284 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/jsesc/3.0.2",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "jsesc",
+      "rawSpec": "3.0.2"
+    }
+  },
+  "285 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/jsesc/3.0.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "286 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/json5/2.2.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "json5",
+      "rawSpec": "^2.2.1"
+    }
+  },
+  "287 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/json5/2.2.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "288 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/lodash.debounce/4.0.8",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "lodash.debounce",
+      "rawSpec": "^4.0.8"
+    }
+  },
+  "289 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/lodash.debounce/4.0.8",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "290 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/fs-extra/10.1.0",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "fs-extra",
+      "rawSpec": "^10.0.0"
+    }
+  },
+  "291 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fs-extra/10.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "292 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/next/12.1.6",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "293 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@rollup/pluginutils/3.1.0",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-commonjs/21.0.1",
+      "name": "@rollup/pluginutils",
+      "rawSpec": "^3.1.0"
+    }
+  },
+  "294 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@rollup/pluginutils/3.1.0",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-json/4.1.0",
+      "name": "@rollup/pluginutils",
+      "rawSpec": "^3.0.8"
+    }
+  },
+  "295 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@rollup/pluginutils/3.1.0",
+    "wanted": {
+      "dependentId": "/@rollup/plugin-node-resolve/13.1.3",
+      "name": "@rollup/pluginutils",
+      "rawSpec": "^3.1.0"
+    }
+  },
+  "296 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rollup/pluginutils/3.1.0",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "297 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/config/3.3.7",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "298 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prettier/2.6.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "prettier",
+      "rawSpec": "2.6.1"
+    }
+  },
+  "299 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier/2.6.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "300 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/inquirer/8.2.4",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "inquirer",
+      "rawSpec": "^8.2.1"
+    }
+  },
+  "301 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/inquirer/8.2.4",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "302 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/meow/7.1.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "meow",
+      "rawSpec": "^7.1.1"
+    }
+  },
+  "303 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/meow/7.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "304 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/chalk/4.1.2",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "chalk",
+      "rawSpec": "^4.1.2"
+    }
+  },
+  "305 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/chalk/4.1.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "306 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@radix-ui/react-icons/1.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "found_in_store"
+  },
+  "307 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimatch/3.1.2",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "minimatch",
+      "rawSpec": "^3.0.4"
+    }
+  },
+  "308 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/minimatch/3.1.2",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "309 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/jscodeshift/0.13.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "jscodeshift",
+      "rawSpec": "^0.13.1"
+    }
+  },
+  "310 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/jscodeshift/0.13.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "311 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-select/0.1.1",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "@radix-ui/react-select",
+      "rawSpec": "latest"
+    }
+  },
+  "312 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@radix-ui/react-select/0.1.1",
+    "wanted": {
+      "dependentId": "apps/next",
+      "name": "@radix-ui/react-select",
+      "rawSpec": "latest"
+    }
+  },
+  "313 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@radix-ui/react-select/0.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "314 error pnpm": {
+    "err": {
+      "name": "pnpm",
+      "message": "Cannot convert undefined or null to object",
+      "stack": "pnpm: Cannot convert undefined or null to object\n    at Function.entries (<anonymous>)\n    at mergePkgsDeps (/home/linuxbrew/.linuxbrew/Cellar/pnpm/7.1.3/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:116172:44)\n    at resolveDependencies (/home/linuxbrew/.linuxbrew/Cellar/pnpm/7.1.3/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:116145:33)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async /home/linuxbrew/.linuxbrew/Cellar/pnpm/7.1.3/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:116692:47\n    at async Promise.all (index 6)\n    at async default_1 (/home/linuxbrew/.linuxbrew/Cellar/pnpm/7.1.3/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:116662:7)\n    at async default_1 (/home/linuxbrew/.linuxbrew/Cellar/pnpm/7.1.3/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:117815:133)\n    at async _installInContext (/home/linuxbrew/.linuxbrew/Cellar/pnpm/7.1.3/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:120368:238)"
+    }
+  },
+  "315 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-port/5.1.1",
+    "wanted": {
+      "dependentId": "/@remix-run/dev/1.5.1",
+      "name": "get-port",
+      "rawSpec": "^5.1.1"
+    }
+  },
+  "316 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/get-port/5.1.1",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  },
+  "317 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss/8.4.6",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "postcss",
+      "rawSpec": ">=8.1.0 <9.0.0"
+    }
+  },
+  "318 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/autoprefixer/10.4.2",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "autoprefixer",
+      "rawSpec": ">=10.0.2 <11.0.0"
+    }
+  },
+  "319 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react-dom/18.0.0-rc.3-next-e7d0053e6-20220325",
+    "wanted": {
+      "dependentId": "apps/design",
+      "name": "react-dom",
+      "rawSpec": ">=17.0.2 <18.0.0 || >=18.0.0-0 <18.0.0"
+    }
+  },
+  "320 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/react-dom/18.0.0-rc.3-next-e7d0053e6-20220325",
+    "requester": "/home/emiljohansson/now/emiljohansson.dev",
+    "status": "resolved"
+  }
+}
