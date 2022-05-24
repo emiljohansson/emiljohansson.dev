@@ -16,10 +16,6 @@
     "test:ci": "turbo run test:ci",
     "lint": "turbo run lint"
   },
-  "engines": {
-    "node": "16.x",
-    "pnpm": ">=7"
-  },
   "workspaces": [
     "packages/*",
     "apps/*"
