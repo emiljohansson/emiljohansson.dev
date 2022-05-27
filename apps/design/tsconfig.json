@@ -22,7 +22,6 @@
     "incremental": true,
     "paths": {
       "@/components/*": ["./components/*"],
-      "@/shared/*": ["../shared/*"],
     }
   },
   "include": [

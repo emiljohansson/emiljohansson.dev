@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
-import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from '@/shared/Select'
-import { Progress } from '@/shared/Progress'
+import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
+import { Progress } from 'shared/Progress'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
