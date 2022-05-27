@@ -4,7 +4,7 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "remix build",
+    "build": "echo \"Test message\"",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"npm run dev:css\" \"PORT=3001 remix dev\"",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
