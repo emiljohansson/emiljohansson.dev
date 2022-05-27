@@ -4,7 +4,7 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "npm run build:css && remix build",
+    "build": "npm run build:css && remix build && rollup -c",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"npm run dev:css\" \"PORT=3001 remix dev\"",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
@@ -13,7 +13,7 @@
     "lint": "eslint app"
   },
   "dependencies": {
-    "@remix-run/node": "^1.5.1",
+    "@remix-run/node": "1.5.1",
     "@remix-run/react": "1.5.1",
     "@remix-run/vercel": "1.5.1",
     "@vercel/node": "1.15.2",
@@ -25,11 +25,15 @@
     "@remix-run/serve": "1.5.1",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.4",
+    "@rollup/plugin-commonjs": "21.0.2",
+    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "13.1.3",
     "autoprefixer": "10.4.2",
     "concurrently": "7.0.0",
     "config": "workspace:*",
     "eslint": "8.15.0",
     "postcss": "8.4.6",
+    "rollup": "2.69.0",
     "tailwindcss": "3.0.18",
     "tsconfig": "workspace:*",
     "typescript": "4.6.2"
