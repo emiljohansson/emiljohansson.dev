@@ -9,15 +9,15 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
-import styles from './styles/app.css'
+// import styles from './styles/app.css'
 
 export const meta: MetaFunction = () => {
   return { title: 'New Remix App' }
 }
 
-export function links () {
-  return [{ rel: 'stylesheet', href: styles }]
-}
+// export function links () {
+//   return [{ rel: 'stylesheet', href: styles }]
+// }
 
 export default function App () {
   return (
