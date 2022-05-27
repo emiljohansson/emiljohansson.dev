@@ -1,34 +1,28 @@
 {
-  "private": true,
   "name": "remix-app",
-  "description": "",
-  "license": "",
+  "private": true,
+  "sideEffects": false,
   "scripts": {
-    "build": "echo \"Test message\"",
-    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
-    "dev": "concurrently \"npm run dev:css\" \"PORT=3001 remix dev\"",
-    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
-    "start": "remix-serve build",
-    "lint": "eslint app"
+    "build": "remix build",
+    "dev": "remix dev"
   },
   "dependencies": {
-    "@remix-run/node": "*",
-    "@remix-run/react": "*",
-    "@remix-run/vercel": "*",
+    "@remix-run/node": "^1.5.1",
+    "@remix-run/react": "^1.5.1",
+    "@remix-run/vercel": "^1.5.1",
     "@vercel/node": "^1.15.2",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "*",
-    "@remix-run/eslint-config": "*",
-    "@remix-run/serve": "*",
-    "@types/react": "18.0.9",
-    "@types/react-dom": "18.0.4",
+    "@remix-run/dev": "^1.5.1",
+    "@remix-run/eslint-config": "^1.5.1",
+    "@remix-run/serve": "^1.5.1",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.17",
     "eslint": "^8.15.0",
     "typescript": "^4.6.4"
   },
-  "sideEffects": false,
   "engines": {
     "node": ">=14"
   }
