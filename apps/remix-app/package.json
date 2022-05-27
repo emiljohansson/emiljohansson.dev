@@ -16,9 +16,9 @@
     "@remix-run/react": "1.5.1",
     "@remix-run/serve": "1.5.1",
     "@remix-run/vercel": "1.5.1",
+    "@vercel/node": "1.15.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "remix": "1.5.1",
     "rollup": "2.66.1"
   },
   "devDependencies": {
