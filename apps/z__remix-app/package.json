@@ -4,12 +4,12 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "remix build",
+    "z__build": "remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "z__dev": "concurrently \"npm run dev:css\" \"PORT=3001 remix dev\"",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
-    "start": "remix-serve build",
-    "lint": "eslint app"
+    "z__start": "remix-serve build",
+    "z__lint": "eslint app"
   },
   "dependencies": {
     "@remix-run/node": "*",
