@@ -1,13 +1,16 @@
+import type {
+  FunctionComponent,
+  ReactNode,
+} from 'react'
 import {
   useState,
   useEffect,
   createContext,
   useContext,
   useReducer,
-  FunctionComponent,
 } from 'react'
 import useInterval from 'lib/hooks/useInterval'
-import { Select, SelectItem } from '@/shared/Select'
+import { Select, SelectItem } from 'shared/Select'
 
 enum SelectedDifficulty {
   loading,
@@ -351,7 +354,10 @@ const Tile = ({
   )
 }
 
-const FlexRow: FunctionComponent<{ radius: number }> = ({
+const FlexRow: FunctionComponent<{
+  children?: ReactNode
+  radius: number
+}> = ({
   children,
   radius,
 }) => {

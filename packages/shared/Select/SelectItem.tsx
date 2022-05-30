@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import {
   Item,
   ItemText,
@@ -7,6 +7,7 @@ import {
 import { CheckIcon } from '@radix-ui/react-icons'
 
 const SelectItem: FunctionComponent<{
+  children: ReactNode
   value: string | number
   disabled?: boolean
 }> = ({

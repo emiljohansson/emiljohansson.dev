@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "z__remix-app",
+  "description": "",
+  "license": "",
+  "scripts": {
+    "z__build": "remix build",
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+    "z__dev": "concurrently \"npm run dev:css\" \"PORT=3001 remix dev\"",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "z__start": "remix-serve build",
+    "z__lint": "eslint app"
+  },
+  "dependencies": {
+    "@remix-run/node": "*",
+    "@remix-run/react": "*",
+    "@remix-run/vercel": "*",
+    "@vercel/node": "^1.15.2",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "*",
+    "@remix-run/eslint-config": "*",
+    "@remix-run/serve": "*",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.4",
+    "eslint": "^8.15.0",
+    "typescript": "^4.6.4"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=14"
+  }
+}

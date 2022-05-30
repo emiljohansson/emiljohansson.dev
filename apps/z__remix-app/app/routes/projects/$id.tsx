@@ -1,4 +1,5 @@
-import { LoaderFunction, useLoaderData } from 'remix'
+import type { LoaderFunction } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 
 type LoaderData = {
   text: string

@@ -1,7 +1,8 @@
-import { FunctionComponent } from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { classNames } from 'lib/utils/string'
 
 const Section: FunctionComponent<{
+  children: ReactNode
   size?: 'normal' | 'large',
   direction?: 'row' | 'column',
 }> = ({ children, direction = 'row', size = 'normal' }) => (

@@ -1,7 +1,0 @@
-{
-  "name": "shared",
-  "private": true,
-  "scripts": {
-    "lint": "eslint ./**/*.tsx"
-  }
-}
