@@ -1,7 +1,6 @@
 {
   "name": "remix-app",
-  "private": true,
-  "sideEffects": false,
+  "version": "0.0.1",
   "scripts": {
     "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
