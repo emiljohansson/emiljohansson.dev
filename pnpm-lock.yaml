@@ -180,12 +180,12 @@ importers:
       '@remix-run/node': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
       '@remix-run/react': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
       '@remix-run/serve': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
+      '@remix-run/vercel': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
       '@remix-run/dev': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
       '@remix-run/eslint-config': 1.5.1_yj6ruygebibnk6ndttabjzq3xy
-      '@remix-run/vercel': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
       '@types/react': 17.0.45
       '@types/react-dom': 17.0.17
       config: link:../../packages/config
@@ -2057,6 +2057,7 @@ packages:
     transitivePeerDependencies:
       - react
       - react-dom
+    dev: false
 
   /@remix-run/react/1.5.1_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-p4t6tC/WyPeLW7DO4g7ZSyH9EpWO37c4wD2np3rDwtv3WtsTZ70bU/+NOWE9nv74mH8i1C50eJ3/OR+8Ll8UbA==}
@@ -2151,7 +2152,7 @@ packages:
     transitivePeerDependencies:
       - react
       - react-dom
-    dev: true
+    dev: false
 
   /@remix-run/vercel/1.5.1_vgt5lem627ak4xd2ams4zge7oa:
     resolution: {integrity: sha512-g8+dTGeeUtt7CclH6/bdB6BRETfo8yIPz2wQUzzerFFUJj82D571rWiGNhOiEydmMUfg9Gjd7PwIbjF1I5FezA==}
