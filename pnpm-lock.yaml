@@ -171,21 +171,23 @@ importers:
       '@remix-run/vercel': 1.5.1
       '@types/react': ^17.0.45
       '@types/react-dom': ^17.0.17
+      '@vercel/node': 2.0.0
       config: workspace:*
       eslint: ^8.15.0
-      react: ^17.0.2
-      react-dom: ^17.0.2
+      react: 18.1.0
+      react-dom: 18.1.0
       typescript: ^4.6.4
     dependencies:
-      '@remix-run/node': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      '@remix-run/react': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      '@remix-run/serve': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      '@remix-run/vercel': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
+      '@remix-run/node': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
+      '@remix-run/react': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
+      '@remix-run/serve': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
+      '@remix-run/vercel': 1.5.1_pzg5h47lvlkinvhz2vsx4fyfdq
+      '@vercel/node': 2.0.0
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
     devDependencies:
-      '@remix-run/dev': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      '@remix-run/eslint-config': 1.5.1_yj6ruygebibnk6ndttabjzq3xy
+      '@remix-run/dev': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
+      '@remix-run/eslint-config': 1.5.1_t4cqyaxwbtpsab7uej7nin732q
       '@types/react': 17.0.45
       '@types/react-dom': 17.0.17
       config: link:../../packages/config
@@ -1912,59 +1914,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@remix-run/dev/1.5.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-ioOlBnsesOpXSMEf1g28zfcrD6ZVWi55tWDWkWMnTXi+N7HwisMi4Okh1RDxoH86Px0jvNgvUeMHQpnxUZOmRw==}
-    hasBin: true
-    dependencies:
-      '@babel/core': 7.17.8
-      '@babel/plugin-syntax-jsx': 7.16.7_@babel+core@7.17.8
-      '@babel/preset-typescript': 7.16.7_@babel+core@7.17.8
-      '@esbuild-plugins/node-modules-polyfill': 0.1.4_esbuild@0.14.22
-      '@npmcli/package-json': 2.0.0
-      '@remix-run/server-runtime': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      cacache: 15.3.0
-      chalk: 4.1.2
-      chokidar: 3.5.3
-      dotenv: 16.0.1
-      esbuild: 0.14.22
-      exit-hook: 2.2.1
-      express: 4.17.3
-      fast-glob: 3.2.11
-      fs-extra: 10.1.0
-      get-port: 5.1.1
-      gunzip-maybe: 1.4.2
-      inquirer: 8.2.4
-      jscodeshift: 0.13.1
-      jsesc: 3.0.2
-      json5: 2.2.1
-      lodash: 4.17.21
-      lodash.debounce: 4.0.8
-      meow: 7.1.1
-      minimatch: 3.1.2
-      node-fetch: 2.6.7
-      ora: 5.4.1
-      prettier: 2.6.1
-      pretty-ms: 7.0.1
-      remark-frontmatter: 4.0.1
-      remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.7
-      sort-package-json: 1.57.0
-      tar-fs: 2.1.1
-      tsconfig-paths: 4.0.0
-      ws: 7.5.8
-      xdm: 2.1.0
-    transitivePeerDependencies:
-      - '@babel/preset-env'
-      - bluebird
-      - bufferutil
-      - encoding
-      - react
-      - react-dom
-      - supports-color
-      - utf-8-validate
-    dev: true
-
-  /@remix-run/eslint-config/1.5.1_yj6ruygebibnk6ndttabjzq3xy:
+  /@remix-run/eslint-config/1.5.1_t4cqyaxwbtpsab7uej7nin732q:
     resolution: {integrity: sha512-JOCTH1QYAqqp/t7BBeurtlhXRSm06nFRjH0NOD/ZtpRzEWMYmuLat07hPJCeyrwwMzDJkx1mdeq5ktOUn50Klw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1993,8 +1943,8 @@ packages:
       eslint-plugin-react: 7.30.0_eslint@8.15.0
       eslint-plugin-react-hooks: 4.5.0_eslint@8.15.0
       eslint-plugin-testing-library: 5.5.1_hcfsmds2fshutdssjqluwm76uu
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
       typescript: 4.6.4
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
@@ -2012,19 +1962,6 @@ packages:
     transitivePeerDependencies:
       - react
       - react-dom
-    dev: true
-
-  /@remix-run/express/1.5.1_wgwrknt4d7mjmgrosuwuslmcve:
-    resolution: {integrity: sha512-6CS1fXNGU4lGYBAF5UegKyJ3f+c5DZ4rgAyBDgGKsuRyW5uQ95FFEFpe6dNl5kL98VIpXQPh3PzDHrfnxEl9mA==}
-    peerDependencies:
-      express: ^4.17.1
-    dependencies:
-      '@remix-run/node': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      express: 4.18.1
-    transitivePeerDependencies:
-      - react
-      - react-dom
-    dev: false
 
   /@remix-run/node/1.5.1_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-yl4bd1nl7MiJp4tI3+4ygObeMU3txM4Uo09IdHLRa4NMdBQnacUJ47kqCahny01MerC2JL2d9NPjdVPwRCRZvQ==}
@@ -2042,23 +1979,6 @@ packages:
       - react
       - react-dom
 
-  /@remix-run/node/1.5.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-yl4bd1nl7MiJp4tI3+4ygObeMU3txM4Uo09IdHLRa4NMdBQnacUJ47kqCahny01MerC2JL2d9NPjdVPwRCRZvQ==}
-    dependencies:
-      '@remix-run/server-runtime': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
-      '@remix-run/web-fetch': 4.1.3
-      '@remix-run/web-file': 3.0.2
-      '@remix-run/web-stream': 1.0.3
-      '@web3-storage/multipart-parser': 1.0.0
-      abort-controller: 3.0.0
-      cookie-signature: 1.2.0
-      source-map-support: 0.5.21
-      stream-slice: 0.1.2
-    transitivePeerDependencies:
-      - react
-      - react-dom
-    dev: false
-
   /@remix-run/react/1.5.1_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-p4t6tC/WyPeLW7DO4g7ZSyH9EpWO37c4wD2np3rDwtv3WtsTZ70bU/+NOWE9nv74mH8i1C50eJ3/OR+8Ll8UbA==}
     peerDependencies:
@@ -2069,18 +1989,6 @@ packages:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-router-dom: 6.3.0_ef5jwxihqo6n7gxfmzogljlgcm
-    dev: false
-
-  /@remix-run/react/1.5.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-p4t6tC/WyPeLW7DO4g7ZSyH9EpWO37c4wD2np3rDwtv3WtsTZ70bU/+NOWE9nv74mH8i1C50eJ3/OR+8Ll8UbA==}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-    dependencies:
-      history: 5.3.0
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-router-dom: 6.3.0_sfoxds7t5ydpegc3knd667wn6m
     dev: false
 
   /@remix-run/serve/1.5.1_ef5jwxihqo6n7gxfmzogljlgcm:
@@ -2095,21 +2003,6 @@ packages:
       - react
       - react-dom
       - supports-color
-    dev: true
-
-  /@remix-run/serve/1.5.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-7MaC/Ka2O3kDOuXSulkbqbRpN2n+8hO87SWK8UCtVcVk467Jp+ov8rw++bONPMlR1bkV0nlcQdqNHFNbz0A/Yw==}
-    hasBin: true
-    dependencies:
-      '@remix-run/express': 1.5.1_wgwrknt4d7mjmgrosuwuslmcve
-      compression: 1.7.4
-      express: 4.18.1
-      morgan: 1.10.0
-    transitivePeerDependencies:
-      - react
-      - react-dom
-      - supports-color
-    dev: false
 
   /@remix-run/server-runtime/1.5.1_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-FQbCCdW+qzE3wpoCwUKdwcL8yZVYNPiyHS9JS/6r6qmd/yvZfbj44E48wEQ6trbWE2TUiEh/EQqNMyrZWEs4bw==}
@@ -2127,28 +2020,13 @@ packages:
       set-cookie-parser: 2.4.8
       source-map: 0.7.3
 
-  /@remix-run/server-runtime/1.5.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-FQbCCdW+qzE3wpoCwUKdwcL8yZVYNPiyHS9JS/6r6qmd/yvZfbj44E48wEQ6trbWE2TUiEh/EQqNMyrZWEs4bw==}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-    dependencies:
-      '@types/cookie': 0.4.1
-      '@web3-storage/multipart-parser': 1.0.0
-      cookie: 0.4.2
-      jsesc: 3.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-router-dom: 6.3.0_sfoxds7t5ydpegc3knd667wn6m
-      set-cookie-parser: 2.4.8
-      source-map: 0.7.3
-
-  /@remix-run/vercel/1.5.1_sfoxds7t5ydpegc3knd667wn6m:
+  /@remix-run/vercel/1.5.1_pzg5h47lvlkinvhz2vsx4fyfdq:
     resolution: {integrity: sha512-g8+dTGeeUtt7CclH6/bdB6BRETfo8yIPz2wQUzzerFFUJj82D571rWiGNhOiEydmMUfg9Gjd7PwIbjF1I5FezA==}
     peerDependencies:
       '@vercel/node': ^1.8.3
     dependencies:
-      '@remix-run/node': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
+      '@remix-run/node': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
+      '@vercel/node': 2.0.0
     transitivePeerDependencies:
       - react
       - react-dom
@@ -2948,11 +2826,24 @@ packages:
     resolution: {integrity: sha512-GJdBio0nKyxvFwfLcj6CMp2s22d5V6K9tmhmHkQcaiFwdKWK/Pa7jngiO84a09fvX+DFaOtpalJuxQa5LAJ9xQ==}
     dev: false
 
+  /@vercel/node-bridge/3.0.0:
+    resolution: {integrity: sha512-TNQK6cufwrhd8ASDk5YHHenH8Xhp9sY8xUjOTKnQQI37KLk+Sw2HlHhT5rzUFN23ahosUlkY8InwtYUmSNb9kw==}
+    dev: false
+
   /@vercel/node/1.15.2:
     resolution: {integrity: sha512-paHKi2u75/G5g6My/BTXc9uQlMnUxEHSedQepWEzb6d0VNclGAMbIb8KMjBP8/eZ//5qKPuVM3hgHjC3+pShkw==}
     dependencies:
       '@types/node': 17.0.35
       '@vercel/node-bridge': 2.2.1
+      ts-node: 8.9.1_typescript@4.3.4
+      typescript: 4.3.4
+    dev: false
+
+  /@vercel/node/2.0.0:
+    resolution: {integrity: sha512-wGEZ/Ge2GrmcBQmuJHFq2h0gTy4XOn2oYJyceVnOsMPwSZXMdZet2E3xSff5VfmrK2yGxO4mUIBeYjsPH+ZwWg==}
+    dependencies:
+      '@types/node': 17.0.35
+      '@vercel/node-bridge': 3.0.0
       ts-node: 8.9.1_typescript@4.3.4
       typescript: 4.3.4
     dev: false
@@ -8459,6 +8350,7 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /object-copy/0.1.0:
     resolution: {integrity: sha512-79LYn6VAb63zgtmAteVOWo9Vdj71ZVBy3Pbse+VqxDpEP83XuujMrGqHIwAXJ5I/aM0zU7dIyIAhifVTPrNItQ==}
@@ -9124,16 +9016,6 @@ packages:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  /react-dom/17.0.2_react@17.0.2:
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
-    peerDependencies:
-      react: 17.0.2
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
-
   /react-dom/18.1.0_react@18.1.0:
     resolution: {integrity: sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w==}
     peerDependencies:
@@ -9197,25 +9079,6 @@ packages:
       react-dom: 18.1.0_react@18.1.0
       react-router: 6.3.0_react@18.1.0
 
-  /react-router-dom/6.3.0_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-uaJj7LKytRxZNQV8+RbzJWnJ8K2nPsOOEuX7aQstlMZKQT0164C+X2w6bnkqU3sjtLvpd5ojrezAyfZ1+0sStw==}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-    dependencies:
-      history: 5.3.0
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-router: 6.3.0_react@17.0.2
-
-  /react-router/6.3.0_react@17.0.2:
-    resolution: {integrity: sha512-7Wh1DzVQ+tlFjkeo+ujvjSqSJmkt1+8JO+T5xklPlgrh70y7ogx75ODRW0ThWhY7S+6yEDks8TYrtQe/aoboBQ==}
-    peerDependencies:
-      react: '>=16.8'
-    dependencies:
-      history: 5.3.0
-      react: 17.0.2
-
   /react-router/6.3.0_react@18.1.0:
     resolution: {integrity: sha512-7Wh1DzVQ+tlFjkeo+ujvjSqSJmkt1+8JO+T5xklPlgrh70y7ogx75ODRW0ThWhY7S+6yEDks8TYrtQe/aoboBQ==}
     peerDependencies:
@@ -9240,13 +9103,6 @@ packages:
       react: 18.1.0
       tslib: 2.4.0
     dev: false
-
-  /react/17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
 
   /react/18.1.0:
     resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==}
@@ -9567,12 +9423,6 @@ packages:
     dependencies:
       xmlchars: 2.2.0
     dev: true
-
-  /scheduler/0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
 
   /scheduler/0.22.0:
     resolution: {integrity: sha512-6QAm1BgQI88NPYymgGQLCZgvep4FyePDWFpXVK+zNSUgHwlqpJy8VEh8Et0KxTACS4VWwMousBElAZOH9nkkoQ==}
