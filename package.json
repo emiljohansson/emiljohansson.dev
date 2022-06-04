@@ -21,7 +21,7 @@
     "apps/*"
   ],
   "devDependencies": {
-    "@playwright/test": "1.19.0",
+    "@playwright/test": "1.22.2",
     "@types/jest": "27.4.0",
     "axe-playwright": "1.1.9",
     "jest": "27.5.1",
