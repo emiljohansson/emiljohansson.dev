@@ -38,11 +38,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Install Playwright
-        run: npx playwright install --with-deps
-
       - name: Build
         run: npm run build
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps
 
       - name: Run e2e tests
         run: npm run test:ci
