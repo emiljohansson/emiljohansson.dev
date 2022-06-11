@@ -42,7 +42,7 @@ function TwoWayAuthEnter () {
   const [state, setState] = useState(State.idle)
   const inputEl = useRef(null)
 
-  function onChange (event: ChangeEvent<HTMLInputElement>): void {
+  function onChange (event: ChangeEvent<HTMLInputElement>) {
     setState(State.idle)
     const target: HTMLInputElement | null =
       event.target as HTMLInputElement | null
@@ -52,7 +52,7 @@ function TwoWayAuthEnter () {
     setValue(target.value)
   }
 
-  async function onSubmit (event: FormEvent<HTMLFormElement>): Promise<void> {
+  async function onSubmit (event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setState(State.loading)
     try {

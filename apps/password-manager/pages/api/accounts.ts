@@ -1,21 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Account } from 'pages/accounts'
+import { PrismaClient } from '@prisma/client'
+import { Account } from '../../@types/accounts'
 
-export default function handler (
+const prisma = new PrismaClient()
+
+export default async function handler (
   req: NextApiRequest,
   res: NextApiResponse<Account[]>,
 ) {
-  res.status(200).json([
-    {
-      website: 'google.com',
-      username: 'aa@xx.zz',
-      password: 'U2FsdGVkX1/LgNsvWTMG8Pj4vs4OPSwWmnhN2g+2pbs=',
+  const accounts = await prisma.pw_account.findMany({
+    where: {
+      userId: {
+        equals: req.body.userId,
+      },
     },
-    {
-      website: 'twitter.com',
-      username: 'bb@xx.zz',
-      password: 'U2FsdGVkX1+E832k5D/tYbTO6S+OFcFMa0K4IulxOQZUeXVjKcmWFsBCrDdN2Gfe',
-    },
-  ])
+  })
+
+  res.status(200).json(accounts)
 }
