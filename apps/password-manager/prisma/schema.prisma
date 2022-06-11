@@ -1,0 +1,26 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model pw_user {
+  id         Int          @id @default(autoincrement())
+  uid        String       @default(uuid())
+  name       String
+  pw_account pw_account[]
+}
+
+model pw_account {
+  id       Int     @id @default(autoincrement())
+  user     pw_user @relation(fields: [userId], references: [uid])
+  userId   String
+  website  String
+  username String
+  password String
+}
