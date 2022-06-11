@@ -7,13 +7,11 @@ importers:
       '@emiljohansson/random-string': 1.1.2
       '@prisma/client': 3.15.1
       '@types/crypto-js': 4.1.1
-      '@types/cryptr': ^4.0.1
       '@types/node': 17.0.33
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.4
       config: workspace:*
       crypto-js: 4.1.1
-      cryptr: ^6.0.3
       eslint: 8.15.0
       eslint-config-next: 12.1.6
       next: 12.1.6
@@ -25,13 +23,11 @@ importers:
       '@emiljohansson/random-string': 1.1.2
       '@prisma/client': 3.15.1
       crypto-js: 4.1.1
-      cryptr: 6.0.3
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
     devDependencies:
       '@types/crypto-js': 4.1.1
-      '@types/cryptr': 4.0.1
       '@types/node': 17.0.33
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.4
@@ -243,10 +239,6 @@ packages:
 
   /@types/crypto-js/4.1.1:
     resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
-    dev: true
-
-  /@types/cryptr/4.0.1:
-    resolution: {integrity: sha512-Nn8fvr+8XYWK5h422lj4xQACfOg6vdhKI+Rh9ERa5Mg0cZvPL9Vn3845vSY07dNZnEs5cqkSNVMdhmf70lAYkA==}
     dev: true
 
   /@types/json5/0.0.29:
@@ -509,10 +501,6 @@ packages:
 
   /crypto-js/4.1.1:
     resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
-    dev: false
-
-  /cryptr/6.0.3:
-    resolution: {integrity: sha512-Nhaxn3CYl/OoWF3JSZlF8B6FQO600RRkU3g8213OGEIq4YvMlc3od8hL9chubhY1SmTq8ienvCRq1MSFjMTpOg==}
     dev: false
 
   /csstype/3.1.0:
@@ -1405,7 +1393,7 @@ packages:
       - babel-plugin-macros
 
   /object-assign/4.1.1:
-    resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
+    resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -1507,7 +1495,7 @@ packages:
     dev: true
 
   /path-exists/3.0.0:
-    resolution: {integrity: sha1-zg6+ql94yxiSXqfYENe1mwEP1RU=}
+    resolution: {integrity: sha512-bpC7GYwiDYQ4wYLe+FA8lhRjhQCMcQGuSgGGqDkg/QerRWw9CmGRT0iSOVRSZJ29NMLZgIzqaljJ63oaL4NIJQ==}
     engines: {node: '>=4'}
     dev: true
 
@@ -1728,7 +1716,7 @@ packages:
     dev: true
 
   /strip-bom/3.0.0:
-    resolution: {integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=}
+    resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
     engines: {node: '>=4'}
     dev: true
 
