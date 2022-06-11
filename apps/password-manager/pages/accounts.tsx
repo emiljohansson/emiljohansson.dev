@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next'
+import Link from 'next/link'
 import { useState } from 'react'
 import { PrismaClient } from '@prisma/client'
 import { Account } from '../@types/accounts'
@@ -7,6 +8,12 @@ const Home: NextPage<{ accounts: Account[], secret: string, userId: string }> = 
   return (
     <>
       <h1>Accounts</h1>
+      <Link href={{
+        pathname: '/add-account',
+        query: { secret, userId },
+      }}>
+        <a>Add account</a>
+      </Link>
       {accounts.map((account, index) => (
         <AccountRow key={index} account={account} secret={secret} userId={userId} />
       ))}
