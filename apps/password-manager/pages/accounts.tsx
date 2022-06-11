@@ -1,8 +1,8 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
-import { PrismaClient } from '@prisma/client'
 import { Account } from '../@types/accounts'
+import prisma from '../lib/prisma'
 
 const Home: NextPage<{ accounts: Account[], secret: string, userId: string }> = ({ accounts, secret, userId }) => {
   return (
@@ -52,7 +52,6 @@ const AccountRow = ({ account, secret, userId }: { account: Account, secret: str
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const prisma = new PrismaClient()
   const accounts = await prisma.pw_account.findMany({
     where: {
       userId: {

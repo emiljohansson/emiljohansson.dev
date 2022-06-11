@@ -26,6 +26,7 @@
     }
   },
   "include": [
+    "types.d.ts",
     "next-env.d.ts",
     "twin.d.ts",
     "**/*.ts",
