@@ -8,6 +8,9 @@
   * github actions
 * Hosting / CD
   * vercel
+* Database
+  * PlanetScale
+  * Prisma
 * Frameworks
   * SSR/SSG/CSR
     * Next.js
