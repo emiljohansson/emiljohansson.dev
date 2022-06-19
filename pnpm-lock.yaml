@@ -26,31 +26,18 @@ importers:
       ts-jest: 27.1.3_lihrzarob5pxdqoxfiqurtdcke
       turbo: 1.2.16
 
-  apps/--ts:
-    specifiers:
-      eslint: 8.17.0
-      eslint-config-next: 12.1.6
-      next: 12.1.6
-      react: 18.1.0
-      react-dom: 18.1.0
-    dependencies:
-      next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
-      react: 18.1.0
-      react-dom: 18.1.0_react@18.1.0
-    devDependencies:
-      eslint: 8.17.0
-      eslint-config-next: 12.1.6_eslint@8.17.0+next@12.1.6
-
   apps/code-not-found:
     specifiers:
       '@types/node': 17.0.33
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.4
+      config: workspace:*
       eslint: 8.17.0
       eslint-config-next: 12.1.6
       next: 12.1.6
       react: 18.1.0
       react-dom: 18.1.0
+      tsconfig: workspace:*
       typescript: 4.7.3
     dependencies:
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -60,8 +47,10 @@ importers:
       '@types/node': 17.0.33
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.4
+      config: link:../../packages/config
       eslint: 8.17.0
       eslint-config-next: 12.1.6_qwqcuvhue6diaz4jqbkm5dp3pa
+      tsconfig: link:../../packages/tsconfig
       typescript: 4.7.3
 
   apps/design:
@@ -203,37 +192,6 @@ importers:
       '@remix-run/react': ^1.5.1
       '@remix-run/serve': ^1.5.1
       '@remix-run/vercel': ^1.5.1
-      '@types/react': 18.0.9
-      '@types/react-dom': 18.0.4
-      '@vercel/node': ^1.15.2
-      eslint: ^8.15.0
-      react: 18.1.0
-      react-dom: 18.1.0
-      typescript: ^4.6.4
-    dependencies:
-      '@remix-run/node': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
-      '@remix-run/react': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
-      '@remix-run/vercel': 1.5.1_r2keoqei6tvf5z5jao53v4o4ri
-      '@vercel/node': 1.15.4
-      react: 18.1.0
-      react-dom: 18.1.0_react@18.1.0
-    devDependencies:
-      '@remix-run/dev': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
-      '@remix-run/eslint-config': 1.5.1_nh6sj23vmbdhoa63gorw7ubt4e
-      '@remix-run/serve': 1.5.1_ef5jwxihqo6n7gxfmzogljlgcm
-      '@types/react': 18.0.9
-      '@types/react-dom': 18.0.4
-      eslint: 8.15.0
-      typescript: 4.7.3
-
-  apps/z__remix-app:
-    specifiers:
-      '@remix-run/dev': '*'
-      '@remix-run/eslint-config': '*'
-      '@remix-run/node': '*'
-      '@remix-run/react': '*'
-      '@remix-run/serve': '*'
-      '@remix-run/vercel': '*'
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.4
       '@vercel/node': ^1.15.2
@@ -2600,25 +2558,6 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser/5.26.0_eslint@8.17.0:
-    resolution: {integrity: sha512-n/IzU87ttzIdnAH5vQ4BBDnLPly7rC5VnjN3m0xBG82HK6rhRxnCb3w/GyWbNDghPd+NktJqB/wl6+YkzZ5T5Q==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/scope-manager': 5.26.0
-      '@typescript-eslint/types': 5.26.0
-      '@typescript-eslint/typescript-estree': 5.26.0
-      debug: 4.3.4
-      eslint: 8.17.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@typescript-eslint/parser/5.26.0_ud6rd4xtew5bv4yhvkvu24pzm4:
     resolution: {integrity: sha512-n/IzU87ttzIdnAH5vQ4BBDnLPly7rC5VnjN3m0xBG82HK6rhRxnCb3w/GyWbNDghPd+NktJqB/wl6+YkzZ5T5Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -4837,32 +4776,6 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-config-next/12.1.6_eslint@8.17.0+next@12.1.6:
-    resolution: {integrity: sha512-qoiS3g/EPzfCTkGkaPBSX9W0NGE/B1wNO3oWrd76QszVGrdpLggNqcO8+LR6MB0CNqtp9Q8NoeVrxNVbzM9hqA==}
-    peerDependencies:
-      eslint: ^7.23.0 || ^8.0.0
-      next: '>=10.2.0'
-      typescript: '>=3.3.1'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@next/eslint-plugin-next': 12.1.6
-      '@rushstack/eslint-patch': 1.1.3
-      '@typescript-eslint/parser': 5.26.0_eslint@8.17.0
-      eslint: 8.17.0
-      eslint-import-resolver-node: 0.3.6
-      eslint-import-resolver-typescript: 2.7.1_3yxiwxzsqipdmy4jwrlv6vgfmy
-      eslint-plugin-import: 2.26.0_ws6ck2gdxspv6ngtwevulm53da
-      eslint-plugin-jsx-a11y: 6.5.1_eslint@8.17.0
-      eslint-plugin-react: 7.30.0_eslint@8.17.0
-      eslint-plugin-react-hooks: 4.5.0_eslint@8.17.0
-      next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
-    transitivePeerDependencies:
-      - eslint-import-resolver-webpack
-      - supports-color
-    dev: true
-
   /eslint-config-next/12.1.6_ezn7yk732aoy2345emyosjl3hu:
     resolution: {integrity: sha512-qoiS3g/EPzfCTkGkaPBSX9W0NGE/B1wNO3oWrd76QszVGrdpLggNqcO8+LR6MB0CNqtp9Q8NoeVrxNVbzM9hqA==}
     peerDependencies:
@@ -5020,10 +4933,10 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.26.0_ud6rd4xtew5bv4yhvkvu24pzm4
+      '@typescript-eslint/parser': 5.26.0_dirlon5mihsay42fpwhjobmlby
       debug: 3.2.7
       eslint-import-resolver-node: 0.3.6
-      eslint-import-resolver-typescript: 2.7.1_3yxiwxzsqipdmy4jwrlv6vgfmy
+      eslint-import-resolver-typescript: 2.7.1_gwd37gqv3vjv3xlpl7ju3ag2qu
       find-up: 2.1.0
     transitivePeerDependencies:
       - supports-color
