@@ -1,0 +1,26 @@
+{
+  "name": "code-not-found",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=3004 next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.33",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.4",
+    "config": "workspace:*",
+    "eslint": "8.17.0",
+    "eslint-config-next": "12.1.6",
+    "tsconfig": "workspace:*",
+    "typescript": "4.7.3"
+  }
+}
