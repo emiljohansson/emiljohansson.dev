@@ -48,7 +48,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'serif'], // ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
         'museo-moderno': ['MuseoModerno', 'cursive'],
       },
       fontSize: {
