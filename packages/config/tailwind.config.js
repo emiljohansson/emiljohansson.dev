@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 // dark #222128
 // darker #16151a
@@ -22,11 +23,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        orange: {
-          faded: '#de6449',
-          DEFAULT: '#e94f37',
-          tart: '#fe4a49',
-        },
+        primary: '#e94f37',
+        secondary: '#c084fc',
+        accent: '#67e8f9',
+        neutral: '#191D24',
+        'base-100': '#ffffff',
+        info: '#38bdf8',
+        success: '#4ade80',
+        warning: '#FBBD23',
+        error: '#ef4444',
         // yellow: {
         //   DEFAULT: '#fed766',
         // },
@@ -43,6 +48,7 @@ module.exports = {
         },
       },
       fontFamily: {
+        sans: ['Inter', 'serif'], // ...defaultTheme.fontFamily.sans],
         'museo-moderno': ['MuseoModerno', 'cursive'],
       },
       fontSize: {
