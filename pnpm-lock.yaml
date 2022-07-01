@@ -57,6 +57,7 @@ importers:
     specifiers:
       '@radix-ui/react-checkbox': latest
       '@radix-ui/react-icons': latest
+      '@radix-ui/react-label': 0.1.5
       '@radix-ui/react-progress': latest
       '@radix-ui/react-radio-group': latest
       '@radix-ui/react-select': latest
@@ -79,6 +80,7 @@ importers:
     dependencies:
       '@radix-ui/react-checkbox': 0.1.5_react@18.1.0
       '@radix-ui/react-icons': 1.1.1_react@18.1.0
+      '@radix-ui/react-label': 0.1.5_react@18.1.0
       '@radix-ui/react-progress': 0.1.4_react@18.1.0
       '@radix-ui/react-radio-group': 0.1.5_react@18.1.0
       '@radix-ui/react-select': 0.1.1_ohobp6rpsmerwlq5ipwfh5yigy

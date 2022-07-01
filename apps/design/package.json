@@ -10,6 +10,7 @@
   "dependencies": {
     "@radix-ui/react-checkbox": "latest",
     "@radix-ui/react-icons": "latest",
+    "@radix-ui/react-label": "0.1.5",
     "@radix-ui/react-progress": "latest",
     "@radix-ui/react-radio-group": "latest",
     "@radix-ui/react-select": "latest",
