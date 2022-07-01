@@ -14,6 +14,8 @@ model pw_user {
   uid        String       @default(uuid())
   name       String
   pw_account pw_account[]
+
+  @@unique([uid])
 }
 
 model pw_account {
