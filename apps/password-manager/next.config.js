@@ -1,18 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const withTM = require('next-transpile-modules')(['lib'])
-
-// module.exports = withTM({
-//   reactStrictMode: true,
-//   swcMinify: true,
-//   experimental: {
-//     externalDir: true,
-//     runtime: 'nodejs',
-//     serverComponents: true,
-//   },
-// })
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   experimental: {
-    runtime: 'nodejs',
-    serverComponents: true,
+    externalDir: true,
   },
 }
+
+module.exports = nextConfig

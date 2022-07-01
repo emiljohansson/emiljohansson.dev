@@ -21,9 +21,9 @@ const SelectItem: FunctionComponent<{
     className="
       border-0
       text-sm
-      focus:bg-orange
+      focus:bg-primary
       focus:text-white
-      dark:text-orange
+      dark:text-primary
       dark:focus:text-white
       focus-visible:outline-none
       rounded

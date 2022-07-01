@@ -67,7 +67,7 @@ const Home: NextPage = () => {
         </button>
       </header>
 
-      <main>
+      <main className="prose lg:prose-xl dark:prose-invert">
         {/* <article className="prose lg:prose-xl dark:prose-invert"> */}
         <article>
           <h1>Components / Design System</h1>
@@ -83,10 +83,10 @@ const Home: NextPage = () => {
         </article>
         <article>
           <h2>Typography</h2>
-          <p className="h1">Heading 1</p>
-          <p className="h2">Heading 2</p>
-          <p className="h3">Heading 3</p>
-          <p className="h4">Heading 4</p>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <h4>Heading 4</h4>
         </article>
         <article>
           <h2>Checkbox</h2>
@@ -96,7 +96,7 @@ const Home: NextPage = () => {
               defaultChecked id="c1"
             >
               <CheckboxPrimitive.Indicator>
-                <CheckIcon className="text-orange" />
+                <CheckIcon className="text-primary" />
               </CheckboxPrimitive.Indicator>
             </CheckboxPrimitive.Root>
             <label className="pl-3" htmlFor="c1">
@@ -126,7 +126,7 @@ const Home: NextPage = () => {
                   after:w-2/4
                   after:h-2/4
                   after:rounded-full
-                  after:bg-orange
+                  after:bg-primary
                 " />
               </RadioGroupRadio>
               <label
@@ -152,7 +152,7 @@ const Home: NextPage = () => {
                   after:w-2/4
                   after:h-2/4
                   after:rounded-full
-                  after:bg-orange
+                  after:bg-primary
                 " />
               </RadioGroupRadio>
               <label
@@ -208,7 +208,7 @@ const Home: NextPage = () => {
           <h2>Progress</h2>
           <div className="flex items-center">
             <Progress progress={42} />
-            {/* <div className="flex items-center h-14 p-6 mx-auto rounded bg-gradient-to-r from-purple-700 to-orange">
+            {/* <div className="flex items-center h-14 p-6 mx-auto rounded bg-gradient-to-r from-purple-700 to-primary">
             </div> */}
           </div>
         </article>
