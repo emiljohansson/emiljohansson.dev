@@ -3,16 +3,15 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import * as LabelPrimitive from '@radix-ui/react-label'
+import { Label } from '@radix-ui/react-label'
 import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
 import { Progress } from 'shared/Progress'
+import { Input } from 'shared/Input'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
 const RadioGroupIndicator = RadioGroupPrimitive.Indicator
-
-const Label = LabelPrimitive.Root
 
 /*
 colors:
@@ -95,11 +94,7 @@ const Home: NextPage = () => {
           <h2>Input</h2>
           <div className="flex">
             <Label htmlFor="input1">First Name</Label>
-            <input
-              className="inline-flex items-center justify-center rounded px-2 h-9 text-base leading-none shadow focus:shadow-sm"
-              id="input1"
-              type="text"
-            />
+            <Input id="input1" />
           </div>
         </article>
         <article>
