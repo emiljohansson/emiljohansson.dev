@@ -114,18 +114,15 @@ importers:
       '@types/node': 17.0.33
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.4
-      autoprefixer: 10.4.2
       config: workspace:*
       eslint: 8.15.0
       framer-motion: 6.2.3
       lib: workspace:*
       next: 12.1.6
       next-transpile-modules: 9.0.0
-      postcss: 8.4.6
       react: 18.1.0
       react-dom: 18.1.0
       shared: workspace:*
-      tailwindcss: 3.0.18
       tsconfig: workspace:*
       typescript: 4.6.2
     dependencies:
@@ -141,16 +138,13 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       shared: link:../../packages/shared
-      tailwindcss: 3.0.18_qm7bagfnbv4vjkuayu3hle4sne
     devDependencies:
       '@types/node': 17.0.33
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.4
-      autoprefixer: 10.4.2_postcss@8.4.6
       config: link:../../packages/config
       eslint: 8.15.0
       next-transpile-modules: 9.0.0
-      postcss: 8.4.6
       tsconfig: link:../../packages/tsconfig
       typescript: 4.6.2
 
