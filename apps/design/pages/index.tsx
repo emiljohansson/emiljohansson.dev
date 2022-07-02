@@ -90,6 +90,10 @@ const Home: NextPage = () => {
           <h4>Heading 4</h4>
         </article>
         <article>
+          <h2>Button</h2>
+          <button className="btn-primary">Primary</button>
+        </article>
+        <article>
           <h2>Input</h2>
           <div className="flex items-center">
             <Label htmlFor="input1" className="pr-3">First Name</Label>

@@ -3,14 +3,15 @@ import { classNames } from 'lib/utils/string'
 
 const Section: FunctionComponent<{
   children: ReactNode
-  size?: 'normal' | 'large',
+  size?: 'normal' | 'medium' | 'large',
   direction?: 'row' | 'column',
 }> = ({ children, direction = 'row', size = 'normal' }) => (
   <section className={classNames(
     'flex items-center justify-center h-full',
     {
       'flex-col': direction === 'column',
-      'text-3xl': size === 'normal',
+      'text-base': size === 'normal',
+      'text-3xl': size === 'medium',
       'text-5xl': size === 'large',
     },
   )}>

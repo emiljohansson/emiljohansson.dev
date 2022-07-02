@@ -45,6 +45,7 @@ module.exports = {
         //   DEFAULT: '#fed766',
         // },
         black: {
+          DEFAULT: '#000000',
           rich: '#1e1d2b',
           800: '#454353',
           700: '#6f6d7f',

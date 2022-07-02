@@ -13,7 +13,7 @@ const ProgressBarPage = () => (
     </Head>
     <Content>
       <Header />
-      <Section size="large">
+      <Section size="medium">
         <h1 className="sr-only">Progress bar</h1>
         <ProgressBar />
       </Section>

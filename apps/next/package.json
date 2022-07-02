@@ -32,18 +32,15 @@
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "shared": "workspace:*",
-    "tailwindcss": "3.0.18"
+    "shared": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "17.0.33",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.4",
-    "autoprefixer": "10.4.2",
     "config": "workspace:*",
     "eslint": "8.15.0",
     "next-transpile-modules": "9.0.0",
-    "postcss": "8.4.6",
     "tsconfig": "workspace:*",
     "typescript": "4.6.2"
   }
