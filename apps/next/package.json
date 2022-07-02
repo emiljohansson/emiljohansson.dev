@@ -24,6 +24,7 @@
     "@emiljohansson/random-string": "1.1.2",
     "@radix-ui/react-accessible-icon": "^0.1.5-rc.21",
     "@radix-ui/react-icons": "latest",
+    "@radix-ui/react-label": "0.1.5",
     "@radix-ui/react-progress": "latest",
     "@radix-ui/react-select": "latest",
     "framer-motion": "6.2.3",

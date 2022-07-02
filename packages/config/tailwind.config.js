@@ -12,6 +12,15 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 // level 2 #242832
 // level 3 #2a2e36
 
+/*
+background shares:
+#1e1d2b
+#454353
+#6f6d7f
+#9d9bad
+#cdcbde
+*/
+
 module.exports = {
   darkMode: 'class',
   content: [
@@ -37,6 +46,10 @@ module.exports = {
         // },
         black: {
           rich: '#1e1d2b',
+          800: '#454353',
+          700: '#6f6d7f',
+          600: '#9d9bad',
+          500: '#cdcbde',
         },
         blue: '#e9f1f7',
         'blue-star-command': '#2274a5',
