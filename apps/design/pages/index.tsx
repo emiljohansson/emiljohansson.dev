@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
+import { Label } from '@radix-ui/react-label'
 import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
 import { Progress } from 'shared/Progress'
 
@@ -87,6 +88,13 @@ const Home: NextPage = () => {
           <h2>Heading 2</h2>
           <h3>Heading 3</h3>
           <h4>Heading 4</h4>
+        </article>
+        <article>
+          <h2>Input</h2>
+          <div className="flex items-center">
+            <Label htmlFor="input1" className="pr-3">First Name</Label>
+            <input id="input1" className="input" />
+          </div>
         </article>
         <article>
           <h2>Checkbox</h2>

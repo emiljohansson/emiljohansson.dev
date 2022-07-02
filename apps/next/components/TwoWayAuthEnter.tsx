@@ -1,4 +1,5 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
+import { Label } from '@radix-ui/react-label'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
@@ -84,7 +85,10 @@ function TwoWayAuthEnter () {
           onSubmit={onSubmit}
           className="flex flex-col"
         >
-          <input ref={inputEl} className="text-center input" type="text" onChange={onChange} />
+          <div className="flex items-center mb-3">
+            <Label htmlFor="secret" className="pr-3">Enter Code</Label>
+            <input id="secret" name="secret" className="input" ref={inputEl} onChange={onChange} />
+          </div>
           <button type="submit">Validate</button>
           <EnteredContent state={state} />
         </form>
