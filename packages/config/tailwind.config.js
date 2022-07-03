@@ -46,7 +46,8 @@ module.exports = {
         // },
         black: {
           DEFAULT: '#000000',
-          rich: '#1e1d2b',
+          // rich: '#1e1d2b',
+          rich: '#111',
           800: '#454353',
           700: '#6f6d7f',
           600: '#9d9bad',
@@ -56,14 +57,17 @@ module.exports = {
         'blue-star-command': '#2274a5',
         eggshell: '#e7dfc6',
         gray: {
-          light: '#f4f4f8',
+          900: '#111',
+          600: '#666',
+          500: '#888',
+          400: '#a1a1a1',
           300: '#e6e6ea',
           dark: '#383838',
+          light: '#f4f4f8',
         },
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        'museo-moderno': ['MuseoModerno', 'cursive'],
       },
       fontSize: {
         '3/6': '50%',
@@ -76,5 +80,6 @@ module.exports = {
       addVariant('direction', '&:direction')
       addVariant('data-disabled', '&[data-disabled]')
     }),
+    require('@tailwindcss/typography'),
   ],
 }
