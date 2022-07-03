@@ -1,8 +1,9 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import randomString from '@emiljohansson/random-string'
-import { AES } from 'crypto-js'
-import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/router'
+import { FormEvent, useState } from 'react'
+import { AES } from 'crypto-js'
+import { Label } from '@radix-ui/react-label'
+import randomString from '@emiljohansson/random-string'
 
 const fetcher = async (url: string, data: FormData) => await fetch(url, {
   method: 'POST',
@@ -39,12 +40,21 @@ const addAccountPage: NextPage<{ secret: string, userId: string, password: strin
     <>
       <h1>Add Account</h1>
       <form action="/api/add-account" method="post" onSubmit={onSubmit}>
-        <input name="secret" value={secret} type="hidden" />
-        <input name="userId" value={userId} type="hidden" />
-        <input name="website" placeholder="website" />
-        <input name="username" placeholder="username" />
-        <input name="password" value={password} readOnly />
-        <button>Add account</button>
+        <input className="input" name="secret" value={secret} type="hidden" />
+        <input className="input" name="userId" value={userId} type="hidden" />
+        <div className="mb-3">
+          <Label htmlFor="website" className="block pr-3">Website</Label>
+          <input id="website" name="website" className="input" />
+        </div>
+        <div className="mb-3">
+          <Label htmlFor="username" className="block pr-3">Username</Label>
+          <input id="username" name="username" className="input" />
+        </div>
+        <div className="mb-3">
+          <Label htmlFor="username" className="block pr-3">Password</Label>
+          <input className="input" name="password" value={password} readOnly />
+        </div>
+        <button className="btn-primary">Add account</button>
       </form>
       {error && <p>{error}</p>}
     </>
