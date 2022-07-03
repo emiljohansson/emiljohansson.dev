@@ -450,7 +450,7 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
   }, delay)
 
   return (
-    <div className="font-museo-moderno font-light text-4xl relative select-none">
+    <div className="font-light text-4xl relative select-none">
       {board.map((rows, i) => (
         <FlexRow key={`row-${i}`} radius={context.radius}>
           {rows.map(([tile, setTile], j) => (
@@ -487,7 +487,7 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
         </FlexRow>
       ))}
       <div className="mt-3">{time}</div>
-      <div className="font-sans absolute top-full w-full text-center">
+      <div className="absolute top-full w-full text-center">
         {gameState === GameState.lost ? 'You lost!' : ''}
         {gameState === GameState.won ? 'You won!' : ''}
       </div>
@@ -542,30 +542,36 @@ const MineSweaper = () => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          setSelectedDifficulty({
-            type: SelectedDifficulty.loading,
-            queueType: selectedDifficulty.type,
-          })
-        }}
-      >
-        Restart
-      </button>
-
-      <Select
-        defaultValue={SelectedDifficulty.easy.toString()}
-        onValueChange={(newValue) => {
-          setSelectedDifficulty({
-            type: SelectedDifficulty.loading,
-            queueType: Number(newValue),
-          })
-        }}
-      >
-        <SelectItem value={SelectedDifficulty.easy}>{easy.title}</SelectItem>
-        <SelectItem value={SelectedDifficulty.medium}>{medium.title}</SelectItem>
-        <SelectItem value={SelectedDifficulty.hard}>{hard.title}</SelectItem>
-      </Select>
+      <div className="flex mb-3">
+        <div className="mx-1.5">
+          <Select
+            defaultValue={SelectedDifficulty.easy.toString()}
+            onValueChange={(newValue) => {
+              setSelectedDifficulty({
+                type: SelectedDifficulty.loading,
+                queueType: Number(newValue),
+              })
+            }}
+          >
+            <SelectItem value={SelectedDifficulty.easy}>{easy.title}</SelectItem>
+            <SelectItem value={SelectedDifficulty.medium}>{medium.title}</SelectItem>
+            <SelectItem value={SelectedDifficulty.hard}>{hard.title}</SelectItem>
+          </Select>
+        </div>
+        <div className="mx-1.5">
+          <button
+            className="btn-secondary"
+            onClick={() => {
+              setSelectedDifficulty({
+                type: SelectedDifficulty.loading,
+                queueType: selectedDifficulty.type,
+              })
+            }}
+          >
+            Restart
+          </button>
+        </div>
+      </div>
       {
         selectedDifficulty.type === SelectedDifficulty.loading
           ? <></>

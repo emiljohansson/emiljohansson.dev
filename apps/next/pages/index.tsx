@@ -149,7 +149,7 @@ const HomePage = () => {
         {projects.map(({ text, href }, index) => (
           <li className="mb-2 ml-6" key={index}>
             <Link href={href}>
-              <a>{text}</a>
+              <a className="link">{text}</a>
             </Link>
           </li>
         ))}
