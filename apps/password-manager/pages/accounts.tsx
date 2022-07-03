@@ -12,7 +12,7 @@ const Home: NextPage<{ accounts: Account[], secret: string, userId: string }> = 
         pathname: '/add-account',
         query: { secret, userId },
       }}>
-        <a>Add account</a>
+        <a className="btn-primary">Add account</a>
       </Link>
       {accounts.map((account, index) => (
         <AccountRow key={index} account={account} secret={secret} userId={userId} />

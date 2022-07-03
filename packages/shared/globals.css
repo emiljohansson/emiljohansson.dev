@@ -27,17 +27,49 @@
 }
 
 @layer components {
+  .btn-primary,
+  .btn-secondary {
+    @apply border-2
+      px-2
+      py-1
+      rounded
+      no-underline;
+  }
+
   .btn-primary {
     @apply bg-primary
       hover:bg-transparent
-      border-2
       border-primary
       hover:border-primary
       text-black
       hover:text-primary
-      px-2
-      py-1
-      rounded;
+    ;
+  }
+  .btn-secondary {
+    @apply bg-transparent
+      border-gray-600
+      hover:border-black-rich
+      text-gray-600
+      hover:text-black-rich
+      dark:text-gray-400
+      dark:border-gray-400
+      dark:hover:text-white
+      dark:hover:border-white
+    ;
+  }
+  button.btn-primary,
+  button.btn-secondary {
+    @apply hover:cursor-auto;
+  }
+  a.btn-primary,
+  a.btn-secondary {
+    @apply py-2;
+  }
+
+  .link {
+    @apply
+      no-underline
+      hover:underline;
   }
 
   .input {
