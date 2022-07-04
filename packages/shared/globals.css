@@ -28,21 +28,28 @@
 
 @layer components {
   .btn-primary,
-  .btn-secondary {
-    @apply border-2
+  .btn-secondary,
+  .input,
+  .select {
+    @apply
+      h-10
       px-2
-      py-1
       rounded
-      no-underline;
+    ;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    @apply border
+      no-underline
+    ;
   }
 
   .btn-primary {
     @apply bg-primary
-      hover:bg-transparent
       border-primary
-      hover:border-primary
       text-black
-      hover:text-primary
+      hover:bg-primary-dark
     ;
   }
   .btn-secondary {
@@ -63,26 +70,48 @@
   }
   a.btn-primary,
   a.btn-secondary {
-    @apply py-2;
+    @apply
+      inline-flex
+      items-center
+    ;
   }
 
   .link {
     @apply
       no-underline
-      hover:underline;
+      hover:underline
+    ;
   }
 
   .input {
-    @apply inline-flex
+    @apply
+      inline-flex
       items-center
       justify-center
-      rounded
-      px-2
-      h-9
-      text-base
+      h-10
       leading-none
+      bg-transparent
+      outline-none
+      border
+      border-gray-300
+      focus:border-black-rich
+      dark:border-gray-600
+      dark:focus:border-white
+    ;
+  }
+
+  .select {
+    @apply
+      inline-flex
+      items-center
+      justify-center
+      cursor-default
       shadow
-      focus:shadow-sm
-      dark:bg-black-800;
+      gap-1
+      hover:bg-gray-50
+      dark:bg-white
+      dark:hover:bg-black-rich
+      dark:text-primary
+    ;
   }
 }

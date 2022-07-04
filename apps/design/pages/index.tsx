@@ -115,7 +115,7 @@ const Home: NextPage = () => {
         </button>
       </header>
 
-      <main className="prose lg:prose-xl dark:prose-invert">
+      <main className="prose dark:prose-invert">
         <article>
           <h1>Components / Design System</h1>
           <p>
@@ -160,7 +160,7 @@ const Home: NextPage = () => {
           <h2>Input</h2>
           <div className="flex items-center">
             <Label htmlFor="input1" className="pr-3">First Name</Label>
-            <input id="input1" className="input" />
+            <input id="input1" className="input" placeholder="Default" />
           </div>
         </article>
         <article>

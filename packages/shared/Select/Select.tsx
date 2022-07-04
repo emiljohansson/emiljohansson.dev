@@ -20,22 +20,7 @@ const Select: FunctionComponent<SelectProps> = ({ children, defaultValue, onValu
     onValueChange={onValueChange}
   >
     <Trigger
-      className="
-        inline-flex
-        items-center
-        justify-center
-        cursor-default
-        shadow
-        rounded
-        gap-1
-        py-0
-        px-4
-        h-8
-        hover:bg-gray-50
-        dark:bg-white
-        dark:hover:bg-blue-50
-        dark:text-primary
-      "
+      className="select"
       aria-label="Food"
     >
       <Value />
