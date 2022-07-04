@@ -76,6 +76,14 @@ module.exports = {
       fontSize: {
         '3/6': '50%',
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.black'),
+            '--tw-prose-invert-body': theme('colors.white'),
+          },
+        },
+      }),
     },
   },
   plugins: [

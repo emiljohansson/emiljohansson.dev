@@ -75,7 +75,7 @@ const Toggle = () => {
   )
 }
 
-const Home: NextPage = () => {
+const useDarkMode = () => {
   const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined)
 
   useEffect(() => {
@@ -91,6 +91,12 @@ const Home: NextPage = () => {
     )
     document.documentElement.classList.toggle('dark', localStorage.theme === 'dark')
   }, [darkMode])
+
+  return [darkMode, setDarkMode] as const
+}
+
+const Home: NextPage = () => {
+  const [darkMode, setDarkMode] = useDarkMode()
 
   return (
     <>

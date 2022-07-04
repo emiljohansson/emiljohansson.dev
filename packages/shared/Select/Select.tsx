@@ -28,7 +28,7 @@ const Select: FunctionComponent<SelectProps> = ({ children, defaultValue, onValu
         <ChevronDownIcon />
       </Icon>
     </Trigger>
-    <Content className="overflow-hidden bg-white rounded shadow">
+    <Content className="select-content">
       <ScrollUpButton className={scrollButtonClassNames}>
         <ChevronUpIcon />
       </ScrollUpButton>

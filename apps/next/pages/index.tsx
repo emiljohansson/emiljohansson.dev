@@ -16,13 +16,13 @@ import { motion } from 'framer-motion'
 
 const projects = [
   {
-    href: 'https://pw.emiljohansson.dev',
-    text: 'Password Manager',
+    href: 'https://design.emiljohansson.dev',
+    text: 'Design System',
     external: true,
   },
   {
-    href: 'https://remix.emiljohansson.dev',
-    text: 'Remix',
+    href: 'https://pw.emiljohansson.dev',
+    text: 'Password Manager',
     external: true,
   },
   {
