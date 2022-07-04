@@ -1,14 +1,15 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { CheckIcon, MoonIcon, SunIcon, BorderSolidIcon } from '@radix-ui/react-icons'
+import { CheckIcon, BorderSolidIcon } from '@radix-ui/react-icons'
 import { Label } from '@radix-ui/react-label'
 import { motion } from 'framer-motion'
 import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
 import { Progress } from 'shared/Progress'
+import { ThemeToggle } from 'shared/ThemeToggle'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
@@ -75,29 +76,7 @@ const Toggle = () => {
   )
 }
 
-const useDarkMode = () => {
-  const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined)
-
-  useEffect(() => {
-    if (darkMode === undefined) {
-      setDarkMode(document.documentElement.classList.contains('dark'))
-      return
-    }
-    localStorage.setItem(
-      'theme',
-      darkMode
-        ? 'dark'
-        : '',
-    )
-    document.documentElement.classList.toggle('dark', localStorage.theme === 'dark')
-  }, [darkMode])
-
-  return [darkMode, setDarkMode] as const
-}
-
 const Home: NextPage = () => {
-  const [darkMode, setDarkMode] = useDarkMode()
-
   return (
     <>
       <Head>
@@ -107,18 +86,7 @@ const Home: NextPage = () => {
       </Head>
 
       <header className="h-10">
-        <button
-          className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
-          onClick={() => setDarkMode(!darkMode)}
-          data-test-id="toggle-dark-mode"
-        >
-          <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
-          {
-            darkMode
-              ? <MoonIcon className="block" width="24" height="24" />
-              : <SunIcon className="block" width="24" height="24" />
-          }
-        </button>
+        <ThemeToggle />
       </header>
 
       <main className="prose dark:prose-invert">
