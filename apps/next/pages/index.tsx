@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { GitHubLogoIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
+import { GitHubLogoIcon, MoonIcon, SunIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import Layout from '@/components/Layout'
 import { motion } from 'framer-motion'
@@ -15,6 +15,16 @@ import { motion } from 'framer-motion'
 // }
 
 const projects = [
+  {
+    href: 'https://pw.emiljohansson.dev',
+    text: 'Password Manager',
+    external: true,
+  },
+  {
+    href: 'https://remix.emiljohansson.dev',
+    text: 'Remix',
+    external: true,
+  },
   {
     href: '/random-string',
     text: 'Random String',
@@ -145,15 +155,20 @@ const HomePage = () => {
           </Link>
         </h1>
       </div>
-      <ul className="h-screen list-disc p-3 m-0">
-        {projects.map(({ text, href }, index) => (
-          <li className="mb-2 ml-6" key={index}>
-            <Link href={href}>
-              <a className="link">{text}</a>
-            </Link>
-          </li>
+      <div className="h-screen p-3 m-0 max-w-md mx-auto">
+        {projects.map(({ text, href, external }, index) => (
+          <Link href={href} key={index}>
+            <a
+              className="link dark:bg-black-900 flex items-center shadow-lg rounded-2xl p-4 m-3 relative"
+              target={external ? '_blank' : undefined}
+            >
+              {text} {
+                external && <ExternalLinkIcon width={18} height={18} className="absolute right-3" />
+              }
+            </a>
+          </Link>
         ))}
-      </ul>
+      </div>
     </Layout>
   )
 }

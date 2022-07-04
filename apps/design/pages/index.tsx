@@ -4,8 +4,9 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
+import { CheckIcon, MoonIcon, SunIcon, BorderSolidIcon } from '@radix-ui/react-icons'
 import { Label } from '@radix-ui/react-label'
+import { motion } from 'framer-motion'
 import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
 import { Progress } from 'shared/Progress'
 
@@ -28,6 +29,51 @@ light gray: #f4f4f8
 gray: #e6e6ea
 dark gray: #383838
 */
+
+const MotionLine = motion(BorderSolidIcon)
+const spring = {
+  type: 'spring',
+  stiffness: 700,
+  damping: 20,
+}
+
+const Toggle = () => {
+  const [selected, setSelected] = useState(false)
+
+  function toggle () {
+    setSelected(!selected)
+  }
+
+  return (
+    <button
+      className="relative h-6 w-6 text-black"
+      onClick={toggle}
+    >
+      <MotionLine
+        width="24"
+        height="24"
+        className="absolute"
+        animate={{
+          rotate: selected ? 45 : 0,
+          top: selected ? '0px' : '2.5px',
+        }}
+        transition={spring}
+        layout
+      />
+      <MotionLine
+        width="24"
+        height="24"
+        className="absolute"
+        animate={{
+          rotate: selected ? -45 : 0,
+          top: selected ? '0px' : '-2.5px',
+        }}
+        transition={spring}
+        layout
+      />
+    </button>
+  )
+}
 
 const Home: NextPage = () => {
   const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined)
@@ -240,6 +286,10 @@ const Home: NextPage = () => {
             {/* <div className="flex items-center h-14 p-6 mx-auto rounded bg-gradient-to-r from-purple-700 to-primary">
             </div> */}
           </div>
+        </article>
+        <article>
+          <h2>Animated Menu</h2>
+          <Toggle />
         </article>
       </main>
     </>

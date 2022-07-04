@@ -75,6 +75,7 @@ importers:
       '@types/react-dom': 18.0.4
       config: workspace:*
       eslint: 8.15.0
+      framer-motion: 6.2.3
       lib: workspace:*
       next: 12.1.6
       react: 18.1.0
@@ -89,6 +90,7 @@ importers:
       '@radix-ui/react-progress': 0.1.4_react@18.1.0
       '@radix-ui/react-radio-group': 0.1.5_react@18.1.0
       '@radix-ui/react-select': 0.1.1_ohobp6rpsmerwlq5ipwfh5yigy
+      framer-motion: 6.2.3_ef5jwxihqo6n7gxfmzogljlgcm
       lib: link:../../packages/lib
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
