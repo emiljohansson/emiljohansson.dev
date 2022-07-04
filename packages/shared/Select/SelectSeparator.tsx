@@ -1,7 +1,7 @@
 import { Separator } from '@radix-ui/react-select'
 
 const SelectSeparator = () => (
-  <Separator className="h-px m-1 bg-primary-300" />
+  <Separator className="select-separator" />
 )
 
 export default SelectSeparator

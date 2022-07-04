@@ -28,21 +28,28 @@
 
 @layer components {
   .btn-primary,
-  .btn-secondary {
-    @apply border-2
+  .btn-secondary,
+  .input,
+  .select {
+    @apply
+      h-10
       px-2
-      py-1
       rounded
-      no-underline;
+    ;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    @apply border
+      no-underline
+    ;
   }
 
   .btn-primary {
     @apply bg-primary
-      hover:bg-transparent
       border-primary
-      hover:border-primary
       text-black
-      hover:text-primary
+      hover:bg-primary-dark
     ;
   }
   .btn-secondary {
@@ -63,26 +70,91 @@
   }
   a.btn-primary,
   a.btn-secondary {
-    @apply py-2;
+    @apply
+      inline-flex
+      items-center
+    ;
   }
 
   .link {
     @apply
       no-underline
-      hover:underline;
+      hover:underline
+    ;
   }
 
   .input {
-    @apply inline-flex
+    @apply
+      inline-flex
       items-center
       justify-center
-      rounded
-      px-2
-      h-9
-      text-base
+      h-10
       leading-none
-      shadow
-      focus:shadow-sm
-      dark:bg-black-800;
+      bg-transparent
+      outline-none
+      border
+      border-gray-300
+      focus:border-black-rich
+      dark:border-gray-600
+      dark:focus:border-white
+    ;
+  }
+
+  .select {
+    @apply
+      inline-flex
+      items-center
+      justify-center
+      cursor-default
+      gap-1
+      outline-none
+      border
+      border-gray-300
+      hover:border-black-rich
+      focus:border-black-rich
+      dark:border-gray-600
+      dark:hover:border-white
+      dark:focus:border-white
+    ;
+  }
+  .select-content {
+    @apply overflow-hidden bg-white rounded shadow;
+  }
+  .select-item {
+    @apply
+      border-0
+      text-sm
+      focus:bg-primary
+      focus:text-white
+      dark:text-primary
+      dark:focus:text-white
+      focus-visible:outline-none
+      rounded
+      flex
+      items-center
+      h-6
+      py-0
+      px-6
+      relative
+      select-none
+      data-disabled:text-zinc-300
+      data-disabled:pointer-events-none
+    ;
+  }
+  .select-item-indicator {
+    @apply
+      absolute
+      left-0
+      inline-flex
+      items-center
+      justify-center
+      w-6
+    ;
+  }
+  .select-label {
+    @apply text-slate-600 text-xs leading-6 py-0 px-6;
+  }
+  .select-separator {
+    @apply h-px m-1 bg-gray-300;
   }
 }

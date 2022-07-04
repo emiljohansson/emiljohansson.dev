@@ -32,7 +32,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#e94f37',
+        primary: {
+          dark: '#c62e1d',
+          DEFAULT: '#e94f37',
+        },
         secondary: '#c084fc',
         accent: '#67e8f9',
         neutral: '#191D24',
@@ -73,6 +76,14 @@ module.exports = {
       fontSize: {
         '3/6': '50%',
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.black'),
+            '--tw-prose-invert-body': theme('colors.white'),
+          },
+        },
+      }),
     },
   },
   plugins: [

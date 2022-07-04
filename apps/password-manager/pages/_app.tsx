@@ -3,7 +3,7 @@ import 'shared/globals.css'
 
 function MyApp ({ Component, pageProps }: AppProps) {
   return (
-    <main className="prose lg:prose-xl dark:prose-invert">
+    <main className="prose dark:prose-invert">
       <Component {...pageProps} />
     </main>
   )

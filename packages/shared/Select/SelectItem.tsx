@@ -18,37 +18,10 @@ const SelectItem: FunctionComponent<{
   <Item
     value={value.toString()}
     disabled={disabled}
-    className="
-      border-0
-      text-sm
-      focus:bg-primary
-      focus:text-white
-      dark:text-primary
-      dark:focus:text-white
-      focus-visible:outline-none
-      rounded
-      flex
-      items-center
-      h-6
-      py-0
-      px-6
-      relative
-      select-none
-      data-disabled:text-zinc-300
-      data-disabled:pointer-events-none
-    "
+    className="select-item"
   >
     <ItemText>{children}</ItemText>
-    <ItemIndicator
-      className="
-        absolute
-        left-0
-        inline-flex
-        items-center
-        justify-center
-        w-6
-      "
-    >
+    <ItemIndicator className="select-item-indicator">
       <CheckIcon />
     </ItemIndicator>
   </Item>

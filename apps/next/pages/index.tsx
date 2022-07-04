@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { GitHubLogoIcon, MoonIcon, SunIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
+import { GitHubLogoIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import Layout from '@/components/Layout'
-import { motion } from 'framer-motion'
+import { ThemeToggle } from 'shared/ThemeToggle'
 
 // const AccessibleIcon = ({ children, label }): AccessibleIconPrimitive.AccessibleIcon => {
 //   <AccessibleIconPrimitive.Root
@@ -16,13 +15,13 @@ import { motion } from 'framer-motion'
 
 const projects = [
   {
-    href: 'https://pw.emiljohansson.dev',
-    text: 'Password Manager',
+    href: 'https://design.emiljohansson.dev',
+    text: 'Design System',
     external: true,
   },
   {
-    href: 'https://remix.emiljohansson.dev',
-    text: 'Remix',
+    href: 'https://pw.emiljohansson.dev',
+    text: 'Password Manager',
     external: true,
   },
   {
@@ -63,33 +62,11 @@ const projects = [
   // },
 ]
 
-const darkClassName = 'dark'
-
-let savedDarkMode: boolean | undefined
-
 // background: #252736;
 // padding: 18px;
 // border-radius: 16px;
 
 const HomePage = () => {
-  const [darkMode, setDarkMode] = useState<boolean | undefined>(savedDarkMode)
-
-  useEffect(() => {
-    if (darkMode === undefined) {
-      setDarkMode(document.documentElement.classList.contains(darkClassName))
-      savedDarkMode = document.documentElement.classList.contains(darkClassName)
-      return
-    }
-    localStorage.setItem(
-      'theme',
-      darkMode
-        ? darkClassName
-        : '',
-    )
-    document.documentElement.classList.toggle(darkClassName, localStorage.theme === darkClassName)
-    savedDarkMode = document.documentElement.classList.contains(darkClassName)
-  }, [darkMode])
-
   return (
     <Layout>
       <Head>
@@ -100,32 +77,8 @@ const HomePage = () => {
           content="emil, johansson, developer, front-end, front end"
         />
       </Head>
-      <motion.button
-        className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
-        onClick={() => setDarkMode(!darkMode)}
-        data-test-id="toggle-dark-mode"
-      >
-        <motion.div
-          initial={{
-            scale: darkMode === undefined ? 0.5 : 1,
-            opacity: darkMode === undefined ? 0 : 1,
-            y: darkMode === undefined ? '-100%' : 0,
-          }}
-          animate={{
-            scale: darkMode === undefined ? 0.5 : 1,
-            opacity: darkMode === undefined ? 0 : 1,
-            y: darkMode === undefined ? '-100%' : 0,
-          }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
-          {
-            darkMode
-              ? <MoonIcon className="block" width="24" height="24" />
-              : <SunIcon className="block" width="24" height="24" />
-          }
-        </motion.div>
-      </motion.button>
+
+      <ThemeToggle />
       <div className="flex items-center text-5xl h-screen font-bold">
         <h1 className="mx-auto">
           <Link href="https://github.com/emiljohansson" passHref>
