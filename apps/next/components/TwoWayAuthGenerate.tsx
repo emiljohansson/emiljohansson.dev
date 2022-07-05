@@ -43,7 +43,7 @@ function TwoWayAuthGenerate () {
   return (
     <Content>
       <Header />
-      <Section direction="column">
+      <Section direction="column" size="medium">
         <div>{value}</div>
         <div className="h-0.5 w-96 mr-3">
           <motion.div

@@ -1,11 +1,17 @@
-import { AppProps } from 'next/app'
-import Script from 'next/script'
-import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import 'shared/globals.css'
 
 export default function App ({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Script id="dark-mode" strategy="beforeInteractive" src="dark-mode.js" />
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: 'document.documentElement.classList.toggle(\'dark\', localStorage.theme === \'dark\')',
+          }}
+        />
+      </Head>
       <Component {...pageProps} />
     </>
   )

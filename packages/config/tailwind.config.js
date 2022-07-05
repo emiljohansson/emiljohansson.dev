@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 // dark #222128
 // darker #16151a
@@ -11,43 +12,78 @@ const plugin = require('tailwindcss/plugin')
 // level 2 #242832
 // level 3 #2a2e36
 
+/*
+background shares:
+#1e1d2b
+#454353
+#6f6d7f
+#9d9bad
+#cdcbde
+*/
+
 module.exports = {
   darkMode: 'class',
   content: [
     './app/**/*.{ts,tsx,js,jsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    '../shared/**/*.{js,ts,jsx,tsx}',
+    './node_modules/shared/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        orange: {
-          faded: '#de6449',
+        primary: {
+          dark: '#c62e1d',
           DEFAULT: '#e94f37',
-          tart: '#fe4a49',
         },
+        secondary: '#c084fc',
+        accent: '#67e8f9',
+        neutral: '#191D24',
+        'base-100': '#ffffff',
+        info: '#38bdf8',
+        success: '#4ade80',
+        warning: '#FBBD23',
+        error: '#ef4444',
         // yellow: {
         //   DEFAULT: '#fed766',
         // },
         black: {
-          rich: '#1e1d2b',
+          DEFAULT: '#000000',
+          // rich: '#1e1d2b',
+          rich: '#111',
+          900: '#242832',
+          800: '#454353',
+          700: '#6f6d7f',
+          600: '#9d9bad',
+          500: '#cdcbde',
         },
         blue: '#e9f1f7',
         'blue-star-command': '#2274a5',
         eggshell: '#e7dfc6',
         gray: {
-          light: '#f4f4f8',
+          900: '#111',
+          600: '#666',
+          500: '#888',
+          400: '#a1a1a1',
           300: '#e6e6ea',
           dark: '#383838',
+          light: '#f4f4f8',
         },
       },
       fontFamily: {
-        'museo-moderno': ['MuseoModerno', 'cursive'],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         '3/6': '50%',
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.black'),
+            '--tw-prose-invert-body': theme('colors.white'),
+          },
+        },
+      }),
     },
   },
   plugins: [
@@ -56,5 +92,6 @@ module.exports = {
       addVariant('direction', '&:direction')
       addVariant('data-disabled', '&[data-disabled]')
     }),
+    require('@tailwindcss/typography'),
   ],
 }

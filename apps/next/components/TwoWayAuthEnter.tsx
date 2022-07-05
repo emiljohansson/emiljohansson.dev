@@ -1,4 +1,6 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
+import { Label } from '@radix-ui/react-label'
+import { CheckIcon, Cross2Icon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import Header from './Header'
 import Content from './Content'
 import Section from './Section'
@@ -22,19 +24,15 @@ async function post (url: string, body: unknown) {
 }
 
 function EnteredContent ({ state }: { state: State }) {
-  function getState (): string {
-    switch (state) {
-      case State.loading:
-        return 'loading'
-      case State.valid:
-        return 'valid'
-      case State.invalid:
-        return 'invalid'
-    }
-    return 'idle'
+  switch (state) {
+    case State.loading:
+      return <><span className="sr-only">loading</span><DotsHorizontalIcon /></>
+    case State.valid:
+      return <><span className="sr-only">valid</span><CheckIcon /></>
+    case State.invalid:
+      return <><span className="sr-only">invalid</span><Cross2Icon /></>
   }
-
-  return <div className="text-center">{getState()}</div>
+  return <></>
 }
 
 function TwoWayAuthEnter () {
@@ -42,7 +40,7 @@ function TwoWayAuthEnter () {
   const [state, setState] = useState(State.idle)
   const inputEl = useRef(null)
 
-  function onChange (event: ChangeEvent<HTMLInputElement>): void {
+  function onChange (event: ChangeEvent<HTMLInputElement>) {
     setState(State.idle)
     const target: HTMLInputElement | null =
       event.target as HTMLInputElement | null
@@ -52,7 +50,7 @@ function TwoWayAuthEnter () {
     setValue(target.value)
   }
 
-  async function onSubmit (event: FormEvent<HTMLFormElement>): Promise<void> {
+  async function onSubmit (event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setState(State.loading)
     try {
@@ -71,22 +69,22 @@ function TwoWayAuthEnter () {
 
   return (
     <Content>
-      <style jsx>{`
-        .input {
-          width: '340px',
-        }
-      `}</style>
       <Header />
       <Section>
         <form
           action="#"
           method="POST"
           onSubmit={onSubmit}
-          className="flex flex-col"
+          className="flex"
         >
-          <input ref={inputEl} className="text-center input" type="text" onChange={onChange} />
-          <button type="submit">Validate</button>
-          <EnteredContent state={state} />
+          <div className="flex items-center relative">
+            <Label htmlFor="secret" className="pr-3">Enter Code</Label>
+            <input id="secret" name="secret" className="input w-80 pr-9" ref={inputEl} onChange={onChange} />
+            <span className="absolute right-2.5">
+              <EnteredContent state={state} />
+            </span>
+          </div>
+          <button className="btn-primary ml-3">Validate</button>
         </form>
       </Section>
     </Content>

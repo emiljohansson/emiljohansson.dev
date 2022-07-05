@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { GitHubLogoIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
+import { GitHubLogoIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import Layout from '@/components/Layout'
-import { motion } from 'framer-motion'
+import { ThemeToggle } from 'shared/ThemeToggle'
 
 // const AccessibleIcon = ({ children, label }): AccessibleIconPrimitive.AccessibleIcon => {
 //   <AccessibleIconPrimitive.Root
@@ -15,6 +14,16 @@ import { motion } from 'framer-motion'
 // }
 
 const projects = [
+  {
+    href: 'https://design.emiljohansson.dev',
+    text: 'Design System',
+    external: true,
+  },
+  {
+    href: 'https://pw.emiljohansson.dev',
+    text: 'Password Manager',
+    external: true,
+  },
   {
     href: '/random-string',
     text: 'Random String',
@@ -53,33 +62,11 @@ const projects = [
   },
 ]
 
-const darkClassName = 'dark'
-
-let savedDarkMode: boolean | undefined
-
 // background: #252736;
 // padding: 18px;
 // border-radius: 16px;
 
 const HomePage = () => {
-  const [darkMode, setDarkMode] = useState<boolean | undefined>(savedDarkMode)
-
-  useEffect(() => {
-    if (darkMode === undefined) {
-      setDarkMode(document.documentElement.classList.contains(darkClassName))
-      savedDarkMode = document.documentElement.classList.contains(darkClassName)
-      return
-    }
-    localStorage.setItem(
-      'theme',
-      darkMode
-        ? darkClassName
-        : '',
-    )
-    document.documentElement.classList.toggle(darkClassName, localStorage.theme === darkClassName)
-    savedDarkMode = document.documentElement.classList.contains(darkClassName)
-  }, [darkMode])
-
   return (
     <Layout>
       <Head>
@@ -90,32 +77,8 @@ const HomePage = () => {
           content="emil, johansson, developer, front-end, front end"
         />
       </Head>
-      <motion.button
-        className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
-        onClick={() => setDarkMode(!darkMode)}
-        data-test-id="toggle-dark-mode"
-      >
-        <motion.div
-          initial={{
-            scale: darkMode === undefined ? 0.5 : 1,
-            opacity: darkMode === undefined ? 0 : 1,
-            y: darkMode === undefined ? '-100%' : 0,
-          }}
-          animate={{
-            scale: darkMode === undefined ? 0.5 : 1,
-            opacity: darkMode === undefined ? 0 : 1,
-            y: darkMode === undefined ? '-100%' : 0,
-          }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
-          {
-            darkMode
-              ? <MoonIcon className="block" width="24" height="24" />
-              : <SunIcon className="block" width="24" height="24" />
-          }
-        </motion.div>
-      </motion.button>
+
+      <ThemeToggle />
       <div className="flex items-center text-5xl h-screen font-bold">
         <h1 className="mx-auto">
           <Link href="https://github.com/emiljohansson" passHref>
@@ -145,15 +108,20 @@ const HomePage = () => {
           </Link>
         </h1>
       </div>
-      <ul className="h-screen list-disc p-3 m-0">
-        {projects.map(({ text, href }, index) => (
-          <li className="mb-2 ml-6" key={index}>
-            <Link href={href}>
-              <a>{text}</a>
-            </Link>
-          </li>
+      <div className="h-screen p-3 m-0 max-w-md mx-auto">
+        {projects.map(({ text, href, external }, index) => (
+          <Link href={href} key={index}>
+            <a
+              className="link dark:bg-black-900 flex items-center shadow-lg rounded-2xl p-4 m-3 relative"
+              target={external ? '_blank' : undefined}
+            >
+              {text} {
+                external && <ExternalLinkIcon width={18} height={18} className="absolute right-3" />
+              }
+            </a>
+          </Link>
         ))}
-      </ul>
+      </div>
     </Layout>
   )
 }

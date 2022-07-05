@@ -8,6 +8,9 @@
   * github actions
 * Hosting / CD
   * vercel
+* Database
+  * PlanetScale
+  * Prisma
 * Frameworks
   * SSR/SSG/CSR
     * Next.js
@@ -30,6 +33,6 @@
 ## TODO's
 
 - [ ] husky
-- [ ] pnpm
-- [ ] preact
-- [ ] rename branch from `master` to `main`
+- [x] pnpm
+- [ ] preact - blocked by https://github.com/preactjs/preact/issues/3543
+- [x] rename branch from `master` to `main`

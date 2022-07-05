@@ -5,7 +5,7 @@ import { injectAxe, checkA11y } from 'axe-playwright'
 
 test.describe('audit', () => {
   test('page', async ({ baseURL }) => {
-    const port = 9002
+    const port = 9003
     const browser = await chromium.launch({
       args: [`--remote-debugging-port=${port}`],
     })

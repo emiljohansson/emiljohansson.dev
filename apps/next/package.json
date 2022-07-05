@@ -24,24 +24,24 @@
     "@emiljohansson/random-string": "1.1.2",
     "@radix-ui/react-accessible-icon": "^0.1.5-rc.21",
     "@radix-ui/react-icons": "latest",
+    "@radix-ui/react-label": "0.1.5",
     "@radix-ui/react-progress": "latest",
     "@radix-ui/react-select": "latest",
     "framer-motion": "6.2.3",
-    "lib": "*",
-    "next": "12.1.6",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "tailwindcss": "3.0.18"
+    "lib": "workspace:*",
+    "next": "12.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "shared": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "17.0.33",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.4",
-    "autoprefixer": "10.4.2",
-    "config": "*",
+    "config": "workspace:*",
     "eslint": "8.15.0",
     "next-transpile-modules": "9.0.0",
-    "postcss": "8.4.6",
+    "tsconfig": "workspace:*",
     "typescript": "4.6.2"
   }
 }
