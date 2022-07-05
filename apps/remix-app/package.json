@@ -2,10 +2,7 @@
   "name": "remix-app",
   "private": true,
   "sideEffects": false,
-  "scripts": {
-    "build": "remix build",
-    "dev": "remix dev"
-  },
+  "scripts": {},
   "dependencies": {
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
