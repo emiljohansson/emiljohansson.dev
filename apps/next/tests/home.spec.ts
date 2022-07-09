@@ -17,7 +17,7 @@ test.describe('home', () => {
     // Click text=Random String
     await Promise.all([
       page.waitForNavigation(/* { url: 'http://localhost:3000/random-string' } */),
-      page.locator('text=Random String').click(),
+      page.locator('[data-test=random-string]').click(),
     ])
 
     // Click button:has-text("Refresh")

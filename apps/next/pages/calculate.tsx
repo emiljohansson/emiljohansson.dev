@@ -44,7 +44,7 @@ const Calculate = () => {
           <h1 className="sr-only">Calculate</h1>
           <form onSubmit={calculate} action="/api/calculate" method="post">
             <input className="input" type="text" name="q" aria-label="Query" /><span className="ml-3" data-test-id="sum">{sum}</span>
-            <button type="submit" className="btn-primary mt-3 block">Calculate</button>
+            <button className="btn-primary mt-3 block" data-test="submit">Calculate</button>
           </form>
         </Section>
       </Content>

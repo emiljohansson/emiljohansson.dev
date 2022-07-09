@@ -11,7 +11,7 @@ test.describe('/calculate', () => {
     // Click text=calculate
     await Promise.all([
       page.waitForNavigation(/* { url: 'http://localhost:3000/calculate' } */),
-      page.locator('text=calculate').click(),
+      page.locator('[data-test=calculate]').click(),
     ])
 
     // Click input[name="q"]
@@ -27,7 +27,7 @@ test.describe('/calculate', () => {
         console.log('resp.status()', resp.status())
         return resp.url().includes('/api/calculate') && resp.status() === 200
       }),
-      page.locator('button:has-text("Calculate")').click(),
+      page.locator('[data-test=submit]').click(),
     ])
 
     // Click [data-test-id="sum"]
