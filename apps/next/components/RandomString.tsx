@@ -22,11 +22,11 @@ function RandomString ({ initialValue }: { initialValue: string }) {
   return (
     <Content>
       <Header>
-        <HeaderAction onClick={() => setValue(randomString())}>
+        <HeaderAction onClick={() => setValue(randomString())} data-test="refresh">
           <UpdateIcon width={30} height={30} />
           <span className="sr-only">Refresh</span>
         </HeaderAction>
-        <HeaderAction onClick={() => copyToClipboard(inputEl.current)}>
+        <HeaderAction onClick={() => copyToClipboard(inputEl.current)} data-test="copy">
           <CopyIcon width={30} height={30} />
           <span className="sr-only">Copy</span>
         </HeaderAction>

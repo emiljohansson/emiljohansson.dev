@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es5",
+    "types": [
+      "cypress",
+      "node",
+      "@cypress-audit/lighthouse",
+      "cypress-axe"
+    ],
+    "isolatedModules": false
+  },
+  "include": ["**/*.ts"]
+}
