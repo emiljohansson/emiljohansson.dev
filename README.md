@@ -34,7 +34,6 @@
 
 - [x] husky
 - [x] pnpm
-- [ ] preact - blocked by https://github.com/preactjs/preact/issues/3543
+- [x] ~preact - too many errors from framer motion~
 - [x] rename branch from `master` to `main`
 - [x] replace playwright with cypress
-
