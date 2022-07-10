@@ -41,3 +41,11 @@ jobs:
       - name: Run e2e tests
         uses: cypress-io/github-action@v4
         run: npm run test:ci
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
