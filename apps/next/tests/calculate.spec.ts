@@ -30,8 +30,7 @@ test.describe('/calculate', () => {
       page.locator('[data-test=submit]').click(),
     ])
 
-    // Click [data-test-id="sum"]
-    const sum = page.locator('[data-test-id="sum"]')
+    const sum = page.locator('[data-test="sum"]')
     await expect(
       await sum.evaluate((node: HTMLElement) => node.innerText),
     ).toBe('3')

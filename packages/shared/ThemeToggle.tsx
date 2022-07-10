@@ -34,7 +34,7 @@ export const ThemeToggle = () => {
     <motion.button
       className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
       onClick={() => setDarkMode(!darkMode)}
-      data-test-id="toggle-dark-mode"
+      data-test="toggle-dark-mode"
     >
       <motion.div
         initial={{

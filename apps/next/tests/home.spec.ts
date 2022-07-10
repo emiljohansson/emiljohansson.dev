@@ -8,11 +8,8 @@ test.describe('home', () => {
     // Go to http://localhost:3000/
     await page.goto('/')
 
-    // Click [data-test-id="toggle-dark-mode"]
-    await page.locator('[data-test-id="toggle-dark-mode"]').click()
-
-    // Click [data-test-id="toggle-dark-mode"]
-    await page.locator('[data-test-id="toggle-dark-mode"]').click()
+    await page.locator('[data-test="toggle-dark-mode"]').click()
+    await page.locator('[data-test="toggle-dark-mode"]').click()
 
     // Click text=Random String
     await Promise.all([
