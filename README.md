@@ -24,7 +24,7 @@
   * Framer Motion
 * Testing
   * End to end
-    * Playwright
+    * Cypress
     * Lighthouse
     * AXE
   * Unit testing
@@ -36,5 +36,5 @@
 - [x] pnpm
 - [ ] preact - blocked by https://github.com/preactjs/preact/issues/3543
 - [x] rename branch from `master` to `main`
-- [ ] replace playwright with cypress
+- [x] replace playwright with cypress
 

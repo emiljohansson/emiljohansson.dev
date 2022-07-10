@@ -13,12 +13,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "playwright test",
-    "test:debug": "PWDEBUG=1 playwright test",
-    "test:e2e": "playwright test",
+    "test": "npm run cy:open",
     "test:unit": "jest",
     "test:ci": "npm run cy:ci",
-    "test:e2e:ci": "start-server-and-test start http://localhost:3000 \"playwright test\"",
     "cy:ci": "start-server-and-test start http://localhost:3000 cy:run",
     "cy:run": "cypress run --headless --browser chrome",
     "cy:open": "cypress open"
