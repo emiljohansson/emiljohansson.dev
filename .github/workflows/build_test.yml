@@ -39,7 +39,6 @@ jobs:
         run: npm run build
 
       - name: Run e2e tests
-        uses: cypress-io/github-action@v4
         run: npm run test:ci
 
       - name: Upload artifact
