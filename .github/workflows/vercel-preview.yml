@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: XYZ
-        run: echo ${{ toJSON(github.event.deployment_status) }}
+        run: echo ${{ github.event.deployment_status.description }}
         env:
           DEPLOY_URL: ${{ github.event.deployment_status.target_url }}
 
