@@ -12,31 +12,48 @@ on:
       - feature/**
       - bugfix/**
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   cypress-run:
+#     runs-on: ubuntu-20.04
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+#       - name: Build
+#         uses: cypress-io/github-action@v4
+#         with:
+#           build: npm run build
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 7.1.7
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+#       - name: Start server
+#         uses: cypress-io/github-action@v4
+#         with:
+#           start: npm start
 
-      - name: Install dependencies
-        run: pnpm install
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-      - name: Build
-        run: npm run build
+#     strategy:
+#       matrix:
+#         node-version: [16.x]
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-      - name: Run e2e tests
-        run: npm run test:ci
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: pnpm/action-setup@v2.0.1
+#         with:
+#           version: 7.1.7
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#           cache: 'pnpm'
+
+#       - name: Install dependencies
+#         run: pnpm install
+
+#       - name: Build
+#         run: npm run build
+
+#       - name: Run e2e tests
+#         run: npm run test:ci
