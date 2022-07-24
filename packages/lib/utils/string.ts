@@ -13,3 +13,7 @@ export function classNames (...args: (string | { [key: string]: boolean })[]) {
   }
   return classes.join(' ')
 }
+
+export function copyToClipboard (value: string) {
+  navigator.clipboard.writeText(value)
+}
