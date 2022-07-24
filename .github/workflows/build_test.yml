@@ -39,7 +39,8 @@ jobs:
         run: npm run build
 
       - name: Run e2e tests
-        run: cd ${{github.action_path}}/apps/next && npm run test:ci
+        working-directory: ./apps/next
+        run: npm run test:ci
 
 # jobs:
 #   install:
