@@ -39,8 +39,10 @@ jobs:
         run: npm run build
 
       - name: Run e2e tests
-        working-directory: ./apps/next
         run: npm run test:ci
+        with:
+          record: false
+          project: ./apps/next
 
 # jobs:
 #   install:
