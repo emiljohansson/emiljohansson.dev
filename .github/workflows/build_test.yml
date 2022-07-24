@@ -13,61 +13,75 @@ on:
       - bugfix/**
 
 jobs:
-  install:
+  cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-    # strategy:
-    #   matrix:
-    #     node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 7.1.7
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          if-no-files-found: error
-          path: build
-
-      - name: Cypress install
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          # Disable running of tests within install job
-          runTests: false
-          build: yarn build
+          build: npm run build
+          start: npm start
 
-  cypress-run:
-    - name: Cypress run
-      runs-on: ubuntu-latest
-      steps:
-        - name: Cypress run
-          uses: cypress-io/github-action@v4
-          with:
-            install: false
-            working-directory: ./apps/next
-            browser: chrome
-            build: npm run build
-            start: npm run start -- --filter=next-app
-            wait-on: "http://localhost:3000"
+# jobs:
+#   install:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
 
-      # - name: Build
-      #   run: npm run build
+#     # strategy:
+#     #   matrix:
+#     #     node-version: [16.x]
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-      # - name: Run e2e tests
-      #   run: npm run test:ci
+#       - name: Setup pnpm
+#         uses: pnpm/action-setup@v2.0.1
+#         with:
+#           version: 7.1.7
+
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#           cache: 'pnpm'
+
+#       - name: Install dependencies
+#         run: pnpm install
+
+#       - name: Save build folder
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: build
+#           if-no-files-found: error
+#           path: build
+
+#       - name: Cypress install
+#         uses: cypress-io/github-action@v4
+#         with:
+#           # Disable running of tests within install job
+#           runTests: false
+#           build: yarn build
+
+#   cypress-run:
+#     - name: Cypress run
+#       runs-on: ubuntu-latest
+#       steps:
+#         - name: Cypress run
+#           uses: cypress-io/github-action@v4
+#           with:
+#             install: false
+#             working-directory: ./apps/next
+#             browser: chrome
+#             build: npm run build
+#             start: npm run start -- --filter=next-app
+#             wait-on: "http://localhost:3000"
+
+#       # - name: Build
+#       #   run: npm run build
+
+#       # - name: Run e2e tests
+#       #   run: npm run test:ci
