@@ -12,5 +12,8 @@
     "config": "workspace:*",
     "tsconfig": "workspace:*",
     "tsup": "5.11.13"
+  },
+  "dependencies": {
+    "react": "18.2.0"
   }
 }
