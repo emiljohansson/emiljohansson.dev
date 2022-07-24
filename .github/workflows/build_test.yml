@@ -40,9 +40,6 @@ jobs:
 
       - name: Run e2e tests
         run: npm run test:ci
-        with:
-          record: false
-          project: ./apps/next
 
 # jobs:
 #   install:
