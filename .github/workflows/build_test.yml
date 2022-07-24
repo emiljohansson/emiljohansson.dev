@@ -45,6 +45,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
+          install: false
           project: ./apps/next
           browser: chrome
           build: npm run build
