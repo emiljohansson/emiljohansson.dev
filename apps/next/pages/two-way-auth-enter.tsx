@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import TwoWayAuthEnter from '@/components/TwoWayAuthEnter'
+import Header from '@/components/Header'
+import Content from '@/components/Content'
+import Section from '@/components/Section'
 
 const TwoWayAuthEnterPage = () => (
   <Layout>
@@ -8,7 +11,12 @@ const TwoWayAuthEnterPage = () => (
       <title>Enter Two-Factor Authentication</title>
       <meta name="description" content="Enter two-factor authentication" />
     </Head>
-    <TwoWayAuthEnter />
+    <Content>
+      <Header />
+      <Section>
+        <TwoWayAuthEnter />
+      </Section>
+    </Content>
   </Layout>
 )
 

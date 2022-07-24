@@ -1,9 +1,6 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
 import { Label } from '@radix-ui/react-label'
 import { CheckIcon, Cross2Icon, DotsHorizontalIcon } from '@radix-ui/react-icons'
-import Header from '@/components/Header'
-import Content from '@/components/Content'
-import Section from '@/components/Section'
 
 enum State {
   idle,
@@ -68,26 +65,21 @@ function TwoWayAuthEnter () {
   }
 
   return (
-    <Content>
-      <Header />
-      <Section>
-        <form
-          action="#"
-          method="POST"
-          onSubmit={onSubmit}
-          className="flex"
-        >
-          <div className="flex items-center relative">
-            <Label htmlFor="secret" className="pr-3">Enter Code</Label>
-            <input id="secret" name="secret" className="input w-80 pr-9" ref={inputEl} onChange={onChange} />
-            <span className="absolute right-2.5">
-              <EnteredContent state={state} />
-            </span>
-          </div>
-          <button className="btn-primary ml-3">Validate</button>
-        </form>
-      </Section>
-    </Content>
+    <form
+      action="#"
+      method="POST"
+      onSubmit={onSubmit}
+      className="flex"
+    >
+      <div className="flex items-center relative">
+        <Label htmlFor="secret" className="pr-3">Enter Code</Label>
+        <input id="secret" name="secret" className="input w-80 pr-9" ref={inputEl} onChange={onChange} />
+        <span className="absolute right-2.5">
+          <EnteredContent state={state} />
+        </span>
+      </div>
+      <button className="btn-primary ml-3">Validate</button>
+    </form>
   )
 }
 
