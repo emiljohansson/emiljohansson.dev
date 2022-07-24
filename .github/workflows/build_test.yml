@@ -24,10 +24,6 @@ jobs:
     #     node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    # steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.0.1
         with:
@@ -42,11 +38,28 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Save build folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v4
+        with:
+          # Disable running of tests within install job
+          runTests: false
+          build: yarn build
+
+cypress-run:
+  runs-on: ubuntu-latest
+    steps:
       - name: Cypress run
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v4
         with:
           install: false
-          project: ./apps/next
+          working-directory: ./apps/next
           browser: chrome
           build: npm run build
           start: npm run start -- --filter=next-app
