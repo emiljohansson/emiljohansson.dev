@@ -22,10 +22,14 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+      - name: Checkout
       - uses: actions/checkout@v2
+
+      - name: Setup pnpm
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: 7.1.7
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -35,8 +39,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: npm run build
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
+        with:
+          project: ./apps/next
+          browser: chrome
+          build: npm run build
+          start: npm run start
+          wait-on: "http://localhost:3000"
 
-      - name: Run e2e tests
-        run: npm run test:ci
+      # - name: Build
+      #   run: npm run build
+
+      # - name: Run e2e tests
+      #   run: npm run test:ci
