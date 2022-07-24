@@ -22,10 +22,10 @@ context('Landing Page', () => {
       .url().should('include', '/random-string')
 
     cy.get('[data-test="refresh"]').click()
-    cy.get('[data-test="copy"]').click()
+    cy.get('[data-test="copy"]').focus().click()
 
     // Click a path
-    cy.get('a path').click()
+    cy.get('[data-test="back-link"]').click()
       .url().should('include', '/')
   })
 })
