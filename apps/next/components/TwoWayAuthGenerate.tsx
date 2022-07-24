@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import Header from './Header'
-import Content from './Content'
-import Section from './Section'
+import Header from '@/components/Header'
+import Content from '@/components/Content'
+import Section from '@/components/Section'
 
 function TwoWayAuthGenerate () {
   const [value, setValue] = useState('')

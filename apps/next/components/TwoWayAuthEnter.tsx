@@ -1,9 +1,9 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
 import { Label } from '@radix-ui/react-label'
 import { CheckIcon, Cross2Icon, DotsHorizontalIcon } from '@radix-ui/react-icons'
-import Header from './Header'
-import Content from './Content'
-import Section from './Section'
+import Header from '@/components/Header'
+import Content from '@/components/Content'
+import Section from '@/components/Section'
 
 enum State {
   idle,

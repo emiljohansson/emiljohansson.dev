@@ -1,7 +1,4 @@
 import { useState } from 'react'
-import Header from './Header'
-import Content from './Content'
-import Section from './Section'
 import useCurrentTime from 'lib/hooks/useCurrentTime'
 import { Time } from 'types/time'
 
@@ -13,9 +10,9 @@ const createTime = ({
   minutes: string | number
 }) => `${hours}:${minutes}`
 
-function CurrentTime ({ initialTime }: { initialTime: Time }) {
-  const [time, setTime] = useState<string>(createTime(initialTime))
-  const [meridiem, setMeridiem] = useState<string>(initialTime.meridiem)
+function CurrentTime ({ initialValue }: { initialValue: Time }) {
+  const [time, setTime] = useState<string>(createTime(initialValue))
+  const [meridiem, setMeridiem] = useState<string>(initialValue.meridiem)
 
   useCurrentTime(({ hours, minutes, meridiem }) => {
     setTime(createTime({ hours, minutes }))
@@ -36,15 +33,4 @@ function CurrentTime ({ initialTime }: { initialTime: Time }) {
   )
 }
 
-function CurrentTimeBase ({ initialValue }: { initialValue: Time }) {
-  return (
-    <Content>
-      <Header />
-      <Section size="large">
-        <CurrentTime initialTime={initialValue} />
-      </Section>
-    </Content>
-  )
-}
-
-export default CurrentTimeBase
+export default CurrentTime
