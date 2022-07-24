@@ -23,6 +23,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: 7.1.7
@@ -41,15 +42,17 @@ jobs:
       # - name: Run e2e tests
       #   run: npm run test:ci
 
-      - name: Run e2e tests
-        uses: cypress-io/github-action@v4
-        with:
-          install: false
-          build: npm run build
-          start: npm start
-          browser: chrome
-          wait-on: 'http://localhost:3000'
+      # - name: Run e2e tests
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     install: false
+      #     build: npm run build
+      #     start: npm start
+      #     browser: chrome
+      #     wait-on: 'http://localhost:3000'
 
+      - name: Run e2e tests
+        run: npm test
 
 # jobs:
 #   install:
