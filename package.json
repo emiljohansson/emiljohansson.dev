@@ -20,6 +20,12 @@
     "packages/*",
     "apps/*"
   ],
+  "dependencies": {
+    "@tailwindcss/typography": "0.5.2",
+    "autoprefixer": "10.4.2",
+    "postcss": "8.4.6",
+    "tailwindcss": "3.0.18"
+  },
   "devDependencies": {
     "@cypress-audit/lighthouse": "1.3.1",
     "@types/jest": "27.4.0",
@@ -36,11 +42,5 @@
     "turbo": "1.2.16",
     "typescript": "4.7.4"
   },
-  "packageManager": "pnpm@7.1.3",
-  "dependencies": {
-    "@tailwindcss/typography": "0.5.2",
-    "autoprefixer": "10.4.2",
-    "postcss": "8.4.6",
-    "tailwindcss": "3.0.18"
-  }
+  "packageManager": "pnpm@7.1.3"
 }

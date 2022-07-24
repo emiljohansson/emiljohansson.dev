@@ -8,6 +8,9 @@
     "test:watch": "jest --coverage --watchAll",
     "test:ci": "npm run test"
   },
+  "dependencies": {
+    "react": "18.2.0"
+  },
   "devDependencies": {
     "config": "workspace:*",
     "tsconfig": "workspace:*",
