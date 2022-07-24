@@ -35,11 +35,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: npm run build
+      # - name: Build
+      #   run: npm run build
+
+      # - name: Run e2e tests
+      #   run: npm run test:ci
 
       - name: Run e2e tests
-        run: npm run test:ci
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          build: npm run build
+          start: npm start
+          browser: chrome
+          wait-on: 'http://localhost:3000'
+
 
 # jobs:
 #   install:
