@@ -51,13 +51,13 @@ jobs:
       #     browser: chrome
       #     wait-on: 'http://localhost:3000'
 
-      - name: Start server
-        run: |
-          npm start & npx wait-on http://localhost:3000
-
       - name: Run e2e tests
         run: |
-          npx cypress run
+          start-server-and-test start http://localhost:3000 cy:run
+
+      # - name: Run e2e tests
+      #   run: |
+      #     npx cypress run
 
 # jobs:
 #   install:
