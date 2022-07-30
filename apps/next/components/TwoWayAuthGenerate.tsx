@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import Header from './Header'
-import Content from './Content'
-import Section from './Section'
 
 function TwoWayAuthGenerate () {
   const [value, setValue] = useState('')
@@ -41,22 +38,19 @@ function TwoWayAuthGenerate () {
   }
 
   return (
-    <Content>
-      <Header />
-      <Section direction="column" size="medium">
-        <div>{value}</div>
-        <div className="h-0.5 w-96 mr-3">
-          <motion.div
-            className="h-full mx-auto transition-all duration-1000 ease-linear"
-            animate={{
-              backgroundColor: color,
-              width: percentage + '%',
-            }}
-            transition={{ duration: 0.4 }}
-          />
-        </div>
-      </Section>
-    </Content>
+    <>
+      <div>{value}</div>
+      <div className="h-0.5 w-96 mr-3">
+        <motion.div
+          className="h-full mx-auto transition-all duration-1000 ease-linear"
+          animate={{
+            backgroundColor: color,
+            width: percentage + '%',
+          }}
+          transition={{ duration: 0.4 }}
+        />
+      </div>
+    </>
   )
 }
 

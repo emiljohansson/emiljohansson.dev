@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import TwoWayAuthGenerate from '@/components/TwoWayAuthGenerate'
+import Header from '@/components/Header'
+import Content from '@/components/Content'
+import Section from '@/components/Section'
 
 const TwoWayAuthGeneratePage = () => (
   <Layout>
@@ -8,7 +11,12 @@ const TwoWayAuthGeneratePage = () => (
       <title>Generate Two-Factor Authentication</title>
       <meta name="description" content="Generate two-factor authentication" />
     </Head>
-    <TwoWayAuthGenerate />
+    <Content>
+      <Header />
+      <Section direction="column" size="medium">
+        <TwoWayAuthGenerate />
+      </Section>
+    </Content>
   </Layout>
 )
 

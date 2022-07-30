@@ -5,8 +5,8 @@ import { ArrowLeftIcon } from '@radix-ui/react-icons'
 const Header: FunctionComponent<{ children?: ReactNode }> = ({ children }) => {
   return (
     <header className="flex font p-4">
-      <Link href="/" passHref>
-        <a>
+      <Link href="/">
+        <a data-test="back-link">
           <ArrowLeftIcon width={30} height={30} />
           <span className="sr-only">Back</span>
         </a>
