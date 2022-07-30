@@ -12,6 +12,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "start": "turbo run start",
+    "start-next": "turbo run start --filter=next-app",
     "test:old": "turbo run test --scope=next-app",
     "test": "./node_modules/.bin/cypress --version",
     "test:ci:old": "turbo run test:ci",
