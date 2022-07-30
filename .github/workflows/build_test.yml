@@ -34,22 +34,20 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - name: Cache Node Modules
-        id: cache-node-modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}
-
       - name: Cache Cypress Binary
         id: cache-cypress-binary
         uses: actions/cache@v2
         with:
-          path: ~/.cache/Cypress
-          key: binary-${{ hashFiles('pnpm-lock.yaml') }}
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: my-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Install Cypress 📥
+        run: pnpm i cypress
 
       - name: Build
         run: npm run build -- --filter=next-app
