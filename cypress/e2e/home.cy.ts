@@ -26,5 +26,6 @@ context('Landing Page', () => {
 
     // Click a path
     cy.get('[data-test="back-link"]').click()
+      .url().should('include', '/')
   })
 })
