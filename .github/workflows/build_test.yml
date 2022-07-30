@@ -49,24 +49,24 @@ jobs:
       - name: Install Cypress 📥
         run: ./node_modules/cypress/bin/cypress install
 
-      - name: Build
-        run: npm run build -- --filter=next-app
+      # - name: Build
+      #   run: npm run build -- --filter=next-app
 
       # - name: Run e2e tests
       #   run: npm run test:ci
 
-      # - name: Run e2e tests
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     install: false
-      #     build: npm run build
-      #     start: npm start
-      #     browser: chrome
-      #     wait-on: 'http://localhost:3000'
-
       - name: Run e2e tests
-        run: |
-           ./node_modules/.bin/start-server-and-test start-next http://localhost:3000 cy:run
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          build: npm run build
+          start: npm start
+          browser: chrome
+          wait-on: 'http://localhost:3000'
+
+      # - name: Run e2e tests
+      #   run: |
+      #      ./node_modules/.bin/start-server-and-test start-next http://localhost:3000 cy:run
 
       # - name: Run e2e tests
       #   run: |
