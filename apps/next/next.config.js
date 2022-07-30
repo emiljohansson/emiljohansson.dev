@@ -6,7 +6,7 @@ module.exports = withTM({
   swcMinify: true,
   experimental: {
     externalDir: true,
-    runtime: 'edge',
+    runtime: 'experimental-edge',
     serverComponents: true,
   },
 })
