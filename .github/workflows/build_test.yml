@@ -47,7 +47,7 @@ jobs:
         run: pnpm install
 
       - name: Install Cypress 📥
-        run: pnpm i cypress
+        run: pnpm i cypress -w
 
       - name: Build
         run: npm run build -- --filter=next-app
