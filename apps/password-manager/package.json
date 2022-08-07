@@ -11,7 +11,7 @@
   "dependencies": {
     "@emiljohansson/random-string": "1.1.2",
     "@prisma/client": "3.15.1",
-    "@radix-ui/react-label": "0.1.5",
+    "@radix-ui/react-label": "1.0.0",
     "crypto-js": "4.1.1",
     "lib": "workspace:*",
     "next": "12.2.4",
