@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
+import randomString from '@emiljohansson/random-string'
 import Layout from '@/components/Layout'
 import Header from '@/components/Header'
 import Content from '@/components/Content'
@@ -41,7 +42,7 @@ function useEventListener<T extends HTMLElement> (eventName: string, handler: (e
     if (ref.current) {
       ref.current.addEventListener(eventName, handler)
       return () => {
-        ref.current.removeEventListener(eventName, handler)
+        ref.current?.removeEventListener(eventName, handler)
       }
     }
   }, [eventName, handler])
@@ -49,11 +50,32 @@ function useEventListener<T extends HTMLElement> (eventName: string, handler: (e
   return ref
 }
 
-const HooksPage = () => {
+const useRandomString = (initialValue?: string) => {
+  const [value, setValue] = useState(initialValue ?? randomString())
+  console.log(value)
+
+  function generate () {
+    setValue(randomString())
+  }
+
+  return { value, generate }
+}
+
+export async function getServerSideProps () {
+  return {
+    props: {
+      initialRandomValue: randomString(),
+    },
+  }
+}
+
+const HooksPage = ({ initialRandomValue }: { initialRandomValue: string }) => {
+  const { value: random, generate } = useRandomString(initialRandomValue)
   const [value, setValue] = useState('')
   const [debounced] = useDebounceValue(value, 200)
   const [count, increment, decrement, reset, set] = useCounter(0, { min: 0, max: 10 })
-  const ref = useEventListener<HTMLButtonElement>('click', increment)
+  const randomRef = useEventListener<HTMLParagraphElement>('click', generate)
+  const listenerExampleRef = useEventListener<HTMLButtonElement>('click', increment)
 
   return (
     <Layout>
@@ -66,6 +88,10 @@ const HooksPage = () => {
         <Section size="normal">
           <h1 className="sr-only">Hooks</h1>
           <article className='flex flex-col gap-4'>
+            <article>
+              <h2>Random String</h2>
+              <p ref={randomRef}>{random}</p>
+            </article>
             <article>
               <h2>Debounce</h2>
               <input className="input" type="text" value={value} onChange={(e) => setValue(e.target.value)} />
@@ -84,7 +110,7 @@ const HooksPage = () => {
             </article>
             <article>
               <h2>Event Listener</h2>
-              <button className="btn-primary" ref={ref}>Increment {count}</button>
+              <button className="btn-primary" ref={listenerExampleRef}>Increment {count}</button>
             </article>
           </article>
         </Section>
