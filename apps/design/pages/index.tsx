@@ -89,7 +89,7 @@ const Home: NextPage = () => {
         <ThemeToggle />
       </header>
 
-      <main className="prose dark:prose-invert">
+      <main className="flex flex-col gap-4">
         <article>
           <h1>Components / Design System</h1>
           <p>
@@ -106,8 +106,6 @@ const Home: NextPage = () => {
           <h2>Typography</h2>
           <h1>Heading 1</h1>
           <h2>Heading 2</h2>
-          <h3>Heading 3</h3>
-          <h4>Heading 4</h4>
         </article>
         <article>
           <h2>Button</h2>
