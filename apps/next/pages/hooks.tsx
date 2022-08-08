@@ -52,7 +52,6 @@ function useEventListener<T extends HTMLElement> (eventName: string, handler: (e
 
 const useRandomString = (initialValue?: string) => {
   const [value, setValue] = useState(initialValue ?? randomString())
-  console.log(value)
 
   function generate () {
     setValue(randomString())
