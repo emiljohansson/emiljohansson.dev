@@ -81,6 +81,12 @@ const projects = [
   //   text: 'React Server Components',
   //   description: 'React Server Components.',
   // },
+  {
+    href: '/hooks',
+    text: 'Hooks',
+    description: 'Custom React Hooks.',
+    test: 'hooks',
+  },
 ]
 
 // background: #252736;

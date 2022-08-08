@@ -2,28 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter-Light.ttf");
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-}
+@layer base {
+  @font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-Light.ttf");
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter-Regular.ttf");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-Regular.ttf");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter-Bold.ttf");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
+  @font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-Bold.ttf");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+
+  h1 {
+    @apply text-5xl mb-10 font-bold;
+  }
+  h2 {
+    @apply text-3xl mb-6;
+  }
 }
 
 @layer components {
