@@ -1,21 +1,13 @@
 import Head from 'next/head'
-import { getCurrentTime } from 'lib/utils/date'
-import { Time } from 'types/time'
+import useCurrentTime from 'lib/hooks/useCurrentTime'
 import Layout from '@/components/Layout'
-import CurrentTime from '@/components/CurrentTime'
 import Header from '@/components/Header'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 
-export async function getServerSideProps () {
-  return {
-    props: {
-      value: getCurrentTime(),
-    },
-  }
-}
+const CurrentTimePage = () => {
+  const { hours, minutes, meridiem } = useCurrentTime()
 
-const CurrentTimePage = ({ value }: { value: Time }) => {
   return (
     <Layout>
       <Head>
@@ -25,7 +17,14 @@ const CurrentTimePage = ({ value }: { value: Time }) => {
       <Content>
         <Header />
         <Section size="large">
-          <CurrentTime initialValue={value} />
+          <style jsx>{`
+            .meridiem {
+              margin-bottom: -18px;
+            }
+          `}</style>
+
+          {hours}:{minutes}
+          <span className="text-3/6 meridiem">{meridiem}</span>
         </Section>
       </Content>
     </Layout>

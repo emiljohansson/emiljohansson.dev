@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getCurrentTime } from '../utils/date'
 
 function useInterval (callback: () => void, delay: number) {
@@ -23,12 +23,12 @@ function useInterval (callback: () => void, delay: number) {
   }, [delay])
 }
 
-export default function useCurrentTime (callback: (props: {
-  hours: number
-  minutes: string | number
-  meridiem: string
-}) => void) {
+export default function useCurrentTime () {
+  const [time, setTime] = useState(getCurrentTime())
+
   useInterval(() => {
-    callback(getCurrentTime())
+    setTime(getCurrentTime())
   }, 1000)
+
+  return { ...time }
 }
