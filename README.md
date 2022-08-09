@@ -4,6 +4,8 @@
 
 * Repo
   * turborepo
+  * husky
+  * pnpm
 * CI
   * github actions
 * Hosting / CD
@@ -30,10 +32,3 @@
   * Unit testing
     * Jest
 
-## TODO's
-
-- [x] husky
-- [x] pnpm
-- [x] ~preact - too many errors from framer motion~
-- [x] rename branch from `master` to `main`
-- [x] replace playwright with cypress
