@@ -1,6 +1,9 @@
 import { Label } from '@radix-ui/react-label'
+import { createClient } from '@supabase/supabase-js'
 
-const HomePage = () => {
+export default function HomePage ({ users, accounts }) {
+  console.log({ users, accounts })
+
   return (
     <>
       <h1>Password Manager</h1>
@@ -19,4 +22,18 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export async function getStaticProps () {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+    process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+  )
+  const users = await supabase.from('user').select('*').order('id')
+  const accounts = await supabase.from('account').select('*').order('id')
+
+  return {
+    props: {
+      users,
+      accounts,
+    },
+  }
+}
