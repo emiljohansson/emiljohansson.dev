@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
 import { Account } from '../@types/accounts'
 import prisma from '../lib/prisma'
 
@@ -52,17 +53,28 @@ const AccountRow = ({ account, secret, userId }: { account: Account, secret: str
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const accounts = await prisma.pw_account.findMany({
-    where: {
-      userId: {
-        equals: query.userId as string,
-      },
-    },
-  })
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+    process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+  )
+  const accounts = await supabase
+    .from('account')
+    .select('*')
+    .eq('userId', query.userId)
+    .order('id')
+  console.log(accounts)
+
+  // const accounts = await prisma.pw_account.findMany({
+  //   where: {
+  //     userId: {
+  //       equals: query.userId as string,
+  //     },
+  //   },
+  // })
 
   return {
     props: {
-      accounts,
+      accounts: accounts.data,
       secret: query.secret as string,
       userId: query.userId as string,
     },
