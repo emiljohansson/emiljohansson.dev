@@ -1,12 +1,15 @@
 import { Label } from '@radix-ui/react-label'
-import { createClient } from '@supabase/supabase-js'
+import { Auth } from '@supabase/ui'
+import { supabase, useAuth } from 'lib/auth'
 
-export default function HomePage ({ users, accounts }) {
-  console.log({ users, accounts })
+export default function HomePage () {
+  const { user, view, session, signOut } = useAuth()
+  console.log({ user, session, signOut })
 
   return (
     <>
       <h1>Password Manager</h1>
+      {!user && <Auth view={view} supabaseClient={supabase} />}
       <form action="/accounts" method="get">
         <div className="mb-3">
           <Label htmlFor="secret" className="block pr-3">Secret</Label>
@@ -20,20 +23,4 @@ export default function HomePage ({ users, accounts }) {
       </form>
     </>
   )
-}
-
-export async function getStaticProps () {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-    process.env.SUPABASE_SERVICE_ROLE_KEY || '',
-  )
-  const users = await supabase.from('user').select('*').order('id')
-  const accounts = await supabase.from('account').select('*').order('id')
-
-  return {
-    props: {
-      users,
-      accounts,
-    },
-  }
 }

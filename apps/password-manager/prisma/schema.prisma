@@ -4,25 +4,23 @@ generator client {
 }
 
 datasource db {
-  provider             = "mysql"
-  url                  = env("PLANETSCALE_PRISMA_DATABASE_URL")
+  provider             = "postgresql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
-model pw_user {
-  id         Int          @id @default(autoincrement())
-  uid        String       @default(uuid())
-  name       String
-  pw_account pw_account[]
-
-  @@unique([uid])
+model account {
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  userId     String?   @db.Uuid
+  website    String?
+  username   String?
+  password   String?
 }
 
-model pw_account {
-  id       Int     @id @default(autoincrement())
-  user     pw_user @relation(fields: [userId], references: [uid])
-  userId   String
-  website  String
-  username String
-  password String
+model user {
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  uid        String?   @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name       String?
 }
