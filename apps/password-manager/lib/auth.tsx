@@ -1,59 +1,60 @@
-import { createClient } from '@supabase/supabase-js'
+import { Session, User } from '@supabase/supabase-js'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { supabase } from './client'
 
-export const EVENTS = {
-  PASSWORD_RECOVERY: 'PASSWORD_RECOVERY',
-  SIGNED_OUT: 'SIGNED_OUT',
-  USER_UPDATED: 'USER_UPDATED',
+enum Event {
+  PasswordRecovery = 'PASSWORD_RECOVERY',
+  SignedOut = 'SIGNED_OUT',
+  UserUpdated = 'USER_UPDATED',
 }
 
-export const VIEWS = {
-  SIGN_IN: 'sign_in',
-  SIGN_UP: 'sign_up',
-  FORGOTTEN_PASSWORD: 'forgotten_password',
-  MAGIC_LINK: 'magic_link',
-  UPDATE_PASSWORD: 'update_password',
+export type ViewType = 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link' | 'update_password'
+
+interface AuthContext {
+  user: User
+  session: Session
+  view: ViewType
+  signOut: () => void
 }
 
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-)
-
-export const AuthContext = createContext({
-  session: {},
-  user: {},
-  view: {},
+export const AuthContext = createContext<AuthContext>({
+  session: {} as Session,
+  user: {} as User,
+  view: 'sign_in',
   signOut: () => supabase.auth.signOut(),
 })
 
-export const AuthProvider = ({ supabase, ...props }) => {
+export const AuthProvider = ({ ...props }) => {
   const [session, setSession] = useState(null)
   const [user, setUser] = useState(null)
-  const [view, setView] = useState(VIEWS.SIGN_IN)
+  const [view, setView] = useState<ViewType>('sign_in')
 
   useEffect(() => {
     const activeSession = supabase.auth.session()
     setSession(activeSession)
     setUser(activeSession?.user ?? null)
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, currentSession) => {
-        setSession(currentSession)
-        setUser(currentSession?.user ?? null)
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, currentSession) => {
+      setSession(currentSession)
+      setUser(currentSession?.user ?? null)
 
-        switch (event) {
-          case EVENTS.PASSWORD_RECOVERY:
-            setView(VIEWS.UPDATE_PASSWORD)
-            break
-          case EVENTS.SIGNED_OUT:
-          case EVENTS.USER_UPDATED:
-            setView(VIEWS.SIGN_IN)
-            break
-          default:
-        }
-      },
-    )
+      switch (event) {
+        case Event.PasswordRecovery:
+          setView('update_password')
+          break
+        case Event.SignedOut:
+        case Event.UserUpdated:
+          setView('sign_in')
+          break
+      }
+
+      fetch('/api/auth', {
+        method: 'POST',
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+        credentials: 'same-origin',
+        body: JSON.stringify({ event, session: currentSession }),
+      }).then((res) => res.json())
+    })
 
     return () => {
       authListener?.unsubscribe()

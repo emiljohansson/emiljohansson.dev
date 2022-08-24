@@ -2,28 +2,31 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Account } from '../@types/accounts'
-import prisma from '../lib/prisma'
+import { supabase } from '@/lib/client'
+import prisma from '@/lib/prisma'
 
-const AccountsPage: NextPage<{ accounts: Account[], secret: string, userId: string }> = ({ accounts, secret, userId }) => {
+const AccountsPage: NextPage<{ accounts: Account[], secret: string }> = ({ accounts, secret }) => {
   return (
     <>
       <h1>Accounts</h1>
       <Link href={{
         pathname: '/add-account',
-        query: { secret, userId },
+        query: { secret },
       }}>
         <a className="btn-primary">Add account</a>
       </Link>
       <table className='table-auto'>
-        {accounts.map((account, index) => (
-          <AccountRow key={index} account={account} secret={secret} userId={userId} />
-        ))}
+        <tbody>
+          {accounts.map((account, index) => (
+            <AccountRow key={index} account={account} secret={secret} />
+          ))}
+        </tbody>
       </table>
     </>
   )
 }
 
-const AccountRow = ({ account, secret, userId }: { account: Account, secret: string, userId: string }) => {
+const AccountRow = ({ account, secret }: { account: Account, secret: string }) => {
   const [plaintext, setPlaintext] = useState('')
 
   const fetchPlaintext = async () => {
@@ -34,7 +37,6 @@ const AccountRow = ({ account, secret, userId }: { account: Account, secret: str
       },
       body: JSON.stringify({
         secret,
-        userId,
         password: account.password,
       }),
     }).then((res) => res.json())
@@ -53,11 +55,12 @@ const AccountRow = ({ account, secret, userId }: { account: Account, secret: str
 
 export default AccountsPage
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
+  const { user } = await supabase.auth.api.getUserByCookie(req)
   const accounts = await prisma.account.findMany({
     where: {
       userId: {
-        equals: query.userId as string,
+        equals: user.id,
       },
     },
     select: {
@@ -66,13 +69,11 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       username: true,
     },
   })
-  console.log(accounts)
 
   return {
     props: {
       accounts,
       secret: query.secret as string,
-      userId: query.userId as string,
     },
   }
 }
