@@ -1,7 +1,13 @@
-import { supabase } from '@/lib/client'
+import { supabaseClient } from '@supabase/auth-helpers-nextjs'
+import { useEffect } from 'react'
 
 export default function SignOutPage () {
-  supabase.auth.signOut()
+  useEffect(() => {
+    supabaseClient.auth.signOut()
+  }, [])
 
-  return <div>Success</div>
+  return <div>
+    Success
+    <button onClick={() => supabaseClient.auth.signOut()}>Sign out</button>
+  </div>
 }

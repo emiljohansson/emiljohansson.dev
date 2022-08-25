@@ -6,6 +6,11 @@ export default function handler (
   req: NextApiRequest,
   res: NextApiResponse<{ data: string }>,
 ) {
+  console.log({
+    p: req.body.password,
+    s: req.body.secret,
+  })
+
   const bytes = AES.decrypt(req.body.password, req.body.secret)
   try {
     res.status(200).json({

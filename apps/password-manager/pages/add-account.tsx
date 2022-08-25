@@ -4,36 +4,60 @@ import { FormEvent, useState } from 'react'
 import { AES } from 'crypto-js'
 import { Label } from '@radix-ui/react-label'
 import randomString from '@emiljohansson/random-string'
+import { getUser, supabaseClient, withPageAuth } from '@supabase/auth-helpers-nextjs'
 
-const fetcher = async (url: string, data: FormData) => await fetch(url, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json;charset=utf-8',
+export const getServerSideProps: GetServerSideProps = withPageAuth({
+  redirectTo: '/login',
+  async getServerSideProps (ctx) {
+    const { user } = await getUser(ctx)
+    const { query } = ctx
+    const secret = query.secret as string
+    const actualPassword = `${randomString()}-${randomString()}-${randomString()}-${randomString()}`
+    const password = AES.encrypt(actualPassword, secret).toString()
+    return {
+      props: {
+        userId: user?.id,
+        secret,
+        password,
+      },
+    }
   },
-  body: JSON.stringify(Object.fromEntries(data)),
-}).then(async (res) => await res.json())
+})
 
-const addAccountPage: NextPage<{ secret: string, userId: string, password: string }> = ({ secret, userId, password }) => {
+const AddAccountPage: NextPage<{ userId: string, secret: string, password: string }> = ({
+  userId,
+  secret,
+  password,
+}) => {
   const router = useRouter()
   const [error, setError] = useState('')
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    setError('')
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    const res: { success: boolean, error?: string } = await fetcher(event.currentTarget.action, data)
-    console.log(res)
-    if (res.success) {
-      console.log('success')
-      router.push({
-        pathname: '/accounts',
-        query: {
-          secret,
-          userId,
-        },
+    const formData = Object.fromEntries(new FormData(event.currentTarget))
+    console.log(formData)
+
+    const { error } = await supabaseClient
+      .from('account')
+      .insert({
+        userId,
+        website: formData.website,
+        username: formData.username,
+        password: formData.password,
+      }, {
+        returning: 'minimal',
       })
+    if (error) {
+      setError(error.message)
       return
     }
-    setError(res.error)
+    router.push({
+      pathname: '/accounts',
+      query: {
+        secret,
+      },
+    })
   }
 
   return (
@@ -41,14 +65,13 @@ const addAccountPage: NextPage<{ secret: string, userId: string, password: strin
       <h1>Add Account</h1>
       <form action="/api/add-account" method="post" onSubmit={onSubmit}>
         <input className="input" name="secret" value={secret} type="hidden" />
-        <input className="input" name="userId" value={userId} type="hidden" />
         <div className="mb-3">
           <Label htmlFor="website" className="block pr-3">Website</Label>
-          <input id="website" name="website" className="input" />
+          <input id="website" name="website" className="input" required />
         </div>
         <div className="mb-3">
           <Label htmlFor="username" className="block pr-3">Username</Label>
-          <input id="username" name="username" className="input" />
+          <input id="username" name="username" className="input" required />
         </div>
         <div className="mb-3">
           <Label htmlFor="username" className="block pr-3">Password</Label>
@@ -61,18 +84,4 @@ const addAccountPage: NextPage<{ secret: string, userId: string, password: strin
   )
 }
 
-export default addAccountPage
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const secret = query.secret as string
-  const userId = query.userId as string
-  const actualPassword = `${randomString()}-${randomString()}-${randomString()}-${randomString()}`
-  const password = AES.encrypt(actualPassword, secret).toString()
-  return {
-    props: {
-      secret,
-      userId,
-      password,
-    },
-  }
-}
+export default AddAccountPage
