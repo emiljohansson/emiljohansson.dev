@@ -1,6 +1,5 @@
 import { Auth } from '@supabase/ui'
 import { getUser, supabaseClient, withPageAuth } from '@supabase/auth-helpers-nextjs'
-import { useEffect } from 'react'
 import { useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 
@@ -13,7 +12,7 @@ export const getServerSideProps = withPageAuth({
     if (user) {
       return {
         redirect: {
-          destination: '/profile',
+          destination: '/',
           permanent: false,
         },
       }
@@ -30,7 +29,7 @@ export default function LoginPage ({ errorMessage }: { errorMessage?: string}) {
   const router = useRouter()
   const { user } = useUser()
 
-  if (user) router.push('/profile')
+  if (user) router.push('/')
 
   return (
     <>

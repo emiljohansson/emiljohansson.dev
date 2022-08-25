@@ -81,8 +81,6 @@ const AddAccountPage: NextPage<Props> = ({
     setError('')
     event.preventDefault()
     const formData = Object.fromEntries(new FormData(event.currentTarget))
-    console.log(formData)
-
     const { error } = await supabaseClient
       .from('account')
       .insert({
