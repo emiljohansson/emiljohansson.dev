@@ -4,14 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "PORT=3003 next dev",
-    "build": "npx prisma generate && next build",
+    "build": "next build",
     "start": "PORT=3003 next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@emiljohansson/random-string": "1.1.2",
-    "@prisma/client": "3.15.1",
+    "@radix-ui/react-icons": "1.1.1",
     "@radix-ui/react-label": "1.0.0",
+    "@supabase/auth-helpers-nextjs": "0.2.7",
+    "@supabase/auth-helpers-react": "0.2.3",
+    "@supabase/supabase-js": "1.35.6",
+    "@supabase/ui": "0.36.5",
     "crypto-js": "4.1.1",
     "lib": "workspace:*",
     "next": "12.2.4",

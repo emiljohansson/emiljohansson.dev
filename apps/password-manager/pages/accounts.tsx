@@ -1,27 +1,62 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
+import { getUser, supabaseServerClient, withPageAuth } from '@supabase/auth-helpers-nextjs'
 import { Account } from '../@types/accounts'
-import prisma from '../lib/prisma'
 
-const Home: NextPage<{ accounts: Account[], secret: string, userId: string }> = ({ accounts, secret, userId }) => {
+export const getServerSideProps: GetServerSideProps = withPageAuth({
+  redirectTo: '/login',
+  async getServerSideProps (ctx) {
+    // Access the user object
+    const { user } = await getUser(ctx)
+    // Run queries with RLS on the server
+    const { data: accounts } = await supabaseServerClient(ctx)
+      .from<Account>('account')
+      .select('website, username, password')
+      .eq('userId', user.id)
+
+    return {
+      props: {
+        accounts,
+        secret: ctx.query.secret,
+      },
+    }
+  },
+})
+
+const AccountsPage: NextPage<{ accounts: Account[], secret: string }> = ({ accounts, secret }) => {
   return (
     <>
       <h1>Accounts</h1>
       <Link href={{
         pathname: '/add-account',
-        query: { secret, userId },
+        query: { secret },
       }}>
         <a className="btn-primary">Add account</a>
       </Link>
-      {accounts.map((account, index) => (
-        <AccountRow key={index} account={account} secret={secret} userId={userId} />
-      ))}
+      <table className='table-auto'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Website</th>
+            <th>Username</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          {accounts.map((account, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <AccountRow account={account} secret={secret} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   )
 }
 
-const AccountRow = ({ account, secret, userId }: { account: Account, secret: string, userId: string }) => {
+const AccountRow = ({ account, secret }: { account: Account, secret: string }) => {
   const [plaintext, setPlaintext] = useState('')
 
   const fetchPlaintext = async () => {
@@ -32,7 +67,6 @@ const AccountRow = ({ account, secret, userId }: { account: Account, secret: str
       },
       body: JSON.stringify({
         secret,
-        userId,
         password: account.password,
       }),
     }).then((res) => res.json())
@@ -40,31 +74,13 @@ const AccountRow = ({ account, secret, userId }: { account: Account, secret: str
   }
 
   return (
-    <div>
-      <p>{account.website}</p>
-      <p>{account.username}</p>
-      <p onClick={fetchPlaintext}>{account.password}</p>
-      <p>{plaintext}</p>
-    </div>
+    <>
+      <td>{account.website}</td>
+      <td>{account.username}</td>
+      <td onClick={fetchPlaintext}>{account.password.substring(0, 15)}...</td>
+      <td>{plaintext}</td>
+    </>
   )
 }
 
-export default Home
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const accounts = await prisma.pw_account.findMany({
-    where: {
-      userId: {
-        equals: query.userId as string,
-      },
-    },
-  })
-
-  return {
-    props: {
-      accounts,
-      secret: query.secret as string,
-      userId: query.userId as string,
-    },
-  }
-}
+export default AccountsPage

@@ -31,5 +31,9 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/no-explicit-any': 'error',
+    'func-call-spacing': 'off',
+    '@typescript-eslint/func-call-spacing': 'error',
+    indent: 'off',
+    '@typescript-eslint/indent': ['error', 2],
   },
 }
