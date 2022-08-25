@@ -11,8 +11,9 @@
 * Hosting / CD
   * vercel
 * Database
-  * PlanetScale
-  * Prisma
+  * Supabase
+  * ~~PlanetScale~~
+  * ~~Prisma~~
 * Frameworks
   * SSR/SSG/CSR
     * Next.js
