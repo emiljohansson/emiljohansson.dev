@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emiljohansson/random-string": "1.1.2",
+    "@radix-ui/react-icons": "1.1.1",
     "@radix-ui/react-label": "1.0.0",
     "@supabase/auth-helpers-nextjs": "0.2.7",
     "@supabase/auth-helpers-react": "0.2.3",

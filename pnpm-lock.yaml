@@ -138,7 +138,7 @@ importers:
 
   apps/password-manager:
     specifiers:
-      '@emiljohansson/random-string': 1.1.2
+      '@radix-ui/react-icons': 1.1.1
       '@radix-ui/react-label': 1.0.0
       '@supabase/auth-helpers-nextjs': 0.2.7
       '@supabase/auth-helpers-react': 0.2.3
@@ -156,7 +156,7 @@ importers:
       shared: workspace:*
       tsconfig: workspace:*
     dependencies:
-      '@emiljohansson/random-string': 1.1.2
+      '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@radix-ui/react-label': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@supabase/auth-helpers-nextjs': 0.2.7
       '@supabase/auth-helpers-react': 0.2.3
