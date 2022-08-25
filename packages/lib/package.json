@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint ./{src,tests}/*.ts",
+    "lint": "eslint ./{hooks,tests,utils}/*.ts",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
     "test:ci": "npm run test"

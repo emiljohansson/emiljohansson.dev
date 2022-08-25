@@ -579,7 +579,7 @@ const MineSweaper = () => {
             <BoardContext.Provider value={selectedDifficulty.board}>
               <Board difficulty={selectedDifficulty.level} />
             </BoardContext.Provider>
-            )
+          )
       }
     </>
   )
