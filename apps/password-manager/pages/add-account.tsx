@@ -13,7 +13,7 @@ interface Props {
   initPassword: string
 }
 
-// const symbols = '&*#~}$>(<)@^|{%!'
+// const symbols = ',._?-:]&*#~}$>(<)@^|{%!+='
 const numbers = '0123456789'
 const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
