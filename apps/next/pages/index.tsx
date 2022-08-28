@@ -87,6 +87,12 @@ const projects = [
     description: 'Custom React Hooks.',
     test: 'hooks',
   },
+  {
+    href: '/password-generator',
+    text: 'Password Generator',
+    description: 'Generate a password that is difficult to guess.',
+    test: 'password-generator',
+  },
 ]
 
 // background: #252736;
