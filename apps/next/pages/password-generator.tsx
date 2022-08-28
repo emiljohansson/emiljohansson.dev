@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { ChangeEvent, PropsWithChildren, useEffect, useState } from 'react'
+import { ChangeEvent, PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
+import useSWR from 'swr'
 import Content from '@/components/Content'
 import Header from '@/components/Header'
 import Layout from '@/components/Layout'
@@ -35,13 +36,6 @@ const randomString = (props?: {
     symbols: false,
     ...props,
   }
-  console.log({
-    length,
-    letters,
-    numeric,
-    symbols,
-  })
-
   const pattern = [
     letters && lettersPattern,
     numeric && numericPattern,
@@ -57,8 +51,6 @@ const randomString = (props?: {
 
   return value
 }
-
-const randomWords = async (numberOfWords = 1) => await (await fetch(`/api/random-words?words=${numberOfWords}`)).json()
 
 const Trigger = ({ value, children }: PropsWithChildren<{ value: string }>) => (
   <Tabs.Trigger
@@ -85,6 +77,11 @@ const Trigger = ({ value, children }: PropsWithChildren<{ value: string }>) => (
   </Tabs.Trigger>
 )
 
+const fetchWords = async (url: string) => {
+  const words = await (await fetch(url)).json() as string[]
+  return words.join('-')
+}
+
 const PasswordGeneratorPage: NextPage = () => {
   const [selection, setSelection] = useState<Selection>({
     length: 10,
@@ -93,12 +90,15 @@ const PasswordGeneratorPage: NextPage = () => {
   })
   const [randomPassword, setRandomPassword] = useState(randomString(selection))
   const [numberOfWords, setNumberOfWords] = useState(1)
-  const [memorablePassword, setMemorablePassword] = useState('')
+  const { data: memorablePassword } = useSWR(`/api/random-words?words=${numberOfWords}`, fetchWords)
 
   const onLengthChanged = (event: ChangeEvent<HTMLInputElement>) => {
     let value = parseInt(event.currentTarget.value, 10)
     if (value < 1) {
       value = 1
+    }
+    if (value > 100) {
+      value = 100
     }
 
     updateSelection({
@@ -133,24 +133,15 @@ const PasswordGeneratorPage: NextPage = () => {
     if (value < 1) {
       value = 1
     }
+    if (value > 15) {
+      value = 15
+    }
 
     setNumberOfWords(isNaN(value)
       ? 1
       : value,
     )
-    setTimeout(() => {
-      updateMemorablePassword()
-    })
   }
-
-  async function updateMemorablePassword () {
-    const words = await randomWords(numberOfWords)
-    setMemorablePassword(words.join('-'))
-  }
-
-  useEffect(() => {
-    updateMemorablePassword()
-  }, [])
 
   return (
     <Layout>
