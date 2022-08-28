@@ -83,26 +83,30 @@ const fetchWords = async (url: string) => {
 }
 
 const PasswordGeneratorPage: NextPage = () => {
-  const [selection, setSelection] = useState<Selection>({
-    length: 10,
+  const [randomSelection, setRandomSelection] = useState<Selection>({
+    length: 20,
     numeric: false,
     symbols: false,
   })
-  const [randomPassword, setRandomPassword] = useState(randomString(selection))
-  const [numberOfWords, setNumberOfWords] = useState(1)
+  const [randomPassword, setRandomPassword] = useState(randomString(randomSelection))
+  const [numberOfWords, setNumberOfWords] = useState(4)
   const { data: memorablePassword } = useSWR(`/api/random-words?words=${numberOfWords}`, fetchWords)
+  const [pinSelection, setPinSelection] = useState({
+    length: 6,
+    letters: false,
+    numeric: true,
+    symbols: false,
+  })
+  const [pin, setPin] = useState(randomString(pinSelection))
 
   const onLengthChanged = (event: ChangeEvent<HTMLInputElement>) => {
     let value = parseInt(event.currentTarget.value, 10)
-    if (value < 1) {
-      value = 1
-    }
-    if (value > 100) {
-      value = 100
-    }
+    if (value < 8) value = 8
+    if (value > 100) value = 100
+    if (value === randomSelection.length) return
 
-    updateSelection({
-      ...selection,
+    updateRandomSelection({
+      ...randomSelection,
       length: isNaN(value)
         ? 1
         : value,
@@ -110,28 +114,28 @@ const PasswordGeneratorPage: NextPage = () => {
   }
 
   const onNumericToggled = (event: ChangeEvent<HTMLInputElement>) => {
-    updateSelection({
-      ...selection,
+    updateRandomSelection({
+      ...randomSelection,
       numeric: event.currentTarget.checked,
     })
   }
 
   const onSymbolsToggled = (event: ChangeEvent<HTMLInputElement>) => {
-    updateSelection({
-      ...selection,
+    updateRandomSelection({
+      ...randomSelection,
       symbols: event.currentTarget.checked,
     })
   }
 
-  const updateSelection = (newSelection: Selection) => {
-    setSelection(newSelection)
+  const updateRandomSelection = (newSelection: Selection) => {
+    setRandomSelection(newSelection)
     setRandomPassword(randomString(newSelection))
   }
 
   const onNumberOfWordsChanged = (event: ChangeEvent<HTMLInputElement>) => {
     let value = parseInt(event.currentTarget.value, 10)
-    if (value < 1) {
-      value = 1
+    if (value < 3) {
+      value = 3
     }
     if (value > 15) {
       value = 15
@@ -141,6 +145,22 @@ const PasswordGeneratorPage: NextPage = () => {
       ? 1
       : value,
     )
+  }
+
+  const onPinLengthChanged = (event: ChangeEvent<HTMLInputElement>) => {
+    let value = parseInt(event.currentTarget.value, 10)
+    if (value < 3) value = 3
+    if (value > 12) value = 12
+    if (value === pinSelection.length) return
+
+    const newSelection = {
+      ...pinSelection,
+      length: isNaN(value)
+        ? 1
+        : value,
+    }
+    setPinSelection(newSelection)
+    setPin(randomString(newSelection))
   }
 
   return (
@@ -165,24 +185,33 @@ const PasswordGeneratorPage: NextPage = () => {
                 <input className="w-full" type="text" value={randomPassword} readOnly />
                 <fieldset>
                   <label>
-                    <input type="number" value={selection.length} onChange={onLengthChanged} />
+                    <input type="number" value={randomSelection.length} onChange={onLengthChanged} />
                   </label>
                   <label>
-                    <input type="checkbox" checked={selection.numeric} onChange={onNumericToggled} /> Number
+                    <input type="checkbox" checked={randomSelection.numeric} onChange={onNumericToggled} /> Number
                   </label>
                   <label>
-                    <input type="checkbox" checked={selection.symbols} onChange={onSymbolsToggled} /> Symbols
+                    <input type="checkbox" checked={randomSelection.symbols} onChange={onSymbolsToggled} /> Symbols
                   </label>
                 </fieldset>
               </Tabs.Content>
               <Tabs.Content value="memorable-tab">
                 <h2>Memorable password</h2>
                 <input className="w-full" type="text" value={memorablePassword} readOnly />
-                <label>
-                  <input type="number" value={numberOfWords} onChange={onNumberOfWordsChanged} />
-                </label>
+                <fieldset>
+                  <label>
+                    <input type="number" value={numberOfWords} onChange={onNumberOfWordsChanged} />
+                  </label>
+                </fieldset>
               </Tabs.Content>
               <Tabs.Content value="pin-tab">
+                <h2>PIN</h2>
+                <input className="w-full" type="text" value={pin} readOnly />
+                <fieldset>
+                  <label>
+                    <input type="number" value={pinSelection.length} onChange={onPinLengthChanged} />
+                  </label>
+                </fieldset>
               </Tabs.Content>
             </Tabs.Root>
           </div>
