@@ -35,11 +35,6 @@
   }
 }
 
-/* @layer utilities {
-  [data-state="active"]: {
-  }
-} */
-
 @layer components {
   .btn-primary,
   .btn-secondary,
