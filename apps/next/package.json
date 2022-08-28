@@ -29,6 +29,7 @@
     "@radix-ui/react-select": "1.0.0",
     "@radix-ui/react-tabs": "1.0.0",
     "framer-motion": "6.2.3",
+    "just-range": "4.1.1",
     "lib": "workspace:*",
     "next": "12.2.4",
     "react": "18.2.0",
@@ -36,6 +37,7 @@
     "shared": "workspace:*"
   },
   "devDependencies": {
+    "@faker-js/faker": "7.4.0",
     "config": "workspace:*",
     "eslint": "8.15.0",
     "eslint-plugin-cypress": "2.12.1",

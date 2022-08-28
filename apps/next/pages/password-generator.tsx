@@ -1,11 +1,12 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { ChangeEvent, PropsWithChildren, useState } from 'react'
+import { ChangeEvent, PropsWithChildren, useEffect, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import Content from '@/components/Content'
 import Header from '@/components/Header'
 import Layout from '@/components/Layout'
 import Section from '@/components/Section'
+
 interface Selection {
   length: number
   numeric: boolean
@@ -46,16 +47,18 @@ const randomString = (props?: {
     numeric && numericPattern,
     symbols && symbolsPattern,
   ].filter(v => !!v).join('')
-  console.log(pattern)
-
   let value = ''
   let index = length
+
   while (index--) {
     const charIndex = Math.floor(Math.random() * pattern.length)
     value += pattern[charIndex]
   }
+
   return value
 }
+
+const randomWords = async (numberOfWords = 1) => await (await fetch(`/api/random-words?words=${numberOfWords}`)).json()
 
 const Trigger = ({ value, children }: PropsWithChildren<{ value: string }>) => (
   <Tabs.Trigger
@@ -78,8 +81,6 @@ const Trigger = ({ value, children }: PropsWithChildren<{ value: string }>) => (
       focus:shadow-sm
     "
   >
-    {/* '&:focus': { position: 'relative', boxShadow: `0 0 0 2px black` }, */}
-
     { children }
   </Tabs.Trigger>
 )
@@ -91,14 +92,19 @@ const PasswordGeneratorPage: NextPage = () => {
     symbols: false,
   })
   const [randomPassword, setRandomPassword] = useState(randomString(selection))
+  const [numberOfWords, setNumberOfWords] = useState(1)
+  const [memorablePassword, setMemorablePassword] = useState('')
 
   const onLengthChanged = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(event.currentTarget.value, 10)
+    let value = parseInt(event.currentTarget.value, 10)
+    if (value < 1) {
+      value = 1
+    }
 
     updateSelection({
       ...selection,
       length: isNaN(value)
-        ? 0
+        ? 1
         : value,
     })
   }
@@ -121,6 +127,30 @@ const PasswordGeneratorPage: NextPage = () => {
     setSelection(newSelection)
     setRandomPassword(randomString(newSelection))
   }
+
+  const onNumberOfWordsChanged = (event: ChangeEvent<HTMLInputElement>) => {
+    let value = parseInt(event.currentTarget.value, 10)
+    if (value < 1) {
+      value = 1
+    }
+
+    setNumberOfWords(isNaN(value)
+      ? 1
+      : value,
+    )
+    setTimeout(() => {
+      updateMemorablePassword()
+    })
+  }
+
+  async function updateMemorablePassword () {
+    const words = await randomWords(numberOfWords)
+    setMemorablePassword(words.join('-'))
+  }
+
+  useEffect(() => {
+    updateMemorablePassword()
+  }, [])
 
   return (
     <Layout>
@@ -155,6 +185,11 @@ const PasswordGeneratorPage: NextPage = () => {
                 </fieldset>
               </Tabs.Content>
               <Tabs.Content value="memorable-tab">
+                <h2>Memorable password</h2>
+                <input className="w-full" type="text" value={memorablePassword} readOnly />
+                <label>
+                  <input type="number" value={numberOfWords} onChange={onNumberOfWordsChanged} />
+                </label>
               </Tabs.Content>
               <Tabs.Content value="pin-tab">
               </Tabs.Content>

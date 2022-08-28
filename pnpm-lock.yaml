@@ -100,6 +100,7 @@ importers:
   apps/next:
     specifiers:
       '@emiljohansson/random-string': 1.1.2
+      '@faker-js/faker': 7.4.0
       '@radix-ui/react-accessible-icon': 1.0.0
       '@radix-ui/react-icons': 1.1.1
       '@radix-ui/react-label': 1.0.0
@@ -110,6 +111,7 @@ importers:
       eslint: 8.15.0
       eslint-plugin-cypress: 2.12.1
       framer-motion: 6.2.3
+      just-range: 4.1.1
       lib: workspace:*
       next: 12.2.4
       next-transpile-modules: 9.0.0
@@ -126,12 +128,14 @@ importers:
       '@radix-ui/react-select': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-tabs': 1.0.0_biqbaboplfbrettd7655fr4n2y
       framer-motion: 6.2.3_biqbaboplfbrettd7655fr4n2y
+      just-range: 4.1.1
       lib: link:../../packages/lib
       next: 12.2.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       shared: link:../../packages/shared
     devDependencies:
+      '@faker-js/faker': 7.4.0
       config: link:../../packages/config
       eslint: 8.15.0
       eslint-plugin-cypress: 2.12.1_eslint@8.15.0
@@ -1706,6 +1710,11 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@faker-js/faker/7.4.0:
+    resolution: {integrity: sha512-xDd3Tvkt2jgkx1LkuwwxpNBy/Oe+LkZBTwkgEFTiWpVSZgQ5sc/LenbHKRHbFl0dq/KFeeq/szyyPtpJRKY0fg==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: true
 
   /@gar/promisify/1.1.3:
@@ -8925,6 +8934,10 @@ packages:
       array-includes: 3.1.5
       object.assign: 4.1.2
     dev: true
+
+  /just-range/4.1.1:
+    resolution: {integrity: sha512-m8q77bxvcTuy/5YeVBgyY9K8+TZc/YRbYtH0ryAOu4F+YCIeS+Bi2vg9ibBw6Q/RZMrJKrTsKi3Ge3pZR9VuGQ==}
+    dev: false
 
   /keyv/4.3.2:
     resolution: {integrity: sha512-kn8WmodVBe12lmHpA6W8OY7SNh6wVR+Z+wZESF4iF5FCazaVXGWOtnbnvX0tMQ1bO+/TmOD9LziuYMvrIIs0xw==}
