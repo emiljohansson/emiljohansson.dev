@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import {
   Root,
@@ -14,7 +13,7 @@ import type { SelectProps } from '@radix-ui/react-select'
 
 const scrollButtonClassNames = 'flex items-center justify-center h-7 bg-white'
 
-const Select: FunctionComponent<SelectProps> = ({ children, defaultValue, onValueChange }) => (
+const Select = ({ children, defaultValue, onValueChange }: SelectProps) => (
   <Root
     defaultValue={defaultValue}
     onValueChange={onValueChange}

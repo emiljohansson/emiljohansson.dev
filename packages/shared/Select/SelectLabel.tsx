@@ -1,7 +1,7 @@
-import type { FunctionComponent, ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 import { Label } from '@radix-ui/react-select'
 
-const SelectLabel: FunctionComponent<{ children: ReactNode }> = ({ children }) => (
+const SelectLabel = ({ children }: PropsWithChildren) => (
   <Label className="select-label">{children}</Label>
 )
 
