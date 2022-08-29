@@ -1,4 +1,4 @@
-import type { FunctionComponent, ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 import {
   Item,
   ItemText,
@@ -6,15 +6,14 @@ import {
 } from '@radix-ui/react-select'
 import { CheckIcon } from '@radix-ui/react-icons'
 
-const SelectItem: FunctionComponent<{
-  children: ReactNode
-  value: string | number
-  disabled?: boolean
-}> = ({
+const SelectItem = ({
   children,
   value,
   disabled,
-}) => (
+}: PropsWithChildren<{
+  value: string | number
+  disabled?: boolean
+}>) => (
   <Item
     value={value.toString()}
     disabled={disabled}

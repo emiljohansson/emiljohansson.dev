@@ -3,13 +3,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { CheckIcon, BorderSolidIcon } from '@radix-ui/react-icons'
+import { BorderSolidIcon } from '@radix-ui/react-icons'
 import { Label } from '@radix-ui/react-label'
 import { motion } from 'framer-motion'
 import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
 import { Progress } from 'shared/Progress'
 import { ThemeToggle } from 'shared/ThemeToggle'
+import { Slider } from 'shared/Slider'
+import { CheckboxWithLabel } from 'shared/CheckboxWithLabel'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
@@ -89,7 +90,7 @@ const Home: NextPage = () => {
         <ThemeToggle />
       </header>
 
-      <main className="flex flex-col gap-4">
+      <main className="flex flex-col gap-4 pb-52">
         <article>
           <h1>Components / Design System</h1>
           <p>
@@ -137,19 +138,9 @@ const Home: NextPage = () => {
         </article>
         <article>
           <h2>Checkbox</h2>
-          <div className="flex items-center">
-            <CheckboxPrimitive.Root
-              className="bg-white cursor-default w-6 h-6 rounded flex items-center justify-center shadow hover:bg-gray-50"
-              defaultChecked id="c1"
-            >
-              <CheckboxPrimitive.Indicator>
-                <CheckIcon className="text-primary" />
-              </CheckboxPrimitive.Indicator>
-            </CheckboxPrimitive.Root>
-            <label className="pl-3" htmlFor="c1">
-              Accept terms and conditions.
-            </label>
-          </div>
+          <CheckboxWithLabel
+            labelText="Accept terms and conditions."
+          />
         </article>
         <article>
           <h2>Radio Group</h2>
@@ -262,6 +253,14 @@ const Home: NextPage = () => {
         <article>
           <h2>Animated Menu</h2>
           <Toggle />
+        </article>
+        <article>
+          <h2>Slider</h2>
+          <Slider
+            defaultValue={50}
+            max={100}
+            label="Volume"
+          />
         </article>
       </main>
     </>

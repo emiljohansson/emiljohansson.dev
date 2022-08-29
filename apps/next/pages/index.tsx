@@ -149,7 +149,7 @@ const HomePage = () => {
                 flex flex-col link shadow-md rounded-2xl p-4 m-3 relative
                 ease-in-out duration-100
                 hover:no-underline hover:-translate-y-1 hover:shadow-lg
-                dark:bg-black-900 dark:shadow-lg-white
+                dark:hover:bg-black-900 dark:shadow-lg-white
               "
               target={external ? '_blank' : undefined}
               data-test={test}
