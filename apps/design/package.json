@@ -8,7 +8,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@radix-ui/react-checkbox": "latest",
     "@radix-ui/react-icons": "1.1.1",
     "@radix-ui/react-label": "1.0.0",
     "@radix-ui/react-progress": "1.0.0",

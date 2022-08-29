@@ -1,9 +1,10 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { ChangeEvent, PropsWithChildren, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import useSWR from 'swr'
 import { Slider } from 'shared/Slider'
+import { CheckboxWithLabel } from 'shared/CheckboxWithLabel'
 import Content from '@/components/Content'
 import Header from '@/components/Header'
 import Layout from '@/components/Layout'
@@ -111,17 +112,17 @@ const PasswordGeneratorPage: NextPage = () => {
     })
   }
 
-  const onNumericToggled = (event: ChangeEvent<HTMLInputElement>) => {
+  const onNumericToggled = (checked: boolean) => {
     updateRandomSelection({
       ...randomSelection,
-      numeric: event.currentTarget.checked,
+      numeric: checked,
     })
   }
 
-  const onSymbolsToggled = (event: ChangeEvent<HTMLInputElement>) => {
+  const onSymbolsToggled = (checked: boolean) => {
     updateRandomSelection({
       ...randomSelection,
-      symbols: event.currentTarget.checked,
+      symbols: checked,
     })
   }
 
@@ -181,16 +182,18 @@ const PasswordGeneratorPage: NextPage = () => {
                   />
                   <span className="ml-4">{randomSelection.length}</span>
                 </div>
-                {/* <label>
-                    <input type="number" value={randomSelection.length} onChange={onLengthChanged} />
-                  </label> */}
-                <fieldset>
-                  <label>
-                    <input type="checkbox" checked={randomSelection.numeric} onChange={onNumericToggled} /> Number
-                  </label>
-                  <label>
-                    <input type="checkbox" checked={randomSelection.symbols} onChange={onSymbolsToggled} /> Symbols
-                  </label>
+                <fieldset className="flex">
+                  <CheckboxWithLabel
+                    labelText="Number"
+                    checked={randomSelection.numeric}
+                    onCheckedChange={onNumericToggled}
+                  />
+                  <div className="mx-2"></div>
+                  <CheckboxWithLabel
+                    labelText="Symbols"
+                    checked={randomSelection.symbols}
+                    onCheckedChange={onSymbolsToggled}
+                  />
                 </fieldset>
               </Tabs.Content>
               <Tabs.Content value="memorable-tab">

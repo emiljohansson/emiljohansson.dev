@@ -64,7 +64,6 @@ importers:
 
   apps/design:
     specifiers:
-      '@radix-ui/react-checkbox': latest
       '@radix-ui/react-icons': 1.1.1
       '@radix-ui/react-label': 1.0.0
       '@radix-ui/react-progress': 1.0.0
@@ -79,7 +78,6 @@ importers:
       shared: workspace:*
       tsconfig: workspace:*
     dependencies:
-      '@radix-ui/react-checkbox': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@radix-ui/react-label': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-progress': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -245,6 +243,7 @@ importers:
 
   packages/shared:
     specifiers:
+      '@radix-ui/react-checkbox': 1.0.0
       '@radix-ui/react-icons': 1.1.1
       '@radix-ui/react-progress': 1.0.0
       '@radix-ui/react-select': 1.0.0
@@ -253,6 +252,7 @@ importers:
       lib: workspace:*
       react: 18.2.0
     dependencies:
+      '@radix-ui/react-checkbox': 1.0.0_react@18.2.0
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@radix-ui/react-progress': 1.0.0_react@18.2.0
       '@radix-ui/react-select': 1.0.0_react@18.2.0
@@ -2170,7 +2170,7 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@radix-ui/react-checkbox/1.0.0_biqbaboplfbrettd7655fr4n2y:
+  /@radix-ui/react-checkbox/1.0.0_react@18.2.0:
     resolution: {integrity: sha512-MoboEfb4O6Akggz7UwZDKp4p9YR8+FIAmIa7UEAiAxfbTArIgSJqJLaEpdF+MPR4Uk/lSGNW727uvugef/UqWQ==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
@@ -2180,14 +2180,13 @@ packages:
       '@radix-ui/primitive': 1.0.0
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
       '@radix-ui/react-context': 1.0.0_react@18.2.0
-      '@radix-ui/react-label': 1.0.0_biqbaboplfbrettd7655fr4n2y
-      '@radix-ui/react-presence': 1.0.0_biqbaboplfbrettd7655fr4n2y
-      '@radix-ui/react-primitive': 1.0.0_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-label': 1.0.0_react@18.2.0
+      '@radix-ui/react-presence': 1.0.0_react@18.2.0
+      '@radix-ui/react-primitive': 1.0.0_react@18.2.0
       '@radix-ui/react-use-controllable-state': 1.0.0_react@18.2.0
       '@radix-ui/react-use-previous': 1.0.0_react@18.2.0
       '@radix-ui/react-use-size': 1.0.0_react@18.2.0
       react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@radix-ui/react-collection/1.0.0_biqbaboplfbrettd7655fr4n2y:
@@ -2394,6 +2393,18 @@ packages:
       '@radix-ui/react-use-layout-effect': 1.0.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-presence/1.0.0_react@18.2.0:
+    resolution: {integrity: sha512-A+6XEvN01NfVWiKu38ybawfHsBjWum42MRPnEuqPsBZ4eV7e/7K321B5VgYMPv3Xx5An6o1/l9ZuDBgmcmWK3w==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.18.9
+      '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
+      '@radix-ui/react-use-layout-effect': 1.0.0_react@18.2.0
+      react: 18.2.0
     dev: false
 
   /@radix-ui/react-primitive/1.0.0_biqbaboplfbrettd7655fr4n2y:

@@ -6,6 +6,7 @@
     "lint": "eslint ./**/*.tsx"
   },
   "dependencies": {
+    "@radix-ui/react-checkbox": "1.0.0",
     "@radix-ui/react-icons": "1.1.1",
     "@radix-ui/react-progress": "1.0.0",
     "@radix-ui/react-select": "1.0.0",
