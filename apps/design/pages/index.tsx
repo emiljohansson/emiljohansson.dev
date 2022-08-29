@@ -6,6 +6,7 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { CheckIcon, BorderSolidIcon } from '@radix-ui/react-icons'
 import { Label } from '@radix-ui/react-label'
+import * as SliderPrimitive from '@radix-ui/react-slider'
 import { motion } from 'framer-motion'
 import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
 import { Progress } from 'shared/Progress'
@@ -89,7 +90,7 @@ const Home: NextPage = () => {
         <ThemeToggle />
       </header>
 
-      <main className="flex flex-col gap-4">
+      <main className="flex flex-col gap-4 pb-52">
         <article>
           <h1>Components / Design System</h1>
           <p>
@@ -262,6 +263,28 @@ const Home: NextPage = () => {
         <article>
           <h2>Animated Menu</h2>
           <Toggle />
+        </article>
+        <article>
+          <h2>Slider</h2>
+          <SliderPrimitive.Root
+            className="relative flex items-center select-none touch-none w-52 h-5"
+            defaultValue={[50]}
+            max={100}
+            step={1}
+            aria-label="Volume"
+          >
+            <SliderPrimitive.Track
+              className="bg-gray-600 relative flex-grow rounded-full h-[3px]"
+            >
+              <SliderPrimitive.Range
+                className="absolute bg-primary rounded-full h-full"
+              />
+            </SliderPrimitive.Track>
+            <SliderPrimitive.Thumb
+              className="block w-5 h-5 bg-primary shadow-md rounded-full hover:bg-primary-dark"
+            />
+          </SliderPrimitive.Root>
+
         </article>
       </main>
     </>

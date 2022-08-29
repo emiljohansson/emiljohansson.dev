@@ -35,5 +35,6 @@ module.exports = {
     '@typescript-eslint/func-call-spacing': 'error',
     indent: 'off',
     '@typescript-eslint/indent': ['error', 2],
+    'jsx-quotes': ['error', 'prefer-double'],
   },
 }

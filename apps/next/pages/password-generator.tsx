@@ -182,7 +182,7 @@ const PasswordGeneratorPage: NextPage = () => {
               </Tabs.List>
               <Tabs.Content value="random-tab">
                 <h2>Random password</h2>
-                <input className="w-full" type="text" value={randomPassword} readOnly />
+                <input className="input w-full" type="text" value={randomPassword} readOnly />
                 <fieldset>
                   <label>
                     <input type="number" value={randomSelection.length} onChange={onLengthChanged} />
