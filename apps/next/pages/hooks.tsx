@@ -86,7 +86,7 @@ const HooksPage = ({ initialRandomValue }: { initialRandomValue: string }) => {
         <Header />
         <Section size="normal">
           <h1 className="sr-only">Hooks</h1>
-          <article className='flex flex-col gap-4'>
+          <article className="flex flex-col gap-4">
             <article>
               <h2>Random String</h2>
               <p ref={randomRef}>{random}</p>
@@ -100,7 +100,7 @@ const HooksPage = ({ initialRandomValue }: { initialRandomValue: string }) => {
             <article>
               <h2>Counter</h2>
               <p>Count: {count}</p>
-              <div className='flex'>
+              <div className="flex">
                 <button className="btn-secondary" onClick={() => increment()}>Increment</button>
                 <button className="btn-secondary" onClick={() => decrement()}>Decrement</button>
                 <button className="btn-secondary" onClick={() => reset()}>Reset</button>

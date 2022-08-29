@@ -34,7 +34,7 @@ const AccountsPage: NextPage<{ accounts: Account[], secret: string }> = ({ accou
       }}>
         <a className="btn-primary">Add account</a>
       </Link>
-      <table className='table-auto'>
+      <table className="table-auto">
         <thead>
           <tr>
             <th></th>
