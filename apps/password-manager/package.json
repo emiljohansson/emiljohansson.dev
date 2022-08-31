@@ -25,7 +25,6 @@
   "devDependencies": {
     "@types/crypto-js": "4.1.1",
     "config": "workspace:*",
-    "eslint": "8.15.0",
     "eslint-config-next": "12.1.6",
     "tsconfig": "workspace:*"
   }

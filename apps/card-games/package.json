@@ -1,11 +1,11 @@
 {
-  "name": "code-not-found",
+  "name": "card-games",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "PORT=3004 next dev",
+    "dev": "PORT=3002 next dev",
     "build": "next build",
-    "start": "PORT=3004 next start",
+    "start": "PORT=3002 next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "config": "workspace:*",
-    "eslint-config-next": "12.1.6",
     "tsconfig": "workspace:*"
   }
 }

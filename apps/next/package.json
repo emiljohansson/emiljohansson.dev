@@ -40,8 +40,6 @@
   },
   "devDependencies": {
     "config": "workspace:*",
-    "eslint": "8.15.0",
-    "eslint-plugin-cypress": "2.12.1",
     "next-transpile-modules": "9.0.0",
     "tsconfig": "workspace:*"
   }
