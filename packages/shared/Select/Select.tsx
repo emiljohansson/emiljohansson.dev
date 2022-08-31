@@ -2,6 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import {
   Root,
   Trigger,
+  Portal,
   Content,
   Viewport,
   Icon,
@@ -27,19 +28,21 @@ const Select = ({ children, defaultValue, onValueChange }: SelectProps) => (
         <ChevronDownIcon />
       </Icon>
     </Trigger>
-    <Content className="select-content">
-      <ScrollUpButton className={scrollButtonClassNames}>
-        <ChevronUpIcon />
-      </ScrollUpButton>
+    <Portal>
+      <Content className="overflow-hidden bg-white rounded shadow z-50">
+        <ScrollUpButton className={scrollButtonClassNames}>
+          <ChevronUpIcon />
+        </ScrollUpButton>
 
-      <Viewport className="p-1">
-        {children}
-      </Viewport>
+        <Viewport className="p-1">
+          {children}
+        </Viewport>
 
-      <ScrollDownButton className={scrollButtonClassNames}>
-        <ChevronDownIcon />
-      </ScrollDownButton>
-    </Content>
+        <ScrollDownButton className={scrollButtonClassNames}>
+          <ChevronDownIcon />
+        </ScrollDownButton>
+      </Content>
+    </Portal>
   </Root>
 )
 
