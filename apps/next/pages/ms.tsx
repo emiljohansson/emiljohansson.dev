@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Layout from '@/components/Layout'
 import Section from '@/components/Section'
-import Header from '@/components/Header'
+import Header from 'shared/Header'
 import Content from '@/components/Content'
 import MineSweaper from '@/components/MineSweaper'
 

@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout'
-import Header from '@/components/Header'
+import Header from 'shared/Header'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 import ClientItem from '@/components/rsc/ClientItem.client'

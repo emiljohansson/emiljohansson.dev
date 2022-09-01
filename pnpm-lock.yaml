@@ -259,8 +259,10 @@ importers:
       '@radix-ui/react-slider': 1.0.0
       framer-motion: 6.2.3
       lib: workspace:*
+      next: 12.2.4
       react: 18.2.0
       react-dom: 18.2.0
+      tsconfig: workspace:*
     dependencies:
       '@radix-ui/react-checkbox': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
@@ -269,8 +271,11 @@ importers:
       '@radix-ui/react-slider': 1.0.0_biqbaboplfbrettd7655fr4n2y
       framer-motion: 6.2.3_biqbaboplfbrettd7655fr4n2y
       lib: link:../lib
+      next: 12.2.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    devDependencies:
+      tsconfig: link:../tsconfig
 
   packages/tsconfig:
     specifiers: {}

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import TwoWayAuthEnter from '@/components/TwoWayAuthEnter'
-import Header from '@/components/Header'
+import Header from 'shared/Header'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 

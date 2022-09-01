@@ -6,7 +6,7 @@ import useSWR from 'swr'
 import { Slider } from 'shared/Slider'
 import { CheckboxWithLabel } from 'shared/CheckboxWithLabel'
 import Content from '@/components/Content'
-import Header from '@/components/Header'
+import Header from 'shared/Header'
 import Layout from '@/components/Layout'
 import Section from '@/components/Section'
 

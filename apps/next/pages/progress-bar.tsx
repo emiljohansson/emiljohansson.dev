@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import ProgressBar from '@/components/ProgressBar'
-import Header from '../components/Header'
-import Content from '../components/Content'
-import Section from '../components/Section'
+import Header from 'shared/Header'
+import Content from '@/components/Content'
+import Section from '@/components/Section'
 
 const ProgressBarPage = () => (
   <Layout>
