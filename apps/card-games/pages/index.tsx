@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 
 const HomePage: NextPage = () => {
   return (
@@ -13,6 +14,13 @@ const HomePage: NextPage = () => {
         <h1>
           Card Games
         </h1>
+        <ul>
+          <li>
+            <Link href="/idiot">
+              <a>Idioten (The idiot)</a>
+            </Link>
+          </li>
+        </ul>
       </main>
     </>
   )
