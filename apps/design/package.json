@@ -2,9 +2,9 @@
   "name": "design-app",
   "private": true,
   "scripts": {
-    "dev": "PORT=3002 next dev",
+    "dev": "PORT=3001 next dev",
     "build": "next build",
-    "start": "PORT=3002 next start",
+    "start": "PORT=3001 next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "config": "workspace:*",
-    "eslint": "8.15.0",
     "tsconfig": "workspace:*"
   }
 }

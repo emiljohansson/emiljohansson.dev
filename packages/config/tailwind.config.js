@@ -91,6 +91,7 @@ module.exports = {
       addVariant('size', '&:size')
       addVariant('direction', '&:direction')
       addVariant('data-disabled', '&[data-disabled]')
+      addVariant('state-active', '&[data-state="active"]')
     }),
     require('@tailwindcss/typography'),
   ],

@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "config": "workspace:*",
-    "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
     "tsconfig": "workspace:*"
   }

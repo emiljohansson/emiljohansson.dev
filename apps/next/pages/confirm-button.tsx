@@ -4,7 +4,7 @@ import Layout from '@/components/Layout'
 import Content from '@/components/Content'
 import ConfirmButton from '@/components/ConfirmButton'
 import Section from '@/components/Section'
-import Header from '@/components/Header'
+import Header from 'shared/Header'
 
 const ConfirmButtonPage = () => {
   const [confirmed, setConfirmed] = useState(false)

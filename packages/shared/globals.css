@@ -126,9 +126,6 @@
       dark:focus:border-white
     ;
   }
-  .select-content {
-    @apply overflow-hidden bg-white rounded shadow;
-  }
   .select-item {
     @apply
       border-0

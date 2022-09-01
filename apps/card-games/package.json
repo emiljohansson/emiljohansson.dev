@@ -1,0 +1,24 @@
+{
+  "name": "card-games",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=3002 next dev",
+    "build": "next build",
+    "start": "PORT=3002 next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-icons": "1.1.1",
+    "just-shuffle": "4.1.1",
+    "lib": "workspace:*",
+    "next": "12.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "shared": "workspace:*"
+  },
+  "devDependencies": {
+    "config": "workspace:*",
+    "tsconfig": "workspace:*"
+  }
+}

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import useCurrentTime from 'lib/hooks/useCurrentTime'
 import Layout from '@/components/Layout'
-import Header from '@/components/Header'
+import Header from 'shared/Header'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 
