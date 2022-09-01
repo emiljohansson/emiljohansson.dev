@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-icons": "1.1.1",
     "just-shuffle": "4.1.1",
     "lib": "workspace:*",
     "next": "12.2.4",

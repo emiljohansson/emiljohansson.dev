@@ -2,8 +2,11 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
+import { UpdateIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
 import { classNames } from 'lib/utils/string'
+import Header from 'shared/Header'
+import HeaderAction from 'shared/HeaderAction'
 
 interface Card {
   suit: string
@@ -187,7 +190,15 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
           <meta name="description" content="The Idiot Card Game" />
         </Head>
 
-        <header className="h-16 bg-green-200">temp</header>
+        <Header>
+          <HeaderAction
+            onClick={() => location.reload()}
+            data-test="refresh"
+          >
+            <UpdateIcon width={30} height={30} />
+            <span className="sr-only">New Game</span>
+          </HeaderAction>
+        </Header>
         <main ref={mainRef} className="mx-auto p-4 max-w-screen-lg">
           <h1 className="sr-only">
             The Idiot Card Game
@@ -237,16 +248,17 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
             ))}
           </div>
         </main>
-        <footer className="h-16 relative shadow-2xl">
+        <footer className="h-16 relative">
           <button
-            className="h-full w-20"
+            className="h-full w-20 ml-4 relative"
             onClick={addMoreCards}
           >
             {chunk(deck, 4).map((card, index) => (
               <img
+                key={index}
                 className="h-full py-1 absolute top-0"
                 style={{
-                  left: 4 * index,
+                  left: (4 * index),
                 }}
                 src="/images/cards/red_back.png"
                 alt="add more cards"
