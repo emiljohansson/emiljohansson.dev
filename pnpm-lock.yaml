@@ -46,6 +46,7 @@ importers:
   apps/card-games:
     specifiers:
       config: workspace:*
+      just-shuffle: 4.1.1
       lib: workspace:*
       next: 12.2.4
       react: 18.2.0
@@ -53,6 +54,7 @@ importers:
       shared: workspace:*
       tsconfig: workspace:*
     dependencies:
+      just-shuffle: 4.1.1
       lib: link:../../packages/lib
       next: 12.2.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
@@ -8523,6 +8525,10 @@ packages:
 
   /just-range/4.1.1:
     resolution: {integrity: sha512-m8q77bxvcTuy/5YeVBgyY9K8+TZc/YRbYtH0ryAOu4F+YCIeS+Bi2vg9ibBw6Q/RZMrJKrTsKi3Ge3pZR9VuGQ==}
+    dev: false
+
+  /just-shuffle/4.1.1:
+    resolution: {integrity: sha512-UKnk2ihUNE+bXjidVZSpcgtbfR1L9cricnw4VnIJaU9uJj4V8UAUqJC3JGTR4kwbB3Ym/F/zrXXT3IJ3QeGfUg==}
     dev: false
 
   /keyv/4.4.1:
