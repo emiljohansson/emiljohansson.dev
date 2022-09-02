@@ -4,16 +4,18 @@ import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
 import { UpdateIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
-import { classNames } from 'lib/utils/string'
+import { classNames, uniqueId } from 'lib/utils/string'
 import { first, last, lastIndex, chunk } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
 
 interface Card {
+  id: string
   suit: string
   value: number
   combined: string
   selected: boolean
+  hidden: boolean
 }
 
 enum RankValue {
@@ -25,31 +27,73 @@ enum RankValue {
 // type Suit = 'C' | 'D' | 'H' | 'S'
 type Rank = 'A' | 'J' | 'Q' | 'K' | number
 
-const suits = ['C', 'D', 'H', 'S']
+const suits = ['H', 'S']
 const ranks = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'] as Rank[]
-const createCard = (rank: Rank, suit: string) => ({
+const createCard = (rank: Rank, suit: string): Card => ({
+  id: uniqueId(),
   suit,
   value: typeof rank === 'number'
     ? rank
     : RankValue[rank],
   combined: `${rank}${suit}`,
   selected: false,
-} as Card)
+  hidden: false,
+})
 const createDeck = () => ranks.map(rank => [
   createCard(rank, suits[0]),
   createCard(rank, suits[1]),
-  createCard(rank, suits[2]),
-  createCard(rank, suits[3]),
 ]).flat()
 
+// const LinkedList = (root) => {
+//   const head = root
+//   let tail = root
+//   return {
+//     add: (newNode) => {
+//       tail.add(newNode)
+//       tail = newNode
+//     },
+//   }
+// }
+
+// const LinkedNode = () => {
+//   const node = {}
+//   return {
+//     node,
+//     add: (newNode) => {
+//       if (!isDefined(next)) {
+//         next = newNode
+//         return
+//       }
+//       next.add(newNode)
+//     },
+//   }
+// }
+
 export async function getServerSideProps () {
-  const deck = shuffle(createDeck())
+  const deck = shuffle([
+    createDeck(),
+    createDeck(),
+    createDeck(),
+    createDeck(),
+  ].flat())
+
   const initPiles = [
-    deck.splice(0, 1),
-    deck.splice(0, 1),
-    deck.splice(0, 1),
-    deck.splice(0, 1),
+    deck.splice(0, 6),
+    deck.splice(0, 6),
+    deck.splice(0, 6),
+    deck.splice(0, 6),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
   ]
+  initPiles.forEach(pile => {
+    pile.slice(0, pile.length - 1).forEach(card => {
+      card.hidden = true
+    })
+  })
 
   return {
     props: {
@@ -73,11 +117,17 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
       }
     })
     setPiles([...piles])
-    const newCards = deck.splice(0, 4)
+    const newCards = deck.splice(0, 10)
     piles[0].push(newCards[0])
     piles[1].push(newCards[1])
     piles[2].push(newCards[2])
     piles[3].push(newCards[3])
+    piles[4].push(newCards[4])
+    piles[5].push(newCards[5])
+    piles[6].push(newCards[6])
+    piles[7].push(newCards[7])
+    piles[8].push(newCards[8])
+    piles[9].push(newCards[9])
     setDeck([...deck])
     setTimeout(() => {
       const visibleHeight = mainRef.current.offsetHeight
@@ -86,6 +136,14 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
       const newWidth = (mainRef.current.offsetWidth - 32) * (visibleHeight / fullHeight)
       mainRef.current.style.width = `${newWidth}px`
     })
+  }
+
+  function getSelectedCard (currentCards: Card[]) {
+    for (let index = 0; index < currentCards.length; index++) {
+      const card = currentCards[index]
+      if (card?.selected) return [card, index] as const
+    }
+    return [undefined, -1] as const
   }
 
   function handleSelectedCard (current: Card, index: number) {
@@ -105,27 +163,34 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
       return
     }
     const currentCards = getCurrentCards()
-    const shouldBeRemoved = currentCards
-      .filter(isDefined)
-      .filter(card => card.combined !== current.combined)
-      .filter(card => card.suit === current.suit)
-      .filter(card => card.value > current.value)
-      .length > 0
-    deselectAll()
-    if (shouldBeRemoved) {
+    const [selectedCard, selectedIndex] = getSelectedCard(currentCards)
+    const shouldBeMoved =
+      isDefined(selectedCard) &&
+      selectedCard.combined !== current.combined &&
+      selectedCard.value === current.value - 1
+    if (shouldBeMoved) {
+      console.log(current)
+      console.log(selectedCard)
+      console.log(selectedIndex)
+
       const pileIndex = currentCards
         .map((card, index) => card?.combined === current.combined ? index : undefined)
         .filter(isDefined)[0]
       const newPiles = [
         ...piles,
       ]
-      newPiles[pileIndex].splice(lastIndex(newPiles[pileIndex]), 1)
-      if (piles[pileIndex].length < 1) {
-        piles[pileIndex].push(undefined)
+      const removedCard = newPiles[selectedIndex].splice(lastIndex(newPiles[selectedIndex]), 1)[0]
+      if (piles[selectedIndex].length < 1) {
+        piles[selectedIndex].push(undefined)
+      } else {
+        piles[selectedIndex][piles[selectedIndex].length - 1].hidden = false
       }
+      newPiles[pileIndex].push(removedCard)
+      selectedCard.selected = false
       setPiles(newPiles)
       return
     }
+    deselectAll()
     current.selected = true
     setPiles([
       ...piles,
@@ -151,6 +216,12 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
     last(piles[1]),
     last(piles[2]),
     last(piles[3]),
+    last(piles[4]),
+    last(piles[5]),
+    last(piles[6]),
+    last(piles[7]),
+    last(piles[8]),
+    last(piles[9]),
   ]
 
   return (
@@ -195,15 +266,18 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
                 {pile.map((card, cardIndex) => {
                   const currentIndexInPile = lastIndex(pile)
                   const clickable = cardIndex === currentIndexInPile
+                  const cardImage = !card.hidden
+                    ? card.combined
+                    : 'red_back'
                   const Image = () => (
                     <img
-                      src={`/images/cards/${card?.combined ?? 'blank'}.png`}
+                      src={`/images/cards/${cardImage}.png`}
                       alt={card?.combined ?? 'blank card'}
                       className={classNames(`
                         border-4 border-transparent border-solid rounded-lg
                         relative top-0 left-0
                         mx-auto
-                        w-[calc(100%-8px)]
+                        w-[calc(100%-0px)]
                       `, {
                         'bg-primary': card?.selected,
                       })}
@@ -239,7 +313,7 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
             className="h-full w-20 ml-4 relative"
             onClick={addMoreCards}
           >
-            {chunk(deck, 4).map((card, index) => (
+            {chunk(deck, 10).map((card, index) => (
               <img
                 key={index}
                 className="h-full py-1 absolute top-0"
