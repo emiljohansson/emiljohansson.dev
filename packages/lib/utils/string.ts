@@ -22,3 +22,8 @@ export async function copyToClipboard (value: string) {
     console.error('failed to copy:', error)
   }
 }
+
+export const uniqueId = (() => {
+  let id = -1
+  return () => '' + ++id
+})()
