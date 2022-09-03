@@ -44,44 +44,6 @@ const createDeck = () => ranks.map(rank => [
   createCard(rank, suits[1]),
 ]).flat()
 
-// interface LinkedList<T> {
-//   add: (value: T) => void
-// }
-// const createLinkedList = <T, > (value: T) => {
-//   const head = createLinkedNode(value)
-//   let tail = head
-//   return {
-//     add: (value: T) => {
-//       const newTail = tail.add(value)
-//       tail = newTail
-//     },
-//   }
-// }
-
-// interface LinkedNode<T> {
-//   add: (newValue: T) => LinkedNode<T>
-// }
-// const createLinkedNode = <T, > (value: T): LinkedNode<T> => {
-//   let next: LinkedNode<T>
-//   return {
-//     add: (newValue: T) => {
-//       if (!isDefined(next)) {
-//         next = createLinkedNode(newValue)
-//         return next
-//       }
-//       next.add(newValue)
-//     },
-//   }
-// }
-
-// const createPile = (cards: Card[]) => {
-//   const list = createLinkedList(first(cards.splice(0, 1)))
-//   cards.forEach(card => {
-//     list.add(card)
-//   })
-//   return list
-// }
-
 export async function getServerSideProps () {
   const deck = shuffle([
     createDeck(),
@@ -91,16 +53,16 @@ export async function getServerSideProps () {
   ].flat())
 
   const initPiles = [
-    deck.splice(0, 6 - 4),
-    deck.splice(0, 6 - 4),
-    deck.splice(0, 6 - 4),
-    deck.splice(0, 6 - 4),
-    deck.splice(0, 5 - 4),
-    deck.splice(0, 5 - 4),
-    deck.splice(0, 5 - 4),
-    deck.splice(0, 5 - 4),
-    deck.splice(0, 5 - 4),
-    deck.splice(0, 5 - 4),
+    deck.splice(0, 6),
+    deck.splice(0, 6),
+    deck.splice(0, 6),
+    deck.splice(0, 6),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
+    deck.splice(0, 5),
   ]
   initPiles.forEach(pile => {
     pile.slice(0, pile.length - 1).forEach(card => {
@@ -220,10 +182,15 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       newPiles[currentPileIndex] = removedCards
     }
 
-    console.log(newPiles[selectedPileIndex])
-    console.log(newPiles[currentPileIndex])
-
     selectedCard.selected = false
+    const clickableIndexes = getClickableIndexesFromPile(newPiles[currentPileIndex]).reverse()
+    console.log(clickableIndexes)
+    if (clickableIndexes.length >= 13) {
+      newPiles[currentPileIndex].splice(clickableIndexes[0], clickableIndexes[clickableIndexes.length - 1] + 1)
+      if (newPiles[currentPileIndex].length < 1) {
+        newPiles[currentPileIndex].push(undefined)
+      }
+    }
     setPiles(newPiles)
   }
 
