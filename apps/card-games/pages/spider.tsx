@@ -5,7 +5,7 @@ import shuffle from 'just-shuffle'
 import { UpdateIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
 import { classNames, uniqueId } from 'lib/utils/string'
-import { first, last, lastIndex, chunk } from 'lib/utils/array'
+import { chunk } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
 
@@ -22,7 +22,7 @@ enum RankValue {
   'J' = 11,
   'Q' = 12,
   'K' = 13,
-  'A' = 14,
+  'A' = 1,
 }
 // type Suit = 'C' | 'D' | 'H' | 'S'
 type Rank = 'A' | 'J' | 'Q' | 'K' | number
@@ -44,29 +44,42 @@ const createDeck = () => ranks.map(rank => [
   createCard(rank, suits[1]),
 ]).flat()
 
-// const LinkedList = (root) => {
-//   const head = root
-//   let tail = root
+// interface LinkedList<T> {
+//   add: (value: T) => void
+// }
+// const createLinkedList = <T, > (value: T) => {
+//   const head = createLinkedNode(value)
+//   let tail = head
 //   return {
-//     add: (newNode) => {
-//       tail.add(newNode)
-//       tail = newNode
+//     add: (value: T) => {
+//       const newTail = tail.add(value)
+//       tail = newTail
 //     },
 //   }
 // }
 
-// const LinkedNode = () => {
-//   const node = {}
+// interface LinkedNode<T> {
+//   add: (newValue: T) => LinkedNode<T>
+// }
+// const createLinkedNode = <T, > (value: T): LinkedNode<T> => {
+//   let next: LinkedNode<T>
 //   return {
-//     node,
-//     add: (newNode) => {
+//     add: (newValue: T) => {
 //       if (!isDefined(next)) {
-//         next = newNode
-//         return
+//         next = createLinkedNode(newValue)
+//         return next
 //       }
-//       next.add(newNode)
+//       next.add(newValue)
 //     },
 //   }
+// }
+
+// const createPile = (cards: Card[]) => {
+//   const list = createLinkedList(first(cards.splice(0, 1)))
+//   cards.forEach(card => {
+//     list.add(card)
+//   })
+//   return list
 // }
 
 export async function getServerSideProps () {
@@ -103,7 +116,22 @@ export async function getServerSideProps () {
   }
 }
 
-const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Card[], initPiles: Card[][] }) => {
+const getClickableIndexesFromPile = (pile: Card[]) => {
+  if (pile.length < 1) return []
+  let index = pile.length - 1
+  const result = [index]
+  while (index-- > 0) {
+    const prev = pile[index + 1]
+    const current = pile[index]
+    if (current.hidden) return result
+    if (current.suit !== prev.suit) return result
+    if (current.value !== prev.value + 1) return result
+    result.push(index)
+  }
+  return result
+}
+
+const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Card[], initPiles: Card[][] }) => {
   const [deck, setDeck] = useState<Card[]>(remainingCards)
   const [piles, setPiles] = useState<Card[][]>(initPiles)
   const mainRef = useRef<HTMLElement>(null)
@@ -138,54 +166,55 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
     })
   }
 
-  function getSelectedCard (currentCards: Card[]) {
-    for (let index = 0; index < currentCards.length; index++) {
-      const card = currentCards[index]
-      if (card?.selected) return [card, index] as const
+  function getSelectedCard () {
+    for (let pileIndex = 0; pileIndex < piles.length; pileIndex++) {
+      const pile = piles[pileIndex]
+      for (let cardIndex = 0; cardIndex < pile.length; cardIndex++) {
+        const card = pile[cardIndex]
+        if (card?.selected) return [card, pileIndex, cardIndex] as const
+      }
     }
-    return [undefined, -1] as const
+    return [undefined, -1, -1] as const
   }
 
-  function handleSelectedCard (current: Card, index: number) {
+  function handleSelectedCard (current: Card, currentPileIndex: number) {
+    const [selectedCard, selectedPileIndex, selectedCardIndex] = getSelectedCard()
     if (!current) {
-      const selectedIndex = getSelectedCardIndex()
-      if (isDefined(selectedIndex)) {
-        const moveCard = first(piles[selectedIndex].splice(lastIndex(piles[selectedIndex]), 1))
-        piles[index].splice(lastIndex(piles[index]), 1, moveCard)
-        if (piles[selectedIndex].length < 1) {
-          piles[selectedIndex].push(undefined)
-        }
+      if (!isDefined(selectedCard)) {
+        return
       }
-      deselectAll()
-      setPiles([
-        ...piles,
-      ])
-      return
-    }
-    const currentCards = getCurrentCards()
-    const [selectedCard, selectedIndex] = getSelectedCard(currentCards)
-    const shouldBeMoved =
-      isDefined(selectedCard) &&
-      selectedCard.combined !== current.combined &&
-      selectedCard.value === current.value - 1
-    if (shouldBeMoved) {
-      console.log(current)
-      console.log(selectedCard)
-      console.log(selectedIndex)
-
-      const pileIndex = currentCards
-        .map((card, index) => card?.combined === current.combined ? index : undefined)
-        .filter(isDefined)[0]
       const newPiles = [
         ...piles,
       ]
-      const removedCard = newPiles[selectedIndex].splice(lastIndex(newPiles[selectedIndex]), 1)[0]
-      if (piles[selectedIndex].length < 1) {
-        piles[selectedIndex].push(undefined)
+      const removedCards = newPiles[selectedPileIndex].splice(selectedCardIndex, newPiles[selectedPileIndex].length)
+      if (newPiles[selectedPileIndex].length < 1) {
+        newPiles[selectedPileIndex].push(undefined)
       } else {
-        piles[selectedIndex][piles[selectedIndex].length - 1].hidden = false
+        newPiles[selectedPileIndex][newPiles[selectedPileIndex].length - 1].hidden = false
       }
-      newPiles[pileIndex].push(removedCard)
+      newPiles[currentPileIndex] = removedCards
+      selectedCard.selected = false
+      setPiles(newPiles)
+      return
+    }
+    const shouldBeMoved =
+      isDefined(selectedCard) &&
+      selectedPileIndex !== currentPileIndex &&
+      selectedCard.combined !== current.combined &&
+      selectedCard.value === current.value - 1
+
+    if (shouldBeMoved) {
+      const newPiles = [
+        ...piles,
+      ]
+      const removedCards = newPiles[selectedPileIndex].splice(selectedCardIndex, newPiles[selectedPileIndex].length)
+
+      if (newPiles[selectedPileIndex].length < 1) {
+        newPiles[selectedPileIndex].push(undefined)
+      } else {
+        newPiles[selectedPileIndex][newPiles[selectedPileIndex].length - 1].hidden = false
+      }
+      newPiles[currentPileIndex].splice(newPiles[currentPileIndex].length, 0, ...removedCards)
       selectedCard.selected = false
       setPiles(newPiles)
       return
@@ -197,32 +226,33 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
     ])
   }
 
-  function getSelectedCardIndex () {
-    return getCurrentCards()
-      .map((card, index) => card?.selected ? index : undefined)
-      .filter(isDefined)[0]
-  }
+  // function getSelectedCardIndex () {
+  //   return getCurrentCards()
+  //     .map((card, index) => card?.selected ? index : undefined)
+  //     .filter(isDefined)[0]
+  // }
 
   function deselectAll () {
-    getCurrentCards()
-      .filter(isDefined)
-      .forEach(card => {
+    for (const card of piles.flat()) {
+      if (card?.selected) {
         card.selected = false
-      })
+        return
+      }
+    }
   }
 
-  const getCurrentCards = () => [
-    last(piles[0]),
-    last(piles[1]),
-    last(piles[2]),
-    last(piles[3]),
-    last(piles[4]),
-    last(piles[5]),
-    last(piles[6]),
-    last(piles[7]),
-    last(piles[8]),
-    last(piles[9]),
-  ]
+  // const getCurrentCards = () => [
+  //   last(piles[0]),
+  //   last(piles[1]),
+  //   last(piles[2]),
+  //   last(piles[3]),
+  //   last(piles[4]),
+  //   last(piles[5]),
+  //   last(piles[6]),
+  //   last(piles[7]),
+  //   last(piles[8]),
+  //   last(piles[9]),
+  // ]
 
   return (
     <>
@@ -264,11 +294,13 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
             {piles.map((pile, pileIndex) => (
               <div key={pileIndex} className="w-full">
                 {pile.map((card, cardIndex) => {
-                  const currentIndexInPile = lastIndex(pile)
-                  const clickable = cardIndex === currentIndexInPile
-                  const cardImage = !card.hidden
-                    ? card.combined
-                    : 'red_back'
+                  const clickableIndexes = getClickableIndexesFromPile(pile)
+                  const clickable = !isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
+                  const cardImage = !isDefined(card)
+                    ? 'blank'
+                    : !card.hidden
+                      ? card.combined
+                      : 'red_back'
                   const Image = () => (
                     <img
                       src={`/images/cards/${cardImage}.png`}
@@ -331,4 +363,4 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
   )
 }
 
-export default IdiotPage
+export default SpiderPage
