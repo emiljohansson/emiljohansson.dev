@@ -2,10 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
-import { UpdateIcon } from '@radix-ui/react-icons'
+import { ReloadIcon, ResetIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
 import { classNames, uniqueId } from 'lib/utils/string'
-import { chunk } from 'lib/utils/array'
+import { chunk, first } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
 
@@ -91,16 +91,16 @@ export async function getServerSideProps () {
   ].flat())
 
   const initPiles = [
-    deck.splice(0, 6),
-    deck.splice(0, 6),
-    deck.splice(0, 6),
-    deck.splice(0, 6),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
+    deck.splice(0, 6 - 4),
+    deck.splice(0, 6 - 4),
+    deck.splice(0, 6 - 4),
+    deck.splice(0, 6 - 4),
+    deck.splice(0, 5 - 4),
+    deck.splice(0, 5 - 4),
+    deck.splice(0, 5 - 4),
+    deck.splice(0, 5 - 4),
+    deck.splice(0, 5 - 4),
+    deck.splice(0, 5 - 4),
   ]
   initPiles.forEach(pile => {
     pile.slice(0, pile.length - 1).forEach(card => {
@@ -183,18 +183,7 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       if (!isDefined(selectedCard)) {
         return
       }
-      const newPiles = [
-        ...piles,
-      ]
-      const removedCards = newPiles[selectedPileIndex].splice(selectedCardIndex, newPiles[selectedPileIndex].length)
-      if (newPiles[selectedPileIndex].length < 1) {
-        newPiles[selectedPileIndex].push(undefined)
-      } else {
-        newPiles[selectedPileIndex][newPiles[selectedPileIndex].length - 1].hidden = false
-      }
-      newPiles[currentPileIndex] = removedCards
-      selectedCard.selected = false
-      setPiles(newPiles)
+      moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
       return
     }
     const shouldBeMoved =
@@ -204,19 +193,7 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       selectedCard.value === current.value - 1
 
     if (shouldBeMoved) {
-      const newPiles = [
-        ...piles,
-      ]
-      const removedCards = newPiles[selectedPileIndex].splice(selectedCardIndex, newPiles[selectedPileIndex].length)
-
-      if (newPiles[selectedPileIndex].length < 1) {
-        newPiles[selectedPileIndex].push(undefined)
-      } else {
-        newPiles[selectedPileIndex][newPiles[selectedPileIndex].length - 1].hidden = false
-      }
-      newPiles[currentPileIndex].splice(newPiles[currentPileIndex].length, 0, ...removedCards)
-      selectedCard.selected = false
-      setPiles(newPiles)
+      moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
       return
     }
     deselectAll()
@@ -226,11 +203,29 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
     ])
   }
 
-  // function getSelectedCardIndex () {
-  //   return getCurrentCards()
-  //     .map((card, index) => card?.selected ? index : undefined)
-  //     .filter(isDefined)[0]
-  // }
+  function moveCard (selectedCard: Card, selectedPileIndex: number, selectedCardIndex: number, currentPileIndex: number) {
+    const newPiles = [
+      ...piles,
+    ]
+    const removedCards = newPiles[selectedPileIndex].splice(selectedCardIndex, newPiles[selectedPileIndex].length)
+
+    if (newPiles[selectedPileIndex].length < 1) {
+      newPiles[selectedPileIndex].push(undefined)
+    } else {
+      newPiles[selectedPileIndex][newPiles[selectedPileIndex].length - 1].hidden = false
+    }
+    if (isDefined(first(newPiles[currentPileIndex]))) {
+      newPiles[currentPileIndex].splice(newPiles[currentPileIndex].length, 0, ...removedCards)
+    } else {
+      newPiles[currentPileIndex] = removedCards
+    }
+
+    console.log(newPiles[selectedPileIndex])
+    console.log(newPiles[currentPileIndex])
+
+    selectedCard.selected = false
+    setPiles(newPiles)
+  }
 
   function deselectAll () {
     for (const card of piles.flat()) {
@@ -240,19 +235,6 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       }
     }
   }
-
-  // const getCurrentCards = () => [
-  //   last(piles[0]),
-  //   last(piles[1]),
-  //   last(piles[2]),
-  //   last(piles[3]),
-  //   last(piles[4]),
-  //   last(piles[5]),
-  //   last(piles[6]),
-  //   last(piles[7]),
-  //   last(piles[8]),
-  //   last(piles[9]),
-  // ]
 
   return (
     <>
@@ -280,10 +262,17 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
         <Header>
           <HeaderAction
             onClick={() => location.reload()}
-            data-test="refresh"
+            data-test="new-game"
           >
-            <UpdateIcon width={30} height={30} />
+            <ReloadIcon width={30} height={30} />
             <span className="sr-only">New Game</span>
+          </HeaderAction>
+          <HeaderAction
+            onClick={() => console.log('undo')}
+            data-test="undo"
+          >
+            <ResetIcon width={30} height={30} />
+            <span className="sr-only">Undo</span>
           </HeaderAction>
         </Header>
         <main ref={mainRef} className="mx-auto p-4 max-w-screen-lg">
