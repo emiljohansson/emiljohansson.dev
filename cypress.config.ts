@@ -3,7 +3,6 @@ import { defineConfig } from 'cypress'
 const { lighthouse, prepareAudit } = require('@cypress-audit/lighthouse')
 
 export default defineConfig({
-  video: false,
   e2e: {
     baseUrl: 'http://localhost:3000',
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,20 +16,15 @@ export default defineConfig({
       })
     },
   },
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   lighthouse: {
     thresholds: {
-      performance: 95,
+      performance: 90,
       accessibility: 100,
       'best-practices': 100,
       seo: 100,
-      pwa: 0,
+      pwa: 20,
     },
   },
-
-  component: {
-    devServer: {
-      framework: 'next',
-      bundler: 'webpack',
-    },
-  },
-} as Cypress.ConfigOptions)
+})

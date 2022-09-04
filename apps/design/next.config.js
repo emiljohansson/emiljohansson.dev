@@ -5,6 +5,9 @@ const nextConfig = {
   experimental: {
     externalDir: true,
   },
+  basePath: process.env.NODE_ENV === 'production'
+    ? '/design'
+    : '',
 }
 
 module.exports = nextConfig
