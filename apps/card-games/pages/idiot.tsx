@@ -4,17 +4,11 @@ import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
 import { UpdateIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
-import { classNames } from 'lib/utils/string'
+import { classNames, uniqueId } from 'lib/utils/string'
 import { first, last, lastIndex, chunk } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
-
-interface Card {
-  suit: string
-  value: number
-  combined: string
-  selected: boolean
-}
+import { Card, Rank } from '@/types/card-games'
 
 enum RankValue {
   'J' = 11,
@@ -22,12 +16,11 @@ enum RankValue {
   'K' = 13,
   'A' = 14,
 }
-// type Suit = 'C' | 'D' | 'H' | 'S'
-type Rank = 'A' | 'J' | 'Q' | 'K' | number
 
 const suits = ['C', 'D', 'H', 'S']
 const ranks = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'] as Rank[]
 const createCard = (rank: Rank, suit: string) => ({
+  id: uniqueId(),
   suit,
   value: typeof rank === 'number'
     ? rank

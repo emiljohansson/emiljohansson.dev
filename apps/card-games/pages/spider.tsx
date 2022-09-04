@@ -5,18 +5,10 @@ import shuffle from 'just-shuffle'
 import { ReloadIcon, ResetIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
 import { classNames, uniqueId } from 'lib/utils/string'
-import { chunk, first } from 'lib/utils/array'
+import { chunk, first, last } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
-
-interface Card {
-  id: string
-  suit: string
-  value: number
-  combined: string
-  selected: boolean
-  hidden: boolean
-}
+import { Card, Rank } from '@/types/card-games'
 
 enum RankValue {
   'J' = 11,
@@ -24,8 +16,6 @@ enum RankValue {
   'K' = 13,
   'A' = 1,
 }
-// type Suit = 'C' | 'D' | 'H' | 'S'
-type Rank = 'A' | 'J' | 'Q' | 'K' | number
 
 const suits = ['H', 'S']
 const ranks = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'] as Rank[]
@@ -152,7 +142,8 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       isDefined(selectedCard) &&
       selectedPileIndex !== currentPileIndex &&
       selectedCard.combined !== current.combined &&
-      selectedCard.value === current.value - 1
+      selectedCard.value === current.value - 1 &&
+      current.id === last(piles[currentPileIndex]).id
 
     if (shouldBeMoved) {
       moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
@@ -184,7 +175,6 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
 
     selectedCard.selected = false
     const clickableIndexes = getClickableIndexesFromPile(newPiles[currentPileIndex]).reverse()
-    console.log(clickableIndexes)
     if (clickableIndexes.length >= 13) {
       newPiles[currentPileIndex].splice(clickableIndexes[0], clickableIndexes[clickableIndexes.length - 1] + 1)
       if (newPiles[currentPileIndex].length < 1) {

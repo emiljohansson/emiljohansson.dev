@@ -15,7 +15,7 @@ import { ThemeToggle } from 'shared/ThemeToggle'
 
 const projects = [
   {
-    href: 'https://design.emiljohansson.dev',
+    href: 'https://emiljohansson.dev/design',
     text: 'Design System',
     external: true,
     description: 'Design system for the apps developed by Emil Johansson.',
@@ -27,6 +27,13 @@ const projects = [
     external: true,
     description: 'Password manager for the apps developed by Emil Johansson.',
     test: 'password-manager',
+  },
+  {
+    href: 'https://games.emiljohansson.dev',
+    text: 'Card Games',
+    external: true,
+    description: 'Some simple card games.',
+    test: 'games',
   },
   {
     href: '/random-string',
