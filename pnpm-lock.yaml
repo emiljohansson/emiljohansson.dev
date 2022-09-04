@@ -69,7 +69,6 @@ importers:
   apps/code-not-found:
     specifiers:
       config: workspace:*
-      eslint-config-next: 12.1.6
       next: 12.2.4
       react: 18.2.0
       react-dom: 18.2.0
@@ -80,7 +79,6 @@ importers:
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
       config: link:../../packages/config
-      eslint-config-next: 12.1.6_next@12.2.4
       tsconfig: link:../../packages/tsconfig
 
   apps/design:
