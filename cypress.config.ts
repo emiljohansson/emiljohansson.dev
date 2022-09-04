@@ -16,4 +16,15 @@ export default defineConfig({
       })
     },
   },
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  lighthouse: {
+    thresholds: {
+      performance: 90,
+      accessibility: 100,
+      'best-practices': 100,
+      seo: 100,
+      pwa: 20,
+    },
+  },
 })
