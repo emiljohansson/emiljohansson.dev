@@ -10,6 +10,14 @@
         ".next/**"
       ]
     },
+    "export": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "out/**"
+      ]
+    },
     "test": {
       "dependsOn": [
         "^build"

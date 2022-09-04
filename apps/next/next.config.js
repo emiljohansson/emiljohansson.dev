@@ -9,4 +9,10 @@ module.exports = withTM({
     // runtime: 'nodejs',
     // serverComponents: true,
   },
+  // rewrites: async () => [
+  //   {
+  //     source: '/design/index.html',
+  //     destination: './pages/api/static/design/index.html',
+  //   },
+  // ],
 })
