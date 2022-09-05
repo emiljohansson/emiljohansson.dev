@@ -4,11 +4,13 @@ import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
 import { ReloadIcon, ResetIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
-import { classNames, uniqueId } from 'lib/utils/string'
+import { classNames } from 'lib/utils/string'
 import { chunk, first, last } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
-import { Card, Rank } from '@/types/card-games'
+import type { Card, Rank, Suit } from '@/types/card-games'
+import { createDeck } from '@/lib/deck'
+import { scaleGame } from '@/lib/game'
 
 enum RankValue {
   'J' = 11,
@@ -17,29 +19,17 @@ enum RankValue {
   'A' = 1,
 }
 
-const suits = ['H', 'S']
-const ranks = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'] as Rank[]
-const createCard = (rank: Rank, suit: string): Card => ({
-  id: uniqueId(),
-  suit,
-  value: typeof rank === 'number'
-    ? rank
-    : RankValue[rank],
-  combined: `${rank}${suit}`,
-  selected: false,
-  hidden: false,
-})
-const createDeck = () => ranks.map(rank => [
-  createCard(rank, suits[0]),
-  createCard(rank, suits[1]),
-]).flat()
+const suits: Suit[] = ['H', 'S']
+const getCardValue = (rank: Rank) => typeof rank === 'number'
+  ? rank
+  : RankValue[rank]
 
 export async function getServerSideProps () {
   const deck = shuffle([
-    createDeck(),
-    createDeck(),
-    createDeck(),
-    createDeck(),
+    createDeck(suits, getCardValue),
+    createDeck(suits, getCardValue),
+    createDeck(suits, getCardValue),
+    createDeck(suits, getCardValue),
   ].flat())
 
   const initPiles = [
@@ -86,6 +76,7 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
 const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Card[], initPiles: Card[][] }) => {
   const [deck, setDeck] = useState<Card[]>(remainingCards)
   const [piles, setPiles] = useState<Card[][]>(initPiles)
+  // const [prevMove, setPrevMove] = useState<number[]>([])
   const mainRef = useRef<HTMLElement>(null)
 
   function addMoreCards () {
@@ -97,25 +88,12 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       }
     })
     setPiles([...piles])
-    const newCards = deck.splice(0, 10)
-    piles[0].push(newCards[0])
-    piles[1].push(newCards[1])
-    piles[2].push(newCards[2])
-    piles[3].push(newCards[3])
-    piles[4].push(newCards[4])
-    piles[5].push(newCards[5])
-    piles[6].push(newCards[6])
-    piles[7].push(newCards[7])
-    piles[8].push(newCards[8])
-    piles[9].push(newCards[9])
-    setDeck([...deck])
-    setTimeout(() => {
-      const visibleHeight = mainRef.current.offsetHeight
-      const fullHeight = mainRef.current.scrollHeight
-      if (fullHeight <= visibleHeight) return
-      const newWidth = (mainRef.current.offsetWidth - 32) * (visibleHeight / fullHeight)
-      mainRef.current.style.width = `${newWidth}px`
+    const newCards = deck.splice(0, piles.length)
+    newCards.forEach((newCard, index) => {
+      piles[index].push(newCard)
     })
+    setDeck([...deck])
+    setTimeout(() => scaleGame(mainRef.current))
   }
 
   function getSelectedCard () {
@@ -130,6 +108,8 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
   }
 
   function handleSelectedCard (current: Card, currentPileIndex: number) {
+    console.log(current)
+
     const [selectedCard, selectedPileIndex, selectedCardIndex] = getSelectedCard()
     if (!current) {
       if (!isDefined(selectedCard)) {
@@ -179,9 +159,12 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       newPiles[currentPileIndex].splice(clickableIndexes[0], clickableIndexes[clickableIndexes.length - 1] + 1)
       if (newPiles[currentPileIndex].length < 1) {
         newPiles[currentPileIndex].push(undefined)
+      } else {
+        last(newPiles[currentPileIndex]).hidden = false
       }
     }
     setPiles(newPiles)
+    setTimeout(() => scaleGame(mainRef.current))
   }
 
   function deselectAll () {

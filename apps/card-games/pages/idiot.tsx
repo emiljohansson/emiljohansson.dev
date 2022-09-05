@@ -4,11 +4,13 @@ import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
 import { UpdateIcon } from '@radix-ui/react-icons'
 import { isDefined } from 'lib/utils/lang'
-import { classNames, uniqueId } from 'lib/utils/string'
+import { classNames } from 'lib/utils/string'
 import { first, last, lastIndex, chunk } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
-import { Card, Rank } from '@/types/card-games'
+import type { Card, Rank, Suit } from '@/types/card-games'
+import { createDeck } from '@/lib/deck'
+import { scaleGame } from '@/lib/game'
 
 enum RankValue {
   'J' = 11,
@@ -17,26 +19,13 @@ enum RankValue {
   'A' = 14,
 }
 
-const suits = ['C', 'D', 'H', 'S']
-const ranks = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'] as Rank[]
-const createCard = (rank: Rank, suit: string) => ({
-  id: uniqueId(),
-  suit,
-  value: typeof rank === 'number'
-    ? rank
-    : RankValue[rank],
-  combined: `${rank}${suit}`,
-  selected: false,
-} as Card)
-const createDeck = () => ranks.map(rank => [
-  createCard(rank, suits[0]),
-  createCard(rank, suits[1]),
-  createCard(rank, suits[2]),
-  createCard(rank, suits[3]),
-]).flat()
+const suits: Suit[] = ['C', 'D', 'H', 'S']
+const getCardValue = (rank: Rank) => typeof rank === 'number'
+  ? rank
+  : RankValue[rank]
 
 export async function getServerSideProps () {
-  const deck = shuffle(createDeck())
+  const deck = shuffle(createDeck(suits, getCardValue))
   const initPiles = [
     deck.splice(0, 1),
     deck.splice(0, 1),
@@ -66,19 +55,12 @@ const IdiotPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Ca
       }
     })
     setPiles([...piles])
-    const newCards = deck.splice(0, 4)
-    piles[0].push(newCards[0])
-    piles[1].push(newCards[1])
-    piles[2].push(newCards[2])
-    piles[3].push(newCards[3])
-    setDeck([...deck])
-    setTimeout(() => {
-      const visibleHeight = mainRef.current.offsetHeight
-      const fullHeight = mainRef.current.scrollHeight
-      if (fullHeight <= visibleHeight) return
-      const newWidth = (mainRef.current.offsetWidth - 32) * (visibleHeight / fullHeight)
-      mainRef.current.style.width = `${newWidth}px`
+    const newCards = deck.splice(0, piles.length)
+    newCards.forEach((newCard, index) => {
+      piles[index].push(newCard)
     })
+    setDeck([...deck])
+    setTimeout(() => scaleGame(mainRef.current))
   }
 
   function handleSelectedCard (current: Card, index: number) {

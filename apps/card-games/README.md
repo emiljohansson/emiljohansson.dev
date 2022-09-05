@@ -5,6 +5,7 @@
 ### Features
 - [ ] undo
 - [ ] auto move on click
+- [ ] preload and cache images
 
 ### Bugs
 - [ ] you can move a group to a new stack if you click on the sub card. 

@@ -22,7 +22,8 @@
     "incremental": true,
     "paths": {
       "@/components/*": ["./components/*"],
-      "@/types/*": ["./types/*"]
+      "@/types/*": ["./types/*"],
+      "@/lib/*": ["./lib/*"]
     }
   },
   "include": [
