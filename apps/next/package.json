@@ -12,13 +12,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "npm run cy:open",
-    "test:unit": "jest",
-    "test:ci": "npm run cy:ci",
-    "cy:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser chrome\"",
-    "cy:run": "cypress run --headless --browser chrome",
-    "cy:open": "cypress open"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emiljohansson/random-string": "1.1.2",

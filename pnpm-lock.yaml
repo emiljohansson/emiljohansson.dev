@@ -12,7 +12,7 @@ importers:
       '@types/react-dom': 18.0.6
       autoprefixer: 10.4.2
       axe-core: 4.4.3
-      cypress: 10.3.1
+      cypress: 10.7.0
       cypress-axe: 1.0.0
       husky: 8.0.1
       jest: 27.5.1
@@ -34,8 +34,8 @@ importers:
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
       axe-core: 4.4.3
-      cypress: 10.3.1
-      cypress-axe: 1.0.0_ayqigjaqmerqkqfyyktujefuuy
+      cypress: 10.7.0
+      cypress-axe: 1.0.0_g25gmcnzryen5aewdssslmg6fq
       husky: 8.0.1
       jest: 27.5.1
       start-server-and-test: 1.14.0
@@ -2802,7 +2802,7 @@ packages:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
     dev: true
 
-  /cypress-axe/1.0.0_ayqigjaqmerqkqfyyktujefuuy:
+  /cypress-axe/1.0.0_g25gmcnzryen5aewdssslmg6fq:
     resolution: {integrity: sha512-QBlNMAd5eZoyhG8RGGR/pLtpHGkvgWXm2tkP68scJ+AjYiNNOlJihxoEwH93RT+rWOLrefw4iWwEx8kpEcrvJA==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -2810,11 +2810,11 @@ packages:
       cypress: ^10
     dependencies:
       axe-core: 4.4.3
-      cypress: 10.3.1
+      cypress: 10.7.0
     dev: true
 
-  /cypress/10.3.1:
-    resolution: {integrity: sha512-As9HrExjAgpgjCnbiQCuPdw5sWKx5HUJcK2EOKziu642akwufr/GUeqL5UnCPYXTyyibvEdWT/pSC2qnGW/e5w==}
+  /cypress/10.7.0:
+    resolution: {integrity: sha512-gTFvjrUoBnqPPOu9Vl5SBHuFlzx/Wxg/ZXIz2H4lzoOLFelKeF7mbwYUOzgzgF0oieU2WhJAestQdkgwJMMTvQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
