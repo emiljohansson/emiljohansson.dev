@@ -17,7 +17,7 @@
 * Frameworks
   * SSR/SSG/CSR
     * Next.js
-    * Remix
+    * ~~Remix~~
   * CSS
     * Tailwind CSS
 * Styling
