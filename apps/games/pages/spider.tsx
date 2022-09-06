@@ -11,7 +11,7 @@ import HeaderAction from 'shared/HeaderAction'
 import type { Card, Deck, Piles, Rank, Suit } from '@/types/card-games'
 import { createDeck } from '@/lib/deck'
 import { deselectAll, moveCardsToPiles, removeEmptyLeadingCards, scaleGame } from '@/lib/game'
-import { usePreloadCards } from '@/lib/usePreloadCards'
+import { usePreloadCards } from '@/lib/hooks'
 
 enum RankValue {
   'J' = 11,
