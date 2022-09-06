@@ -1,7 +1,18 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { faker } from '@faker-js/faker'
+
+enum Color {
+  Green = 'green',
+  Yellow = 'yellow',
+  Gray = 'gray',
+}
+
+interface Guess {
+  letters: string[]
+  colors: Color[]
+}
 
 const dictionary = [
   faker.locales.en.word.adjective.filter(word => word.length === 5),
@@ -38,10 +49,36 @@ export async function getServerSideProps () {
   }
 }
 
+const GuessedWord = ({ guess: { letters, colors } }: { guess: Guess }) => {
+  return (
+    <div className="flex mb-1">
+      {letters.map((letter, index) => (
+        <div className={`flex items-center justify-center bg-${colors[index]}-400 ml-1 w-12 h-12`}>{letter}</div>
+      ))}
+    </div>
+  )
+}
+
+const Field = ({ letters }: { letters: string[] }) => {
+  return (
+    <div className="flex mb-1">
+      {letters.map((letter) => (
+        <div className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}>{letter}</div>
+      ))}
+    </div>
+  )
+}
+
 const PreloadPage: NextPage = ({ word }: { word: string }) => {
-  const [guesses, setGuesses] = useState<string[]>([])
+  const [guesses, setGuesses] = useState<Guess[]>([])
+  const [currentGuess, setCurrentGuess] = useState<string[]>([])
   const [value, setValue] = useState<string>('')
   const [gameState, setGameState] = useState(GameState.Playing)
+
+  useEffect(() => {
+    console.log('effect', value)
+    setCurrentGuess(value.split(''))
+  }, [value])
 
   return (
     <>
@@ -55,7 +92,15 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
           Bad Wordle "clone"
         </h1>
         <p>Word: {word}</p>
-        <p>Guesses: {guesses.toString()}</p>
+        <div>
+          {guesses.map((guess, index) => (
+            <GuessedWord
+              key={index}
+              guess={guess}
+            />
+          ))}
+          <Field letters={currentGuess} />
+        </div>
         {gameState === GameState.Won && <p>You Won!</p>}
         {gameState === GameState.Lost && <p>You Lost...</p>}
 
@@ -65,10 +110,24 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
           if (value.length < 5) return
           if (!dictionary[value]) return
           if (value === word) setGameState(GameState.Won)
-          else if (guesses.length + 1 === 5) setGameState(GameState.Lost)
+          else if (guesses.length + 1 === 6) setGameState(GameState.Lost)
+
+          const letters = value.split('')
+          const colors: Color[] = []
+          letters.forEach((letter, index) => {
+            if (word[index] === letter) colors.push(Color.Green)
+            else if (word.indexOf(letter) > -1) colors.push(Color.Yellow)
+            else colors.push(Color.Gray)
+          })
+          console.log(word)
+          console.log(letters)
+          console.log(colors)
           setGuesses([
             ...guesses,
-            value,
+            {
+              letters,
+              colors,
+            },
           ])
           setValue('')
         }}>
@@ -77,7 +136,12 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
             value={value}
             onChange={(event) => {
               const newValue = event.target.value.toUpperCase()
-              if (newValue.split('').filter(letter => letters.indexOf(letter) < 0).length > 0) return
+              if (
+                newValue
+                  .split('')
+                  .filter(letter => letters.indexOf(letter) < 0)
+                  .length > 0
+              ) return
               setValue(newValue)
             }}
             maxLength={5}
