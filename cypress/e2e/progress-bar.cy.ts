@@ -2,7 +2,7 @@
 
 context('Progress Bar Page', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('/progress-bar')
     cy.injectAxe()
   })
 

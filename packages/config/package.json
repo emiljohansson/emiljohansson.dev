@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "eslint-preset.js",
   "license": "MIT",
+  "dependencies": {
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.10.0",
     "@typescript-eslint/parser": "5.10.0",
@@ -13,6 +18,7 @@
     "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-react": "7.28.0"
+    "eslint-plugin-react": "7.28.0",
+    "typescript": "4.8.2"
   }
 }
