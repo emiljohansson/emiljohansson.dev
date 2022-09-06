@@ -3,14 +3,14 @@ import Head from 'next/head'
 import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
 import { ReloadIcon, ResetIcon } from '@radix-ui/react-icons'
-import { isDefined } from 'lib/utils/lang'
+import { isDefined, isEmpty } from 'lib/utils/lang'
 import { classNames } from 'lib/utils/string'
 import { chunk, first, last } from 'lib/utils/array'
 import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
-import type { Card, Rank, Suit } from '@/types/card-games'
+import type { Card, Deck, Piles, Rank, Suit } from '@/types/card-games'
 import { createDeck } from '@/lib/deck'
-import { scaleGame } from '@/lib/game'
+import { deselectAll, moveCardsToPiles, removeEmptyLeadingCards, scaleGame } from '@/lib/game'
 
 enum RankValue {
   'J' = 11,
@@ -73,26 +73,19 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
   return result
 }
 
-const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Card[], initPiles: Card[][] }) => {
-  const [deck, setDeck] = useState<Card[]>(remainingCards)
-  const [piles, setPiles] = useState<Card[][]>(initPiles)
+const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Deck, initPiles: Piles }) => {
+  const [deck, setDeck] = useState<Deck>(remainingCards)
+  const [piles, setPiles] = useState<Piles>(initPiles)
   // const [prevMove, setPrevMove] = useState<number[]>([])
   const mainRef = useRef<HTMLElement>(null)
 
   function addMoreCards () {
-    deselectAll()
-    if (deck.length < 1) return
-    piles.forEach(pile => {
-      if (pile[0] === undefined) {
-        pile.splice(0, 1)
-      }
-    })
-    setPiles([...piles])
-    const newCards = deck.splice(0, piles.length)
-    newCards.forEach((newCard, index) => {
-      piles[index].push(newCard)
-    })
-    setDeck([...deck])
+    deselectAll(piles)
+    if (isEmpty(deck)) return
+    const updatedPiles = removeEmptyLeadingCards(piles)
+    const [newPiles, newDeck] = moveCardsToPiles(updatedPiles, deck)
+    setPiles([...newPiles])
+    setDeck([...newDeck])
     setTimeout(() => scaleGame(mainRef.current))
   }
 
@@ -129,7 +122,7 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
       moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
       return
     }
-    deselectAll()
+    deselectAll(piles)
     current.selected = true
     setPiles([
       ...piles,
@@ -167,127 +160,101 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: C
     setTimeout(() => scaleGame(mainRef.current))
   }
 
-  function deselectAll () {
-    for (const card of piles.flat()) {
-      if (card?.selected) {
-        card.selected = false
-        return
-      }
-    }
-  }
-
   return (
     <>
-      <style jsx>{`
-        #app {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: auto 1fr auto;
-          grid-template-areas:
-            'header'
-            'main'
-            'footer';
-        }
+      <Head>
+        <title>Spider Solitaire</title>
+        <meta name="description" content="Spider Solitaire" />
+      </Head>
 
-        main {
-          overflow: scroll;
-        }
-      `}</style>
-      <div id="app" className="h-screen overflow-scroll">
-        <Head>
-          <title>The Idiot Card Game</title>
-          <meta name="description" content="The Idiot Card Game" />
-        </Head>
+      <Header>
+        <HeaderAction
+          onClick={() => location.reload()}
+          data-test="new-game"
+        >
+          <ReloadIcon width={30} height={30} />
+          <span className="sr-only">New Game</span>
+        </HeaderAction>
+        <HeaderAction
+          onClick={() => console.log('undo')}
+          data-test="undo"
+        >
+          <ResetIcon width={30} height={30} />
+          <span className="sr-only">Undo</span>
+        </HeaderAction>
+      </Header>
+      <main ref={mainRef} className="mx-auto p-4 max-w-screen-lg">
+        <h1 className="sr-only">
+          Spider Solitaire
+        </h1>
+        <div className="flex">
+          {piles.map((pile, pileIndex) => (
+            <div key={pileIndex} className="w-full">
+              {pile.map((card, cardIndex) => {
+                const clickableIndexes = getClickableIndexesFromPile(pile)
+                const clickable = !isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
+                const cardImage = !isDefined(card)
+                  ? 'blank'
+                  : !card.hidden
+                    ? card.combined
+                    : 'red_back'
+                const Image = () => (
+                  <img
+                    src={`/images/cards/${cardImage}.png`}
+                    alt={card?.combined ?? 'blank card'}
+                    className={classNames(`
+                      border-4 border-transparent border-solid rounded-lg
+                      relative top-0 left-0
+                      mx-auto
+                      w-[calc(100%-0px)]
+                    `, {
+                      'bg-primary': card?.selected,
+                    })}
+                  />
+                )
 
-        <Header>
-          <HeaderAction
-            onClick={() => location.reload()}
-            data-test="new-game"
-          >
-            <ReloadIcon width={30} height={30} />
-            <span className="sr-only">New Game</span>
-          </HeaderAction>
-          <HeaderAction
-            onClick={() => console.log('undo')}
-            data-test="undo"
-          >
-            <ResetIcon width={30} height={30} />
-            <span className="sr-only">Undo</span>
-          </HeaderAction>
-        </Header>
-        <main ref={mainRef} className="mx-auto p-4 max-w-screen-lg">
-          <h1 className="sr-only">
-            The Idiot Card Game
-          </h1>
-          <div className="flex">
-            {piles.map((pile, pileIndex) => (
-              <div key={pileIndex} className="w-full">
-                {pile.map((card, cardIndex) => {
-                  const clickableIndexes = getClickableIndexesFromPile(pile)
-                  const clickable = !isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
-                  const cardImage = !isDefined(card)
-                    ? 'blank'
-                    : !card.hidden
-                      ? card.combined
-                      : 'red_back'
-                  const Image = () => (
-                    <img
-                      src={`/images/cards/${cardImage}.png`}
-                      alt={card?.combined ?? 'blank card'}
-                      className={classNames(`
-                        border-4 border-transparent border-solid rounded-lg
-                        relative top-0 left-0
-                        mx-auto
-                        w-[calc(100%-0px)]
-                      `, {
-                        'bg-primary': card?.selected,
-                      })}
-                    />
-                  )
-
-                  if (clickable) {
-                    return (
-                      <button
-                        key={cardIndex}
-                        className="-mt-[110%] first:mt-0"
-                        onClick={() => handleSelectedCard(card, pileIndex)}
-                      >
-                        <Image />
-                      </button>
-                    )
-                  }
+                if (clickable) {
                   return (
-                    <div
+                    <button
                       key={cardIndex}
                       className="-mt-[110%] first:mt-0"
+                      onClick={() => handleSelectedCard(card, pileIndex)}
                     >
                       <Image />
-                    </div>
+                    </button>
                   )
-                })}
-              </div>
-            ))}
-          </div>
-        </main>
-        <footer className="h-16 relative">
-          <button
-            className="h-full w-20 ml-4 relative"
-            onClick={addMoreCards}
-          >
-            {chunk(deck, 10).map((card, index) => (
-              <img
-                key={index}
-                className="h-full py-1 absolute top-0"
-                style={{
-                  left: (4 * index),
-                }}
-                src="/images/cards/red_back.png"
-                alt="add more cards"
-              />
-            ))}
-          </button>
-        </footer>
-      </div>
+                }
+                return (
+                  <div
+                    key={cardIndex}
+                    className="-mt-[110%] first:mt-0"
+                  >
+                    <Image />
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
+      </main>
+      <footer className="h-16 relative">
+        <button
+          className="h-full w-20 ml-4 relative"
+          onClick={addMoreCards}
+        >
+          {chunk(deck, 10).map((card, index) => (
+            <img
+              key={index}
+              className="h-full py-1 absolute top-0"
+              style={{
+                left: (4 * index),
+              }}
+              src="/images/cards/red_back.png"
+              alt="add more cards"
+            />
+          ))}
+        </button>
+      </footer>
     </>
   )
 }

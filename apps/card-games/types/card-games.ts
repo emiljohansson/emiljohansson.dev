@@ -10,3 +10,7 @@ export interface Card {
   selected: boolean
   hidden: boolean
 }
+
+export type Piles = Card[][]
+
+export type Deck = Card[]
