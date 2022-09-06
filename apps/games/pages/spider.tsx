@@ -11,6 +11,7 @@ import HeaderAction from 'shared/HeaderAction'
 import type { Card, Deck, Piles, Rank, Suit } from '@/types/card-games'
 import { createDeck } from '@/lib/deck'
 import { deselectAll, moveCardsToPiles, removeEmptyLeadingCards, scaleGame } from '@/lib/game'
+import { usePreloadCards } from '@/lib/usePreloadCards'
 
 enum RankValue {
   'J' = 11,
@@ -23,13 +24,14 @@ const suits: Suit[] = ['H', 'S']
 const getCardValue = (rank: Rank) => typeof rank === 'number'
   ? rank
   : RankValue[rank]
+const createBaseDeck = () => createDeck(suits, getCardValue)
 
 export async function getServerSideProps () {
   const deck = shuffle([
-    createDeck(suits, getCardValue),
-    createDeck(suits, getCardValue),
-    createDeck(suits, getCardValue),
-    createDeck(suits, getCardValue),
+    createBaseDeck(),
+    createBaseDeck(),
+    createBaseDeck(),
+    createBaseDeck(),
   ].flat())
 
   const initPiles = [
@@ -78,6 +80,7 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: D
   const [piles, setPiles] = useState<Piles>(initPiles)
   // const [prevMove, setPrevMove] = useState<number[]>([])
   const mainRef = useRef<HTMLElement>(null)
+  usePreloadCards(createBaseDeck())
 
   function addMoreCards () {
     deselectAll(piles)
