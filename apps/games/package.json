@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@faker-js/faker": "7.4.0",
     "@radix-ui/react-icons": "1.1.1",
     "just-shuffle": "4.1.1",
     "lib": "workspace:*",

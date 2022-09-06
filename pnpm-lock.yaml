@@ -89,6 +89,7 @@ importers:
 
   apps/games:
     specifiers:
+      '@faker-js/faker': 7.4.0
       '@radix-ui/react-icons': 1.1.1
       config: workspace:*
       just-shuffle: 4.1.1
@@ -99,6 +100,7 @@ importers:
       shared: workspace:*
       tsconfig: workspace:*
     dependencies:
+      '@faker-js/faker': 7.4.0
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
       just-shuffle: 4.1.1
       lib: link:../../packages/lib
