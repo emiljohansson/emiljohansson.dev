@@ -21,7 +21,9 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/components/*": ["./components/*"]
+      "@/components/*": ["./components/*"],
+      "@/types/*": ["./types/*"],
+      "@/lib/*": ["./lib/*"]
     }
   },
   "include": [
