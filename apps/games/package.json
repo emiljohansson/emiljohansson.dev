@@ -11,6 +11,7 @@
   "dependencies": {
     "@faker-js/faker": "7.4.0",
     "@radix-ui/react-icons": "1.1.1",
+    "framer-motion": "6.2.3",
     "just-shuffle": "4.1.1",
     "lib": "workspace:*",
     "next": "12.2.4",

@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { faker } from '@faker-js/faker'
+import { motion } from 'framer-motion'
 
 enum Color {
   Green = 'green',
@@ -49,20 +50,22 @@ export async function getServerSideProps () {
 }
 
 const GuessedWord = ({ guess: { letters, colors } }: { guess: Guess }) => (
-  <div className="flex mb-1">
-    {letters.map((letter, index) => (
-      <div
-        key={index}
-        className={`flex items-center justify-center bg-${colors[index]}-400 ml-1 w-12 h-12`}
-      >
-        {letter}
-      </div>
-    ))}
+  <div className="flex justify-center">
+    <div className="flex mb-1">
+      {letters.map((letter, index) => (
+        <div
+          key={index}
+          className={`flex items-center justify-center bg-${colors[index]}-400 ml-1 w-12 h-12`}
+        >
+          {letter}
+        </div>
+      ))}
+    </div>
   </div>
 )
 
 const Field = ({ letters }: { letters: string[] }) => (
-  <div className="flex mb-1">
+  <>
     {letters.map((letter, index) => (
       <div
         key={index}
@@ -71,13 +74,14 @@ const Field = ({ letters }: { letters: string[] }) => (
         {letter}
       </div>
     ))}
-  </div>
+  </>
 )
 
 const PreloadPage: NextPage = ({ word }: { word: string }) => {
   const [guesses, setGuesses] = useState<Guess[]>([])
   const [currentGuess, setCurrentGuess] = useState<string[]>([])
   const [gameState, setGameState] = useState(GameState.Playing)
+  const [shake, setShake] = useState(0)
 
   function enterLetter (letter: string) {
     if (currentGuess.length >= 5) return
@@ -102,9 +106,15 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
         removeLastLetter()
         return
       }
+      if (newLetter !== 'ENTER') {
+        return
+      }
 
       if (gameState === GameState.Won) return
-      if (!dictionary[currentGuess.join('')]) return
+      if (!dictionary[currentGuess.join('')]) {
+        setShake(shake + 1)
+        return
+      }
       if (currentGuess.join('') === word) setGameState(GameState.Won)
       else if (guesses.length + 1 === 6) setGameState(GameState.Lost)
 
@@ -125,7 +135,7 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [currentGuess, guesses])
+  }, [currentGuess, guesses, shake])
 
   return (
     <>
@@ -139,14 +149,29 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
           Bad Wordle "clone"
         </h1>
         <p>Word: {word}</p>
-        <div>
+        <div className="flex flex-col justify-center">
           {guesses.map((guess, index) => (
             <GuessedWord
               key={index}
               guess={guess}
             />
           ))}
-          <Field letters={currentGuess} />
+          <div className="flex justify-center">
+            <motion.div
+              key={shake}
+              className="flex mb-1"
+              animate={{
+                x: [0, 2, -2, 2, 0],
+              }}
+              transition={{
+                duration: 0.2,
+                ease: 'easeInOut',
+                repeat: 1,
+              }}
+            >
+              <Field letters={currentGuess} />
+            </motion.div>
+          </div>
         </div>
         {gameState === GameState.Won && <p>You Won!</p>}
         {gameState === GameState.Lost && <p>You Lost...</p>}
