@@ -23,7 +23,6 @@ const dictionary = [
   r[w.toUpperCase()] = true
   return r
 }, {} as { [key: string]: boolean })
-console.log(dictionary)
 
 enum GameState {
   Playing,
@@ -49,36 +48,84 @@ export async function getServerSideProps () {
   }
 }
 
-const GuessedWord = ({ guess: { letters, colors } }: { guess: Guess }) => {
-  return (
-    <div className="flex mb-1">
-      {letters.map((letter, index) => (
-        <div className={`flex items-center justify-center bg-${colors[index]}-400 ml-1 w-12 h-12`}>{letter}</div>
-      ))}
-    </div>
-  )
-}
+const GuessedWord = ({ guess: { letters, colors } }: { guess: Guess }) => (
+  <div className="flex mb-1">
+    {letters.map((letter, index) => (
+      <div
+        key={index}
+        className={`flex items-center justify-center bg-${colors[index]}-400 ml-1 w-12 h-12`}
+      >
+        {letter}
+      </div>
+    ))}
+  </div>
+)
 
-const Field = ({ letters }: { letters: string[] }) => {
-  return (
-    <div className="flex mb-1">
-      {letters.map((letter) => (
-        <div className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}>{letter}</div>
-      ))}
-    </div>
-  )
-}
+const Field = ({ letters }: { letters: string[] }) => (
+  <div className="flex mb-1">
+    {letters.map((letter, index) => (
+      <div
+        key={index}
+        className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}
+      >
+        {letter}
+      </div>
+    ))}
+  </div>
+)
 
 const PreloadPage: NextPage = ({ word }: { word: string }) => {
   const [guesses, setGuesses] = useState<Guess[]>([])
   const [currentGuess, setCurrentGuess] = useState<string[]>([])
-  const [value, setValue] = useState<string>('')
   const [gameState, setGameState] = useState(GameState.Playing)
 
+  function enterLetter (letter: string) {
+    if (currentGuess.length >= 5) return
+    currentGuess.push(letter)
+    setCurrentGuess([...currentGuess])
+  }
+
+  function removeLastLetter () {
+    currentGuess.pop()
+    setCurrentGuess([...currentGuess])
+  }
+
   useEffect(() => {
-    console.log('effect', value)
-    setCurrentGuess(value.split(''))
-  }, [value])
+    function onKeyDown (event: KeyboardEvent) {
+      const newLetter = event.key.toUpperCase()
+
+      if (letters.indexOf(newLetter) > -1) {
+        enterLetter(newLetter)
+        return
+      }
+      if (newLetter === 'BACKSPACE') {
+        removeLastLetter()
+        return
+      }
+
+      if (gameState === GameState.Won) return
+      if (!dictionary[currentGuess.join('')]) return
+      if (currentGuess.join('') === word) setGameState(GameState.Won)
+      else if (guesses.length + 1 === 6) setGameState(GameState.Lost)
+
+      const colors: Color[] = []
+      currentGuess.forEach((letter, index) => {
+        if (word[index] === letter) colors.push(Color.Green)
+        else if (word.indexOf(letter) > -1) colors.push(Color.Yellow)
+        else colors.push(Color.Gray)
+      })
+      setGuesses([
+        ...guesses,
+        {
+          letters: currentGuess,
+          colors,
+        },
+      ])
+      setCurrentGuess([])
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [currentGuess, guesses])
 
   return (
     <>
@@ -103,50 +150,6 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
         </div>
         {gameState === GameState.Won && <p>You Won!</p>}
         {gameState === GameState.Lost && <p>You Lost...</p>}
-
-        <form onSubmit={(event) => {
-          event.preventDefault()
-          if (gameState === GameState.Won) return
-          if (value.length < 5) return
-          if (!dictionary[value]) return
-          if (value === word) setGameState(GameState.Won)
-          else if (guesses.length + 1 === 6) setGameState(GameState.Lost)
-
-          const letters = value.split('')
-          const colors: Color[] = []
-          letters.forEach((letter, index) => {
-            if (word[index] === letter) colors.push(Color.Green)
-            else if (word.indexOf(letter) > -1) colors.push(Color.Yellow)
-            else colors.push(Color.Gray)
-          })
-          console.log(word)
-          console.log(letters)
-          console.log(colors)
-          setGuesses([
-            ...guesses,
-            {
-              letters,
-              colors,
-            },
-          ])
-          setValue('')
-        }}>
-          <input
-            type="text"
-            value={value}
-            onChange={(event) => {
-              const newValue = event.target.value.toUpperCase()
-              if (
-                newValue
-                  .split('')
-                  .filter(letter => letters.indexOf(letter) < 0)
-                  .length > 0
-              ) return
-              setValue(newValue)
-            }}
-            maxLength={5}
-          />
-        </form>
       </main>
     </>
   )
