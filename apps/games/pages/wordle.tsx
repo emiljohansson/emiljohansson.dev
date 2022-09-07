@@ -64,18 +64,26 @@ const GuessedWord = ({ guess: { letters, colors } }: { guess: Guess }) => (
   </div>
 )
 
-const Field = ({ letters }: { letters: string[] }) => (
-  <>
-    {letters.map((letter, index) => (
-      <div
-        key={index}
-        className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}
-      >
-        {letter}
-      </div>
-    ))}
-  </>
-)
+const Field = ({ letters }: { letters: string[] }) => {
+  const missing = 5 - letters.length
+  const fixedList = [
+    ...letters,
+    ...Array(missing).fill(''),
+  ]
+
+  return (
+    <>
+      {fixedList.map((letter, index) => (
+        <div
+          key={index}
+          className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}
+        >
+          {letter}
+        </div>
+      ))}
+    </>
+  )
+}
 
 const PreloadPage: NextPage = ({ word }: { word: string }) => {
   const [guesses, setGuesses] = useState<Guess[]>([])
@@ -156,9 +164,10 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
               guess={guess}
             />
           ))}
-          <div className="flex justify-center">
+          {gameState === GameState.Playing && <div className="flex justify-center">
             <motion.div
               key={shake}
+              initial={false}
               className="flex mb-1"
               animate={{
                 x: [0, 2, -2, 2, 0],
@@ -171,7 +180,7 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
             >
               <Field letters={currentGuess} />
             </motion.div>
-          </div>
+          </div>}
         </div>
         {gameState === GameState.Won && <p>You Won!</p>}
         {gameState === GameState.Lost && <p>You Lost...</p>}
