@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { faker } from '@faker-js/faker'
 import { motion } from 'framer-motion'
+import Header from 'shared/Header'
 
 enum Color {
   Green = 'green',
@@ -173,6 +174,7 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
         <meta name="description" content="Bad Wordle clone" />
       </Head>
 
+      <Header />
       <main>
         <h1>
           Bad Wordle "clone"
