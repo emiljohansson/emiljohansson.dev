@@ -25,6 +25,11 @@ const HomePage: NextPage = () => {
               <a>The Idiot Solitaire (from swedish "Idioten")</a>
             </Link>
           </li>
+          <li>
+            <Link href="/wordle">
+              <a>Bad Wordle "clone"</a>
+            </Link>
+          </li>
         </ul>
       </main>
     </>
