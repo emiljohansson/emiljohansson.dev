@@ -15,11 +15,14 @@ interface Guess {
   colors: Color[]
 }
 
+const from = <T, > (length: number, value: T): T[] => Array.from({ length }, () => value)
+
 const dictionary = [
   faker.locales.en.word.adjective.filter(word => word.length === 5),
   faker.locales.en.word.adverb.filter(word => word.length === 5),
   faker.locales.en.word.conjunction.filter(word => word.length === 5),
   faker.locales.en.word.noun.filter(word => word.length === 5),
+  faker.locales.en.word.verb.filter(word => word.length === 5),
 ].flat().reduce((r, w) => {
   r[w.toUpperCase()] = true
   return r
@@ -36,6 +39,7 @@ const wordMethods = [
   faker.word.adverb,
   faker.word.conjunction,
   faker.word.noun,
+  faker.word.verb,
 ]
 
 export async function getServerSideProps () {
@@ -68,7 +72,7 @@ const Field = ({ letters }: { letters: string[] }) => {
   const missing = 5 - letters.length
   const fixedList = [
     ...letters,
-    ...Array(missing).fill(''),
+    ...from(missing, ''),
   ]
 
   return (
@@ -82,6 +86,23 @@ const Field = ({ letters }: { letters: string[] }) => {
         </div>
       ))}
     </>
+  )
+}
+
+const BlankRow = () => {
+  const fixedList = from(5, '')
+
+  return (
+    <div className="flex justify-center">
+      <div className="flex mb-1">
+        {fixedList.map((_, index) => (
+          <div
+            key={index}
+            className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -156,7 +177,7 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
         <h1>
           Bad Wordle "clone"
         </h1>
-        <p>Word: {word}</p>
+        <div dangerouslySetInnerHTML={{ __html: `<!-- ${word} -->` }} />
         <div className="flex flex-col justify-center">
           {guesses.map((guess, index) => (
             <GuessedWord
@@ -167,7 +188,7 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
           {gameState === GameState.Playing && <div className="flex justify-center">
             <motion.div
               key={shake}
-              initial={false}
+              initial={shake !== 0}
               className="flex mb-1"
               animate={{
                 x: [0, 2, -2, 2, 0],
@@ -181,6 +202,11 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
               <Field letters={currentGuess} />
             </motion.div>
           </div>}
+          {from(5 - guesses.length, '').map((_, index) => (
+            <BlankRow
+              key={index}
+            />
+          ))}
         </div>
         {gameState === GameState.Won && <p>You Won!</p>}
         {gameState === GameState.Lost && <p>You Lost...</p>}
