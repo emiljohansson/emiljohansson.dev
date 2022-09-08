@@ -89,7 +89,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
           selectedCard: cell,
           selectedPileIndex: cellIndex,
           selectedCardIndex: -1,
-          inCells: true,
+          selectedFromCells: true,
         }
       }
     }
@@ -102,7 +102,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
             selectedCard: card,
             selectedPileIndex: pileIndex,
             selectedCardIndex: cardIndex,
-            inCells: false,
+            selectedFromCells: false,
           }
         }
       }
@@ -111,13 +111,12 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
       selectedCard: blankCard,
       selectedPileIndex: -1,
       selectedCardIndex: -1,
-      inCells: false,
+      selectedFromCells: false,
     }
   }
 
   function handleCell (cell: Card, index: number) {
-    const { selectedCard, selectedPileIndex } = getSelectedCard()
-    console.log(cell, selectedCard)
+    const { selectedCard, selectedPileIndex, selectedFromCells } = getSelectedCard()
 
     if (cell.value !== -1) {
       selectedCard.selected = false
@@ -127,9 +126,14 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
     }
     if (cell.value === -1 && selectedCard.selected) {
       selectedCard.selected = false
-      const removedCard = piles[selectedPileIndex].pop()
-      cells[index] = removedCard
-      setPiles([...piles])
+      if (selectedFromCells) {
+        cells[index] = selectedCard
+        cells[selectedPileIndex] = blankCard
+      } else {
+        const removedCard = piles[selectedPileIndex].pop()
+        cells[index] = removedCard
+        setPiles([...piles])
+      }
       setCells([...cells])
       return
     }
@@ -148,7 +152,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
       return
     }
 
-    const { selectedCard, selectedPileIndex, selectedCardIndex, inCells } = getSelectedCard()
+    const { selectedCard, selectedPileIndex, selectedCardIndex, selectedFromCells } = getSelectedCard()
 
     if (!current) {
       if (!selectedCard.selected) {
@@ -166,8 +170,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
       selectedCard.value === current.value - 1 &&
       current.id === last(piles[currentPileIndex]).id
     ) {
-      if (inCells) {
-        console.log('move from cells to piles')
+      if (selectedFromCells) {
         cells[selectedPileIndex] = blankCard
         setCells([...cells])
         piles[currentPileIndex].push(selectedCard)
