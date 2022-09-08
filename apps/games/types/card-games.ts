@@ -9,6 +9,7 @@ export interface Card {
   combined: string
   selected: boolean
   hidden: boolean
+  color: 'red' | 'black'
 }
 
 export type Piles = Card[][]

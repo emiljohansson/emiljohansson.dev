@@ -60,6 +60,8 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
   return result
 }
 
+const isOppositeColors = (card1: Card, card2: Card) => card1.color !== card2.color
+
 const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
   const [piles, setPiles] = useState<Piles>(initPiles)
   const [stack, setStack] = useState<{
@@ -104,6 +106,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
     }
     const shouldBeMoved =
       isDefined(selectedCard) &&
+      isOppositeColors(current, selectedCard) &&
       selectedPileIndex !== currentPileIndex &&
       selectedCard.combined !== current.combined &&
       selectedCard.value === current.value - 1 &&

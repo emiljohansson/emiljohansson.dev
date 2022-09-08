@@ -10,6 +10,9 @@ export const createCard = (rank: Rank, suit: Suit, value: number): Card => ({
   combined: `${rank}${suit}`,
   selected: false,
   hidden: false,
+  color: suit === 'D' || suit === 'H'
+    ? 'red'
+    : 'black',
 })
 
 export const createDeck = (suits: Suit[], getCardValue: (rank: Rank) => number) => ranks
