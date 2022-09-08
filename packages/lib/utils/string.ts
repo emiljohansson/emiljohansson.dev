@@ -11,7 +11,7 @@ export function classNames (...args: (string | { [key: string]: boolean })[]) {
       }
     }
   }
-  return classes.join(' ')
+  return classes.join(' ').replace(/\s+/g, ' ').trim()
 }
 
 export async function copyToClipboard (value: string) {
