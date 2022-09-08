@@ -6,9 +6,6 @@ export const usePreloadCards = (deck: Deck) => {
     setTimeout(() => {
       deck.forEach(card => {
         const img = new Image()
-        img.onload = () => {
-          console.log('loaded', card.combined)
-        }
         img.src = `/images/cards/${card?.combined}.png`
       })
     }, 1000)

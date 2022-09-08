@@ -2,15 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
 import shuffle from 'just-shuffle'
-import { ReloadIcon, ResetIcon } from '@radix-ui/react-icons'
-import { isDefined, isEmpty } from 'lib/utils/lang'
+import { isDefined } from 'lib/utils/lang'
 import { classNames } from 'lib/utils/string'
-import { chunk, first, last } from 'lib/utils/array'
+import { first, last } from 'lib/utils/array'
 import Header from 'shared/Header'
-import HeaderAction from 'shared/HeaderAction'
-import type { Card, Deck, Piles, Rank, Suit } from '@/types/card-games'
+import type { Card, Piles, Rank, Suit } from '@/types/card-games'
 import { createDeck } from '@/lib/deck'
-import { deselectAll, moveCardsToPiles, removeEmptyLeadingCards, scaleGame } from '@/lib/game'
+import { deselectAll, scaleGame } from '@/lib/game'
 import { usePreloadCards } from '@/lib/hooks'
 
 enum RankValue {
@@ -20,41 +18,28 @@ enum RankValue {
   'A' = 1,
 }
 
-const suits: Suit[] = ['H', 'S']
+const suits: Suit[] = ['C', 'D', 'H', 'S']
 const getCardValue = (rank: Rank) => typeof rank === 'number'
   ? rank
   : RankValue[rank]
-const createBaseDeck = () => createDeck(suits, getCardValue)
+const baseDeck = createDeck(suits, getCardValue)
 
 export async function getServerSideProps () {
-  const deck = shuffle([
-    createBaseDeck(),
-    createBaseDeck(),
-    createBaseDeck(),
-    createBaseDeck(),
-  ].flat())
+  const deck = shuffle(baseDeck)
 
   const initPiles = [
+    deck.splice(0, 7),
+    deck.splice(0, 7),
+    deck.splice(0, 7),
+    deck.splice(0, 7),
     deck.splice(0, 6),
     deck.splice(0, 6),
     deck.splice(0, 6),
     deck.splice(0, 6),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
-    deck.splice(0, 5),
   ]
-  initPiles.forEach(pile => {
-    pile.slice(0, pile.length - 1).forEach(card => {
-      card.hidden = true
-    })
-  })
 
   return {
     props: {
-      remainingCards: deck,
       initPiles,
     },
   }
@@ -75,22 +60,16 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
   return result
 }
 
-const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: Deck, initPiles: Piles }) => {
-  const [deck, setDeck] = useState<Deck>(remainingCards)
+const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
   const [piles, setPiles] = useState<Piles>(initPiles)
-  // const [prevMove, setPrevMove] = useState<number[]>([])
+  const [stack, setStack] = useState<{
+    C?: Card
+    D?: Card
+    H?: Card
+    S?: Card
+  }>({})
   const mainRef = useRef<HTMLElement>(null)
-  usePreloadCards(createBaseDeck())
-
-  function addMoreCards () {
-    deselectAll(piles)
-    if (isEmpty(deck)) return
-    const updatedPiles = removeEmptyLeadingCards(piles)
-    const [newPiles, newDeck] = moveCardsToPiles(updatedPiles, deck)
-    setPiles([...newPiles])
-    setDeck([...newDeck])
-    setTimeout(() => scaleGame(mainRef.current))
-  }
+  usePreloadCards(baseDeck)
 
   function getSelectedCard () {
     for (let pileIndex = 0; pileIndex < piles.length; pileIndex++) {
@@ -105,6 +84,15 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: D
 
   function handleSelectedCard (current: Card, currentPileIndex: number) {
     console.log(current)
+    console.log(stack)
+
+    if (current.value === 1 || stack[current.suit]?.value === current.value - 1) {
+      const removedCard = piles[currentPileIndex].pop()
+      stack[removedCard.suit] = removedCard
+      setPiles([...piles])
+      setStack({ ...stack })
+      return
+    }
 
     const [selectedCard, selectedPileIndex, selectedCardIndex] = getSelectedCard()
     if (!current) {
@@ -170,26 +158,110 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: D
         <meta name="description" content="Spider Solitaire" />
       </Head>
 
-      <Header>
-        <HeaderAction
-          onClick={() => location.reload()}
-          data-test="new-game"
-        >
-          <ReloadIcon width={30} height={30} />
-          <span className="sr-only">New Game</span>
-        </HeaderAction>
-        <HeaderAction
-          onClick={() => console.log('undo')}
-          data-test="undo"
-        >
-          <ResetIcon width={30} height={30} />
-          <span className="sr-only">Undo</span>
-        </HeaderAction>
-      </Header>
+      <Header />
+
       <main ref={mainRef} className="mx-auto p-4 max-w-screen-lg">
         <h1 className="sr-only">
           Spider Solitaire
         </h1>
+        <div className="flex">
+          <div className="w-full">
+            <img
+              src={`/images/cards/${stack.C?.combined ?? 'blank_clubs'}.png`}
+              alt="blank card"
+              className={classNames(`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `, {
+                grayscale: !isDefined(stack.C),
+              })}
+            />
+          </div>
+          <div className="w-full">
+            <img
+              src={`/images/cards/${stack.H?.combined ?? 'blank_hearts'}.png`}
+              alt="blank card"
+              className={classNames(`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `, {
+                grayscale: !isDefined(stack.H),
+              })}
+            />
+          </div>
+          <div className="w-full">
+            <img
+              src={`/images/cards/${stack.S?.combined ?? 'blank_spades'}.png`}
+              alt="blank card"
+              className={classNames(`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `, {
+                grayscale: !isDefined(stack.S),
+              })}
+            />
+          </div>
+          <div className="w-full">
+            <img
+              src={`/images/cards/${stack.D?.combined ?? 'blank_diamonds'}.png`}
+              alt="blank card"
+              className={classNames(`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `, {
+                grayscale: !isDefined(stack.D),
+              })}
+            />
+          </div>
+          <div className="w-full">
+            <img
+              src="/images/cards/blank.png"
+              alt="blank card"
+              className={`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `}
+            />
+          </div>
+          <div className="w-full">
+            <img
+              src="/images/cards/blank.png"
+              alt="blank card"
+              className={`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `}
+            />
+          </div>
+          <div className="w-full">
+            <img
+              src="/images/cards/blank.png"
+              alt="blank card"
+              className={`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `}
+            />
+          </div>
+          <div className="w-full">
+            <img
+              src="/images/cards/blank.png"
+              alt="blank card"
+              className={`
+                border-4 border-transparent border-solid rounded-lg
+                relative top-0 left-0
+                mx-auto
+              `}
+            />
+          </div>
+        </div>
         <div className="flex">
           {piles.map((pile, pileIndex) => (
             <div key={pileIndex} className="w-full">
@@ -239,26 +311,8 @@ const SpiderPage: NextPage = ({ remainingCards, initPiles }: { remainingCards: D
           ))}
         </div>
       </main>
-      <footer className="h-16 relative">
-        <button
-          className="h-full w-20 ml-4 relative"
-          onClick={addMoreCards}
-        >
-          {chunk(deck, 10).map((card, index) => (
-            <img
-              key={index}
-              className="h-full py-1 absolute top-0"
-              style={{
-                left: (4 * index),
-              }}
-              src="/images/cards/red_back.png"
-              alt="add more cards"
-            />
-          ))}
-        </button>
-      </footer>
     </>
   )
 }
 
-export default SpiderPage
+export default FreeCellPage
