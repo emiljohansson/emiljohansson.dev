@@ -57,8 +57,7 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
   while (index-- > 0) {
     const prev = pile[index + 1]
     const current = pile[index]
-    if (current.hidden) return result
-    if (current.suit !== prev.suit) return result
+    if (!isOppositeColors(current, prev)) return result
     if (current.value !== prev.value + 1) return result
     result.push(index)
   }
@@ -90,6 +89,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
           selectedCard: cell,
           selectedPileIndex: cellIndex,
           selectedCardIndex: -1,
+          inCells: true,
         }
       }
     }
@@ -102,6 +102,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
             selectedCard: card,
             selectedPileIndex: pileIndex,
             selectedCardIndex: cardIndex,
+            inCells: false,
           }
         }
       }
@@ -110,6 +111,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
       selectedCard: blankCard,
       selectedPileIndex: -1,
       selectedCardIndex: -1,
+      inCells: false,
     }
   }
 
@@ -146,7 +148,8 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
       return
     }
 
-    const { selectedCard, selectedPileIndex, selectedCardIndex } = getSelectedCard()
+    const { selectedCard, selectedPileIndex, selectedCardIndex, inCells } = getSelectedCard()
+
     if (!current) {
       if (!selectedCard.selected) {
         return
@@ -163,6 +166,15 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
       selectedCard.value === current.value - 1 &&
       current.id === last(piles[currentPileIndex]).id
     ) {
+      if (inCells) {
+        console.log('move from cells to piles')
+        cells[selectedPileIndex] = blankCard
+        setCells([...cells])
+        piles[currentPileIndex].push(selectedCard)
+        selectedCard.selected = false
+        setPiles([...piles])
+        return
+      }
       moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
       return
     }
@@ -295,7 +307,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
             <div key={pileIndex} className="w-full">
               {pile.map((card, cardIndex) => {
                 const clickableIndexes = getClickableIndexesFromPile(pile)
-                const clickable = !isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
+                const clickable = clickableIndexes.indexOf(cardIndex) > -1
                 const cardImage = !isDefined(card)
                   ? 'blank'
                   : !card.hidden
