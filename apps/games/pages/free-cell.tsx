@@ -7,8 +7,8 @@ import { classNames } from 'lib/utils/string'
 import { first, last } from 'lib/utils/array'
 import Header from 'shared/Header'
 import type { Card, Piles, Rank, Suit } from '@/types/card-games'
-import { createDeck } from '@/lib/deck'
-import { deselectAll, scaleGame } from '@/lib/game'
+import { createDeck, isOppositeColors } from '@/lib/deck'
+import { scaleGame } from '@/lib/game'
 import { usePreloadCards } from '@/lib/hooks'
 
 enum RankValue {
@@ -23,6 +23,11 @@ const getCardValue = (rank: Rank) => typeof rank === 'number'
   ? rank
   : RankValue[rank]
 const baseDeck = createDeck(suits, getCardValue)
+const blankCard = {
+  selected: false,
+  combined: '',
+  value: -1,
+} as Card
 
 export async function getServerSideProps () {
   const deck = shuffle(baseDeck)
@@ -60,8 +65,6 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
   return result
 }
 
-const isOppositeColors = (card1: Card, card2: Card) => card1.color !== card2.color
-
 const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
   const [piles, setPiles] = useState<Piles>(initPiles)
   const [stack, setStack] = useState<{
@@ -70,24 +73,71 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
     H?: Card
     S?: Card
   }>({})
+  const [cells, setCells] = useState<(Card)[]>([
+    blankCard,
+    blankCard,
+    blankCard,
+    blankCard,
+  ])
   const mainRef = useRef<HTMLElement>(null)
   usePreloadCards(baseDeck)
 
   function getSelectedCard () {
+    for (let cellIndex = 0; cellIndex < cells.length; cellIndex++) {
+      const cell = cells[cellIndex]
+      if (cell?.selected) {
+        return {
+          selectedCard: cell,
+          selectedPileIndex: cellIndex,
+          selectedCardIndex: -1,
+        }
+      }
+    }
     for (let pileIndex = 0; pileIndex < piles.length; pileIndex++) {
       const pile = piles[pileIndex]
       for (let cardIndex = 0; cardIndex < pile.length; cardIndex++) {
         const card = pile[cardIndex]
-        if (card?.selected) return [card, pileIndex, cardIndex] as const
+        if (card?.selected) {
+          return {
+            selectedCard: card,
+            selectedPileIndex: pileIndex,
+            selectedCardIndex: cardIndex,
+          }
+        }
       }
     }
-    return [undefined, -1, -1] as const
+    return {
+      selectedCard: blankCard,
+      selectedPileIndex: -1,
+      selectedCardIndex: -1,
+    }
+  }
+
+  function handleCell (cell: Card, index: number) {
+    const { selectedCard, selectedPileIndex } = getSelectedCard()
+    console.log(cell, selectedCard)
+
+    if (cell.value !== -1) {
+      selectedCard.selected = false
+      cell.selected = true
+      setCells([...cells])
+      return
+    }
+    if (cell.value === -1 && selectedCard.selected) {
+      selectedCard.selected = false
+      const removedCard = piles[selectedPileIndex].pop()
+      cells[index] = removedCard
+      setPiles([...piles])
+      setCells([...cells])
+      return
+    }
+    selectedCard.selected = false
+    cells[index] = selectedCard
+    setPiles([...piles])
+    setCells([...cells])
   }
 
   function handleSelectedCard (current: Card, currentPileIndex: number) {
-    console.log(current)
-    console.log(stack)
-
     if (current.value === 1 || stack[current.suit]?.value === current.value - 1) {
       const removedCard = piles[currentPileIndex].pop()
       stack[removedCard.suit] = removedCard
@@ -96,27 +146,27 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
       return
     }
 
-    const [selectedCard, selectedPileIndex, selectedCardIndex] = getSelectedCard()
+    const { selectedCard, selectedPileIndex, selectedCardIndex } = getSelectedCard()
     if (!current) {
-      if (!isDefined(selectedCard)) {
+      if (!selectedCard.selected) {
         return
       }
       moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
       return
     }
-    const shouldBeMoved =
-      isDefined(selectedCard) &&
+
+    if (
+      selectedCard.selected &&
       isOppositeColors(current, selectedCard) &&
       selectedPileIndex !== currentPileIndex &&
       selectedCard.combined !== current.combined &&
       selectedCard.value === current.value - 1 &&
       current.id === last(piles[currentPileIndex]).id
-
-    if (shouldBeMoved) {
+    ) {
       moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
       return
     }
-    deselectAll(piles)
+    selectedCard.selected = false
     current.selected = true
     setPiles([
       ...piles,
@@ -177,7 +227,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
                 relative top-0 left-0
                 mx-auto
               `, {
-                grayscale: !isDefined(stack.C),
+                'opacity-40': !isDefined(stack.C),
               })}
             />
           </div>
@@ -190,7 +240,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
                 relative top-0 left-0
                 mx-auto
               `, {
-                grayscale: !isDefined(stack.H),
+                'opacity-40': !isDefined(stack.H),
               })}
             />
           </div>
@@ -203,7 +253,7 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
                 relative top-0 left-0
                 mx-auto
               `, {
-                grayscale: !isDefined(stack.S),
+                'opacity-40': !isDefined(stack.S),
               })}
             />
           </div>
@@ -216,54 +266,29 @@ const FreeCellPage: NextPage = ({ initPiles }: { initPiles: Piles }) => {
                 relative top-0 left-0
                 mx-auto
               `, {
-                grayscale: !isDefined(stack.D),
+                'opacity-40': !isDefined(stack.D),
               })}
             />
           </div>
-          <div className="w-full">
-            <img
-              src="/images/cards/blank.png"
-              alt="blank card"
-              className={`
-                border-4 border-transparent border-solid rounded-lg
-                relative top-0 left-0
-                mx-auto
-              `}
-            />
-          </div>
-          <div className="w-full">
-            <img
-              src="/images/cards/blank.png"
-              alt="blank card"
-              className={`
-                border-4 border-transparent border-solid rounded-lg
-                relative top-0 left-0
-                mx-auto
-              `}
-            />
-          </div>
-          <div className="w-full">
-            <img
-              src="/images/cards/blank.png"
-              alt="blank card"
-              className={`
-                border-4 border-transparent border-solid rounded-lg
-                relative top-0 left-0
-                mx-auto
-              `}
-            />
-          </div>
-          <div className="w-full">
-            <img
-              src="/images/cards/blank.png"
-              alt="blank card"
-              className={`
-                border-4 border-transparent border-solid rounded-lg
-                relative top-0 left-0
-                mx-auto
-              `}
-            />
-          </div>
+          {cells.map((cell, index) => (
+            <button
+              key={index}
+              className="w-full"
+              onClick={() => handleCell(cell, index)}
+            >
+              <img
+                src={`/images/cards/${cell?.combined || 'blank'}.png`}
+                alt="blank card"
+                className={classNames(`
+                  border-4 border-transparent border-solid rounded-lg
+                  relative top-0 left-0
+                  mx-auto
+                `, {
+                  'bg-primary': cell.selected,
+                })}
+              />
+            </button>
+          ))}
         </div>
         <div className="flex">
           {piles.map((pile, pileIndex) => (

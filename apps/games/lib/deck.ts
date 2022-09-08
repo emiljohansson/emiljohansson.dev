@@ -21,3 +21,5 @@ export const createDeck = (suits: Suit[], getCardValue: (rank: Rank) => number) 
       suit => createCard(rank, suit, getCardValue(rank)),
     ),
   ).flat()
+
+export const isOppositeColors = (card1: Card, card2: Card) => card1.color !== card2.color
