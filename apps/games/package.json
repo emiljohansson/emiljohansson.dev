@@ -11,7 +11,7 @@
   "dependencies": {
     "@faker-js/faker": "7.4.0",
     "@radix-ui/react-icons": "1.1.1",
-    "eslint-config-next": "^13.0.0",
+    "eslint-config-next": "13.0.0",
     "framer-motion": "6.2.3",
     "just-shuffle": "4.1.1",
     "lib": "workspace:*",
