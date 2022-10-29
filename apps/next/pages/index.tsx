@@ -121,51 +121,49 @@ const HomePage = () => {
       <ThemeToggle />
       <div className="flex items-center text-5xl h-screen font-bold">
         <h1 className="mx-auto">
-          <Link href="https://github.com/emiljohansson" passHref>
-            <a className="px-2 pb-2" target="_blank" rel="noreferrer">
-              <AccessibleIcon
-                label="GitHub"
-              >
-                <GitHubLogoIcon
-                  color="#ad52dd"
-                  width="50"
-                  height="50"
-                  className="inline-block"
-                />
-              </AccessibleIcon>
-              {' '}
-              <style jsx>{`
-                .title {
-                  background: linear-gradient(97.2deg,#ad52dd -8.65%,#e64937 110.27%);
-                  background-clip: border-box;
-                  background-clip: border-box;
-                  -webkit-text-fill-color: transparent;
-                  -webkit-background-clip: text;
-                }
-              `}</style>
-              <span className="title">emiljohansson</span>
-            </a>
+          <Link href="https://github.com/emiljohansson" className="px-2 pb-2" target="_blank" rel="noreferrer">
+            <AccessibleIcon
+              label="GitHub"
+            >
+              <GitHubLogoIcon
+                color="#ad52dd"
+                width="50"
+                height="50"
+                className="inline-block"
+              />
+            </AccessibleIcon>
+            {' '}
+            <style jsx>{`
+              .title {
+                background: linear-gradient(97.2deg,#ad52dd -8.65%,#e64937 110.27%);
+                background-clip: border-box;
+                background-clip: border-box;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+              }
+            `}</style>
+            <span className="title">emiljohansson</span>
           </Link>
         </h1>
       </div>
       <div className="h-screen p-3 m-0 max-w-md mx-auto">
         {projects.map(({ text, href, description, external, test }, index) => (
-          <Link href={href} key={index}>
-            <a
-              className="
-                flex flex-col link shadow-md rounded-2xl p-4 m-3 relative
-                ease-in-out duration-100
-                hover:no-underline hover:-translate-y-1 hover:shadow-lg
-                dark:hover:bg-black-900 dark:shadow-lg-white
-              "
-              target={external ? '_blank' : undefined}
-              data-test={test}
-            >
-              <span className="flex items-center mb-1">{text} {
-                external && <ExternalLinkIcon width={18} height={18} className="absolute right-3" />
-              }</span>
-              <p className="text-gray-600 text-xs no-underline">{description}</p>
-            </a>
+          <Link
+            key={index}
+            href={href}
+            className="
+              flex flex-col link shadow-md rounded-2xl p-4 m-3 relative
+              ease-in-out duration-100
+              hover:no-underline hover:-translate-y-1 hover:shadow-lg
+              dark:hover:bg-black-900 dark:shadow-lg-white
+            "
+            target={external ? '_blank' : undefined}
+            data-test={test}
+          >
+            <span className="flex items-center mb-1">{text} {
+              external && <ExternalLinkIcon width={18} height={18} className="absolute right-3" />
+            }</span>
+            <p className="text-gray-600 text-xs no-underline">{description}</p>
           </Link>
         ))}
       </div>

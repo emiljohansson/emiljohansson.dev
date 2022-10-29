@@ -17,17 +17,17 @@ const HomePage: NextPage = () => {
         <ul>
           <li>
             <Link href="/spider">
-              <a>Spider Solitaire</a>
+              Spider Solitaire
             </Link>
           </li>
           <li>
             <Link href="/idiot">
-              <a>The Idiot Solitaire (from swedish "Idioten")</a>
+              The Idiot Solitaire (from swedish "Idioten")
             </Link>
           </li>
           <li>
             <Link href="/wordle">
-              <a>Bad Wordle "clone"</a>
+              Bad Wordle "clone"
             </Link>
           </li>
         </ul>

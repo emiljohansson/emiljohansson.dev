@@ -14,7 +14,7 @@
     "framer-motion": "6.2.3",
     "just-shuffle": "4.1.1",
     "lib": "workspace:*",
-    "next": "12.2.4",
+    "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "shared": "workspace:*"
