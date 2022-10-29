@@ -23,7 +23,6 @@
     "@radix-ui/react-progress": "1.0.0",
     "@radix-ui/react-select": "1.0.0",
     "@radix-ui/react-tabs": "1.0.0",
-    "eslint-config-next": "13.0.0",
     "framer-motion": "6.2.3",
     "just-range": "4.1.1",
     "lib": "workspace:*",

@@ -12,7 +12,6 @@
     "@typescript-eslint/eslint-plugin": "5.10.0",
     "@typescript-eslint/parser": "5.10.0",
     "eslint": "8.23.0",
-    "eslint-config-next": "13.0.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-n": "^15.2.0",
