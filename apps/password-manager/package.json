@@ -16,8 +16,9 @@
     "@supabase/supabase-js": "1.35.6",
     "@supabase/ui": "0.36.5",
     "crypto-js": "4.1.1",
+    "eslint-config-next": "^13.0.0",
     "lib": "workspace:*",
-    "next": "12.2.5",
+    "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "shared": "workspace:*"
