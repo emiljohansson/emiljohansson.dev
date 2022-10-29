@@ -112,22 +112,16 @@ const Home: NextPage = () => {
           <h2>Button</h2>
           <div className="mb-3">
             <button className="btn-primary mr-3">Button</button>
-            <Link href="/">
-              <a className="btn-primary mr-3" role="button">Link</a>
-            </Link>
+            <Link href="/" className="btn-primary mr-3" role="button">Link</Link>
           </div>
           <div>
             <button className="btn-secondary mr-3">Button</button>
-            <Link href="/">
-              <a className="btn-secondary mr-3" role="button">Link</a>
-            </Link>
+            <Link href="/" className="btn-secondary mr-3" role="button">Link</Link>
           </div>
         </article>
         <article>
           <h2>Link</h2>
-          <Link href="/">
-            <a className="link">Simple link</a>
-          </Link>
+          <Link href="/" className="link">Simple link</Link>
         </article>
         <article>
           <h2>Input</h2>

@@ -28,11 +28,14 @@ const AccountsPage: NextPage<{ accounts: Account[], secret: string }> = ({ accou
   return (
     <>
       <h1>Accounts</h1>
-      <Link href={{
-        pathname: '/add-account',
-        query: { secret },
-      }}>
-        <a className="btn-primary">Add account</a>
+      <Link
+        href={{
+          pathname: '/add-account',
+          query: { secret },
+        }}
+        className="btn-primary"
+      >
+        Add account
       </Link>
       <table className="table-auto">
         <thead>
