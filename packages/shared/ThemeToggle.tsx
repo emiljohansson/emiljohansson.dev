@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'

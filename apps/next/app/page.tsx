@@ -1,8 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import Head from 'next/head'
 import { GitHubLogoIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
-import Layout from '@/components/Layout'
 import { ThemeToggle } from 'shared/ThemeToggle'
 
 // const AccessibleIcon = ({ children, label }): AccessibleIconPrimitive.AccessibleIcon => {
@@ -108,7 +109,7 @@ const projects = [
 
 const HomePage = () => {
   return (
-    <Layout>
+    <>
       <Head>
         <title>Welcome to emiljohansson.dev | emiljohansson.dev</title>
         <meta name="description" content="Playground for Emil Johansson" />
@@ -167,7 +168,7 @@ const HomePage = () => {
           </Link>
         ))}
       </div>
-    </Layout>
+    </>
   )
 }
 
