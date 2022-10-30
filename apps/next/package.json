@@ -12,7 +12,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint app pages components"
   },
   "dependencies": {
     "@emiljohansson/random-string": "1.1.2",
@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "config": "workspace:*",
-    "next-transpile-modules": "9.0.0",
     "tsconfig": "workspace:*"
   }
 }
