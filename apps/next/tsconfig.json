@@ -21,13 +21,21 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/components/*": ["./components/*"]
-    }
+      "@/components/*": [
+        "./components/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "*.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
