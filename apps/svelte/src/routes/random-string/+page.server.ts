@@ -1,7 +1,7 @@
+import type { PageServerLoad } from "./$types"
 import randomString from "@emiljohansson/random-string"
 
-/** @type {import('./$types').PageLoad} */
-export function load() {
+export const load: PageServerLoad<{ value: string }> = () => {
 	return {
 		value: randomString(),
 	}

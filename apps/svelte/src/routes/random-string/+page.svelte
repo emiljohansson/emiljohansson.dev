@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
+	import type { PageData } from "./$types"
 	import randomString from "@emiljohansson/random-string"
 
-	/** @type {import('./$types').PageData} */
-	export let data
+	export let data: PageData
 
 	let value = data.value
 </script>

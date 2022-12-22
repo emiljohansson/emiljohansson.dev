@@ -205,6 +205,7 @@ importers:
       eslint-config-prettier: 8.5.0
       eslint-plugin-svelte3: 4.0.0
       feather-icons: 4.29.0
+      lib: workspace:*
       prettier: 2.8.0
       prettier-plugin-svelte: 2.8.1
       shared: workspace:*
@@ -226,6 +227,7 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.28.0
       eslint-plugin-svelte3: 4.0.0_6mun4zwmp3itiqdtiz44rfa7k4
       feather-icons: 4.29.0
+      lib: link:../../packages/lib
       prettier: 2.8.0
       prettier-plugin-svelte: 2.8.1_kaioqtfwjumrsfopsgfoca65re
       shared: link:../../packages/shared
