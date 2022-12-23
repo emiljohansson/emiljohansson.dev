@@ -25,7 +25,7 @@
 
 <svelte:head>
 	<title>Progress Bar | emiljohansson.dev</title>
-	<meta name="description" content="Genrates a random string" />
+	<meta name="description" content="Progress bar" />
 </svelte:head>
 
 <header class="bg-white border-b border-slate-200 px-6 py-12">
