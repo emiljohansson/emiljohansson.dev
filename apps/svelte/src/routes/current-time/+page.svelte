@@ -5,8 +5,6 @@
 	let { hours, minutes, meridiem } = getCurrentTime()
 
 	const interval = setInterval(() => {
-		console.log("tick")
-
 		const newTime = getCurrentTime()
 		minutes = newTime.minutes
 		hours = newTime.hours
@@ -24,7 +22,7 @@
 </svelte:head>
 
 <header class="bg-white border-b border-slate-200 px-6 py-12">
-	<h1 class="text-4xl font-medium mb-0">Random string</h1>
+	<h1 class="text-4xl font-medium mb-0">Current Time</h1>
 </header>
 
 <main class="px-6 py-4">
