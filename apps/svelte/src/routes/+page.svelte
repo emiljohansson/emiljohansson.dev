@@ -22,6 +22,12 @@
 			test: "games",
 		},
 		{
+			href: "/password-generator",
+			text: "Password Generator",
+			description: "Generate a password that is difficult to guess.",
+			test: "password-generator",
+		},
+		{
 			href: "/random-string",
 			text: "Random String",
 			description: "Generate a random string of characters.",
@@ -79,12 +85,6 @@
 			text: "Hooks",
 			description: "Custom React Hooks.",
 			test: "hooks",
-		},
-		{
-			href: "/password-generator",
-			text: "Password Generator",
-			description: "Generate a password that is difficult to guess.",
-			test: "password-generator",
 		},
 	]
 </script>
