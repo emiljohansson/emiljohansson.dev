@@ -3,6 +3,13 @@
 	const numericPattern = "0123456789"
 	const symbolsPattern = ",._?-:]&*#~}$>(<)@^|{%!+="
 
+	let value = randomString()
+	let length = 20
+	let numeric = false
+	let symbols = false
+
+	$: value = randomString({ length, numeric, symbols })
+
 	function randomString(props?: {
 		length?: number
 		letters?: boolean
@@ -12,7 +19,7 @@
 		const { length, letters, numeric, symbols } = {
 			length: 10,
 			letters: true,
-			numeric: true,
+			numeric: false,
 			symbols: false,
 			...props,
 		}
@@ -35,7 +42,18 @@
 	}
 </script>
 
-<h2 class="text-2xl font-semibold mb-0">Random Password</h2>
+<h2 class="text-2xl font-semibold mb-6">Random Password</h2>
 
-<input class="input w-full" type="text" readonly value="+MJX$4DV" />
-<input type="range" min="8" max="100" value="50" class="w-full" />
+<input class="input w-full" type="text" readonly {value} />
+<div class="flex gap-2">
+	<input type="range" min="8" max="100" bind:value={length} class="w-full" />
+	{length}
+</div>
+<label class="flex gap-2">
+	<input type="checkbox" bind:checked={numeric} />
+	Numbers
+</label>
+<label class="flex gap-2">
+	<input type="checkbox" bind:checked={symbols} />
+	Symbols
+</label>
