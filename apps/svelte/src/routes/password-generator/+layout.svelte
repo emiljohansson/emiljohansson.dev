@@ -15,6 +15,11 @@
 	]
 </script>
 
+<svelte:head>
+	<title>Password Generator | emiljohansson.dev</title>
+	<meta name="description" content="Generate a random or memorable password, or a pin" />
+</svelte:head>
+
 <header class="bg-white border-b border-slate-200">
 	<div class="max-w-7xl mx-auto px-6 py-12">
 		<h1 class="text-4xl font-medium mb-0">Password Generator</h1>
