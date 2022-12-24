@@ -40,7 +40,7 @@ export const actions: Actions = {
 	newWords: async ({ request }) => {
 		const data = await request.formData()
 		const numberOfWords = data.get("numberOfWords")?.toString() || "4"
-		console.log("data", data)
+
 		return {
 			success: true,
 			words: randomWords(parseInt(numberOfWords, 10)),
