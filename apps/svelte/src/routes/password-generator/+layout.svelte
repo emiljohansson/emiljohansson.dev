@@ -9,16 +9,22 @@
 		<nav class="grid w-[200px] md:w-[264px]">
 			<a
 				href="/password-generator/random"
-				class="hover:bg-gray-200 rounded-md w-full px-3 py-2 leading-6">Random</a
+				class="flex items-center hover:bg-gray-200 rounded-md w-full px-3 leading-relaxed"
 			>
+				Random
+			</a>
 			<a
 				href="/password-generator/memorable"
-				class="hover:bg-gray-200 rounded-md w-full px-3 py-2 leading-6">Memorable</a
+				class="flex items-center hover:bg-gray-200 rounded-md w-full px-3 leading-relaxed"
 			>
+				Memorable
+			</a>
 			<a
 				href="/password-generator/pin"
-				class="hover:bg-gray-200 rounded-md w-full px-3 py-2 leading-6">PIN</a
+				class="flex items-center hover:bg-gray-200 rounded-md w-full px-3 leading-relaxed"
 			>
+				PIN
+			</a>
 		</nav>
 
 		<main>
