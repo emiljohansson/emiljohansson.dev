@@ -206,6 +206,7 @@ importers:
       eslint-config-prettier: 8.5.0
       eslint-plugin-svelte3: 4.0.0
       feather-icons: 4.29.0
+      just-debounce-it: 3.2.0
       just-range: 4.1.1
       lib: workspace:*
       prettier: 2.8.0
@@ -230,6 +231,7 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.28.0
       eslint-plugin-svelte3: 4.0.0_6mun4zwmp3itiqdtiz44rfa7k4
       feather-icons: 4.29.0
+      just-debounce-it: 3.2.0
       just-range: 4.1.1
       lib: link:../../packages/lib
       prettier: 2.8.0
@@ -6159,6 +6161,10 @@ packages:
     dependencies:
       array-includes: 3.1.5
       object.assign: 4.1.4
+    dev: true
+
+  /just-debounce-it/3.2.0:
+    resolution: {integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==}
     dev: true
 
   /just-range/4.1.1:

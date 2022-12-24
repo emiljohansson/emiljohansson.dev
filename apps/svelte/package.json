@@ -25,6 +25,7 @@
 		"eslint-plugin-svelte3": "4.0.0",
 		"feather-icons": "4.29.0",
 		"just-range": "4.1.1",
+		"just-debounce-it": "3.2.0",
 		"lib": "workspace:*",
 		"prettier": "2.8.0",
 		"prettier-plugin-svelte": "2.8.1",
