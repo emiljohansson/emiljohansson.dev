@@ -16,9 +16,9 @@
 		},
 		{
 			href: "https://games.emiljohansson.dev",
-			text: "Card Games",
+			text: "Games",
 			external: true,
-			description: "Some simple card games.",
+			description: "Some simple games.",
 			test: "games",
 		},
 		{
@@ -64,27 +64,10 @@
 			test: "confirm-button",
 		},
 		{
-			href: "/ms",
-			text: "Mine Sweaper",
-			description: "Mine sweaper game.",
-			test: "mine-sweaper",
-		},
-		{
 			href: "/calculate",
 			text: "Calculate",
 			description: "Calculate a mathematical expression from an API route.",
 			test: "calculate",
-		},
-		// {
-		//   href: '/rsc',
-		//   text: 'React Server Components',
-		//   description: 'React Server Components.',
-		// },
-		{
-			href: "/hooks",
-			text: "Hooks",
-			description: "Custom React Hooks.",
-			test: "hooks",
 		},
 	]
 </script>
@@ -96,9 +79,15 @@
 
 <main class="px-6 py-4">
 	<ul class="border border-slate-200 rounded-md overflow-hidden">
-		{#each projects as { href, text, description, test }, i}
+		{#each projects as { href, text, description, test, external }}
 			<li class="p-4 bg-white border-b last:border-none border-slate-200">
-				<a class="font-bold hover:underline" {href} data-test={test}>
+				<a
+					class="font-bold hover:underline"
+					{href}
+					data-test={test}
+					target={external ? "_blank" : null}
+					rel={external ? "noreferrer" : null}
+				>
 					{text}
 				</a>
 				<div>
