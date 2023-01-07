@@ -36,6 +36,12 @@ const projects = [
     test: 'games',
   },
   {
+    href: '/password-generator',
+    text: 'Password Generator',
+    description: 'Generate a password that is difficult to guess.',
+    test: 'password-generator',
+  },
+  {
     href: '/random-string',
     text: 'Random String',
     description: 'Generate a random string of characters.',
@@ -83,11 +89,6 @@ const projects = [
     description: 'Calculate a mathematical expression from an API route.',
     test: 'calculate',
   },
-  // {
-  //   href: '/rsc',
-  //   text: 'React Server Components',
-  //   description: 'React Server Components.',
-  // },
   {
     href: '/hooks',
     text: 'Hooks',
@@ -95,10 +96,10 @@ const projects = [
     test: 'hooks',
   },
   {
-    href: '/password-generator',
-    text: 'Password Generator',
-    description: 'Generate a password that is difficult to guess.',
-    test: 'password-generator',
+    href: '/encryption',
+    text: 'Encrypt and Decrypt Strings',
+    description: 'Encrypts and Decrypts a string.',
+    test: 'encryption',
   },
 ]
 
