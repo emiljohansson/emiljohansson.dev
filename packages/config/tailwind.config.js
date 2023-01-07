@@ -84,6 +84,9 @@ module.exports = {
           },
         },
       }),
+      gridTemplateColumns: {
+        '2-auto': 'repeat(2, minmax(0, auto))',
+      },
     },
   },
   plugins: [

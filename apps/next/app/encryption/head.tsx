@@ -4,7 +4,8 @@ export default function Head () {
   return (
     <>
       <DefaultTags />
-      <title>Welcome to emiljohansson.dev | emiljohansson.dev</title>
+      <title>Encrypt & Decrypt a String</title>
+      <meta name="description" content="Encrypt & Decrypt a String" />
     </>
   )
 }

@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from 'react'
 import Link from 'next/link'
-import { ArrowLeftIcon } from '@radix-ui/react-icons'
+import { FiArrowLeft } from 'react-icons/fi'
 
 const Header = ({ children }: PropsWithChildren) => {
   return (
     <header className="flex font p-4">
       <Link href="/" data-test="back-link">
-        <ArrowLeftIcon width={30} height={30} />
+        <FiArrowLeft size={30} strokeWidth="1.5" />
         <span className="sr-only">Back</span>
       </Link>
       <div className="ml-auto">{children}</div>

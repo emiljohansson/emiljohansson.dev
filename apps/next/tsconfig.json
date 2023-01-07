@@ -23,6 +23,9 @@
     "paths": {
       "@/components/*": [
         "./components/*"
+      ],
+      "@/ui/*": [
+        "./ui/*"
       ]
     },
     "plugins": [
