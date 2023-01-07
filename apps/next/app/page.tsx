@@ -89,11 +89,6 @@ const projects = [
     description: 'Calculate a mathematical expression from an API route.',
     test: 'calculate',
   },
-  // {
-  //   href: '/rsc',
-  //   text: 'React Server Components',
-  //   description: 'React Server Components.',
-  // },
   {
     href: '/hooks',
     text: 'Hooks',

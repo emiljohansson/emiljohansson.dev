@@ -24,12 +24,12 @@ const Encrypt = () => {
     <div className="text-left">
       <h2>Encrypt</h2>
       <div className="grid grid-cols-2-auto gap-2 items-center">
-        <Label htmlFor="secret" className="pr-3">Enter Secret</Label>
-        <input id="secret" name="secret" className="input w-80 pr-9 ml-auto" ref={secretRef} onChange={onChange} />
-        <Label htmlFor="string" className="pr-3">Enter String</Label>
-        <input id="string" name="string" className="input w-80 pr-9 ml-auto" ref={stringRef} onChange={onChange} />
-        <div>Encrypted:</div>
-        <div>{encryptedValue}</div>
+        <Label htmlFor="en-secret" className="pr-3">Enter Secret</Label>
+        <input id="en-secret" className="input w-80 pr-9" ref={secretRef} onChange={onChange} />
+        <Label htmlFor="en-string" className="pr-3">Enter String</Label>
+        <input id="en-string" className="input w-80 pr-9" ref={stringRef} onChange={onChange} />
+        <Label htmlFor="en-result" className="pr-3">Encrypted Value</Label>
+        <input id="en-result" className="input w-80 pr-9" readOnly value={encryptedValue} />
       </div>
     </div>
   )
@@ -51,12 +51,12 @@ const Decrypt = () => {
     <div className="text-left">
       <h2>Decrypt</h2>
       <div className="grid grid-cols-2-auto gap-2 items-center">
-        <Label htmlFor="secret" className="pr-3">Enter Secret</Label>
-        <input id="secret" name="secret" className="input w-80 pr-9 ml-auto" ref={secretRef} onChange={onChange} />
-        <Label htmlFor="string" className="pr-3">Enter Encrypted Value</Label>
-        <input id="string" name="string" className="input w-80 pr-9 ml-auto" ref={stringRef} onChange={onChange} />
-        <div>Decrypted:</div>
-        <div>{decryptedValue}</div>
+        <Label htmlFor="de-secret" className="pr-3">Enter Secret</Label>
+        <input id="de-secret" className="input w-80 pr-9" ref={secretRef} onChange={onChange} />
+        <Label htmlFor="de-string" className="pr-3">Enter Encrypted Value</Label>
+        <input id="de-string" className="input w-80 pr-9" ref={stringRef} onChange={onChange} />
+        <Label htmlFor="de-result" className="pr-3">Decrypted Value</Label>
+        <input id="de-result" className="input w-80 pr-9" readOnly value={decryptedValue} />
       </div>
     </div>
   )
