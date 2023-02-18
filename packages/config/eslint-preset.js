@@ -5,19 +5,19 @@ module.exports = {
 	},
 	settings: {
 		next: {
-			rootDir: ["apps/*/", "packages/*/"],
+			rootDir: ['apps/*/', 'packages/*/'],
 		},
 	},
-	extends: ["standard", "plugin:@typescript-eslint/recommended", "prettier"],
-	parser: "@typescript-eslint/parser",
+	extends: ['standard', 'plugin:@typescript-eslint/recommended', 'prettier'],
+	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true,
 		},
-		ecmaVersion: "latest",
-		sourceType: "module",
+		ecmaVersion: 'latest',
+		sourceType: 'module',
 	},
-	plugins: ["react", "@typescript-eslint"],
+	plugins: ['react', '@typescript-eslint'],
 	// rules: {
 	// 	"react/react-in-jsx-scope": "off",
 	// 	"import/no-anonymous-default-export": "off",
