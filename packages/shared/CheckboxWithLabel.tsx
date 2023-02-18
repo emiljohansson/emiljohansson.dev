@@ -1,6 +1,6 @@
-import type { CheckboxProps } from "@radix-ui/react-checkbox"
-import { Root, Indicator } from "@radix-ui/react-checkbox"
-import { CheckIcon } from "@radix-ui/react-icons"
+import type { CheckboxProps } from '@radix-ui/react-checkbox'
+import { Root, Indicator } from '@radix-ui/react-checkbox'
+import { CheckIcon } from '@radix-ui/react-icons'
 
 interface Props extends CheckboxProps {
 	labelText: string

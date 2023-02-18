@@ -1,7 +1,7 @@
-import type { SliderProps } from "@radix-ui/react-slider"
-import { Root, Track, Range, Thumb } from "@radix-ui/react-slider"
+import type { SliderProps } from '@radix-ui/react-slider'
+import { Root, Track, Range, Thumb } from '@radix-ui/react-slider'
 
-interface Props extends Omit<SliderProps, "defaultValue"> {
+interface Props extends Omit<SliderProps, 'defaultValue'> {
 	defaultValue: number
 	label?: string
 }

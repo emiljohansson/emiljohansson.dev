@@ -1,6 +1,6 @@
-import type { PropsWithChildren } from "react"
-import Link from "next/link"
-import { FiArrowLeft } from "react-icons/fi"
+import type { PropsWithChildren } from 'react'
+import Link from 'next/link'
+import { FiArrowLeft } from 'react-icons/fi'
 
 const Header = ({ children }: PropsWithChildren) => {
 	return (

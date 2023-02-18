@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 
-const darkClassName = "dark"
+const darkClassName = 'dark'
 let savedDarkMode: boolean | undefined
 
 const useDarkMode = () => {
@@ -14,7 +14,7 @@ const useDarkMode = () => {
 			savedDarkMode = document.documentElement.classList.contains(darkClassName)
 			return
 		}
-		localStorage.setItem("theme", darkMode ? darkClassName : "")
+		localStorage.setItem('theme', darkMode ? darkClassName : '')
 		document.documentElement.classList.toggle(darkClassName, localStorage.theme === darkClassName)
 		savedDarkMode = document.documentElement.classList.contains(darkClassName)
 	}, [darkMode])
@@ -35,16 +35,16 @@ export const ThemeToggle = () => {
 				initial={{
 					scale: darkMode === undefined ? 0.5 : 1,
 					opacity: darkMode === undefined ? 0 : 1,
-					y: darkMode === undefined ? "-100%" : 0,
+					y: darkMode === undefined ? '-100%' : 0,
 				}}
 				animate={{
 					scale: darkMode === undefined ? 0.5 : 1,
 					opacity: darkMode === undefined ? 0 : 1,
-					y: darkMode === undefined ? "-100%" : 0,
+					y: darkMode === undefined ? '-100%' : 0,
 				}}
 				transition={{ duration: 0.5, delay: 0.5 }}
 			>
-				<span className="sr-only">Use {darkMode ? "dark" : "light"} mode</span>
+				<span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
 				{darkMode ? (
 					<MoonIcon className="block" width="24" height="24" />
 				) : (

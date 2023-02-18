@@ -1,13 +1,13 @@
-import { Root, Indicator } from "@radix-ui/react-progress"
-import { motion } from "framer-motion"
-import { classNames } from "lib/utils/string"
+import { Root, Indicator } from '@radix-ui/react-progress'
+import { motion } from 'framer-motion'
+import { classNames } from 'lib/utils/string'
 
 export const Progress = ({ progress }: { progress: number }) => {
-	let colorClass = "bg-green-400"
+	let colorClass = 'bg-green-400'
 	if (progress <= 25) {
-		colorClass = "bg-red-400"
+		colorClass = 'bg-red-400'
 	} else if (progress <= 50) {
-		colorClass = "bg-yellow-200"
+		colorClass = 'bg-yellow-200'
 	}
 	return (
 		<Root
@@ -17,9 +17,9 @@ export const Progress = ({ progress }: { progress: number }) => {
 		>
 			<Indicator asChild className="h-full">
 				<motion.div
-					className={classNames("h-full w-0", colorClass)}
+					className={classNames('h-full w-0', colorClass)}
 					animate={{
-						width: progress + "%",
+						width: progress + '%',
 					}}
 					transition={{ duration: 0.4 }}
 				/>
