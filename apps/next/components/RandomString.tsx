@@ -2,27 +2,25 @@ import { useState, forwardRef, useImperativeHandle } from 'react'
 import randomString from '@emiljohansson/random-string'
 
 interface Props {
-  initialValue: string
+	initialValue: string
 }
 
 export interface Ref {
-  getValue: () => string
-  generateNewValue: () => void
+	getValue: () => string
+	generateNewValue: () => void
 }
 
 const RandomString = forwardRef<Ref, Props>(({ initialValue }, ref) => {
-  const [value, setValue] = useState(initialValue)
+	const [value, setValue] = useState(initialValue)
 
-  useImperativeHandle(ref, () => ({
-    getValue: () => value,
-    generateNewValue: () => {
-      setValue(randomString())
-    },
-  }))
+	useImperativeHandle(ref, () => ({
+		getValue: () => value,
+		generateNewValue: () => {
+			setValue(randomString())
+		},
+	}))
 
-  return (
-    <>{ value }</>
-  )
+	return <>{value}</>
 })
 
 export default RandomString

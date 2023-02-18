@@ -3,12 +3,12 @@
 
 // module.exports = withTM({
 module.exports = {
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    appDir: true,
-    externalDir: true,
-    // runtime: 'nodejs',
-    // serverComponents: true,
-  },
+	reactStrictMode: true,
+	swcMinify: true,
+	experimental: {
+		appDir: true,
+		externalDir: true,
+		// runtime: 'nodejs',
+		// serverComponents: true,
+	},
 }

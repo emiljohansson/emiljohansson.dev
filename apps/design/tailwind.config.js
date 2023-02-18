@@ -2,5 +2,5 @@
 const baseConfig = require('config/tailwind.config.js')
 
 module.exports = {
-  ...baseConfig,
+	...baseConfig,
 }

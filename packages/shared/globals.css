@@ -3,66 +3,62 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: "Inter";
-    src: url("/fonts/Inter-Light.ttf");
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-  }
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter-Light.ttf');
+		font-style: normal;
+		font-weight: 300;
+		font-display: swap;
+	}
 
-  @font-face {
-    font-family: "Inter";
-    src: url("/fonts/Inter-Regular.ttf");
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-  }
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter-Regular.ttf');
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+	}
 
-  @font-face {
-    font-family: "Inter";
-    src: url("/fonts/Inter-Bold.ttf");
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-  }
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter-Bold.ttf');
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
+	}
 
-  h1 {
-    @apply text-5xl mb-10 font-bold;
-  }
-  h2 {
-    @apply text-3xl mb-6;
-  }
+	h1 {
+		@apply text-5xl mb-10 font-bold;
+	}
+	h2 {
+		@apply text-3xl mb-6;
+	}
 }
 
 @layer components {
-  .btn-primary,
-  .btn-secondary,
-  .input,
-  .select {
-    @apply
-      h-10
+	.btn-primary,
+	.btn-secondary,
+	.input,
+	.select {
+		@apply h-10
       px-2
-      rounded
-    ;
-  }
+      rounded;
+	}
 
-  .btn-primary,
-  .btn-secondary {
-    @apply border
-      no-underline
-    ;
-  }
+	.btn-primary,
+	.btn-secondary {
+		@apply border
+      no-underline;
+	}
 
-  .btn-primary {
-    @apply bg-primary
+	.btn-primary {
+		@apply bg-primary
       border-primary
       text-black
-      hover:bg-primary-dark
-    ;
-  }
-  .btn-secondary {
-    @apply bg-transparent
+      hover:bg-primary-dark;
+	}
+	.btn-secondary {
+		@apply bg-transparent
       border-gray-600
       hover:border-black-rich
       text-gray-600
@@ -70,31 +66,25 @@
       dark:text-gray-400
       dark:border-gray-400
       dark:hover:text-white
-      dark:hover:border-white
-    ;
-  }
-  button.btn-primary,
-  button.btn-secondary {
-    @apply hover:cursor-auto;
-  }
-  a.btn-primary,
-  a.btn-secondary {
-    @apply
-      inline-flex
-      items-center
-    ;
-  }
+      dark:hover:border-white;
+	}
+	button.btn-primary,
+	button.btn-secondary {
+		@apply hover:cursor-auto;
+	}
+	a.btn-primary,
+	a.btn-secondary {
+		@apply inline-flex
+      items-center;
+	}
 
-  .link {
-    @apply
-      no-underline
-      hover:underline
-    ;
-  }
+	.link {
+		@apply no-underline
+      hover:underline;
+	}
 
-  .input {
-    @apply
-      inline-flex
+	.input {
+		@apply inline-flex
       items-center
       justify-center
       h-10
@@ -105,13 +95,11 @@
       border-gray-300
       focus:border-black-rich
       dark:border-gray-600
-      dark:focus:border-white
-    ;
-  }
+      dark:focus:border-white;
+	}
 
-  .select {
-    @apply
-      inline-flex
+	.select {
+		@apply inline-flex
       items-center
       justify-center
       cursor-default
@@ -123,12 +111,10 @@
       focus:border-black-rich
       dark:border-gray-600
       dark:hover:border-white
-      dark:focus:border-white
-    ;
-  }
-  .select-item {
-    @apply
-      border-0
+      dark:focus:border-white;
+	}
+	.select-item {
+		@apply border-0
       text-sm
       focus:bg-primary
       focus:text-white
@@ -144,23 +130,20 @@
       relative
       select-none
       data-disabled:text-zinc-300
-      data-disabled:pointer-events-none
-    ;
-  }
-  .select-item-indicator {
-    @apply
-      absolute
+      data-disabled:pointer-events-none;
+	}
+	.select-item-indicator {
+		@apply absolute
       left-0
       inline-flex
       items-center
       justify-center
-      w-6
-    ;
-  }
-  .select-label {
-    @apply text-slate-600 text-xs leading-6 py-0 px-6;
-  }
-  .select-separator {
-    @apply h-px m-1 bg-gray-300;
-  }
+      w-6;
+	}
+	.select-label {
+		@apply text-slate-600 text-xs leading-6 py-0 px-6;
+	}
+	.select-separator {
+		@apply h-px m-1 bg-gray-300;
+	}
 }

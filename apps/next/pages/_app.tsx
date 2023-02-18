@@ -3,17 +3,18 @@ import Head from 'next/head'
 import 'shared/globals.css'
 import '../styles/globals.css'
 
-export default function App ({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: 'document.documentElement.classList.toggle(\'dark\', localStorage.theme === \'dark\')',
-          }}
-        />
-      </Head>
-      <Component {...pageProps} />
-    </>
-  )
+export default function App({ Component, pageProps }: AppProps) {
+	return (
+		<>
+			<Head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html:
+							"document.documentElement.classList.toggle('dark', localStorage.theme === 'dark')",
+					}}
+				/>
+			</Head>
+			<Component {...pageProps} />
+		</>
+	)
 }

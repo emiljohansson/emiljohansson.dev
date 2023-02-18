@@ -6,109 +6,99 @@ let value = ''
 
 const lifespanInSeconds = 15
 
-function getLastUpdated () {
-  return lastUpdated
+function getLastUpdated() {
+	return lastUpdated
 }
 
-function getValue () {
-  return value
+function getValue() {
+	return value
 }
 
-function setValue (newValue: string) {
-  updateLastUpdated()
-  value = newValue
+function setValue(newValue: string) {
+	updateLastUpdated()
+	value = newValue
 }
 
-function updateLastUpdated () {
-  lastUpdated = getNewUpdatedTime()
+function updateLastUpdated() {
+	lastUpdated = getNewUpdatedTime()
 }
 
-function getNewUpdatedTime () {
-  const date = new Date()
-  return date.getTime()
+function getNewUpdatedTime() {
+	const date = new Date()
+	return date.getTime()
 }
 
-function isWithinTimespan (time: number, seconds = 0) {
-  return getDiffInSeconds(time) <= seconds
+function isWithinTimespan(time: number, seconds = 0) {
+	return getDiffInSeconds(time) <= seconds
 }
 
-function getDiffInSeconds (time: number) {
-  const lastUpdated = new Date(time)
-  const now = new Date()
-  const diff = now.getTime() - lastUpdated.getTime()
-  return Math.floor(diff / 1000)
+function getDiffInSeconds(time: number) {
+	const lastUpdated = new Date(time)
+	const now = new Date()
+	const diff = now.getTime() - lastUpdated.getTime()
+	return Math.floor(diff / 1000)
 }
 
-export default function TwoFactor (req: NextApiRequest, res: NextApiResponse) {
-  const { fn } = req.query
+export default function TwoFactor(req: NextApiRequest, res: NextApiResponse) {
+	const { fn } = req.query
 
-  if (fn === 'generate') {
-    generateCode(req, res)
-    return
-  }
-  if (req.body) {
-    const { value } = req.body
+	if (fn === 'generate') {
+		generateCode(req, res)
+		return
+	}
+	if (req.body) {
+		const { value } = req.body
 
-    if (fn === 'validate' && value) {
-      validateCode(req, res, value)
-      return
-    }
-  }
+		if (fn === 'validate' && value) {
+			validateCode(req, res, value)
+			return
+		}
+	}
 
-  res.status(200).json({
-    status: 'success',
-    data: null,
-  })
+	res.status(200).json({
+		status: 'success',
+		data: null,
+	})
 }
 
-function generateCode (req: NextApiRequest, res: NextApiResponse) {
-  if (
-    !getLastUpdated() ||
-    !isWithinTimespan(getLastUpdated(), lifespanInSeconds)
-  ) {
-    setValue('')
-  }
-  if (!getValue()) {
-    setValue(randomString())
-  }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      value: getValue(),
-      expires: lifespanInSeconds - getDiffInSeconds(getLastUpdated()),
-      lifespan: lifespanInSeconds,
-    },
-  })
+function generateCode(req: NextApiRequest, res: NextApiResponse) {
+	if (!getLastUpdated() || !isWithinTimespan(getLastUpdated(), lifespanInSeconds)) {
+		setValue('')
+	}
+	if (!getValue()) {
+		setValue(randomString())
+	}
+	res.status(200).json({
+		status: 'success',
+		data: {
+			value: getValue(),
+			expires: lifespanInSeconds - getDiffInSeconds(getLastUpdated()),
+			lifespan: lifespanInSeconds,
+		},
+	})
 }
 
-function validateCode (
-  req: NextApiRequest,
-  res: NextApiResponse,
-  value: string,
-): void {
-  function end (isValid: boolean): void {
-    res.status(200).json({
-      status: 'success',
-      data: {
-        isValid,
-      },
-    })
-  }
+function validateCode(req: NextApiRequest, res: NextApiResponse, value: string): void {
+	function end(isValid: boolean): void {
+		res.status(200).json({
+			status: 'success',
+			data: {
+				isValid,
+			},
+		})
+	}
 
-  if (
-    !getLastUpdated() ||
-    !isWithinTimespan(getLastUpdated(), lifespanInSeconds)
-  ) {
-    end(false)
-    return
-  }
-  if (!getValue()) {
-    end(false)
-    return
-  }
-  const isValid: boolean = value === getValue()
-  if (isValid) {
-    setValue('')
-  }
-  end(isValid)
+	if (!getLastUpdated() || !isWithinTimespan(getLastUpdated(), lifespanInSeconds)) {
+		end(false)
+		return
+	}
+	if (!getValue()) {
+		end(false)
+		return
+	}
+	const isValid: boolean = value === getValue()
+	if (isValid) {
+		setValue('')
+	}
+	end(isValid)
 }

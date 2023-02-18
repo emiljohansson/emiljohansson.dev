@@ -9,6 +9,9 @@ dist
 .env.*
 !.env.example
 .git
+.github
+coverage
+pnpm-*
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml

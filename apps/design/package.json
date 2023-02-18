@@ -1,27 +1,27 @@
 {
-  "name": "design-app",
-  "private": true,
-  "scripts": {
-    "dev": "PORT=3001 next dev",
-    "build": "next build",
-    "export": "next export",
-    "start": "PORT=3001 next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@radix-ui/react-icons": "1.1.1",
-    "@radix-ui/react-label": "1.0.0",
-    "@radix-ui/react-progress": "1.0.0",
-    "@radix-ui/react-radio-group": "latest",
-    "framer-motion": "6.2.3",
-    "lib": "workspace:*",
-    "next": "13.1.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "shared": "workspace:*"
-  },
-  "devDependencies": {
-    "config": "workspace:*",
-    "tsconfig": "workspace:*"
-  }
+	"name": "design-app",
+	"private": true,
+	"scripts": {
+		"dev": "PORT=3001 next dev",
+		"build": "next build",
+		"export": "next export",
+		"start": "PORT=3001 next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@radix-ui/react-icons": "1.1.1",
+		"@radix-ui/react-label": "1.0.0",
+		"@radix-ui/react-progress": "1.0.0",
+		"@radix-ui/react-radio-group": "latest",
+		"framer-motion": "6.2.3",
+		"lib": "workspace:*",
+		"next": "13.1.1",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"shared": "workspace:*"
+	},
+	"devDependencies": {
+		"config": "workspace:*",
+		"tsconfig": "workspace:*"
+	}
 }

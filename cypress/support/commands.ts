@@ -39,10 +39,10 @@ import '@cypress-audit/lighthouse/commands'
 import 'cypress-axe'
 
 Cypress.Commands.add('injectAxe', () => {
-  const fileName = './node_modules/axe-core/axe.min.js'
-  cy.readFile(fileName).then(source => {
-    return cy.window({ log: false }).then(window => {
-      window.eval(source)
-    })
-  })
+	const fileName = './node_modules/axe-core/axe.min.js'
+	cy.readFile(fileName).then((source) => {
+		return cy.window({ log: false }).then((window) => {
+			window.eval(source)
+		})
+	})
 })

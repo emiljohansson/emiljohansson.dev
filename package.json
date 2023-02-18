@@ -18,8 +18,8 @@
 		"cy:run": "cypress run --headless --browser chrome",
 		"cy:open": "cypress open",
 		"prettier:check": "prettier --check .",
-		"format": "prettier --write \"packages/config/*.{ts,tsx,js,md,json}\"",
-		"lint": "turbo run lint"
+		"format": "prettier --write \"**/*.{ts,tsx,js,md,json,html,css}\"",
+		"lint": "turbo run lint && pnpm prettier:check"
 	},
 	"workspaces": [
 		"packages/*",

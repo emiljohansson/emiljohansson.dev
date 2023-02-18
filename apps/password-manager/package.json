@@ -1,30 +1,30 @@
 {
-  "name": "password-manager",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "PORT=3003 next dev",
-    "build": "next build",
-    "start": "PORT=3003 next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@radix-ui/react-icons": "1.1.1",
-    "@radix-ui/react-label": "1.0.0",
-    "@supabase/auth-helpers-nextjs": "0.2.7",
-    "@supabase/auth-helpers-react": "0.2.3",
-    "@supabase/supabase-js": "1.35.6",
-    "@supabase/ui": "0.36.5",
-    "crypto-js": "4.1.1",
-    "lib": "workspace:*",
-    "next": "13.1.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "shared": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/crypto-js": "4.1.1",
-    "config": "workspace:*",
-    "tsconfig": "workspace:*"
-  }
+	"name": "password-manager",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "PORT=3003 next dev",
+		"build": "next build",
+		"start": "PORT=3003 next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@radix-ui/react-icons": "1.1.1",
+		"@radix-ui/react-label": "1.0.0",
+		"@supabase/auth-helpers-nextjs": "0.2.7",
+		"@supabase/auth-helpers-react": "0.2.3",
+		"@supabase/supabase-js": "1.35.6",
+		"@supabase/ui": "0.36.5",
+		"crypto-js": "4.1.1",
+		"lib": "workspace:*",
+		"next": "13.1.1",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"shared": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/crypto-js": "4.1.1",
+		"config": "workspace:*",
+		"tsconfig": "workspace:*"
+	}
 }
