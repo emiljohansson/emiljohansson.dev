@@ -17,6 +17,7 @@ importers:
       husky: 8.0.1
       jest: 27.5.1
       postcss: 8.4.14
+      prettier: 2.8.4
       start-server-and-test: 1.14.0
       tailwindcss: 3.1.7
       ts-jest: 27.1.3
@@ -38,6 +39,7 @@ importers:
       cypress-axe: 1.2.0_2hjo27vwqrtlfr5rbdl7tqkluy
       husky: 8.0.1
       jest: 27.5.1
+      prettier: 2.8.4
       start-server-and-test: 1.14.0
       ts-jest: 27.1.3_vvcvcp7cgkchkmj45x3ngkywme
       turbo: 1.4.5
@@ -76,7 +78,7 @@ importers:
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@radix-ui/react-label': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-progress': 1.0.0_biqbaboplfbrettd7655fr4n2y
-      '@radix-ui/react-radio-group': 1.1.0_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-radio-group': 1.1.1_biqbaboplfbrettd7655fr4n2y
       framer-motion: 6.2.3_biqbaboplfbrettd7655fr4n2y
       lib: link:../../packages/lib
       next: 13.1.1_biqbaboplfbrettd7655fr4n2y
@@ -204,6 +206,7 @@ importers:
       '@typescript-eslint/parser': 5.10.0
       eslint: 8.23.0
       eslint-config-next: 13.0.0
+      eslint-config-prettier: latest
       eslint-config-standard: 17.0.0
       eslint-plugin-import: 2.25.4
       eslint-plugin-n: ^15.2.0
@@ -223,6 +226,7 @@ importers:
       '@typescript-eslint/parser': 5.10.0_yqf6kl63nyoq5megxukfnom5rm
       eslint: 8.23.0
       eslint-config-next: 13.0.0_yqf6kl63nyoq5megxukfnom5rm
+      eslint-config-prettier: 8.6.0_eslint@8.23.0
       eslint-config-standard: 17.0.0_ljfjrecfthdt4f3klkysgrhoyi
       eslint-plugin-import: 2.25.4_mucud53oeiamfrgzicgup4ksyq
       eslint-plugin-n: 15.3.0_eslint@8.23.0
@@ -1393,8 +1397,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@radix-ui/react-radio-group/1.1.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-7rrkZCXu0Q7oC0MxCm497X1DdV/tI78oNIGXA8sDbCkboiTkuLSe728zCCpRYHw+9PifHIx86nsbITPEq5yijg==}
+  /@radix-ui/react-radio-group/1.1.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-fmg1CuDKt3GAkL3YnHekmdOicyrXlbp/s/D0MrHa+YB2Un+umpJGheiRowlQtxSpb1eeehKNTINgNESi8WK5rA==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
@@ -1406,7 +1410,7 @@ packages:
       '@radix-ui/react-direction': 1.0.0_react@18.2.0
       '@radix-ui/react-presence': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-primitive': 1.0.1_biqbaboplfbrettd7655fr4n2y
-      '@radix-ui/react-roving-focus': 1.0.1_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-roving-focus': 1.0.2_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-use-controllable-state': 1.0.0_react@18.2.0
       '@radix-ui/react-use-previous': 1.0.0_react@18.2.0
       '@radix-ui/react-use-size': 1.0.0_react@18.2.0
@@ -1434,8 +1438,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@radix-ui/react-roving-focus/1.0.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-TB76u5TIxKpqMpUAuYH2VqMhHYKa+4Vs1NHygo/llLvlffN6mLVsFhz0AnSFlSBAvTBYVHYAkHAyEt7x1gPJOA==}
+  /@radix-ui/react-roving-focus/1.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-HLK+CqD/8pN6GfJm3U+cqpqhSKYAWiOJDe+A+8MfxBnOue39QEeMa43csUn2CXCHQT0/mewh1LrrG4tfkM9DMA==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
@@ -3579,6 +3583,15 @@ packages:
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
+    dev: true
+
+  /eslint-config-prettier/8.6.0_eslint@8.23.0:
+    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.23.0
     dev: true
 
   /eslint-config-standard/17.0.0_ljfjrecfthdt4f3klkysgrhoyi:
@@ -6304,6 +6317,12 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-bytes/5.6.0:
