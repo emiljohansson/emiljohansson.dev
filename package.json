@@ -17,6 +17,8 @@
 		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser chrome\"",
 		"cy:run": "cypress run --headless --browser chrome",
 		"cy:open": "cypress open",
+		"prettier:check": "prettier --check .",
+		"format": "prettier --write \"packages/shared/*.{ts,tsx}\"",
 		"lint": "turbo run lint"
 	},
 	"workspaces": [
