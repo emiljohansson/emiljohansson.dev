@@ -4,10 +4,4 @@ import SelectItem from './SelectItem'
 import SelectLabel from './SelectLabel'
 import SelectSeparator from './SelectSeparator'
 
-export {
-  SelectGroup,
-  Select,
-  SelectItem,
-  SelectLabel,
-  SelectSeparator,
-}
+export { SelectGroup, Select, SelectItem, SelectLabel, SelectSeparator }

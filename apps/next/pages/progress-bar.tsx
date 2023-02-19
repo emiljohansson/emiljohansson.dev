@@ -6,19 +6,19 @@ import Content from '@/components/Content'
 import Section from '@/components/Section'
 
 const ProgressBarPage = () => (
-  <Layout>
-    <Head>
-      <title>Progress Bar</title>
-      <meta name="description" content="Progress bar" />
-    </Head>
-    <Content>
-      <Header />
-      <Section size="normal">
-        <h1 className="sr-only">Progress bar</h1>
-        <ProgressBar />
-      </Section>
-    </Content>
-  </Layout>
+	<Layout>
+		<Head>
+			<title>Progress Bar</title>
+			<meta name="description" content="Progress bar" />
+		</Head>
+		<Content>
+			<Header />
+			<Section size="normal">
+				<h1 className="sr-only">Progress bar</h1>
+				<ProgressBar />
+			</Section>
+		</Content>
+	</Layout>
 )
 
 export default ProgressBarPage

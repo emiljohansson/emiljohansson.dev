@@ -1,46 +1,31 @@
 {
-  "baseBranch": "origin/main",
-  "pipeline": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "dist/**",
-        ".next/**"
-      ]
-    },
-    "export": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "out/**"
-      ]
-    },
-    "test": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": []
-    },
-    "test:ci": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": []
-    },
-    "start": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": []
-    },
-    "lint": {
-      "outputs": []
-    },
-    "dev": {
-      "cache": false
-    }
-  }
+	"baseBranch": "origin/main",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", ".next/**"]
+		},
+		"export": {
+			"dependsOn": ["^build"],
+			"outputs": ["out/**"]
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"test:ci": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"start": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"lint": {
+			"outputs": []
+		},
+		"dev": {
+			"cache": false
+		}
+	}
 }

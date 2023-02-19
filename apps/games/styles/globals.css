@@ -1,13 +1,13 @@
 #app {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    'header'
-    'main'
-    'footer';
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr auto;
+	grid-template-areas:
+		'header'
+		'main'
+		'footer';
 }
 
 main {
-  overflow: scroll;
+	overflow: scroll;
 }

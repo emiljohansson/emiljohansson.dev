@@ -58,17 +58,17 @@
 // })
 
 const SlotsPage = () => {
-  return (
-    <>
-      <div>
-        <h1>Hello</h1>
-      </div>
-      <p slot="header">Test 1</p>
-      <span slot="content">Test 2</span>
-      <div slot="footer">Test 3</div>
-      <div>More content</div>
-    </>
-  )
+	return (
+		<>
+			<div>
+				<h1>Hello</h1>
+			</div>
+			<p slot="header">Test 1</p>
+			<span slot="content">Test 2</span>
+			<div slot="footer">Test 3</div>
+			<div>More content</div>
+		</>
+	)
 }
 
 export default SlotsPage

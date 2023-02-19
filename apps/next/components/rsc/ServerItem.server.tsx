@@ -1,5 +1,5 @@
 const ServerItem = () => {
-  return <div>Server item</div>
+	return <div>Server item</div>
 }
 
 export default ServerItem
