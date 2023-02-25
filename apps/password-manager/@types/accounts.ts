@@ -1,6 +1,6 @@
 export interface Account {
-  userId: string
-  website: string
-  username: string
-  password: string
+	userId: string
+	website: string
+	username: string
+	password: string
 }

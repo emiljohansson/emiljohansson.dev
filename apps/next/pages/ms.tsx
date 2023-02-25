@@ -7,32 +7,25 @@ import Content from '@/components/Content'
 import MineSweaper from '@/components/MineSweaper'
 
 const MSPage = () => {
-  const [isReady, setIsReady] = useState(false)
+	const [isReady, setIsReady] = useState(false)
 
-  useEffect(() => {
-    setIsReady(true)
-  }, [])
+	useEffect(() => {
+		setIsReady(true)
+	}, [])
 
-  return (
-    <Layout>
-      <Head>
-        <title>ms</title>
-        <meta name="description" content="ms" />
-        <link
-          rel="preload"
-          href="/fonts/MuseoModerno-Light.ttf"
-          as="font"
-          crossOrigin=""
-        />
-      </Head>
-      <Content>
-        <Header />
-        <Section direction="column">
-          {isReady && <MineSweaper />}
-        </Section>
-      </Content>
-    </Layout>
-  )
+	return (
+		<Layout>
+			<Head>
+				<title>ms</title>
+				<meta name="description" content="ms" />
+				<link rel="preload" href="/fonts/MuseoModerno-Light.ttf" as="font" crossOrigin="" />
+			</Head>
+			<Content>
+				<Header />
+				<Section direction="column">{isReady && <MineSweaper />}</Section>
+			</Content>
+		</Layout>
+	)
 }
 
 export default MSPage

@@ -1,19 +1,21 @@
 {
-  "name": "lib",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "lint": "eslint ./{hooks,tests,utils}/*.ts",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watchAll",
-    "test:ci": "npm run test"
-  },
-  "dependencies": {
-    "react": "18.2.0"
-  },
-  "devDependencies": {
-    "config": "workspace:*",
-    "tsconfig": "workspace:*",
-    "tsup": "5.11.13"
-  }
+	"name": "lib",
+	"version": "0.0.0",
+	"license": "MIT",
+	"scripts": {
+		"lint": "eslint ./{hooks,tests,utils}/*.ts",
+		"test": "jest --coverage",
+		"test:watch": "jest --coverage --watchAll",
+		"test:ci": "npm run test"
+	},
+	"dependencies": {
+		"next": "13.2.1",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"config": "workspace:*",
+		"tsconfig": "workspace:*",
+		"tsup": "5.11.13"
+	}
 }

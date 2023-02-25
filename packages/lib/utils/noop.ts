@@ -1,5 +1,5 @@
-function noop () {
-  // do nothing
+function noop() {
+	// do nothing
 }
 
 export default noop
