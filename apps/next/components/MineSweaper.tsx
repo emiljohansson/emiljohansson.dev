@@ -472,7 +472,7 @@ function difficultyReducer(
 	if (action.type === SelectedDifficulty.loading) {
 		return {
 			type: SelectedDifficulty.loading,
-			level: null,
+			level: easy,
 			board: {} as BoardStyle,
 			queueType: action.queueType,
 		}

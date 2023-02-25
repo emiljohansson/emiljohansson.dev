@@ -42,7 +42,7 @@ function useEventListener<T extends HTMLElement>(
 	eventName: string,
 	handler: (event: Event) => void,
 ) {
-	const ref = useRef<T>()
+	const ref = useRef<T>(null)
 
 	useEffect(() => {
 		if (ref.current) {
