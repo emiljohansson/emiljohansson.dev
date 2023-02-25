@@ -9,6 +9,7 @@
 	],
 	"license": "MIT",
 	"scripts": {
+		"prepare": "husky install",
 		"build": "turbo run build",
 		"export": "turbo run export",
 		"dev": "turbo run dev --parallel",

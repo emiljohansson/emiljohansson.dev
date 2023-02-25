@@ -18,9 +18,9 @@ const Encrypt = () => {
 		const string = stringRef.current?.value
 		console.log({
 			secret,
-			string
-		});
-		
+			string,
+		})
+
 		if (!secret || !string) return
 		const encrypted = AES.encrypt(string, secret).toString()
 		setEncryptedValue(encrypted)
@@ -57,9 +57,9 @@ const Decrypt = () => {
 		const encryptedValue = stringRef.current?.value
 		console.log({
 			secret,
-			encryptedValue
-		});
-		
+			encryptedValue,
+		})
+
 		if (!secret || !encryptedValue) return
 		const bytes = AES.decrypt(encryptedValue, secret)
 		setDecryptedValue(bytes.toString(enc.Utf8))
