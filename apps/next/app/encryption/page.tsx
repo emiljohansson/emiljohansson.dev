@@ -9,13 +9,19 @@ import Content from '@/components/Content'
 import Section from '@/components/Section'
 
 const Encrypt = () => {
-	const secretRef = useRef(null)
-	const stringRef = useRef(null)
+	const secretRef = useRef<HTMLInputElement>(null)
+	const stringRef = useRef<HTMLInputElement>(null)
 	const [encryptedValue, setEncryptedValue] = useState('')
 
 	function onChange() {
-		const secret = secretRef.current.value
-		const string = stringRef.current.value
+		const secret = secretRef.current?.value
+		const string = stringRef.current?.value
+		console.log({
+			secret,
+			string,
+		})
+
+		if (!secret || !string) return
 		const encrypted = AES.encrypt(string, secret).toString()
 		setEncryptedValue(encrypted)
 	}
@@ -42,13 +48,19 @@ const Encrypt = () => {
 }
 
 const Decrypt = () => {
-	const secretRef = useRef(null)
-	const stringRef = useRef(null)
+	const secretRef = useRef<HTMLInputElement>(null)
+	const stringRef = useRef<HTMLInputElement>(null)
 	const [decryptedValue, setDecryptedValue] = useState('')
 
 	function onChange() {
-		const secret = secretRef.current.value
-		const encryptedValue = stringRef.current.value
+		const secret = secretRef.current?.value
+		const encryptedValue = stringRef.current?.value
+		console.log({
+			secret,
+			encryptedValue,
+		})
+
+		if (!secret || !encryptedValue) return
 		const bytes = AES.decrypt(encryptedValue, secret)
 		setDecryptedValue(bytes.toString(enc.Utf8))
 	}

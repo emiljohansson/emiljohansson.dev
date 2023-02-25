@@ -30,14 +30,14 @@ const RandomStringPage = ({ initialValue }: { initialValue: string }) => {
 			<Content>
 				<Header>
 					<HeaderAction
-						onClick={() => randomStringRef.current.generateNewValue()}
+						onClick={() => randomStringRef.current?.generateNewValue()}
 						data-test="refresh"
 					>
 						<UpdateIcon width={30} height={30} />
 						<span className="sr-only">Refresh</span>
 					</HeaderAction>
 					<HeaderAction
-						onClick={() => copyToClipboard(randomStringRef.current.getValue())}
+						onClick={() => copyToClipboard(randomStringRef.current?.getValue() || '')}
 						data-test="copy"
 					>
 						<CopyIcon width={30} height={30} />
