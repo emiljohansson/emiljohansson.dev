@@ -4,6 +4,7 @@ import { PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import useSWR from 'swr'
 import { Slider } from 'shared/Slider'
+import { randomString } from 'lib/utils/string'
 import { CheckboxWithLabel } from 'shared/CheckboxWithLabel'
 import Content from '@/components/Content'
 import Header from 'shared/Header'
@@ -14,37 +15,6 @@ interface Selection {
 	length: number
 	numeric: boolean
 	symbols: boolean
-}
-
-const lettersPattern = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const numericPattern = '0123456789'
-const symbolsPattern = ',._?-:]&*#~}$>(<)@^|{%!+='
-
-const randomString = (props?: {
-	length?: number
-	letters?: boolean
-	numeric?: boolean
-	symbols?: boolean
-}) => {
-	const { length, letters, numeric, symbols } = {
-		length: 10,
-		letters: true,
-		numeric: true,
-		symbols: false,
-		...props,
-	}
-	const pattern = [letters && lettersPattern, numeric && numericPattern, symbols && symbolsPattern]
-		.filter((v) => !!v)
-		.join('')
-	let value = ''
-	let index = length
-
-	while (index--) {
-		const charIndex = Math.floor(Math.random() * pattern.length)
-		value += pattern[charIndex]
-	}
-
-	return value
 }
 
 const Trigger = ({ value, children }: PropsWithChildren<{ value: string }>) => (

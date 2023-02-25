@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="emil, johansson, developer, front-end, front end" />
+		<meta name="author" content="Emil Johansson" />
+		<meta name="og:title" content="emiljohansson.dev" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="viewport" content="width=device-width" />
+
+		<link rel="icon" href="%sveltekit.assets%/images/favicon.png" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="%sveltekit.assets%/images/logo/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="%sveltekit.assets%/images/logo/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="%sveltekit.assets%/images/logo/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="%sveltekit.assets%/images/logo/site.webmanifest" />
+
+		<script>
+			document.documentElement.classList.toggle("dark", localStorage.theme === "dark")
+		</script>
+
+		%sveltekit.head%
+	</head>
+	<body class="bg-slate-50 text-sm" data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
