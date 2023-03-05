@@ -2,9 +2,10 @@
 
 import 'shared/globals.css'
 
-import { PropsWithChildren, useEffect, useState } from 'react'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { keysAreDown } from 'keyboard-handler'
 import { useRouter } from 'next/navigation'
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
 const projects = [
 	{
@@ -102,15 +103,10 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 
 	useEffect(() => {
 		const removeKeysAreDown = keysAreDown(['Meta', 'k'], () => {
-			console.log('Enter')
 			setShowCommand(true)
 		})
 
-		return () => {
-			console.log('remove')
-
-			removeKeysAreDown()
-		}
+		return () => removeKeysAreDown()
 	}, [])
 	return (
 		<html lang="en" className="h-full">
@@ -125,27 +121,36 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 const Command = ({ onClose }: { onClose: () => void }) => {
 	const router = useRouter()
 	const [selectedIndex, setSelectedIndex] = useState(0)
+	const [list, setList] = useState([...projects])
+	const fieldRef = useRef<HTMLInputElement>(null)
 
 	const handleAction = (action?: Project) => {
 		console.log(action)
 		if (!action) return
+		onClose()
 		router.push(action.href)
 	}
 
 	useEffect(() => {
+		fieldRef.current?.focus()
 		const onKeyDown = (event: KeyboardEvent) => {
 			if (!['ArrowUp', 'ArrowDown', 'Escape', 'Enter'].includes(event.key)) {
 				return
 			}
 			event.preventDefault()
 			console.log('key', event.key, selectedIndex, selectedIndex - 1, selectedIndex + 1)
-			if (event.key === 'ArrowUp') setSelectedIndex(selectedIndex - 1)
-			if (event.key === 'ArrowDown') setSelectedIndex(selectedIndex + 1)
-			if (event.key === 'Escape') onClose()
-			if (event.key === 'Enter') {
-				handleAction(projects[selectedIndex])
-				onClose()
+			if (event.key === 'ArrowUp') {
+				let newIndex = selectedIndex - 1
+				if (newIndex < 0) newIndex = list.length - 1
+				setSelectedIndex(newIndex)
 			}
+			if (event.key === 'ArrowDown') {
+				let newIndex = selectedIndex + 1
+				if (newIndex >= list.length) newIndex = 0
+				setSelectedIndex(newIndex)
+			}
+			if (event.key === 'Escape') onClose()
+			if (event.key === 'Enter') handleAction(list[selectedIndex])
 		}
 
 		document.addEventListener('keydown', onKeyDown)
@@ -153,17 +158,36 @@ const Command = ({ onClose }: { onClose: () => void }) => {
 		return () => {
 			document.removeEventListener('keydown', onKeyDown)
 		}
-	}, [selectedIndex])
+	}, [selectedIndex, list])
 
 	return (
 		<Modal>
-			<div>search field and close button - {selectedIndex}</div>
+			<div className="flex">
+				<MagnifyingGlassIcon width={20} height={20} />
+				<input
+					ref={fieldRef}
+					id="input1"
+					className="input"
+					placeholder="Type a command or search..."
+					onChange={(event) => {
+						setSelectedIndex(0)
+						setList(
+							projects.filter(
+								({ text }) => text.toLowerCase().indexOf(event.currentTarget.value) > -1,
+							),
+						)
+					}}
+				/>
+				{selectedIndex}
+			</div>
 			<div>
-				{projects.map((project, index) => (
+				{list.map((project, index) => (
 					<div
 						key={index}
 						className="aria-selected:bg-black-500"
 						aria-selected={index === selectedIndex}
+						onMouseOver={() => setSelectedIndex(index)}
+						onClick={() => handleAction(list[index])}
 					>
 						{project.text}
 					</div>
