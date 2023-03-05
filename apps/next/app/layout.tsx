@@ -162,12 +162,12 @@ const Command = ({ onClose }: { onClose: () => void }) => {
 
 	return (
 		<Modal>
-			<div className="flex">
+			<div className="flex items-center">
 				<MagnifyingGlassIcon width={20} height={20} />
 				<input
 					ref={fieldRef}
 					id="input1"
-					className="input"
+					className="input flex-1"
 					placeholder="Type a command or search..."
 					onChange={(event) => {
 						setSelectedIndex(0)
@@ -178,8 +178,8 @@ const Command = ({ onClose }: { onClose: () => void }) => {
 						)
 					}}
 				/>
-				{selectedIndex}
 			</div>
+			<span className="sr-only">{selectedIndex}</span>
 			<div>
 				{list.map((project, index) => (
 					<div
