@@ -116,13 +116,13 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 		<html lang="en" className="h-full">
 			<body className="dark:bg-black-rich dark:text-white h-full">
 				<main className="h-full">{children}</main>
-				{showCommand && <Command />}
+				{showCommand && <Command onClose={() => setShowCommand(false)} />}
 			</body>
 		</html>
 	)
 }
 
-const Command = () => {
+const Command = ({ onClose }: { onClose: () => void }) => {
 	const router = useRouter()
 	const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -141,8 +141,11 @@ const Command = () => {
 			console.log('key', event.key, selectedIndex, selectedIndex - 1, selectedIndex + 1)
 			if (event.key === 'ArrowUp') setSelectedIndex(selectedIndex - 1)
 			if (event.key === 'ArrowDown') setSelectedIndex(selectedIndex + 1)
-			if (event.key === 'Escape') console.log('TODO close command')
-			if (event.key === 'Enter') handleAction(projects[selectedIndex])
+			if (event.key === 'Escape') onClose()
+			if (event.key === 'Enter') {
+				handleAction(projects[selectedIndex])
+				onClose()
+			}
 		}
 
 		document.addEventListener('keydown', onKeyDown)
