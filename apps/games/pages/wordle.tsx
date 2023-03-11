@@ -16,7 +16,8 @@ interface Guess {
 	colors: Color[]
 }
 
-const from = <T,>(length: number, value: T): T[] => Array.from({ length }, () => value)
+const from = <T,>(length: number, value: T): T[] =>
+	Array.from({ length }, () => value)
 
 const dictionary = [
 	faker.locales.en.word.adjective.filter((word) => word.length === 5),
@@ -80,7 +81,9 @@ const Field = ({ letters }: { letters: string[] }) => {
 			{fixedList.map((letter, index) => (
 				<div
 					key={index}
-					className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}
+					className={
+						'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'
+					}
 				>
 					{letter}
 				</div>
@@ -98,7 +101,9 @@ const BlankRow = () => {
 				{fixedList.map((_, index) => (
 					<div
 						key={index}
-						className={'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'}
+						className={
+							'flex items-center justify-center border-2 border-gray-400 ml-1 w-12 h-12'
+						}
 					/>
 				))}
 			</div>

@@ -2,7 +2,6 @@
 	import type { PageData } from "./$types"
 
 	import { enhance } from "$app/forms"
-	import { noop } from "svelte/internal"
 	import debounce from "just-debounce-it"
 
 	export let data: PageData
@@ -24,8 +23,8 @@
 	id="newWordForm"
 	method="post"
 	action="?/newWords"
-	use:enhance={({ form, data, action, cancel, controller }) => {
-		return async ({ result, update }) => {
+	use:enhance={() => {
+		return async ({ result }) => {
 			if (result.type === "success" && result.data) {
 				value = result.data.words
 			}

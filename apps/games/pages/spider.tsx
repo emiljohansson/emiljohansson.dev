@@ -10,7 +10,12 @@ import Header from 'shared/Header'
 import HeaderAction from 'shared/HeaderAction'
 import type { Card, Deck, Piles, Rank, Suit } from '@/types/card-games'
 import { createDeck } from '@/lib/deck'
-import { deselectAll, moveCardsToPiles, removeEmptyLeadingCards, scaleGame } from '@/lib/game'
+import {
+	deselectAll,
+	moveCardsToPiles,
+	removeEmptyLeadingCards,
+	scaleGame,
+} from '@/lib/game'
 import { usePreloadCards } from '@/lib/hooks'
 
 enum RankValue {
@@ -21,12 +26,18 @@ enum RankValue {
 }
 
 const suits: Suit[] = ['H', 'S']
-const getCardValue = (rank: Rank) => (typeof rank === 'number' ? rank : RankValue[rank])
+const getCardValue = (rank: Rank) =>
+	typeof rank === 'number' ? rank : RankValue[rank]
 const createBaseDeck = () => createDeck(suits, getCardValue)
 
 export async function getServerSideProps() {
 	const deck = shuffle(
-		[createBaseDeck(), createBaseDeck(), createBaseDeck(), createBaseDeck()].flat(),
+		[
+			createBaseDeck(),
+			createBaseDeck(),
+			createBaseDeck(),
+			createBaseDeck(),
+		].flat(),
 	)
 
 	const initPiles = [
@@ -107,12 +118,18 @@ const SpiderPage: NextPage = ({
 	function handleSelectedCard(current: Card, currentPileIndex: number) {
 		console.log(current)
 
-		const [selectedCard, selectedPileIndex, selectedCardIndex] = getSelectedCard()
+		const [selectedCard, selectedPileIndex, selectedCardIndex] =
+			getSelectedCard()
 		if (!current) {
 			if (!isDefined(selectedCard)) {
 				return
 			}
-			moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
+			moveCard(
+				selectedCard,
+				selectedPileIndex,
+				selectedCardIndex,
+				currentPileIndex,
+			)
 			return
 		}
 		const shouldBeMoved =
@@ -123,7 +140,12 @@ const SpiderPage: NextPage = ({
 			current.id === last(piles[currentPileIndex]).id
 
 		if (shouldBeMoved) {
-			moveCard(selectedCard, selectedPileIndex, selectedCardIndex, currentPileIndex)
+			moveCard(
+				selectedCard,
+				selectedPileIndex,
+				selectedCardIndex,
+				currentPileIndex,
+			)
 			return
 		}
 		deselectAll(piles)
@@ -146,16 +168,24 @@ const SpiderPage: NextPage = ({
 		if (newPiles[selectedPileIndex].length < 1) {
 			newPiles[selectedPileIndex].push(undefined)
 		} else {
-			newPiles[selectedPileIndex][newPiles[selectedPileIndex].length - 1].hidden = false
+			newPiles[selectedPileIndex][
+				newPiles[selectedPileIndex].length - 1
+			].hidden = false
 		}
 		if (isDefined(first(newPiles[currentPileIndex]))) {
-			newPiles[currentPileIndex].splice(newPiles[currentPileIndex].length, 0, ...removedCards)
+			newPiles[currentPileIndex].splice(
+				newPiles[currentPileIndex].length,
+				0,
+				...removedCards,
+			)
 		} else {
 			newPiles[currentPileIndex] = removedCards
 		}
 
 		selectedCard.selected = false
-		const clickableIndexes = getClickableIndexesFromPile(newPiles[currentPileIndex]).reverse()
+		const clickableIndexes = getClickableIndexesFromPile(
+			newPiles[currentPileIndex],
+		).reverse()
 		if (clickableIndexes.length >= 13) {
 			newPiles[currentPileIndex].splice(
 				clickableIndexes[0],
@@ -195,7 +225,8 @@ const SpiderPage: NextPage = ({
 						<div key={pileIndex} className="w-full">
 							{pile.map((card, cardIndex) => {
 								const clickableIndexes = getClickableIndexesFromPile(pile)
-								const clickable = !isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
+								const clickable =
+									!isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
 								const cardImage = !isDefined(card)
 									? 'blank'
 									: !card.hidden

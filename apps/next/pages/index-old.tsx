@@ -112,7 +112,10 @@ const HomePage = () => {
 			<Head>
 				<title>Welcome to emiljohansson.dev | emiljohansson.dev</title>
 				<meta name="description" content="Playground for Emil Johansson" />
-				<meta name="keywords" content="emil, johansson, developer, front-end, front end" />
+				<meta
+					name="keywords"
+					content="emil, johansson, developer, front-end, front end"
+				/>
 			</Head>
 
 			<ThemeToggle />
@@ -125,11 +128,20 @@ const HomePage = () => {
 						rel="noreferrer"
 					>
 						<AccessibleIcon label="GitHub">
-							<GitHubLogoIcon color="#ad52dd" width="50" height="50" className="inline-block" />
+							<GitHubLogoIcon
+								color="#ad52dd"
+								width="50"
+								height="50"
+								className="inline-block"
+							/>
 						</AccessibleIcon>{' '}
 						<style jsx>{`
 							.title {
-								background: linear-gradient(97.2deg, #ad52dd -8.65%, #e64937 110.27%);
+								background: linear-gradient(
+									97.2deg,
+									#ad52dd -8.65%,
+									#e64937 110.27%
+								);
 								background-clip: border-box;
 								background-clip: border-box;
 								-webkit-text-fill-color: transparent;
@@ -156,7 +168,13 @@ const HomePage = () => {
 					>
 						<span className="flex items-center mb-1">
 							{text}{' '}
-							{external && <ExternalLinkIcon width={18} height={18} className="absolute right-3" />}
+							{external && (
+								<ExternalLinkIcon
+									width={18}
+									height={18}
+									className="absolute right-3"
+								/>
+							)}
 						</span>
 						<p className="text-gray-600 text-xs no-underline">{description}</p>
 					</Link>

@@ -15,7 +15,10 @@ const useDarkMode = () => {
 			return
 		}
 		localStorage.setItem('theme', darkMode ? darkClassName : '')
-		document.documentElement.classList.toggle(darkClassName, localStorage.theme === darkClassName)
+		document.documentElement.classList.toggle(
+			darkClassName,
+			localStorage.theme === darkClassName,
+		)
 		savedDarkMode = document.documentElement.classList.contains(darkClassName)
 	}, [darkMode])
 

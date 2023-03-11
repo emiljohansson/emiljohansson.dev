@@ -18,7 +18,10 @@ context('Landing Page', () => {
 		cy.get('[data-test="toggle-dark-mode"]').click()
 		cy.get('[data-test="toggle-dark-mode"]').click()
 
-		cy.get('[data-test=random-string]').click().url().should('include', '/random-string')
+		cy.get('[data-test=random-string]')
+			.click()
+			.url()
+			.should('include', '/random-string')
 
 		cy.get('[data-test="refresh"]').click()
 		cy.get('[data-test="copy"]').focus().click()

@@ -18,7 +18,12 @@ const MSPage = () => {
 			<Head>
 				<title>ms</title>
 				<meta name="description" content="ms" />
-				<link rel="preload" href="/fonts/MuseoModerno-Light.ttf" as="font" crossOrigin="" />
+				<link
+					rel="preload"
+					href="/fonts/MuseoModerno-Light.ttf"
+					as="font"
+					crossOrigin=""
+				/>
 			</Head>
 			<Content>
 				<Header />

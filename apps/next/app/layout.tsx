@@ -138,7 +138,13 @@ const Command = ({ onClose }: { onClose: () => void }) => {
 				return
 			}
 			event.preventDefault()
-			console.log('key', event.key, selectedIndex, selectedIndex - 1, selectedIndex + 1)
+			console.log(
+				'key',
+				event.key,
+				selectedIndex,
+				selectedIndex - 1,
+				selectedIndex + 1,
+			)
 			if (event.key === 'ArrowUp') {
 				let newIndex = selectedIndex - 1
 				if (newIndex < 0) newIndex = list.length - 1
@@ -162,24 +168,25 @@ const Command = ({ onClose }: { onClose: () => void }) => {
 
 	return (
 		<Modal>
-			<div className="flex">
+			<div className="flex items-center">
 				<MagnifyingGlassIcon width={20} height={20} />
 				<input
 					ref={fieldRef}
 					id="input1"
-					className="input"
+					className="input flex-1"
 					placeholder="Type a command or search..."
 					onChange={(event) => {
 						setSelectedIndex(0)
 						setList(
 							projects.filter(
-								({ text }) => text.toLowerCase().indexOf(event.currentTarget.value) > -1,
+								({ text }) =>
+									text.toLowerCase().indexOf(event.currentTarget.value) > -1,
 							),
 						)
 					}}
 				/>
-				{selectedIndex}
 			</div>
+			<span className="sr-only">{selectedIndex}</span>
 			<div>
 				{list.map((project, index) => (
 					<div

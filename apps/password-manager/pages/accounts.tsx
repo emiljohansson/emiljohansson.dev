@@ -1,7 +1,11 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
-import { getUser, supabaseServerClient, withPageAuth } from '@supabase/auth-helpers-nextjs'
+import {
+	getUser,
+	supabaseServerClient,
+	withPageAuth,
+} from '@supabase/auth-helpers-nextjs'
 import { Account } from '../@types/accounts'
 
 export const getServerSideProps: GetServerSideProps = withPageAuth({
@@ -24,7 +28,10 @@ export const getServerSideProps: GetServerSideProps = withPageAuth({
 	},
 })
 
-const AccountsPage: NextPage<{ accounts: Account[]; secret: string }> = ({ accounts, secret }) => {
+const AccountsPage: NextPage<{ accounts: Account[]; secret: string }> = ({
+	accounts,
+	secret,
+}) => {
 	return (
 		<>
 			<h1>Accounts</h1>
@@ -59,7 +66,13 @@ const AccountsPage: NextPage<{ accounts: Account[]; secret: string }> = ({ accou
 	)
 }
 
-const AccountRow = ({ account, secret }: { account: Account; secret: string }) => {
+const AccountRow = ({
+	account,
+	secret,
+}: {
+	account: Account
+	secret: string
+}) => {
 	const [plaintext, setPlaintext] = useState('')
 
 	const fetchPlaintext = async () => {

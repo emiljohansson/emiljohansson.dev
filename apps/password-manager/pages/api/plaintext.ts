@@ -2,7 +2,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { AES, enc } from 'crypto-js'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<{ data: string }>) {
+export default function handler(
+	req: NextApiRequest,
+	res: NextApiResponse<{ data: string }>,
+) {
 	console.log({
 		p: req.body.password,
 		s: req.body.secret,

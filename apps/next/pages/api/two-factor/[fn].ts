@@ -62,7 +62,10 @@ export default function TwoFactor(req: NextApiRequest, res: NextApiResponse) {
 }
 
 function generateCode(req: NextApiRequest, res: NextApiResponse) {
-	if (!getLastUpdated() || !isWithinTimespan(getLastUpdated(), lifespanInSeconds)) {
+	if (
+		!getLastUpdated() ||
+		!isWithinTimespan(getLastUpdated(), lifespanInSeconds)
+	) {
 		setValue('')
 	}
 	if (!getValue()) {
@@ -78,7 +81,11 @@ function generateCode(req: NextApiRequest, res: NextApiResponse) {
 	})
 }
 
-function validateCode(req: NextApiRequest, res: NextApiResponse, value: string): void {
+function validateCode(
+	req: NextApiRequest,
+	res: NextApiResponse,
+	value: string,
+): void {
 	function end(isValid: boolean): void {
 		res.status(200).json({
 			status: 'success',
@@ -88,7 +95,10 @@ function validateCode(req: NextApiRequest, res: NextApiResponse, value: string):
 		})
 	}
 
-	if (!getLastUpdated() || !isWithinTimespan(getLastUpdated(), lifespanInSeconds)) {
+	if (
+		!getLastUpdated() ||
+		!isWithinTimespan(getLastUpdated(), lifespanInSeconds)
+	) {
 		end(false)
 		return
 	}

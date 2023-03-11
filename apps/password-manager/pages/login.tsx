@@ -1,5 +1,9 @@
 import { Auth } from '@supabase/ui'
-import { getUser, supabaseClient, withPageAuth } from '@supabase/auth-helpers-nextjs'
+import {
+	getUser,
+	supabaseClient,
+	withPageAuth,
+} from '@supabase/auth-helpers-nextjs'
 import { useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 
@@ -34,7 +38,11 @@ export default function LoginPage({ errorMessage }: { errorMessage?: string }) {
 	return (
 		<>
 			{errorMessage && <p>{errorMessage}</p>}
-			<Auth supabaseClient={supabaseClient} socialLayout="horizontal" socialButtonSize="xlarge" />
+			<Auth
+				supabaseClient={supabaseClient}
+				socialLayout="horizontal"
+				socialButtonSize="xlarge"
+			/>
 		</>
 	)
 }

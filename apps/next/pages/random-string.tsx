@@ -37,7 +37,9 @@ const RandomStringPage = ({ initialValue }: { initialValue: string }) => {
 						<span className="sr-only">Refresh</span>
 					</HeaderAction>
 					<HeaderAction
-						onClick={() => copyToClipboard(randomStringRef.current?.getValue() || '')}
+						onClick={() =>
+							copyToClipboard(randomStringRef.current?.getValue() || '')
+						}
 						data-test="copy"
 					>
 						<CopyIcon width={30} height={30} />

@@ -3,7 +3,8 @@
 	"useTabs": true,
 	"singleQuote": true,
 	"trailingComma": "all",
-	"printWidth": 100,
+	"printWidth": 80,
+	"endOfLine": "lf",
 	"plugins": [],
 	"pluginSearchDirs": ["."],
 	"overrides": []

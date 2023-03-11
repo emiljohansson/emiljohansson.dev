@@ -17,7 +17,9 @@ const HomePage: NextPage = () => {
 						<Link href="/spider">Spider Solitaire</Link>
 					</li>
 					<li>
-						<Link href="/idiot">The Idiot Solitaire (from swedish "Idioten")</Link>
+						<Link href="/idiot">
+							The Idiot Solitaire (from swedish "Idioten")
+						</Link>
 					</li>
 					<li>
 						<Link href="/wordle">Bad Wordle "clone"</Link>

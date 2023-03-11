@@ -51,9 +51,14 @@ const PasswordGeneratorPage: NextPage = () => {
 		numeric: false,
 		symbols: false,
 	})
-	const [randomPassword, setRandomPassword] = useState(randomString(randomSelection))
+	const [randomPassword, setRandomPassword] = useState(
+		randomString(randomSelection),
+	)
 	const [numberOfWords, setNumberOfWords] = useState(4)
-	const { data: memorablePassword } = useSWR(`/api/random-words?words=${numberOfWords}`, fetchWords)
+	const { data: memorablePassword } = useSWR(
+		`/api/random-words?words=${numberOfWords}`,
+		fetchWords,
+	)
 	const [pinSelection, setPinSelection] = useState({
 		length: 6,
 		letters: false,
@@ -125,7 +130,12 @@ const PasswordGeneratorPage: NextPage = () => {
 						</Tabs.List>
 						<Tabs.Content value="random-tab">
 							<h2>Random password</h2>
-							<input className="input w-full" type="text" value={randomPassword} readOnly />
+							<input
+								className="input w-full"
+								type="text"
+								value={randomPassword}
+								readOnly
+							/>
 							<div className="flex">
 								<Slider
 									defaultValue={randomSelection.length}
@@ -151,7 +161,12 @@ const PasswordGeneratorPage: NextPage = () => {
 						</Tabs.Content>
 						<Tabs.Content value="memorable-tab">
 							<h2>Memorable password</h2>
-							<input className="input w-full" type="text" value={memorablePassword} readOnly />
+							<input
+								className="input w-full"
+								type="text"
+								value={memorablePassword}
+								readOnly
+							/>
 							<div className="flex">
 								<Slider
 									defaultValue={numberOfWords}
@@ -164,7 +179,12 @@ const PasswordGeneratorPage: NextPage = () => {
 						</Tabs.Content>
 						<Tabs.Content value="pin-tab">
 							<h2>PIN</h2>
-							<input className="input w-full" type="text" value={pin} readOnly />
+							<input
+								className="input w-full"
+								type="text"
+								value={pin}
+								readOnly
+							/>
 							<div className="flex">
 								<Slider
 									defaultValue={pinSelection.length}

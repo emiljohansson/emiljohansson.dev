@@ -6,7 +6,13 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import { BorderSolidIcon } from '@radix-ui/react-icons'
 import { Label } from '@radix-ui/react-label'
 import { motion } from 'framer-motion'
-import { Select, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from 'shared/Select'
+import {
+	Select,
+	SelectGroup,
+	SelectLabel,
+	SelectItem,
+	SelectSeparator,
+} from 'shared/Select'
 import { Progress } from 'shared/Progress'
 import { ThemeToggle } from 'shared/ThemeToggle'
 import { Slider } from 'shared/Slider'
@@ -91,13 +97,14 @@ const Home: NextPage = () => {
 				<article>
 					<h1>Components / Design System</h1>
 					<p>
-						For years parents have espoused the health benefits of eating garlic bread with cheese
-						to their children, with the food earning such an iconic status in our culture that kids
-						will often dress up as warm, cheesy loaf for Halloween.
+						For years parents have espoused the health benefits of eating garlic
+						bread with cheese to their children, with the food earning such an
+						iconic status in our culture that kids will often dress up as warm,
+						cheesy loaf for Halloween.
 					</p>
 					<p>
-						But a recent study shows that the celebrated appetizer may be linked to a series of
-						rabies cases springing up around the country.
+						But a recent study shows that the celebrated appetizer may be linked
+						to a series of rabies cases springing up around the country.
 					</p>
 				</article>
 				<article>

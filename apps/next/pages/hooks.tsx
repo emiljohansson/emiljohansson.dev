@@ -78,9 +78,15 @@ const HooksPage = ({ initialRandomValue }: { initialRandomValue: string }) => {
 	const { value: random, generate } = useRandomString(initialRandomValue)
 	const [value, setValue] = useState('')
 	const [debounced] = useDebounceValue(value, 200)
-	const [count, increment, decrement, reset, set] = useCounter(0, { min: 0, max: 10 })
+	const [count, increment, decrement, reset, set] = useCounter(0, {
+		min: 0,
+		max: 10,
+	})
 	const randomRef = useEventListener<HTMLParagraphElement>('click', generate)
-	const listenerExampleRef = useEventListener<HTMLButtonElement>('click', increment)
+	const listenerExampleRef = useEventListener<HTMLButtonElement>(
+		'click',
+		increment,
+	)
 
 	return (
 		<Layout>
