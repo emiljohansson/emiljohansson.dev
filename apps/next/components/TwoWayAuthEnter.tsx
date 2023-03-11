@@ -1,6 +1,10 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
 import { Label } from '@radix-ui/react-label'
-import { CheckIcon, Cross2Icon, DotsHorizontalIcon } from '@radix-ui/react-icons'
+import {
+	CheckIcon,
+	Cross2Icon,
+	DotsHorizontalIcon,
+} from '@radix-ui/react-icons'
 
 enum State {
 	idle,
@@ -54,7 +58,8 @@ function TwoWayAuthEnter() {
 
 	function onChange(event: ChangeEvent<HTMLInputElement>) {
 		setState(State.idle)
-		const target: HTMLInputElement | null = event.target as HTMLInputElement | null
+		const target: HTMLInputElement | null =
+			event.target as HTMLInputElement | null
 		if (!target) {
 			return
 		}

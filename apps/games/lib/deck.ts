@@ -12,5 +12,12 @@ export const createCard = (rank: Rank, suit: Suit, value: number): Card => ({
 	hidden: false,
 })
 
-export const createDeck = (suits: Suit[], getCardValue: (rank: Rank) => number) =>
-	ranks.map((rank) => suits.map((suit) => createCard(rank, suit, getCardValue(rank)))).flat()
+export const createDeck = (
+	suits: Suit[],
+	getCardValue: (rank: Rank) => number,
+) =>
+	ranks
+		.map((rank) =>
+			suits.map((suit) => createCard(rank, suit, getCardValue(rank))),
+		)
+		.flat()

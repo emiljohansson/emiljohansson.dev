@@ -34,7 +34,10 @@ const HomePage: NextPage = () => {
 
 					<div className={`wrap ${styles.grid}`}>
 						<a href="http://localhost:3004/page-a" className={styles.card}>
-							<iframe src="http://localhost:3004/page-a" frameBorder="0"></iframe>
+							<iframe
+								src="http://localhost:3004/page-a"
+								frameBorder="0"
+							></iframe>
 						</a>
 
 						<a href="https://nextjs.org/learn" className={styles.card}>
@@ -55,7 +58,9 @@ const HomePage: NextPage = () => {
 							className={styles.card}
 						>
 							<h2>Deploy &rarr;</h2>
-							<p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
+							<p>
+								Instantly deploy your Next.js site to a public URL with Vercel.
+							</p>
 						</a>
 					</div>
 				</main>
@@ -68,7 +73,12 @@ const HomePage: NextPage = () => {
 					>
 						Powered by{' '}
 						<span className={styles.logo}>
-							<Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+							<Image
+								src="/vercel.svg"
+								alt="Vercel Logo"
+								width={72}
+								height={16}
+							/>
 						</span>
 					</a>
 				</footer>

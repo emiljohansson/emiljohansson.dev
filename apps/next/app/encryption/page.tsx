@@ -32,15 +32,30 @@ const Encrypt = () => {
 				<Label htmlFor="en-secret" className="pr-3">
 					Enter Secret
 				</Label>
-				<input id="en-secret" className="input w-80 pr-9" ref={secretRef} onChange={onChange} />
+				<input
+					id="en-secret"
+					className="input w-80 pr-9"
+					ref={secretRef}
+					onChange={onChange}
+				/>
 				<Label htmlFor="en-string" className="pr-3">
 					Enter String
 				</Label>
-				<input id="en-string" className="input w-80 pr-9" ref={stringRef} onChange={onChange} />
+				<input
+					id="en-string"
+					className="input w-80 pr-9"
+					ref={stringRef}
+					onChange={onChange}
+				/>
 				<Label htmlFor="en-result" className="pr-3">
 					Encrypted Value
 				</Label>
-				<input id="en-result" className="input w-80 pr-9" readOnly value={encryptedValue} />
+				<input
+					id="en-result"
+					className="input w-80 pr-9"
+					readOnly
+					value={encryptedValue}
+				/>
 			</div>
 		</div>
 	)
@@ -71,15 +86,30 @@ const Decrypt = () => {
 				<Label htmlFor="de-secret" className="pr-3">
 					Enter Secret
 				</Label>
-				<input id="de-secret" className="input w-80 pr-9" ref={secretRef} onChange={onChange} />
+				<input
+					id="de-secret"
+					className="input w-80 pr-9"
+					ref={secretRef}
+					onChange={onChange}
+				/>
 				<Label htmlFor="de-string" className="pr-3">
 					Enter Encrypted Value
 				</Label>
-				<input id="de-string" className="input w-80 pr-9" ref={stringRef} onChange={onChange} />
+				<input
+					id="de-string"
+					className="input w-80 pr-9"
+					ref={stringRef}
+					onChange={onChange}
+				/>
 				<Label htmlFor="de-result" className="pr-3">
 					Decrypted Value
 				</Label>
-				<input id="de-result" className="input w-80 pr-9" readOnly value={decryptedValue} />
+				<input
+					id="de-result"
+					className="input w-80 pr-9"
+					readOnly
+					value={decryptedValue}
+				/>
 			</div>
 		</div>
 	)

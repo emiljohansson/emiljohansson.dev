@@ -18,7 +18,9 @@ const getWordMethod = () => {
 }
 
 export default (req: NextApiRequest, res: NextApiResponse<string[]>) => {
-	const numberOfWords = isNaN(Number(req.query.words)) ? 1 : Number(req.query.words)
+	const numberOfWords = isNaN(Number(req.query.words))
+		? 1
+		: Number(req.query.words)
 	const words = range(numberOfWords).map(() => {
 		const method = getWordMethod()
 		return method()

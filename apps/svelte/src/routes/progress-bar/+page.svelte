@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { onDestroy } from "svelte"
 	import { tweened } from "svelte/motion"
 	import { quadOut } from "svelte/easing"
-	import { onDestroy } from "svelte"
 
 	let percentage = 0
 	const progress = tweened(0, {

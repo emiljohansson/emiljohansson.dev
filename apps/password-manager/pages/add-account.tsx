@@ -3,7 +3,11 @@ import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { AES } from 'crypto-js'
 import { Label } from '@radix-ui/react-label'
-import { getUser, supabaseClient, withPageAuth } from '@supabase/auth-helpers-nextjs'
+import {
+	getUser,
+	supabaseClient,
+	withPageAuth,
+} from '@supabase/auth-helpers-nextjs'
 import { UpdateIcon } from '@radix-ui/react-icons'
 
 interface Props {
@@ -28,10 +32,10 @@ const r = (length: number, pattern: string) => {
 }
 
 const createPassword = () =>
-	`${r(3, characters)}-${r(3, characters)}${r(1, numbers)}${r(3, characters)}-${r(
+	`${r(3, characters)}-${r(3, characters)}${r(1, numbers)}${r(
 		3,
 		characters,
-	)}${r(1, numbers)}${r(3, characters)}`
+	)}-${r(3, characters)}${r(1, numbers)}${r(3, characters)}`
 
 const generate = (secret: string) => {
 	const actual = createPassword()
@@ -49,7 +53,8 @@ export const getServerSideProps: GetServerSideProps = withPageAuth({
 		const { user } = await getUser(ctx)
 		const { query } = ctx
 		const secret = query.secret as string
-		const { actual: initActualPassword, encrypted: initPassword } = generate(secret)
+		const { actual: initActualPassword, encrypted: initPassword } =
+			generate(secret)
 		return {
 			props: {
 				userId: user?.id,
@@ -61,7 +66,12 @@ export const getServerSideProps: GetServerSideProps = withPageAuth({
 	},
 })
 
-const AddAccountPage: NextPage<Props> = ({ userId, secret, initPassword, initActualPassword }) => {
+const AddAccountPage: NextPage<Props> = ({
+	userId,
+	secret,
+	initPassword,
+	initActualPassword,
+}) => {
 	const router = useRouter()
 	const [error, setError] = useState('')
 	const [password, setPassword] = useState(initPassword)
@@ -122,7 +132,12 @@ const AddAccountPage: NextPage<Props> = ({ userId, secret, initPassword, initAct
 						Password
 					</Label>
 					<div className="flex items-center gap-4">
-						<input className="input" name="password" value={password} readOnly />
+						<input
+							className="input"
+							name="password"
+							value={password}
+							readOnly
+						/>
 						{actualPassword}
 						<button type="button" onClick={generateNewPassword}>
 							<span className="sr-only">Generate</span>

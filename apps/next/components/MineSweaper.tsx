@@ -1,5 +1,11 @@
 import type { FunctionComponent, ReactNode } from 'react'
-import { useState, useEffect, createContext, useContext, useReducer } from 'react'
+import {
+	useState,
+	useEffect,
+	createContext,
+	useContext,
+	useReducer,
+} from 'react'
 import useInterval from 'lib/hooks/useInterval'
 import { Select, SelectItem } from 'shared/Select'
 
@@ -136,7 +142,11 @@ function generateBombPositions(
 	return list
 }
 
-function useBoard(numberOfRows: number, numberOfColumns: number, bombs: boolean[][]) {
+function useBoard(
+	numberOfRows: number,
+	numberOfColumns: number,
+	bombs: boolean[][],
+) {
 	const rows: Rows = []
 
 	for (let row = 0; row < numberOfRows; row++) {
@@ -144,7 +154,13 @@ function useBoard(numberOfRows: number, numberOfColumns: number, bombs: boolean[
 		for (let column = 0; column < numberOfColumns; column++) {
 			// const currentPosition = i * 10 + j
 			// TODO fix possible loop
-			const [tile, setTile] = useTile(bombs, row, column, numberOfRows, numberOfColumns)
+			const [tile, setTile] = useTile(
+				bombs,
+				row,
+				column,
+				numberOfRows,
+				numberOfColumns,
+			)
 			currentRow.push([tile, setTile])
 		}
 		rows.push(currentRow)
@@ -185,7 +201,13 @@ function useTile(
 		},
 	}
 	if (!tile.hasBomb) {
-		tile.value = getDisplayValue(bombs, row, column, numberOfRows, numberOfColumns)
+		tile.value = getDisplayValue(
+			bombs,
+			row,
+			column,
+			numberOfRows,
+			numberOfColumns,
+		)
 	}
 	return useState(tile)
 }
@@ -353,7 +375,12 @@ const FlexRow: FunctionComponent<{
 	)
 }
 
-const getTileBackgroundColor = ({ isFlagged, isDead, isActivated, isEven }: StatesProps) => {
+const getTileBackgroundColor = ({
+	isFlagged,
+	isDead,
+	isActivated,
+	isEven,
+}: StatesProps) => {
 	if (isFlagged) {
 		return Colors.flagged
 	}
@@ -396,7 +423,11 @@ function tileIsEven(i: number, j: number): boolean {
 const Board = ({ difficulty }: { difficulty: Difficulty }) => {
 	const [gameState, setGameState] = useState(GameState.passive)
 	const [bombs] = useState<boolean[][]>(
-		generateBombPositions(difficulty.rows, difficulty.columns, difficulty.bombs),
+		generateBombPositions(
+			difficulty.rows,
+			difficulty.columns,
+			difficulty.bombs,
+		),
 	)
 	const board = useBoard(difficulty.rows, difficulty.columns, bombs)
 	const context = useContext(BoardContext)
@@ -495,7 +526,10 @@ function difficultyReducer(
 }
 
 const MineSweaper = () => {
-	const [selectedDifficulty, setSelectedDifficulty] = useReducer(difficultyReducer, initialState)
+	const [selectedDifficulty, setSelectedDifficulty] = useReducer(
+		difficultyReducer,
+		initialState,
+	)
 
 	useEffect(() => {
 		if (selectedDifficulty.type !== SelectedDifficulty.loading) return
@@ -520,9 +554,15 @@ const MineSweaper = () => {
 							})
 						}}
 					>
-						<SelectItem value={SelectedDifficulty.easy}>{easy.title}</SelectItem>
-						<SelectItem value={SelectedDifficulty.medium}>{medium.title}</SelectItem>
-						<SelectItem value={SelectedDifficulty.hard}>{hard.title}</SelectItem>
+						<SelectItem value={SelectedDifficulty.easy}>
+							{easy.title}
+						</SelectItem>
+						<SelectItem value={SelectedDifficulty.medium}>
+							{medium.title}
+						</SelectItem>
+						<SelectItem value={SelectedDifficulty.hard}>
+							{hard.title}
+						</SelectItem>
 					</Select>
 				</div>
 				<div className="mx-1.5">

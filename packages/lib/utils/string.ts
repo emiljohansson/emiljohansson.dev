@@ -45,7 +45,11 @@ export function randomString(props?: {
 		symbols: false,
 		...props,
 	}
-	const pattern = [letters && lettersPattern, numeric && numericPattern, symbols && symbolsPattern]
+	const pattern = [
+		letters && lettersPattern,
+		numeric && numericPattern,
+		symbols && symbolsPattern,
+	]
 		.filter((v) => !!v)
 		.join('')
 	let value = ''

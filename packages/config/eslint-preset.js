@@ -8,7 +8,12 @@ module.exports = {
 			rootDir: ['apps/*/', 'packages/*/'],
 		},
 	},
-	extends: ['standard', 'plugin:@typescript-eslint/recommended', 'prettier'],
+	extends: [
+		'standard',
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'prettier',
+	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaFeatures: {
@@ -18,15 +23,16 @@ module.exports = {
 		sourceType: 'module',
 	},
 	plugins: ['react', '@typescript-eslint'],
-	// rules: {
-	// 	"react/react-in-jsx-scope": "off",
-	// 	"import/no-anonymous-default-export": "off",
-	// 	"comma-dangle": ["error", "always-multiline"],
-	// 	"no-unused-vars": "off",
-	// 	"@typescript-eslint/no-unused-vars": ["error"],
-	// 	"@typescript-eslint/no-explicit-any": "error",
-	// 	"func-call-spacing": "off",
-	// 	"@typescript-eslint/func-call-spacing": "error",
-	// 	"jsx-quotes": ["error", "prefer-double"],
-	// },
+	rules: {
+		'@typescript-eslint/no-unused-vars': 'error',
+		// 	"react/react-in-jsx-scope": "off",
+		// 	"import/no-anonymous-default-export": "off",
+		// 	"comma-dangle": ["error", "always-multiline"],
+		// 	"no-unused-vars": "off",
+		// 	"@typescript-eslint/no-unused-vars": ["error"],
+		// 	"@typescript-eslint/no-explicit-any": "error",
+		// 	"func-call-spacing": "off",
+		// 	"@typescript-eslint/func-call-spacing": "error",
+		// 	"jsx-quotes": ["error", "prefer-double"],
+	},
 }
