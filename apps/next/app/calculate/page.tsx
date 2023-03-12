@@ -1,7 +1,7 @@
-import Head from 'next/head'
+'use client'
+
 import { FormEvent, useState } from 'react'
 import Content from '@/components/Content'
-import Layout from '@/components/Layout'
 import Section from '@/components/Section'
 import Header from 'shared/Header'
 
@@ -33,27 +33,21 @@ const Calculate = () => {
 	}
 
 	return (
-		<Layout>
-			<Head>
-				<title>Calculate</title>
-				<meta name="description" content="Calculate" />
-			</Head>
-			<Content>
-				<Header />
-				<Section size="normal">
-					<h1 className="sr-only">Calculate</h1>
-					<form onSubmit={calculate} action="/api/calculate" method="post">
-						<input className="input" type="text" name="q" aria-label="Query" />
-						<span className="ml-3" data-test="sum">
-							{sum}
-						</span>
-						<button className="btn-primary mt-3 block" data-test="submit">
-							Calculate
-						</button>
-					</form>
-				</Section>
-			</Content>
-		</Layout>
+		<Content>
+			<Header />
+			<Section size="normal">
+				<h1 className="sr-only">Calculate</h1>
+				<form onSubmit={calculate} action="/api/calculate" method="post">
+					<input className="input" type="text" name="q" aria-label="Query" />
+					<span className="ml-3" data-test="sum">
+						{sum}
+					</span>
+					<button className="btn-primary mt-3 block" data-test="submit">
+						Calculate
+					</button>
+				</form>
+			</Section>
+		</Content>
 	)
 }
 
