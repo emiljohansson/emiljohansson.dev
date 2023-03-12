@@ -1,5 +1,6 @@
+'use client'
+
 import { NextPage } from 'next'
-import Head from 'next/head'
 import { PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import useSWR from 'swr'
@@ -8,7 +9,6 @@ import { randomString } from 'lib/utils/string'
 import { CheckboxWithLabel } from 'shared/CheckboxWithLabel'
 import Content from '@/components/Content'
 import Header from 'shared/Header'
-import Layout from '@/components/Layout'
 import Section from '@/components/Section'
 
 interface Selection {
@@ -113,92 +113,81 @@ const PasswordGeneratorPage: NextPage = () => {
 	}
 
 	return (
-		<Layout>
-			<Head>
-				<title>Password Generator</title>
-				<meta name="description" content="Password Generator" />
-			</Head>
-			<Content>
-				<Header />
-				<Section size="normal" direction="column">
-					<h1 className="sr-only">Password Generator</h1>
-					<Tabs.Root defaultValue="random-tab" className="flex flex-col w-80">
-						<Tabs.List className="flex">
-							<Trigger value="random-tab">Random Password</Trigger>
-							<Trigger value="memorable-tab">Memorable Password</Trigger>
-							<Trigger value="pin-tab">PIN</Trigger>
-						</Tabs.List>
-						<Tabs.Content value="random-tab">
-							<h2>Random password</h2>
-							<input
-								className="input w-full"
-								type="text"
-								value={randomPassword}
-								readOnly
+		<Content>
+			<Header />
+			<Section size="normal" direction="column">
+				<h1 className="sr-only">Password Generator</h1>
+				<Tabs.Root defaultValue="random-tab" className="flex flex-col w-80">
+					<Tabs.List className="flex">
+						<Trigger value="random-tab">Random Password</Trigger>
+						<Trigger value="memorable-tab">Memorable Password</Trigger>
+						<Trigger value="pin-tab">PIN</Trigger>
+					</Tabs.List>
+					<Tabs.Content value="random-tab">
+						<h2>Random password</h2>
+						<input
+							className="input w-full"
+							type="text"
+							value={randomPassword}
+							readOnly
+						/>
+						<div className="flex">
+							<Slider
+								defaultValue={randomSelection.length}
+								min={8}
+								max={100}
+								onValueChange={onRandomChanged}
 							/>
-							<div className="flex">
-								<Slider
-									defaultValue={randomSelection.length}
-									min={8}
-									max={100}
-									onValueChange={onRandomChanged}
-								/>
-								<span className="ml-4">{randomSelection.length}</span>
-							</div>
-							<fieldset className="flex">
-								<CheckboxWithLabel
-									labelText="Number"
-									checked={randomSelection.numeric}
-									onCheckedChange={onNumericToggled}
-								/>
-								<div className="mx-2"></div>
-								<CheckboxWithLabel
-									labelText="Symbols"
-									checked={randomSelection.symbols}
-									onCheckedChange={onSymbolsToggled}
-								/>
-							</fieldset>
-						</Tabs.Content>
-						<Tabs.Content value="memorable-tab">
-							<h2>Memorable password</h2>
-							<input
-								className="input w-full"
-								type="text"
-								value={memorablePassword}
-								readOnly
+							<span className="ml-4">{randomSelection.length}</span>
+						</div>
+						<fieldset className="flex">
+							<CheckboxWithLabel
+								labelText="Number"
+								checked={randomSelection.numeric}
+								onCheckedChange={onNumericToggled}
 							/>
-							<div className="flex">
-								<Slider
-									defaultValue={numberOfWords}
-									min={3}
-									max={15}
-									onValueChange={onNumberOfWordsChanged}
-								/>
-								<span className="ml-4">{numberOfWords}</span>
-							</div>
-						</Tabs.Content>
-						<Tabs.Content value="pin-tab">
-							<h2>PIN</h2>
-							<input
-								className="input w-full"
-								type="text"
-								value={pin}
-								readOnly
+							<div className="mx-2"></div>
+							<CheckboxWithLabel
+								labelText="Symbols"
+								checked={randomSelection.symbols}
+								onCheckedChange={onSymbolsToggled}
 							/>
-							<div className="flex">
-								<Slider
-									defaultValue={pinSelection.length}
-									min={3}
-									max={15}
-									onValueChange={onPinLengthChanged}
-								/>
-								<span className="ml-4">{pinSelection.length}</span>
-							</div>
-						</Tabs.Content>
-					</Tabs.Root>
-				</Section>
-			</Content>
-		</Layout>
+						</fieldset>
+					</Tabs.Content>
+					<Tabs.Content value="memorable-tab">
+						<h2>Memorable password</h2>
+						<input
+							className="input w-full"
+							type="text"
+							value={memorablePassword}
+							readOnly
+						/>
+						<div className="flex">
+							<Slider
+								defaultValue={numberOfWords}
+								min={3}
+								max={15}
+								onValueChange={onNumberOfWordsChanged}
+							/>
+							<span className="ml-4">{numberOfWords}</span>
+						</div>
+					</Tabs.Content>
+					<Tabs.Content value="pin-tab">
+						<h2>PIN</h2>
+						<input className="input w-full" type="text" value={pin} readOnly />
+						<div className="flex">
+							<Slider
+								defaultValue={pinSelection.length}
+								min={3}
+								max={15}
+								onValueChange={onPinLengthChanged}
+							/>
+							<span className="ml-4">{pinSelection.length}</span>
+						</div>
+					</Tabs.Content>
+				</Tabs.Root>
+			</Section>
+		</Content>
 	)
 }
 
