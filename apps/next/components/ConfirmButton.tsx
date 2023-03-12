@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-const duration = 3
-
 interface Props {
+	duration?: number
 	onComfirm: () => void
 }
 
-function ConfirmButton({ onComfirm }: Props) {
+function ConfirmButton({ duration = 3, onComfirm }: Props) {
 	const [active, setActive] = useState(false)
 
 	useEffect(() => {
