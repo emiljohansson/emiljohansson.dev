@@ -1,37 +1,59 @@
-import { useEffect, useState } from 'react'
+'use client'
+
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 
 const darkClassName = 'dark'
-let savedDarkMode: boolean | undefined
 
-const useDarkMode = () => {
-	const [darkMode, setDarkMode] = useState<boolean | undefined>(savedDarkMode)
-
-	useEffect(() => {
-		if (darkMode === undefined) {
-			setDarkMode(document.documentElement.classList.contains(darkClassName))
-			savedDarkMode = document.documentElement.classList.contains(darkClassName)
-			return
-		}
-		localStorage.setItem('theme', darkMode ? darkClassName : '')
-		document.documentElement.classList.toggle(
-			darkClassName,
-			localStorage.theme === darkClassName,
-		)
-		savedDarkMode = document.documentElement.classList.contains(darkClassName)
-	}, [darkMode])
-
-	return [darkMode, setDarkMode] as const
+function cookies() {
+	const cookieStore = new Map()
+	const cookieString = typeof document !== 'undefined' ? document.cookie : ''
+	const cookieArray = cookieString.split(';')
+	cookieArray.forEach((cookie) => {
+		const [key, value] = cookie.split('=')
+		cookieStore.set(key.trim(), value)
+	})
+	return {
+		get(key: string) {
+			return {
+				key,
+				value: cookieStore.get(key),
+			}
+		},
+		set(key: string, value: string) {
+			document.cookie = `${key}=${value}`
+		},
+		has(key: string) {
+			return cookieStore.has(key)
+		},
+	}
 }
 
-export const ThemeToggle = () => {
-	const [darkMode, setDarkMode] = useDarkMode()
+function useCookieStore() {
+	const cookieStore = useMemo(() => cookies(), [])
+	return cookieStore
+}
+
+export const ThemeToggle = ({ initMode }: { initMode?: string }) => {
+	const cookieStore = useCookieStore()
+	const [darkMode, setDarkMode] = useState<boolean | undefined>(
+		initMode === 'dark',
+	)
+
+	function toggleMode() {
+		setDarkMode(!darkMode)
+	}
+
+	useEffect(() => {
+		cookieStore.set('theme', darkMode ? darkClassName : '')
+		document.documentElement.classList.toggle(darkClassName, darkMode)
+	}, [darkMode])
 
 	return (
 		<motion.button
 			className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
-			onClick={() => setDarkMode(!darkMode)}
+			onClick={() => toggleMode()}
 			data-test="toggle-dark-mode"
 		>
 			<motion.div

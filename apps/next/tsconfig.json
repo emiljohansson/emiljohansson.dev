@@ -40,7 +40,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "/Users/emiljohansson/Sites/emiljohansson.dev/apps/next/.next/types/**/*.ts"
+    "/home/emiljohansson/emiljohansson.dev/apps/next/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
