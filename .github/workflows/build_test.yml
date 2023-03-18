@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      
+
       - name: Validate env
         run: echo "${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}"
 
@@ -57,7 +57,7 @@ jobs:
         run: ./node_modules/cypress/bin/cypress install
 
       - name: Run e2e tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5.1.0
         with:
           install: false
           build: pnpm build --filter=next-app
