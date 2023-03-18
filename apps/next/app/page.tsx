@@ -120,19 +120,6 @@ export default function Page() {
 								className="inline-block text-fuchsia-600"
 							/>
 						</AccessibleIcon>{' '}
-						{/* <style jsx>{`
-							.title {
-								background: linear-gradient(
-									97.2deg,
-									#ad52dd -8.65%,
-									#e64937 110.27%
-								);
-								background-clip: border-box;
-								background-clip: border-box;
-								-webkit-text-fill-color: transparent;
-								-webkit-background-clip: text;
-							}
-						`}</style> */}
 						<span className="bg-gradient-to-r from-fuchsia-600 to-orange-500 bg-clip-text text-transparent">
 							emiljohansson
 						</span>
