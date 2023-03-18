@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { GitHubLogoIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
-import { ThemeToggle } from 'shared/ThemeToggle'
 
 // const AccessibleIcon = ({ children, label }): AccessibleIconPrimitive.AccessibleIcon => {
 //   <AccessibleIconPrimitive.Root
@@ -106,7 +105,6 @@ const projects = [
 export default function Page() {
 	return (
 		<>
-			<ThemeToggle />
 			<div className="flex items-center text-5xl h-screen font-bold">
 				<h1 className="mx-auto">
 					<Link
@@ -117,26 +115,14 @@ export default function Page() {
 					>
 						<AccessibleIcon label="GitHub">
 							<GitHubLogoIcon
-								color="#ad52dd"
 								width="50"
 								height="50"
-								className="inline-block"
+								className="inline-block text-fuchsia-600"
 							/>
 						</AccessibleIcon>{' '}
-						<style jsx>{`
-							.title {
-								background: linear-gradient(
-									97.2deg,
-									#ad52dd -8.65%,
-									#e64937 110.27%
-								);
-								background-clip: border-box;
-								background-clip: border-box;
-								-webkit-text-fill-color: transparent;
-								-webkit-background-clip: text;
-							}
-						`}</style>
-						<span className="title">emiljohansson</span>
+						<span className="bg-gradient-to-r from-fuchsia-600 to-orange-500 bg-clip-text text-transparent">
+							emiljohansson
+						</span>
 					</Link>
 				</h1>
 			</div>

@@ -1,3 +1,5 @@
+'use client'
+
 // import { Children, FC, PropsWithChildren, ReactElement, ReactNode } from 'react'
 
 // const Slot = ({ name, children }: PropsWithChildren<{ name?: string }>) => {

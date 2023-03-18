@@ -7,12 +7,12 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Head>
-				<script
+				{/* <script
 					dangerouslySetInnerHTML={{
 						__html:
 							"document.documentElement.classList.toggle('dark', localStorage.theme === 'dark')",
 					}}
-				/>
+				/> */}
 			</Head>
 			<Component {...pageProps} />
 		</>

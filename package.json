@@ -20,7 +20,9 @@
 		"cy:open": "cypress open",
 		"prettier:check": "prettier --check .",
 		"format": "prettier --write \"**/*.{ts,tsx,js,md,json,html,css}\"",
-		"lint": "turbo run lint && pnpm prettier:check"
+		"lint": "pnpm lint:eslint && pnpm lint:prettier",
+		"lint:eslint": "turbo run lint",
+		"lint:prettier": "pnpm prettier:check"
 	},
 	"workspaces": [
 		"packages/*",
