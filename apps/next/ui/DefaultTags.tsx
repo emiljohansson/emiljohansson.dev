@@ -1,5 +1,5 @@
 const name = 'Emil Johansson'
-export const siteTitle = 'emiljohansson.dev'
+const siteTitle = 'emiljohansson.dev'
 
 export function DefaultTags() {
 	return (
