@@ -70,12 +70,11 @@ function TwoWayAuthEnter() {
 		event.preventDefault()
 		setState(State.loading)
 		try {
-			const response = await post('/api/two-factor/validate', {
+			const response = await post('/api/two-factor', {
 				value,
 			})
 			const json = await response.json()
 			const data = json.data
-			// const isValid: boolean = await serverInstance.validate(value)
 			const isValid: boolean = data.isValid
 			setState(isValid ? State.valid : State.invalid)
 		} catch (error) {

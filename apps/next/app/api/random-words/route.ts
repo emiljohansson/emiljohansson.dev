@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextResponse } from 'next/server'
 import { faker } from '@faker-js/faker'
 import range from 'just-range'
 
@@ -17,14 +17,16 @@ const getWordMethod = () => {
 	return wordMethods[index]
 }
 
-export default (req: NextApiRequest, res: NextApiResponse<string[]>) => {
-	const numberOfWords = isNaN(Number(req.query.words))
+export async function GET(request: Request) {
+	const { searchParams } = new URL(request.url)
+	const wordsFromQuery = searchParams.get('words')
+	const numberOfWords = isNaN(Number(wordsFromQuery))
 		? 1
-		: Number(req.query.words)
+		: Number(wordsFromQuery)
 	const words = range(numberOfWords).map(() => {
 		const method = getWordMethod()
 		return method()
 	})
 
-	res.status(200).json(words)
+	return NextResponse.json(words)
 }
