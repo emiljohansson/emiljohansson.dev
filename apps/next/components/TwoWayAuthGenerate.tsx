@@ -18,7 +18,7 @@ function TwoWayAuthGenerate() {
 
 	async function retrieve(): Promise<void> {
 		try {
-			const response = await fetch('/api/two-factor/generate')
+			const response = await fetch('/api/two-factor')
 			const json = await response.json()
 			const data = json.data
 			setValue(data.value)
@@ -39,7 +39,7 @@ function TwoWayAuthGenerate() {
 
 	return (
 		<>
-			<div>{value}</div>
+			<div>{value || '...'}</div>
 			<div className="h-0.5 w-96 mr-3">
 				<motion.div
 					className="h-full mx-auto transition-all duration-1000 ease-linear"

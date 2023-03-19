@@ -20,7 +20,7 @@ const Calculate = () => {
 
 		const res = await fetch('/api/calculate', {
 			body: JSON.stringify({
-				q: formElements.q.value,
+				query: formElements.q.value,
 			}),
 			headers: {
 				'Content-Type': 'application/json',
