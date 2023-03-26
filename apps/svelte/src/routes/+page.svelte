@@ -77,7 +77,7 @@
 	<meta name="description" content="Playground for Emil Johansson" />
 </svelte:head>
 
-<main class="px-6 py-4">
+<main>
 	<ul class="border border-slate-200 rounded-md overflow-hidden">
 		{#each projects as { href, text, description, test, external }}
 			<li class="p-4 bg-white border-b last:border-none border-slate-200">

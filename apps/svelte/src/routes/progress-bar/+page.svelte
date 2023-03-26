@@ -29,10 +29,10 @@
 </svelte:head>
 
 <header class="bg-white border-b border-slate-200 px-6 py-12">
-	<h1 class="text-4xl font-medium mb-0">Progress Bar</h1>
+	<h1>Progress Bar</h1>
 </header>
 
-<main class="px-6 py-4">
+<main>
 	<div class="flex items-center">
 		<div
 			aria-valuemax={100}

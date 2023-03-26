@@ -22,10 +22,10 @@
 </svelte:head>
 
 <header class="bg-white border-b border-slate-200 px-6 py-12">
-	<h1 class="text-4xl font-medium mb-0">Current Time</h1>
+	<h1>Current Time</h1>
 </header>
 
-<main class="px-6 py-4">
+<main>
 	{hours}:{minutes}
 	<span class="text-3/6 meridiem">{meridiem}</span>
 </main>

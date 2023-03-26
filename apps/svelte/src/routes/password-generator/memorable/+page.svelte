@@ -15,7 +15,7 @@
 	}, 300)
 </script>
 
-<h2 class="text-2xl font-semibold mb-6">Memorable Password</h2>
+<h2>Memorable Password</h2>
 
 <input class="input w-full" type="text" readonly {value} />
 

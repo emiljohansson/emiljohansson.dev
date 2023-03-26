@@ -10,7 +10,7 @@
 	$: value = randomString({ length, letters, numeric, symbols })
 </script>
 
-<h2 class="text-2xl font-semibold mb-6">PIN</h2>
+<h2>PIN</h2>
 
 <input class="input w-full" type="text" readonly {value} />
 <div class="flex gap-2">

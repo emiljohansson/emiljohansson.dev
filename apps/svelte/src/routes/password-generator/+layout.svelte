@@ -1,7 +1,7 @@
 <script type="ts">
 	const links = [
 		{
-			href: "/password-generator/random",
+			href: "/password-generator",
 			title: "Random",
 		},
 		{
@@ -22,7 +22,7 @@
 
 <header class="bg-white border-b border-slate-200">
 	<div class="max-w-7xl mx-auto px-6 py-12">
-		<h1 class="text-4xl font-medium mb-0">Password Generator</h1>
+		<h1>Password Generator</h1>
 	</div>
 </header>
 
