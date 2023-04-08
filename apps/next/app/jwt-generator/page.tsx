@@ -4,16 +4,13 @@ import Content from '@/components/Content'
 import Section from '@/components/Section'
 import { useState } from 'react'
 import { Header } from 'ui'
-import { sign, JwtPayload } from 'jsonwebtoken'
-
-function generateJwt(payload: JwtPayload, secret: string): string {
-	return sign(payload, secret, { expiresIn: '1h' })
-}
+import { sign } from 'jsonwebtoken'
 
 export default function Page() {
 	const [encodedValue, setEncodedValue] = useState('')
 	const [subject, setSubject] = useState('')
 	const [data, setData] = useState('{"name": "John Doe"}')
+	const [expiresIn, setExpiresIn] = useState('1h')
 	const [secret, setSecret] = useState('')
 
 	return (
@@ -36,7 +33,9 @@ export default function Page() {
 								sub: subject,
 								iat: Date.now(),
 							}
-							const token = generateJwt(payload, secret)
+							const token = sign(payload, secret, {
+								expiresIn: expiresIn || '1h',
+							})
 							console.log({
 								token,
 							})
@@ -60,6 +59,15 @@ export default function Page() {
 								className="input"
 								value={data}
 								onChange={(event) => setData(event.currentTarget.value)}
+							/>
+						</div>
+						<div className="flex flex-col gap-2">
+							<label htmlFor="jwt-sub">setExpiresIn</label>
+							<input
+								id="jwt-data"
+								className="input"
+								value={expiresIn}
+								onChange={(event) => setExpiresIn(event.currentTarget.value)}
 							/>
 						</div>
 						<div className="flex flex-col gap-2">
