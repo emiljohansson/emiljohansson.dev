@@ -99,6 +99,12 @@ const projects = [
 		description: 'Encrypts and Decrypts a string.',
 		test: 'encryption',
 	},
+	{
+		href: '/jwt',
+		text: 'Encode and Decode JWT',
+		description: 'Encodes and Decodes a JWT.',
+		test: 'jwt',
+	},
 ]
 type Project = (typeof projects)[number]
 
