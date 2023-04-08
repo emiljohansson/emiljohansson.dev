@@ -13,7 +13,7 @@ import {
 	SelectItem,
 	SelectSeparator,
 	Progress,
-	ThemeToggle,
+	// ThemeToggle,
 	Slider,
 	CheckboxWithLabel,
 } from 'ui'
@@ -89,9 +89,7 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<header className="h-10">
-				<ThemeToggle />
-			</header>
+			<header className="h-10">{/* <ThemeToggle /> */}</header>
 
 			<main className="flex flex-col gap-4 pb-52">
 				<article>
