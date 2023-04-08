@@ -102,10 +102,16 @@ const projects = [
 		test: 'encryption',
 	},
 	{
-		href: '/jwt',
+		href: '/jwt-debugger',
 		text: 'Encode and Decode JWT',
 		description: 'Encodes and Decodes a JWT.',
-		test: 'jwt',
+		test: 'jwt-debugger',
+	},
+	{
+		href: '/jwt-generator',
+		text: 'Generate a JWT',
+		description: 'Generates a JWT.',
+		test: 'jwt-generator',
 	},
 ]
 
