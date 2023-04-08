@@ -3,7 +3,61 @@
 @tailwind utilities;
 
 @layer components {
-	.btn-primary,
+	.select {
+		@apply h-10
+			px-2
+			rounded;
+	}
+
+	.select {
+		@apply inline-flex
+      items-center
+      justify-center
+      cursor-default
+      gap-1
+      outline-none
+      border
+      border-gray-300
+      hover:border-black-rich
+      focus:border-black-rich
+      dark:border-gray-600
+      dark:hover:border-white
+      dark:focus:border-white;
+	}
+	.select-item {
+		@apply border-0
+      text-sm
+      focus:bg-primary
+      focus:text-white
+      dark:text-primary
+      dark:focus:text-white
+      focus-visible:outline-none
+      rounded
+      flex
+      items-center
+      h-6
+      py-0
+      px-6
+      relative
+      select-none
+      data-disabled:text-zinc-300
+      data-disabled:pointer-events-none;
+	}
+	.select-item-indicator {
+		@apply absolute
+      left-0
+      inline-flex
+      items-center
+      justify-center
+      w-6;
+	}
+	.select-label {
+		@apply text-slate-600 text-xs leading-6 py-0 px-6;
+	}
+	.select-separator {
+		@apply h-px m-1 bg-gray-300;
+	}
+	/* .btn-primary,
 	.btn-secondary,
 	.input,
 	.select {
@@ -65,52 +119,5 @@
       dark:focus:border-white;
 	}
 
-	.select {
-		@apply inline-flex
-      items-center
-      justify-center
-      cursor-default
-      gap-1
-      outline-none
-      border
-      border-gray-300
-      hover:border-black-rich
-      focus:border-black-rich
-      dark:border-gray-600
-      dark:hover:border-white
-      dark:focus:border-white;
-	}
-	.select-item {
-		@apply border-0
-      text-sm
-      focus:bg-primary
-      focus:text-white
-      dark:text-primary
-      dark:focus:text-white
-      focus-visible:outline-none
-      rounded
-      flex
-      items-center
-      h-6
-      py-0
-      px-6
-      relative
-      select-none
-      data-disabled:text-zinc-300
-      data-disabled:pointer-events-none;
-	}
-	.select-item-indicator {
-		@apply absolute
-      left-0
-      inline-flex
-      items-center
-      justify-center
-      w-6;
-	}
-	.select-label {
-		@apply text-slate-600 text-xs leading-6 py-0 px-6;
-	}
-	.select-separator {
-		@apply h-px m-1 bg-gray-300;
-	}
+	 */
 }
