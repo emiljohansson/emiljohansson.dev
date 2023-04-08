@@ -3,9 +3,15 @@
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
-import { keysAreDown } from 'keyboard-handler'
 
 const projects = [
+	{
+		href: '/',
+		text: 'Home',
+		// external: true,
+		description: 'Return to the home page.',
+		test: 'home-page',
+	},
 	{
 		href: 'https://emiljohansson.dev/design',
 		text: 'Design System',
@@ -110,16 +116,14 @@ export const CommandPrompt = () => {
 	}
 
 	useEffect(() => {
-		const removeKeysAreDown = keysAreDown(['Meta', 'k'], () => {
-			setShowModal(true)
-		})
-
-		return () => removeKeysAreDown()
-	}, [])
-
-	useEffect(() => {
 		fieldRef.current?.focus()
 		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.metaKey && event.key === 'k') {
+				event.preventDefault()
+				setShowModal(true)
+				return
+			}
+			if (!showModal) return
 			if (!['ArrowUp', 'ArrowDown', 'Escape', 'Enter'].includes(event.key)) {
 				return
 			}
@@ -142,15 +146,17 @@ export const CommandPrompt = () => {
 				setSelectedIndex(newIndex)
 			}
 			if (event.key === 'Escape') setShowModal(false)
-			if (event.key === 'Enter') handleAction(list[selectedIndex])
+			if (event.key === 'Enter') {
+				setList([...projects])
+				handleAction(list[selectedIndex])
+				setShowModal(false)
+			}
 		}
 
 		document.addEventListener('keydown', onKeyDown)
 
-		return () => {
-			document.removeEventListener('keydown', onKeyDown)
-		}
-	}, [selectedIndex, list])
+		return () => document.removeEventListener('keydown', onKeyDown)
+	}, [selectedIndex, list, showModal])
 
 	return (
 		<>
