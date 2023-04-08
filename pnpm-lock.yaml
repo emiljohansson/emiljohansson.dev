@@ -131,7 +131,6 @@ importers:
       crypto-js: 4.1.1
       framer-motion: 6.2.3
       just-range: 4.1.1
-      keyboard-handler: 3.0.7
       lib: workspace:*
       next: 13.3.0
       next-transpile-modules: 9.0.0
@@ -153,7 +152,6 @@ importers:
       crypto-js: 4.1.1
       framer-motion: 6.2.3_biqbaboplfbrettd7655fr4n2y
       just-range: 4.1.1
-      keyboard-handler: 3.0.7
       lib: link:../../packages/lib
       next: 13.3.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
@@ -1205,7 +1203,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       callsites: 3.1.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       source-map: 0.6.1
     dev: true
 
@@ -1224,7 +1222,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/test-result': 27.5.1
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jest-haste-map: 27.5.1
       jest-runtime: 27.5.1
     transitivePeerDependencies:
@@ -2905,7 +2903,7 @@ packages:
       babel-plugin-istanbul: 6.1.1
       babel-preset-jest: 27.5.1_@babel+core@7.21.0
       chalk: 4.1.2
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       slash: 3.0.0
     transitivePeerDependencies:
       - supports-color
@@ -5923,7 +5921,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@types/node': 18.0.1
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: true
 
   /jest-snapshot/27.5.1:
@@ -6163,7 +6161,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: true
 
   /jsprim/2.0.2:
@@ -6193,10 +6191,6 @@ packages:
 
   /just-shuffle/4.1.1:
     resolution: {integrity: sha512-UKnk2ihUNE+bXjidVZSpcgtbfR1L9cricnw4VnIJaU9uJj4V8UAUqJC3JGTR4kwbB3Ym/F/zrXXT3IJ3QeGfUg==}
-    dev: false
-
-  /keyboard-handler/3.0.7:
-    resolution: {integrity: sha512-1mp86hJ5QEQiFglHUQqRuFzy+laiqlSQlp+J28u2xjlH59DOJMMBPGI2UMXECnpM3ThziSZnd51VeeuOCbhG6Q==}
     dev: false
 
   /kleur/3.0.3:

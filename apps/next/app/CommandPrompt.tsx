@@ -3,7 +3,6 @@
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
-import { keysAreDown } from 'keyboard-handler'
 
 const projects = [
 	{
@@ -117,18 +116,13 @@ export const CommandPrompt = () => {
 	}
 
 	useEffect(() => {
-		const removeKeysAreDown = keysAreDown(['Meta', 'k'], () => {
-			setShowModal(true)
-		})
-
-		return () => removeKeysAreDown()
-	}, [])
-
-	useEffect(() => {
 		fieldRef.current?.focus()
 		const onKeyDown = (event: KeyboardEvent) => {
-			console.log('showModal', showModal)
-
+			if (event.metaKey && event.key === 'k') {
+				event.preventDefault()
+				setShowModal(true)
+				return
+			}
 			if (!showModal) return
 			if (!['ArrowUp', 'ArrowDown', 'Escape', 'Enter'].includes(event.key)) {
 				return
@@ -153,6 +147,7 @@ export const CommandPrompt = () => {
 			}
 			if (event.key === 'Escape') setShowModal(false)
 			if (event.key === 'Enter') {
+				setList([...projects])
 				handleAction(list[selectedIndex])
 				setShowModal(false)
 			}
