@@ -35,17 +35,19 @@ function useCookieStore() {
 	return cookieStore
 }
 
-export const ThemeToggle = ({ initMode }: { initMode?: string }) => {
+export const ThemeToggle = () => {
 	const cookieStore = useCookieStore()
-	const [darkMode, setDarkMode] = useState<boolean | undefined>(
-		initMode === 'dark',
-	)
+	const [darkMode, setDarkMode] = useState<boolean | undefined>()
 
 	function toggleMode() {
 		setDarkMode(!darkMode)
 	}
 
 	useEffect(() => {
+		if (darkMode === undefined) {
+			setDarkMode(cookieStore.get('theme')?.value)
+			return
+		}
 		cookieStore.set('theme', darkMode ? darkClassName : '')
 		document.documentElement.classList.toggle(darkClassName, darkMode)
 	}, [darkMode])

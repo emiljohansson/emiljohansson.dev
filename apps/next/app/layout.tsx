@@ -5,7 +5,6 @@ import 'ui/globals.css'
 
 import { cookies } from 'next/headers'
 import { CommandPrompt } from './CommandPrompt'
-import { ThemeToggle } from './ThemeToggle'
 
 export default function Layout({ children }: PropsWithChildren<unknown>) {
 	const cookieStore = cookies()
@@ -14,10 +13,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 	return (
 		<html lang="en" className={`h-full ${theme?.value}`}>
 			<body className="dark:bg-black-rich dark:text-white h-full">
-				<main className="h-full">
-					<ThemeToggle initMode={theme?.value} />
-					{children}
-				</main>
+				<main className="h-full">{children}</main>
 				<CommandPrompt />
 			</body>
 		</html>

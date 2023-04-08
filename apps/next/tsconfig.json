@@ -41,7 +41,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "/home/emiljohansson/emiljohansson.dev/apps/next/.next/types/**/*.ts"
-  ],
+, "../../packages/ui/src/ThemeToggle.tsx"  ],
   "exclude": [
     "node_modules"
   ]
