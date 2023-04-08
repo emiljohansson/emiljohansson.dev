@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { faker } from '@faker-js/faker'
 import { motion } from 'framer-motion'
-import Header from 'ui/Header'
+import { Header } from 'ui'
 
 enum Color {
 	Green = 'green',
@@ -112,6 +112,8 @@ const BlankRow = () => {
 }
 
 const PreloadPage: NextPage = ({ word }: { word: string }) => {
+	console.log(word)
+
 	const [guesses, setGuesses] = useState<Guess[]>([])
 	const [currentGuess, setCurrentGuess] = useState<string[]>([])
 	const [gameState, setGameState] = useState(GameState.Playing)
