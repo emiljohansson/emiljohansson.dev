@@ -1,18 +1,13 @@
 'use client'
 
+import type { JwtHeader, JwtPayload } from 'jsonwebtoken'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 import { useEffect, useState } from 'react'
 import { Header } from 'ui'
 
-interface JwtPayload {
-	sub: string
-	iat: number
-	exp: number
-}
-
 interface Jwt {
-	header: object
+	header: JwtHeader
 	payload: JwtPayload
 	signature: string
 }
@@ -53,8 +48,8 @@ export default function Page() {
 	return (
 		<Content>
 			<Header />
-			<Section size="normal">
-				<h1 className="sr-only">JWT Encoder and Decoder</h1>
+			<Section size="normal" direction="column">
+				<h1 className="sr-only">Encoder and Decoder</h1>
 				<article className="flex flex-col gap-4">
 					<div className="flex flex-col gap-2">
 						<label htmlFor="jwt">Encoded</label>

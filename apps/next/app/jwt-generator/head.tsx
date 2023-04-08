@@ -4,8 +4,8 @@ export default function Head() {
 	return (
 		<>
 			<DefaultTags />
-			<title>Hooks</title>
-			<meta name="description" content="JWT Encoder and Decoder" />
+			<title>JWT Generator</title>
+			<meta name="description" content="Generate a JWT" />
 		</>
 	)
 }
