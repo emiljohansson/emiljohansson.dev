@@ -7,6 +7,13 @@ import { keysAreDown } from 'keyboard-handler'
 
 const projects = [
 	{
+		href: '/',
+		text: 'Home',
+		// external: true,
+		description: 'Return to the home page.',
+		test: 'home-page',
+	},
+	{
 		href: 'https://emiljohansson.dev/design',
 		text: 'Design System',
 		// external: true,
@@ -120,6 +127,9 @@ export const CommandPrompt = () => {
 	useEffect(() => {
 		fieldRef.current?.focus()
 		const onKeyDown = (event: KeyboardEvent) => {
+			console.log('showModal', showModal)
+
+			if (!showModal) return
 			if (!['ArrowUp', 'ArrowDown', 'Escape', 'Enter'].includes(event.key)) {
 				return
 			}
@@ -142,15 +152,16 @@ export const CommandPrompt = () => {
 				setSelectedIndex(newIndex)
 			}
 			if (event.key === 'Escape') setShowModal(false)
-			if (event.key === 'Enter') handleAction(list[selectedIndex])
+			if (event.key === 'Enter') {
+				handleAction(list[selectedIndex])
+				setShowModal(false)
+			}
 		}
 
 		document.addEventListener('keydown', onKeyDown)
 
-		return () => {
-			document.removeEventListener('keydown', onKeyDown)
-		}
-	}, [selectedIndex, list])
+		return () => document.removeEventListener('keydown', onKeyDown)
+	}, [selectedIndex, list, showModal])
 
 	return (
 		<>
