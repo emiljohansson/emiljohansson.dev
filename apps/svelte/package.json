@@ -29,7 +29,7 @@
 		"lib": "workspace:*",
 		"prettier": "2.8.0",
 		"prettier-plugin-svelte": "2.8.1",
-		"shared": "workspace:*",
+		"ui": "workspace:*",
 		"svelte": "3.54.0",
 		"svelte-check": "2.9.2",
 		"tslib": "2.4.1",

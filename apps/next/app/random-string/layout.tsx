@@ -1,7 +1,7 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
-import Header from 'shared/Header'
+import Header from 'ui/Header'
 import Content from '@/components/Content'
 
 export default function Layout({ children }: PropsWithChildren<unknown>) {

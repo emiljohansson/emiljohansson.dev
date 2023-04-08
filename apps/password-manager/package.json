@@ -20,7 +20,7 @@
 		"next": "13.3.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"shared": "workspace:*"
+		"ui": "workspace:*"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "4.1.1",

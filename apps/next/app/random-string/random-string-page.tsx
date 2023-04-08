@@ -7,7 +7,7 @@ import { CopyIcon, UpdateIcon } from '@radix-ui/react-icons'
 import RandomString from '@/components/RandomString'
 import Section from '@/components/Section'
 import { copyToClipboard } from 'lib/utils/string'
-import HeaderAction from 'shared/HeaderAction'
+import HeaderAction from 'ui/HeaderAction'
 
 export default function RandomStringPage({
 	initialValue,

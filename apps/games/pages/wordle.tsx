@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { faker } from '@faker-js/faker'
 import { motion } from 'framer-motion'
-import Header from 'shared/Header'
+import Header from 'ui/Header'
 
 enum Color {
 	Green = 'green',

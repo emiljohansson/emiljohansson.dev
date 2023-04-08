@@ -1,5 +1,5 @@
 import randomString from '@emiljohansson/random-string'
-import Header from 'shared/Header'
+import Header from 'ui/Header'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 import { RandomStringExample } from './RandomStringExample'

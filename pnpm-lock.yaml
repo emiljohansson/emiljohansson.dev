@@ -72,8 +72,8 @@ importers:
       next: 13.3.0
       react: 18.2.0
       react-dom: 18.2.0
-      shared: workspace:*
       tsconfig: workspace:*
+      ui: workspace:*
     dependencies:
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@radix-ui/react-label': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -84,7 +84,7 @@ importers:
       next: 13.3.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      shared: link:../../packages/shared
+      ui: link:../../packages/ui
     devDependencies:
       config: link:../../packages/config
       tsconfig: link:../../packages/tsconfig
@@ -100,8 +100,8 @@ importers:
       next: 13.3.0
       react: 18.2.0
       react-dom: 18.2.0
-      shared: workspace:*
       tsconfig: workspace:*
+      ui: workspace:*
     dependencies:
       '@faker-js/faker': 7.4.0
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
@@ -111,7 +111,7 @@ importers:
       next: 13.3.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      shared: link:../../packages/shared
+      ui: link:../../packages/ui
     devDependencies:
       config: link:../../packages/config
       tsconfig: link:../../packages/tsconfig
@@ -138,9 +138,9 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-icons: 4.7.1
-      shared: workspace:*
       swr: 1.3.0
       tsconfig: workspace:*
+      ui: workspace:*
     dependencies:
       '@emiljohansson/random-string': 1.1.2
       '@faker-js/faker': 7.4.0
@@ -159,8 +159,8 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-icons: 4.7.1_react@18.2.0
-      shared: link:../../packages/shared
       swr: 1.3.0_react@18.2.0
+      ui: link:../../packages/ui
     devDependencies:
       '@types/crypto-js': 4.1.1
       config: link:../../packages/config
@@ -182,8 +182,8 @@ importers:
       next: 13.3.0
       react: 18.2.0
       react-dom: 18.2.0
-      shared: workspace:*
       tsconfig: workspace:*
+      ui: workspace:*
     dependencies:
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@radix-ui/react-label': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -196,7 +196,7 @@ importers:
       next: 13.3.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      shared: link:../../packages/shared
+      ui: link:../../packages/ui
     devDependencies:
       '@types/crypto-js': 4.1.1
       config: link:../../packages/config
@@ -221,12 +221,12 @@ importers:
       lib: workspace:*
       prettier: 2.8.0
       prettier-plugin-svelte: 2.8.1
-      shared: workspace:*
       svelte: 3.54.0
       svelte-check: 2.9.2
       tsconfig: workspace:*
       tslib: 2.4.1
       typescript: 4.9.3
+      ui: workspace:*
       vite: 4.0.0
     devDependencies:
       '@emiljohansson/random-string': 1.1.2
@@ -246,12 +246,12 @@ importers:
       lib: link:../../packages/lib
       prettier: 2.8.0
       prettier-plugin-svelte: 2.8.1_kaioqtfwjumrsfopsgfoca65re
-      shared: link:../../packages/shared
       svelte: 3.54.0
       svelte-check: 2.9.2_svelte@3.54.0
       tsconfig: link:../../packages/tsconfig
       tslib: 2.4.1
       typescript: 4.9.3
+      ui: link:../../packages/ui
       vite: 4.0.0
 
   packages/config:
@@ -306,7 +306,10 @@ importers:
       tsconfig: link:../tsconfig
       tsup: 5.11.13
 
-  packages/shared:
+  packages/tsconfig:
+    specifiers: {}
+
+  packages/ui:
     specifiers:
       '@radix-ui/react-checkbox': 1.0.0
       '@radix-ui/react-icons': 1.1.1
@@ -334,9 +337,6 @@ importers:
       react-icons: 4.7.1_react@18.2.0
     devDependencies:
       tsconfig: link:../tsconfig
-
-  packages/tsconfig:
-    specifiers: {}
 
 packages:
 
@@ -1415,7 +1415,7 @@ packages:
   /@radix-ui/number/1.0.0:
     resolution: {integrity: sha512-Ofwh/1HX69ZfJRiRBMTy7rgjAzHmwe4kW9C9Y99HTRUcYLUuVT0KESFj15rPjRgKJs20GPq8Bm5aEDJ8DuA3vA==}
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
     dev: false
 
   /@radix-ui/primitive/1.0.0:
@@ -1442,7 +1442,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/primitive': 1.0.0
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
       '@radix-ui/react-context': 1.0.0_react@18.2.0
@@ -1462,7 +1462,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
       '@radix-ui/react-context': 1.0.0_react@18.2.0
       '@radix-ui/react-primitive': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -1519,7 +1519,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/primitive': 1.0.0
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
       '@radix-ui/react-primitive': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -1534,7 +1534,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       react: 18.2.0
     dev: false
 
@@ -1544,7 +1544,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
       '@radix-ui/react-primitive': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-use-callback-ref': 1.0.0_react@18.2.0
@@ -1565,7 +1565,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-use-layout-effect': 1.0.0_react@18.2.0
       react: 18.2.0
     dev: false
@@ -1591,7 +1591,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-primitive': 1.0.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1616,7 +1616,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-slot': 1.0.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1640,7 +1640,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-context': 1.0.0_react@18.2.0
       '@radix-ui/react-primitive': 1.0.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
@@ -1674,7 +1674,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/primitive': 1.0.0
       '@radix-ui/react-collection': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
@@ -1714,7 +1714,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/number': 1.0.0
       '@radix-ui/primitive': 1.0.0
       '@radix-ui/react-collection': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -1748,7 +1748,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/number': 1.0.0
       '@radix-ui/primitive': 1.0.0
       '@radix-ui/react-collection': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -1769,7 +1769,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
       react: 18.2.0
     dev: false
@@ -1808,7 +1808,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       react: 18.2.0
     dev: false
 
@@ -1827,7 +1827,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-use-callback-ref': 1.0.0_react@18.2.0
       react: 18.2.0
     dev: false
@@ -1866,7 +1866,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': 7.20.0
+      '@babel/runtime': 7.21.0
       '@radix-ui/react-primitive': 1.0.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2105,7 +2105,7 @@ packages:
   /@swc/helpers/0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: false
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
@@ -3012,7 +3012,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001460
+      caniuse-lite: 1.0.30001476
       electron-to-chromium: 1.4.320
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
@@ -3114,10 +3114,10 @@ packages:
 
   /caniuse-lite/1.0.30001460:
     resolution: {integrity: sha512-Bud7abqjvEjipUkpLs4D7gR0l8hBYBHoa+tGtKJHvT2AYzLp1z7EmVkUT4ERpVUfca8S2HGIVs883D8pUH1ZzQ==}
+    dev: false
 
   /caniuse-lite/1.0.30001476:
     resolution: {integrity: sha512-JmpktFppVSvyUN4gsLS0bShY2L9ZUslHLE72vgemBkS43JD2fOvKTKs+GtRwuxrtRGnwJFW0ye7kWRRlLJS9vQ==}
-    dev: false
 
   /caseless/0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -4900,7 +4900,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       style-value-types: 5.0.0
-      tslib: 2.4.0
+      tslib: 2.4.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
@@ -6545,12 +6545,12 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: false
 
   /nanoid/3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: false
 
   /natural-compare-lite/1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -7006,7 +7006,7 @@ packages:
     resolution: {integrity: sha512-6Q04AXR1212bXr5fh03u8aAwbLxAQNGQ/Q1LNa0VfOI06ZAlhPHtQvE4OIdpj4kLThXilalPnmDSOD65DcHt+g==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
-      nanoid: 3.3.4
+      nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
@@ -7402,7 +7402,7 @@ packages:
   /rxjs/7.8.0:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: true
 
   /sade/1.8.1:
@@ -8124,15 +8124,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib/2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: false
-
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
-
-  /tslib/2.5.0:
-    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
 
   /tsup/5.11.13:
     resolution: {integrity: sha512-NVMK01gVmojZn7+iZwxRK1CzW2BIabaVMyEjs7Nm9lm4DrSf7IAqs2F3fg0vT7rH72x1cIBsW9U/TlWrCvHVQQ==}

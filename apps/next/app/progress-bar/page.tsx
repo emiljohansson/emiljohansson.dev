@@ -1,7 +1,7 @@
 'use client'
 
 import ProgressBar from '@/components/ProgressBar'
-import Header from 'shared/Header'
+import Header from 'ui/Header'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 
