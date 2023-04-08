@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react'
 import Link from 'next/link'
 import { FiArrowLeft } from 'react-icons/fi'
 
-const Header = ({ children }: PropsWithChildren) => {
+export const Header = ({ children }: PropsWithChildren) => {
 	return (
 		<header className="flex font p-4">
 			<Link href="/" data-test="back-link">
@@ -13,5 +13,3 @@ const Header = ({ children }: PropsWithChildren) => {
 		</header>
 	)
 }
-
-export default Header

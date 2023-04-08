@@ -1,7 +1,7 @@
 'use client'
 
 import TwoWayAuthGenerate from '@/components/TwoWayAuthGenerate'
-import Header from 'ui/Header'
+import { Header } from 'ui'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 

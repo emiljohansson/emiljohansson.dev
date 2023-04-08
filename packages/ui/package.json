@@ -2,8 +2,21 @@
 	"name": "ui",
 	"version": "0.0.0",
 	"private": true,
+	"sideEffects": [
+		"**/*.css"
+	],
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": "./dist",
+		"./globals.css": "./dist/index.css"
+	},
 	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
 		"lint": "eslint ./**/*.tsx"
+	},
+	"peerDependencies": {
+		"react": "18.2.0"
 	},
 	"dependencies": {
 		"@radix-ui/react-checkbox": "1.0.0",
@@ -19,6 +32,8 @@
 		"react-icons": "4.7.1"
 	},
 	"devDependencies": {
-		"tsconfig": "workspace:*"
+		"config": "workspace:*",
+		"tsconfig": "workspace:*",
+		"tsup": "5.11.13"
 	}
 }

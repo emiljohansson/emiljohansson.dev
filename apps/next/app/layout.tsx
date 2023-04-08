@@ -1,10 +1,11 @@
 import type { PropsWithChildren } from 'react'
 
+import './styles.css'
 import 'ui/globals.css'
 
 import { cookies } from 'next/headers'
 import { CommandPrompt } from './CommandPrompt'
-import { ThemeToggle } from 'ui/ThemeToggle'
+import { ThemeToggle } from './ThemeToggle'
 
 export default function Layout({ children }: PropsWithChildren<unknown>) {
 	const cookieStore = cookies()

@@ -316,6 +316,7 @@ importers:
       '@radix-ui/react-progress': 1.0.0
       '@radix-ui/react-select': 1.0.0
       '@radix-ui/react-slider': 1.0.0
+      config: workspace:*
       framer-motion: 6.2.3
       lib: workspace:*
       next: 13.3.0
@@ -323,6 +324,7 @@ importers:
       react-dom: 18.2.0
       react-icons: 4.7.1
       tsconfig: workspace:*
+      tsup: 5.11.13
     dependencies:
       '@radix-ui/react-checkbox': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
@@ -336,7 +338,9 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-icons: 4.7.1_react@18.2.0
     devDependencies:
+      config: link:../config
       tsconfig: link:../tsconfig
+      tsup: 5.11.13
 
 packages:
 
@@ -6284,14 +6288,9 @@ packages:
       - utf-8-validate
     dev: true
 
-  /lilconfig/2.0.6:
-    resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
-    engines: {node: '>=10'}
-
   /lilconfig/2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
-    dev: false
 
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
@@ -6942,7 +6941,7 @@ packages:
       ts-node:
         optional: true
     dependencies:
-      lilconfig: 2.0.6
+      lilconfig: 2.1.0
       yaml: 1.10.2
     dev: true
 
@@ -6958,7 +6957,7 @@ packages:
       ts-node:
         optional: true
     dependencies:
-      lilconfig: 2.0.6
+      lilconfig: 2.1.0
       postcss: 8.4.21
       yaml: 1.10.2
     dev: false

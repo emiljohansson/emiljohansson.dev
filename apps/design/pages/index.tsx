@@ -12,11 +12,11 @@ import {
 	SelectLabel,
 	SelectItem,
 	SelectSeparator,
-} from 'ui/Select'
-import { Progress } from 'ui/Progress'
-import { ThemeToggle } from 'ui/ThemeToggle'
-import { Slider } from 'ui/Slider'
-import { CheckboxWithLabel } from 'ui/CheckboxWithLabel'
+	Progress,
+	ThemeToggle,
+	Slider,
+	CheckboxWithLabel,
+} from 'ui'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item

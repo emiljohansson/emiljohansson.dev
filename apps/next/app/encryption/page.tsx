@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 import { Label } from '@radix-ui/react-label'
 import { AES, enc } from 'crypto-js'
-import Header from 'ui/Header'
+import { Header } from 'ui'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 

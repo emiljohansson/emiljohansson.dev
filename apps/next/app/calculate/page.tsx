@@ -3,7 +3,7 @@
 import { FormEvent, useState } from 'react'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
-import Header from 'ui/Header'
+import { Header } from 'ui'
 
 const Calculate = () => {
 	const [sum, setSum] = useState(0)
