@@ -1,3 +1,5 @@
+'use client'
+
 import randomString from '@emiljohansson/random-string'
 import { Header } from 'ui'
 import Content from '@/components/Content'
