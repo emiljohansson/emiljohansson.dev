@@ -7,7 +7,7 @@ import {
 	useReducer,
 } from 'react'
 import useInterval from 'lib/hooks/useInterval'
-import { Select, SelectItem } from 'shared/Select'
+import { Select, SelectItem } from 'ui'
 
 enum SelectedDifficulty {
 	loading,

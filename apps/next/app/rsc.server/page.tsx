@@ -1,4 +1,4 @@
-import Header from 'shared/Header'
+import { Header } from 'ui'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 import ClientItem from '@/components/rsc/ClientItem.client'

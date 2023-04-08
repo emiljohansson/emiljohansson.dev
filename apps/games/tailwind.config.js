@@ -2,5 +2,6 @@
 const baseConfig = require('config/tailwind.config.js')
 
 module.exports = {
-	...baseConfig,
+	presets: [baseConfig],
+	safelist: ['bg-yellow-400', 'bg-gray-400'],
 }

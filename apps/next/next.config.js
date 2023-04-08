@@ -5,9 +5,10 @@
 module.exports = {
 	reactStrictMode: true,
 	swcMinify: true,
+	transpilePackages: ['ui'],
 	experimental: {
 		appDir: true,
-		externalDir: true,
+		// externalDir: true,
 		// runtime: 'nodejs',
 		// serverComponents: true,
 	},

@@ -1,6 +1,6 @@
 import type { PropsWithChildren, ReactNode } from 'react'
 
-const HeaderAction = ({
+export const HeaderAction = ({
 	children,
 	onClick,
 	...attributes
@@ -13,5 +13,3 @@ const HeaderAction = ({
 		{children}
 	</button>
 )
-
-export default HeaderAction

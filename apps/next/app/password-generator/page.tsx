@@ -4,11 +4,9 @@ import { NextPage } from 'next'
 import { PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import useSWR from 'swr'
-import { Slider } from 'shared/Slider'
+import { Slider, CheckboxWithLabel, Header } from 'ui'
 import { randomString } from 'lib/utils/string'
-import { CheckboxWithLabel } from 'shared/CheckboxWithLabel'
 import Content from '@/components/Content'
-import Header from 'shared/Header'
 import Section from '@/components/Section'
 
 interface Selection {

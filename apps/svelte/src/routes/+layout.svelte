@@ -1,5 +1,5 @@
 <script>
-	import "shared/globals.css"
+	import "ui/globals.css"
 	import "../app.css"
 	import feather from "feather-icons"
 </script>

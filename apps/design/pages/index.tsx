@@ -12,11 +12,11 @@ import {
 	SelectLabel,
 	SelectItem,
 	SelectSeparator,
-} from 'shared/Select'
-import { Progress } from 'shared/Progress'
-import { ThemeToggle } from 'shared/ThemeToggle'
-import { Slider } from 'shared/Slider'
-import { CheckboxWithLabel } from 'shared/CheckboxWithLabel'
+	Progress,
+	// ThemeToggle,
+	Slider,
+	CheckboxWithLabel,
+} from 'ui'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
@@ -89,9 +89,7 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<header className="h-10">
-				<ThemeToggle />
-			</header>
+			<header className="h-10">{/* <ThemeToggle /> */}</header>
 
 			<main className="flex flex-col gap-4 pb-52">
 				<article>
