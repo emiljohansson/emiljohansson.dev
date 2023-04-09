@@ -1,7 +1,6 @@
 'use client'
 
-import { NextPage } from 'next'
-import { PropsWithChildren, useState } from 'react'
+import { type PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import useSWR from 'swr'
 import { Slider, CheckboxWithLabel, Header } from 'ui'
@@ -43,7 +42,7 @@ const fetchWords = async (url: string) => {
 	return words.join('-')
 }
 
-const PasswordGeneratorPage: NextPage = () => {
+export default function PasswordGeneratorPage() {
 	const [randomSelection, setRandomSelection] = useState<Selection>({
 		length: 20,
 		numeric: false,
@@ -188,5 +187,3 @@ const PasswordGeneratorPage: NextPage = () => {
 		</Content>
 	)
 }
-
-export default PasswordGeneratorPage
