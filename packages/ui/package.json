@@ -8,7 +8,11 @@
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": "./dist",
-		"./globals.css": "./dist/index.css"
+		"./globals.css": "./dist/index.css",
+		"./dist/Header": {
+			"import": "./dist/Header.mjs",
+			"types": "./dist/Header.d.ts"
+		}
 	},
 	"scripts": {
 		"build": "tsup",

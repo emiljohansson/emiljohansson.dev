@@ -20,3 +20,5 @@ package-lock.json
 yarn.lock
 
 apps/next/tsconfig.json
+
+*.timestamp-*.mjs
