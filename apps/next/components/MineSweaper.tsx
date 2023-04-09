@@ -8,6 +8,13 @@ import {
 } from 'react'
 import useInterval from 'lib/hooks/useInterval'
 import { Select, SelectItem } from 'ui'
+import { MuseoModerno } from 'next/font/google'
+
+const myFont = MuseoModerno({
+	weight: '300',
+	subsets: ['latin'],
+	display: 'swap',
+})
 
 enum SelectedDifficulty {
 	loading,
@@ -451,7 +458,9 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
 	}, delay)
 
 	return (
-		<div className="font-light text-4xl relative select-none">
+		<div
+			className={`${myFont.className} font-light text-4xl relative select-none`}
+		>
 			{board.map((rows, i) => (
 				<FlexRow key={`row-${i}`} radius={context.radius}>
 					{rows.map(([tile, setTile], j) => (
@@ -525,7 +534,7 @@ function difficultyReducer(
 	return initialState
 }
 
-const MineSweaper = () => {
+export default function MineSweaper() {
 	const [selectedDifficulty, setSelectedDifficulty] = useReducer(
 		difficultyReducer,
 		initialState,
@@ -589,5 +598,3 @@ const MineSweaper = () => {
 		</>
 	)
 }
-
-export default MineSweaper
