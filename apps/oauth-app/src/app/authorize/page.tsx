@@ -14,7 +14,7 @@ export default function Page({
 	// const search = searchParams.get('response_type')
 	console.log({ searchParams })
 	console.log(headers())
-	console.log(userAgent({ headers: headers() }))
+	console.log(userAgent({ headers: headers() as Headers }))
 	const authCode = crypto.randomBytes(16).toString('hex')
 	const authCodes = getCache<{ [key: string]: boolean }>('authCodes') || {}
 	authCodes[authCode] = true

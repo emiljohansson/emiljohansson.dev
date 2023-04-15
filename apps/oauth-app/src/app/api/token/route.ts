@@ -1,7 +1,7 @@
 import { headers } from 'next/headers'
 import { NextRequest, NextResponse, userAgent } from 'next/server'
 import crypto from 'crypto'
-import { getCache, setCache } from '../../cache'
+import { getCache } from '../../cache'
 
 function generateCodeVerifier() {
 	const codeVerifier = crypto.randomBytes(32).toString('hex')
