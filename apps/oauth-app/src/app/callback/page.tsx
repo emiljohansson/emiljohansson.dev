@@ -1,8 +1,4 @@
 import { Silkscreen } from 'next/font/google'
-import { headers } from 'next/headers'
-import { userAgent } from 'next/server'
-import crypto from 'crypto'
-import { getCache, setCache } from '../cache'
 
 const silkscreen = Silkscreen({ weight: '400', subsets: ['latin'] })
 
