@@ -1,11 +1,27 @@
+import kv from '@vercel/kv'
 import { sign } from 'jsonwebtoken'
-import { getCache } from './cache'
 
-export function createTokens(code: string) {
+function isDateInPast(date: Date) {
+	return date < new Date()
+}
+
+export async function createTokens(code: string) {
 	console.log('createTokens')
 
-	const authCodes = getCache<{ [key: string]: boolean }>('authCodes')
-	const found = authCodes?.[code]
+	const authCodes =
+		(await kv.get<{ [key: string]: number }>('auth-codes')) || {}
+	console.log({ authCodes })
+
+	const expireDate = authCodes?.[code]
+
+	if (!expireDate || isDateInPast(new Date(expireDate))) {
+		return {
+			code,
+			authCodes,
+			error: 'not found',
+		}
+	}
+
 	const accessToken = sign(
 		{
 			iss: 'http://localhost:3000',
@@ -34,14 +50,6 @@ export function createTokens(code: string) {
 			expiresIn: '1h',
 		},
 	)
-
-	if (!found) {
-		return {
-			code,
-			authCodes,
-			error: 'not found',
-		}
-	}
 
 	return {
 		expiresIn: 60 * 60,

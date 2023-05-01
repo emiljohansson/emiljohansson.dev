@@ -3,10 +3,12 @@ import { createTokens } from '../tokens'
 export default async function Page({
 	searchParams,
 }: {
-	searchParams: { [key: string]: string | string[] | undefined }
+	searchParams: { [key: string]: string }
 }) {
-	const code = (searchParams.code as string) || 'error'
-	const json = createTokens(code)
+	console.log('GET /login/callback')
+
+	const code = searchParams.code || 'error'
+	const json = await createTokens(code)
 
 	return (
 		<main>
