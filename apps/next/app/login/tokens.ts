@@ -2,8 +2,9 @@ import { sign } from 'jsonwebtoken'
 import { getCache } from './cache'
 
 export function createTokens(code: string) {
+	console.log('createTokens')
+
 	const authCodes = getCache<{ [key: string]: boolean }>('authCodes')
-	console.log({ authCodes })
 	const found = authCodes?.[code]
 	const accessToken = sign(
 		{
@@ -35,7 +36,11 @@ export function createTokens(code: string) {
 	)
 
 	if (!found) {
-		return { error: 'not found' }
+		return {
+			code,
+			authCodes,
+			error: 'not found',
+		}
 	}
 
 	return {
