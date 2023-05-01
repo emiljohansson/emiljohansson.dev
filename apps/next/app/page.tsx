@@ -113,6 +113,12 @@ const projects = [
 		description: 'Generates a JWT.',
 		test: 'jwt-generator',
 	},
+	{
+		href: '/login',
+		text: 'Login',
+		description: 'Authorize flow.',
+		test: 'login',
+	},
 ]
 
 export default function Page() {
