@@ -1,124 +1,28 @@
 'use client'
 
-import { PropsWithChildren, useEffect, useRef, useState } from 'react'
+import type { Project } from './types'
+
+import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
-const projects = [
-	{
-		href: '/',
-		text: 'Home',
-		// external: true,
-		description: 'Return to the home page.',
-		test: 'home-page',
-	},
-	{
-		href: 'https://emiljohansson.dev/design',
-		text: 'Design System',
-		// external: true,
-		description: 'Design system for the apps developed by Emil Johansson.',
-		test: 'design-system',
-	},
-	{
-		href: 'https://pw.emiljohansson.dev',
-		text: 'Password Manager',
-		// external: true,
-		description: 'Password manager for the apps developed by Emil Johansson.',
-		test: 'password-manager',
-	},
-	{
-		href: 'https://games.emiljohansson.dev',
-		text: 'Card Games',
-		// external: true,
-		description: 'Some simple card games.',
-		test: 'games',
-	},
-	{
-		href: '/password-generator',
-		text: 'Password Generator',
-		description: 'Generate a password that is difficult to guess.',
-		test: 'password-generator',
-	},
-	{
-		href: '/random-string',
-		text: 'Random String',
-		description: 'Generate a random string of characters.',
-		test: 'random-string',
-	},
-	{
-		href: '/current-time',
-		text: 'Current Time',
-		description: 'Get the current time.',
-		test: 'current-time',
-	},
-	{
-		href: '/two-way-auth-generate',
-		text: 'Two-Factor Authentication - Generate Code',
-		description: 'Generate a two-factor authentication code.',
-		test: 'two-way-auth-generate',
-	},
-	{
-		href: '/two-way-auth-enter',
-		text: 'Two-Factor Authentication - Enter Code',
-		description: 'Enter a two-factor authentication code.',
-		test: 'two-way-auth-enter',
-	},
-	{
-		href: '/progress-bar',
-		text: 'Progress Bar',
-		description: 'Progress bar with a percentage.',
-		test: 'progress-bar',
-	},
-	{
-		href: '/confirm-button',
-		text: 'Confirm Button',
-		description: 'Hold down the button to confirm the action.',
-		test: 'confirm-button',
-	},
-	{
-		href: '/ms',
-		text: 'Mine Sweaper',
-		description: 'Mine sweaper game.',
-		test: 'mine-sweaper',
-	},
-	{
-		href: '/calculate',
-		text: 'Calculate',
-		description: 'Calculate a mathematical expression from an API route.',
-		test: 'calculate',
-	},
-	{
-		href: '/hooks',
-		text: 'Hooks',
-		description: 'Custom React Hooks.',
-		test: 'hooks',
-	},
-	{
-		href: '/encryption',
-		text: 'Encrypt and Decrypt Strings',
-		description: 'Encrypts and Decrypts a string.',
-		test: 'encryption',
-	},
-	{
-		href: '/jwt-debugger',
-		text: 'Encode and Decode JWT',
-		description: 'Encodes and Decodes a JWT.',
-		test: 'jwt-debugger',
-	},
-	{
-		href: '/jwt-generator',
-		text: 'Generate a JWT',
-		description: 'Generates a JWT.',
-		test: 'jwt-generator',
-	},
-]
-type Project = (typeof projects)[number]
-
-export const CommandPrompt = () => {
+export function CommandPrompt({ projects }: { projects: Project[] }) {
+	const initList = useMemo(
+		() => [
+			{
+				href: '/',
+				title: 'Home',
+				description: 'Return to the home page.',
+				test: 'home-page',
+			} as Project,
+			...projects,
+		],
+		[],
+	)
 	const router = useRouter()
 	const [showModal, setShowModal] = useState(false)
 	const [selectedIndex, setSelectedIndex] = useState(0)
-	const [list, setList] = useState([...projects])
+	const [list, setList] = useState(initList)
 	const fieldRef = useRef<HTMLInputElement>(null)
 
 	const handleAction = (action?: Project) => {
@@ -159,7 +63,7 @@ export const CommandPrompt = () => {
 			}
 			if (event.key === 'Escape') setShowModal(false)
 			if (event.key === 'Enter') {
-				setList([...projects])
+				setList([...initList])
 				handleAction(list[selectedIndex])
 				setShowModal(false)
 			}
@@ -184,9 +88,9 @@ export const CommandPrompt = () => {
 							onChange={(event) => {
 								setSelectedIndex(0)
 								setList(
-									projects.filter(
-										({ text }) =>
-											text.toLowerCase().indexOf(event.currentTarget.value) >
+									initList.filter(
+										({ title }) =>
+											title.toLowerCase().indexOf(event.currentTarget.value) >
 											-1,
 									),
 								)
@@ -203,7 +107,7 @@ export const CommandPrompt = () => {
 								onMouseOver={() => setSelectedIndex(index)}
 								onClick={() => handleAction(list[index])}
 							>
-								{project.text}
+								{project.title}
 							</div>
 						))}
 					</div>
