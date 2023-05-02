@@ -1,10 +1,12 @@
 import type { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
+import type { Project } from './types'
 
 import './styles.css'
 import 'ui/globals.css'
 
 import { cookies } from 'next/headers'
+import { sql } from '@vercel/postgres'
 import { CommandPrompt } from './CommandPrompt'
 
 const name = 'Emil Johansson'
@@ -48,7 +50,8 @@ export const metadata: Metadata = {
 	},
 }
 
-export default function Layout({ children }: PropsWithChildren<unknown>) {
+export default async function Layout({ children }: PropsWithChildren<unknown>) {
+	const { rows: projects } = await sql<Project>`select * from projects`
 	const cookieStore = cookies()
 	const theme = cookieStore.get('theme')
 
@@ -75,7 +78,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 			</head>
 			<body className="dark:bg-black-rich dark:text-white h-full">
 				<main className="h-full">{children}</main>
-				<CommandPrompt />
+				<CommandPrompt projects={projects} />
 			</body>
 		</html>
 	)
