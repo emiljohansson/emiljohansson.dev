@@ -28,6 +28,8 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 	const handleAction = (action?: Project) => {
 		console.log(action)
 		if (!action) return
+		setList([...initList])
+		setShowModal(false)
 		router.push(action.href)
 	}
 
@@ -63,9 +65,7 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 			}
 			if (event.key === 'Escape') setShowModal(false)
 			if (event.key === 'Enter') {
-				setList([...initList])
 				handleAction(list[selectedIndex])
-				setShowModal(false)
 			}
 		}
 
@@ -78,7 +78,7 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 		<>
 			{showModal && (
 				<Modal>
-					<div className="flex items-center">
+					<div className="flex items-center ">
 						<MagnifyingGlassIcon width={20} height={20} />
 						<input
 							ref={fieldRef}
@@ -102,7 +102,7 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 						{list.map((project, index) => (
 							<div
 								key={index}
-								className="aria-selected:bg-black-500"
+								className="aria-selected:bg-primary"
 								aria-selected={index === selectedIndex}
 								onMouseOver={() => setSelectedIndex(index)}
 								onClick={() => handleAction(list[index])}
@@ -122,7 +122,7 @@ const Modal = ({ children }: PropsWithChildren) => {
 		<div>
 			<div className="fixed inset-0 z-40 min-h-screen flex items-center justify-center">
 				<div className="w-full max-w-md rounded border-gray-100 shadow-xl overflow-hidden">
-					<div className="bg-white p-4">{children}</div>
+					<div className="bg-white dark:bg-black-rich p-4">{children}</div>
 				</div>
 			</div>
 			<div className="fixed inset-0 z-30 bg-gray-100 bg-opacity-10 backdrop-blur"></div>
