@@ -5,12 +5,13 @@ import type { Project } from './types'
 import './styles.css'
 import 'ui/globals.css'
 
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
+import Link from 'next/link'
+import Image from 'next/image'
 import { sql } from '@vercel/postgres'
 import { CommandPrompt } from './CommandPrompt'
-import Image from 'next/image'
 import { ThemeToggle } from './ThemeToggle'
-import Link from 'next/link'
+import { HeaderCurrentProject } from './HeaderCurrentProject'
 
 const name = 'Emil Johansson'
 const siteTitle = 'emiljohansson.dev'
@@ -54,7 +55,13 @@ export const metadata: Metadata = {
 }
 
 export default async function Layout({ children }: PropsWithChildren<unknown>) {
+	const headersList = headers()
+	const pathname = headersList.get('x-url-pathname') || ''
+
 	const { rows: projects } = await sql<Project>`select * from projects`
+	const currentProject = projects.find((project) => project.href === pathname)
+	console.log('currentProject', currentProject)
+	console.log('headerUrl', pathname)
 	const cookieStore = cookies()
 	const theme = cookieStore.get('theme')
 
@@ -81,16 +88,22 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 			</head>
 			<body className="dark:bg-black-rich dark:text-white h-full">
 				<nav className="bg-white dark:bg-black-rich border-b border-slate-200 dark:border-zinc-700 flex justify-between px-4 py-3">
-					<Link href="/" className="flex items-center gap-2 font-medium">
-						<Image
-							src="/images/profile.jpg"
-							alt=""
-							width={32}
-							height={32}
-							className="rounded-full"
+					<div className="flex items-center gap-4 text-sm font-medium">
+						<Link href="/" className="flex items-center gap-2">
+							<Image
+								src="/images/profile.jpg"
+								alt=""
+								width={32}
+								height={32}
+								className="rounded-full"
+							/>
+							Emil Johansson
+						</Link>
+						<HeaderCurrentProject
+							projects={projects}
+							initProject={currentProject}
 						/>
-						Emil Johansson
-					</Link>
+					</div>
 					<ThemeToggle initValue={theme?.value} />
 				</nav>
 				<main className="h-full">{children}</main>

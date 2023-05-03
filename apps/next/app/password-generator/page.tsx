@@ -3,7 +3,7 @@
 import { type PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import useSWR from 'swr'
-import { Slider, CheckboxWithLabel, Header } from 'ui'
+import { Slider, CheckboxWithLabel } from 'ui'
 import { randomString } from 'lib/utils/string'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
@@ -111,7 +111,6 @@ export default function PasswordGeneratorPage() {
 
 	return (
 		<Content>
-			<Header />
 			<Section size="normal" direction="column">
 				<h1 className="sr-only">Password Generator</h1>
 				<Tabs.Root defaultValue="random-tab" className="flex flex-col w-80">
