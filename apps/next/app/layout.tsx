@@ -91,7 +91,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 						/>
 						Emil Johansson
 					</Link>
-					<ThemeToggle />
+					<ThemeToggle initValue={theme?.value} />
 				</nav>
 				<main className="h-full">{children}</main>
 				<CommandPrompt projects={projects} />
