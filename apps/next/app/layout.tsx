@@ -103,7 +103,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					</div>
 					<ThemeToggle initValue={theme?.value} />
 				</nav>
-				<main className="flex-1">{children}</main>
+				<main className="flex-1 relative">{children}</main>
 				<CommandPrompt projects={projects} />
 			</body>
 		</html>

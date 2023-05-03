@@ -1,5 +1,7 @@
 import type { PropsWithChildren } from 'react'
+
 import Content from '@/components/Content'
+import Section from '@/components/Section'
 
 export const metadata = {
 	title: 'Random String',
@@ -7,12 +9,9 @@ export const metadata = {
 }
 
 export default function Layout({ children }: PropsWithChildren<unknown>) {
-	console.log(children)
-
 	return (
 		<Content>
-			{children}
-			{/* {cloneElement(children, { ref: randomStringRef })} */}
+			<Section>{children}</Section>
 		</Content>
 	)
 }
