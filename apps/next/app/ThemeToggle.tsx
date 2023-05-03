@@ -1,5 +1,6 @@
+'use client'
+
 import { useEffect, useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 
 const darkClassName = 'dark'
@@ -33,49 +34,50 @@ function useCookieStore() {
 	return cookieStore
 }
 
-export const ThemeToggle = () => {
+export const ThemeToggle = ({
+	initValue,
+}: {
+	initValue: string | undefined
+}) => {
 	const cookieStore = useCookieStore()
-	const [darkMode, setDarkMode] = useState<boolean | undefined>()
+	const [darkMode, setDarkMode] = useState<boolean | undefined>(
+		initValue === darkClassName,
+	)
 
 	function toggleMode() {
 		setDarkMode(!darkMode)
 	}
 
 	useEffect(() => {
-		if (darkMode === undefined) {
-			setDarkMode(cookieStore.get('theme')?.value)
-			return
-		}
+		if (darkMode === undefined) return
 		cookieStore.set('theme', darkMode ? darkClassName : '')
 		document.documentElement.classList.toggle(darkClassName, darkMode)
 	}, [darkMode])
 
 	return (
-		<motion.button
-			className="dark:text-white absolute right-0 cursor-pointer inline-block p-2 m-3"
+		<button
+			className="
+				inline-flex
+				items-center
+				justify-center
+				h-7
+				w-7
+				ml-auto
+				rounded-full
+				shadow-thin-border
+				shadow-slate-200
+				dark:shadow-zinc-700
+				hover:bg-slate-50
+				hover:dark:bg-zinc-900"
 			onClick={() => toggleMode()}
 			data-test="toggle-dark-mode"
 		>
-			<motion.div
-				initial={{
-					scale: darkMode === undefined ? 0.5 : 1,
-					opacity: darkMode === undefined ? 0 : 1,
-					y: darkMode === undefined ? '-100%' : 0,
-				}}
-				animate={{
-					scale: darkMode === undefined ? 0.5 : 1,
-					opacity: darkMode === undefined ? 0 : 1,
-					y: darkMode === undefined ? '-100%' : 0,
-				}}
-				transition={{ duration: 0.5, delay: 0.5 }}
-			>
-				<span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
-				{darkMode ? (
-					<MoonIcon className="block" width="24" height="24" />
-				) : (
-					<SunIcon className="block" width="24" height="24" />
-				)}
-			</motion.div>
-		</motion.button>
+			<span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
+			{darkMode ? (
+				<MoonIcon className="block" width="16" height="16" />
+			) : (
+				<SunIcon className="block" width="16" height="16" />
+			)}
+		</button>
 	)
 }

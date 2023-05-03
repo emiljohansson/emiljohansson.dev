@@ -5,12 +5,10 @@ import type { Project } from './types'
 import Link from 'next/link'
 import { GitHubLogoIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
-import { ThemeToggle } from 'ui'
 
 export function Content({ projects }: { projects: Project[] }) {
 	return (
 		<>
-			<ThemeToggle />
 			<div className="flex items-center text-5xl h-screen font-bold">
 				<h1 className="mx-auto">
 					<Link

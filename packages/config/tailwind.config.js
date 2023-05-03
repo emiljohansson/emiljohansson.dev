@@ -31,6 +31,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			boxShadow: {
+				'thin-border': '0 0 0 .5px var(--tw-shadow-color)',
+			},
 			colors: {
 				primary: {
 					dark: '#c62e1d',
