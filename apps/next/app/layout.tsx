@@ -8,6 +8,9 @@ import 'ui/globals.css'
 import { cookies } from 'next/headers'
 import { sql } from '@vercel/postgres'
 import { CommandPrompt } from './CommandPrompt'
+import Image from 'next/image'
+import { ThemeToggle } from './ThemeToggle'
+import Link from 'next/link'
 
 const name = 'Emil Johansson'
 const siteTitle = 'emiljohansson.dev'
@@ -77,6 +80,19 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 				/> */}
 			</head>
 			<body className="dark:bg-black-rich dark:text-white h-full">
+				<nav className="bg-white dark:bg-black-rich border-b border-slate-200 dark:border-zinc-700 flex justify-between px-4 py-3">
+					<Link href="/" className="flex items-center gap-2 font-medium">
+						<Image
+							src="/images/profile.jpg"
+							alt=""
+							width={32}
+							height={32}
+							className="rounded-full"
+						/>
+						Emil Johansson
+					</Link>
+					<ThemeToggle />
+				</nav>
 				<main className="h-full">{children}</main>
 				<CommandPrompt projects={projects} />
 			</body>
