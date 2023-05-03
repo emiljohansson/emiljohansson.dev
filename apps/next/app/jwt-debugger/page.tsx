@@ -4,7 +4,6 @@ import { verify, JsonWebTokenError, Jwt } from 'jsonwebtoken'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 import { useEffect, useState } from 'react'
-import { Header } from 'ui'
 
 export default function Page() {
 	const [encodedValue, setEncodedValue] = useState(
@@ -25,7 +24,6 @@ export default function Page() {
 	}, [encodedValue, secret])
 	return (
 		<Content>
-			<Header />
 			<Section size="normal" direction="column">
 				<h1 className="sr-only">Encoder and Decoder</h1>
 				<article className="flex flex-col gap-4">

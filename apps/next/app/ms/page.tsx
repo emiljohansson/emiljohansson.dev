@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Section from '@/components/Section'
-import { Header } from 'ui'
 import Content from '@/components/Content'
 import MineSweaper from '@/components/MineSweaper'
 
@@ -15,7 +14,6 @@ const MSPage = () => {
 
 	return (
 		<Content>
-			<Header />
 			<Section direction="column">{isReady && <MineSweaper />}</Section>
 		</Content>
 	)
