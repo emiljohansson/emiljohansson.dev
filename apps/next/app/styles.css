@@ -69,17 +69,23 @@
 @layer components {
 	.btn-primary,
 	.btn-secondary,
+	.btn-outline,
 	.input,
 	.select {
 		@apply h-10
-      px-2
+      px-4
       rounded;
 	}
 
 	.btn-primary,
-	.btn-secondary {
+	.btn-secondary,
+	.btn-outline {
 		@apply border
-      no-underline;
+      no-underline
+			text-sm
+			flex
+			items-center
+			gap-2;
 	}
 
 	.btn-primary {
@@ -98,6 +104,9 @@
       dark:border-gray-400
       dark:hover:text-white
       dark:hover:border-white;
+	}
+	.btn-outline {
+		@apply hover:bg-slate-50;
 	}
 	button.btn-primary,
 	button.btn-secondary {
