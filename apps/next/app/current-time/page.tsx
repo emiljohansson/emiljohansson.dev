@@ -1,7 +1,6 @@
 'use client'
 
 import useCurrentTime from 'lib/hooks/useCurrentTime'
-import { Header } from 'ui'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 
@@ -10,7 +9,6 @@ const CurrentTimePage = () => {
 
 	return (
 		<Content>
-			<Header />
 			<Section size="large">
 				<style jsx>{`
 					.meridiem {

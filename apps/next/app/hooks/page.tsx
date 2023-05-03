@@ -1,7 +1,6 @@
 'use client'
 
 import randomString from '@emiljohansson/random-string'
-import { Header } from 'ui'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 import { RandomStringExample } from './RandomStringExample'
@@ -12,7 +11,6 @@ import { EventListenerExample } from './EventListenerExample'
 export default async function HooksPage() {
 	return (
 		<Content>
-			<Header />
 			<Section size="normal">
 				<h1 className="sr-only">Hooks</h1>
 				<article className="flex flex-col gap-4">

@@ -6,7 +6,7 @@ const Section: FunctionComponent<{
 	size?: 'normal' | 'medium' | 'large'
 	direction?: 'row' | 'column'
 }> = ({ children, direction = 'row', size = 'normal' }) => (
-	<section
+	<div
 		className={classNames('flex items-center justify-center h-full', {
 			'flex-col': direction === 'column',
 			'text-base': size === 'normal',
@@ -15,7 +15,7 @@ const Section: FunctionComponent<{
 		})}
 	>
 		{children}
-	</section>
+	</div>
 )
 
 export default Section

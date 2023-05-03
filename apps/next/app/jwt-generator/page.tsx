@@ -3,7 +3,6 @@
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 import { useState } from 'react'
-import { Header } from 'ui'
 import { sign } from 'jsonwebtoken'
 
 export default function Page() {
@@ -15,7 +14,6 @@ export default function Page() {
 
 	return (
 		<Content>
-			<Header />
 			<Section size="normal" direction="column">
 				<h1 className="sr-only">JWT Generator</h1>
 

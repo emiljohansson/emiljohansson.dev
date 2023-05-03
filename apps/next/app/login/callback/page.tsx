@@ -12,7 +12,7 @@ export default async function Page({
 
 	return (
 		<main>
-			<code>{JSON.stringify(json)}</code>
+			<pre>{JSON.stringify(json, null, 2)}</pre>
 		</main>
 	)
 }

@@ -3,7 +3,6 @@
 import { FormEvent, useState } from 'react'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
-import { Header } from 'ui'
 
 const Calculate = () => {
 	const [sum, setSum] = useState(0)
@@ -34,7 +33,6 @@ const Calculate = () => {
 
 	return (
 		<Content>
-			<Header />
 			<Section size="normal">
 				<h1 className="sr-only">Calculate</h1>
 				<form onSubmit={calculate} action="/api/calculate" method="post">
