@@ -57,11 +57,8 @@ export const metadata: Metadata = {
 export default async function Layout({ children }: PropsWithChildren<unknown>) {
 	const headersList = headers()
 	const pathname = headersList.get('x-url-pathname') || ''
-
 	const { rows: projects } = await sql<Project>`select * from projects`
 	const currentProject = projects.find((project) => project.href === pathname)
-	console.log('currentProject', currentProject)
-	console.log('headerUrl', pathname)
 	const cookieStore = cookies()
 	const theme = cookieStore.get('theme')
 
@@ -86,7 +83,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					href="/images/logo/favicon-16x16.png"
 				/> */}
 			</head>
-			<body className="dark:bg-black-rich dark:text-white h-full">
+			<body className="dark:bg-black-rich dark:text-white flex flex-col h-full">
 				<nav className="bg-white dark:bg-black-rich border-b border-slate-200 dark:border-zinc-700 flex justify-between px-4 py-3">
 					<div className="flex items-center gap-4 text-sm font-medium">
 						<Link href="/" className="flex items-center gap-2">
@@ -106,7 +103,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					</div>
 					<ThemeToggle initValue={theme?.value} />
 				</nav>
-				<main className="h-full">{children}</main>
+				<main className="flex-1">{children}</main>
 				<CommandPrompt projects={projects} />
 			</body>
 		</html>
