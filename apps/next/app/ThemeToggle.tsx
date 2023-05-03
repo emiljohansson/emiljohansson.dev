@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 
 const darkClassName = 'dark'
@@ -56,19 +55,7 @@ export const ThemeToggle = ({
 	}, [darkMode])
 
 	return (
-		// 	<a
-		// 	class=""
-		// 	href="https://github.com/emiljohansson"
-		// 	target="_blank"
-		// 	rel="noreferrer"
-		// >
-		// 	{@html feather.icons.github.toSvg({
-		// 		width: 16,
-		// 		height: 16,
-		// 	})}
-		// 	<span class="sr-only">Go to Emil's github</span>
-		// </a>
-		<motion.button
+		<button
 			className="
 				inline-flex
 				items-center
@@ -85,36 +72,12 @@ export const ThemeToggle = ({
 			onClick={() => toggleMode()}
 			data-test="toggle-dark-mode"
 		>
-			{/* 
-			--accents-8: #fafafa;
---accents-7: #eaeaea;
---accents-6: #999;
---accents-5: #888;
---accents-4: #666;
---accents-3: #444;
---accents-2: #333;
---accents-1: #111;
- */}
-			<motion.div
-			// initial={{
-			// 	scale: darkMode === undefined ? 0.5 : 1,
-			// 	opacity: darkMode === undefined ? 0 : 1,
-			// 	y: darkMode === undefined ? '-100%' : 0,
-			// }}
-			// animate={{
-			// 	scale: darkMode === undefined ? 0.5 : 1,
-			// 	opacity: darkMode === undefined ? 0 : 1,
-			// 	y: darkMode === undefined ? '-100%' : 0,
-			// }}
-			// transition={{ duration: 0.5, delay: 0.5 }}
-			>
-				<span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
-				{darkMode ? (
-					<MoonIcon className="block" width="16" height="16" />
-				) : (
-					<SunIcon className="block" width="16" height="16" />
-				)}
-			</motion.div>
-		</motion.button>
+			<span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
+			{darkMode ? (
+				<MoonIcon className="block" width="16" height="16" />
+			) : (
+				<SunIcon className="block" width="16" height="16" />
+			)}
+		</button>
 	)
 }
