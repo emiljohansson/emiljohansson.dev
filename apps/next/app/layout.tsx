@@ -9,6 +9,7 @@ import { cookies, headers } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
 import { sql } from '@vercel/postgres'
+import { Analytics } from '@vercel/analytics/react'
 import { CommandPrompt } from './CommandPrompt'
 import { ThemeToggle } from './ThemeToggle'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
@@ -105,6 +106,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 				</nav>
 				<main className="flex-1 relative">{children}</main>
 				<CommandPrompt projects={projects} />
+				<Analytics />
 			</body>
 		</html>
 	)
