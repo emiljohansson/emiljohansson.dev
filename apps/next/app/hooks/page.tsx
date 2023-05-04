@@ -1,5 +1,3 @@
-'use client'
-
 import randomString from '@emiljohansson/random-string'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
@@ -7,6 +5,7 @@ import { RandomStringExample } from './RandomStringExample'
 import { DebounceExample } from './DebounceExample'
 import { CounterExample } from './CounterExample'
 import { EventListenerExample } from './EventListenerExample'
+import { ClickOutsideExample } from './ClickOutsideExample'
 
 export default async function HooksPage() {
 	return (
@@ -18,6 +17,7 @@ export default async function HooksPage() {
 					<DebounceExample />
 					<CounterExample />
 					<EventListenerExample />
+					<ClickOutsideExample />
 				</article>
 			</Section>
 		</Content>

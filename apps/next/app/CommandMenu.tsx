@@ -6,6 +6,7 @@ import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FiSearch } from 'react-icons/fi'
 import { create } from 'zustand'
+import { useClickOutside } from 'hooks/useClickOutside'
 
 type State = {
 	commandMenuIsOpen: boolean
@@ -14,24 +15,6 @@ type State = {
 type Action = {
 	openCommandMenu: () => void
 	closeCommandMenu: () => void
-}
-
-function useClickOutside<T extends HTMLElement>(callback: () => void) {
-	const ref = useRef<T>(null)
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (!ref.current?.contains(event.target as Node)) {
-				callback()
-			}
-		}
-		document.addEventListener('click', handleClickOutside)
-		return () => {
-			document.removeEventListener('click', handleClickOutside)
-		}
-	}, [ref, callback])
-
-	return ref
 }
 
 export const useCommandMenu = create<State & Action>((set) => ({
