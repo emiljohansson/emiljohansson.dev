@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
 import { Label } from '@radix-ui/react-label'
 import { FiCheck, FiMoreHorizontal, FiX } from 'react-icons/fi'
@@ -66,7 +68,7 @@ function TwoWayAuthEnter() {
 		event.preventDefault()
 		setState(State.loading)
 		try {
-			const response = await post('/api/two-factor', {
+			const response = await post('/two-way-auth/api', {
 				value,
 			})
 			const json = await response.json()

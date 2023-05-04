@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Factor } from 'app/api/two-factor/route'
+import { Factor } from 'app/two-way-auth/api/route'
 
 function TwoWayAuthGenerate({ initFactor }: { initFactor: Factor }) {
 	const [value, setValue] = useState(initFactor.value)
@@ -21,7 +21,7 @@ function TwoWayAuthGenerate({ initFactor }: { initFactor: Factor }) {
 
 	async function retrieve(): Promise<void> {
 		try {
-			const response = await fetch('/api/two-factor')
+			const response = await fetch('/two-way-auth/api')
 			const json = await response.json()
 			const data = json.data
 			setValue(data.value)
