@@ -1,4 +1,4 @@
-import { generateCode } from 'app/api/two-factor/route'
+import { generateCode } from '../api/route'
 import TwoWayAuthGenerate from './TwoWayAuthGenerate'
 
 export default async function TwoWayAuthGeneratePage() {
