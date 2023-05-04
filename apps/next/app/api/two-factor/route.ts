@@ -1,6 +1,12 @@
 import randomString from '@emiljohansson/random-string'
 import { NextResponse } from 'next/server'
 
+export interface Factor {
+	value: string
+	expires: number
+	lifespan: number
+}
+
 let lastUpdated = -1
 let value = ''
 
@@ -39,7 +45,7 @@ function setValue(newValue: string) {
 	value = newValue
 }
 
-function generateCode() {
+export function generateCode() {
 	if (
 		!getLastUpdated() ||
 		!isWithinTimespan(getLastUpdated(), lifespanInSeconds)
@@ -53,7 +59,7 @@ function generateCode() {
 		value: getValue(),
 		expires: lifespanInSeconds - getDiffInSeconds(getLastUpdated()),
 		lifespan: lifespanInSeconds,
-	}
+	} as Factor
 }
 
 function validateCode(value: string) {

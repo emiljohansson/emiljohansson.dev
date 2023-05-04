@@ -106,7 +106,7 @@
       dark:hover:border-white;
 	}
 	.btn-outline {
-		@apply hover:bg-slate-50;
+		@apply dark:border-zinc-700 hover:bg-slate-100 hover:dark:bg-zinc-900;
 	}
 	button.btn-primary,
 	button.btn-secondary {
