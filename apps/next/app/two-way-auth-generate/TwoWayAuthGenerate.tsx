@@ -1,10 +1,13 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { Factor } from 'app/api/two-factor/route'
 
-function TwoWayAuthGenerate() {
-	const [value, setValue] = useState('')
-	const [timeLeft, setTimeLeft] = useState(-1)
-	const [lifespan, setLifespan] = useState(-1)
+function TwoWayAuthGenerate({ initFactor }: { initFactor: Factor }) {
+	const [value, setValue] = useState(initFactor.value)
+	const [timeLeft, setTimeLeft] = useState(initFactor.expires)
+	const [lifespan, setLifespan] = useState(initFactor.lifespan)
 
 	useEffect(() => {
 		if (timeLeft < 0) {
@@ -39,7 +42,7 @@ function TwoWayAuthGenerate() {
 
 	return (
 		<>
-			<div>{value || '...'}</div>
+			<div>{value}</div>
 			<div className="h-0.5 w-96 mr-3">
 				<motion.div
 					className="h-full mx-auto transition-all duration-1000 ease-linear"
