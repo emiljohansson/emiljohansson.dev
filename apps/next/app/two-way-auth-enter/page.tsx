@@ -1,6 +1,6 @@
 'use client'
 
-import TwoWayAuthEnter from '@/components/TwoWayAuthEnter'
+import TwoWayAuthEnter from './TwoWayAuthEnter'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 

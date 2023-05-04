@@ -3,14 +3,17 @@
 import type { Project } from './types'
 
 import Link from 'next/link'
-import { GitHubLogoIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
+import { FiCommand, FiExternalLink } from 'react-icons/fi'
+import { GrGithub } from 'react-icons/gr'
+import { useCommandMenu } from './CommandMenu'
 
 export function Content({ projects }: { projects: Project[] }) {
+	const { openCommandMenu } = useCommandMenu()
 	return (
 		<>
-			<div className="flex items-center text-5xl h-screen font-bold">
-				<h1 className="mx-auto">
+			<div className="flex flex-col gap-4 items-center justify-center text-center h-1/2">
+				<h1 className="mx-auto text-5xl font-bold">
 					<Link
 						href="https://github.com/emiljohansson"
 						className="px-2 pb-2"
@@ -18,7 +21,7 @@ export function Content({ projects }: { projects: Project[] }) {
 						rel="noreferrer"
 					>
 						<AccessibleIcon label="GitHub">
-							<GitHubLogoIcon
+							<GrGithub
 								width="50"
 								height="50"
 								className="inline-block text-fuchsia-600"
@@ -29,6 +32,20 @@ export function Content({ projects }: { projects: Project[] }) {
 						</span>
 					</Link>
 				</h1>
+				<button className="btn-outline flex" onClick={() => openCommandMenu()}>
+					Command Menu{' '}
+					<span
+						className="
+							flex items-center gap-1
+							bg-gray-300 dark:bg-zinc-900
+							px-1 py-0.5 
+							text-xs text-gray-600 
+							rounded
+						"
+					>
+						<FiCommand /> K
+					</span>
+				</button>
 			</div>
 			<div className="h-screen p-3 m-0 max-w-md mx-auto">
 				{projects.map(({ title, href, description, external, test }, index) => (
@@ -36,10 +53,12 @@ export function Content({ projects }: { projects: Project[] }) {
 						key={index}
 						href={href}
 						className="
-              flex flex-col link shadow-md rounded-2xl p-4 m-3 relative
+              flex flex-col rounded-md p-4 m-3 relative
+							bg-white dark:bg-black
               ease-in-out duration-100
+							shadow-sm 
               hover:no-underline hover:-translate-y-1 hover:shadow-lg
-              dark:hover:bg-black-900 dark:shadow-lg-white
+              dark:shadow-lg-white
             "
 						target={external ? '_blank' : undefined}
 						data-test={test}
@@ -47,7 +66,7 @@ export function Content({ projects }: { projects: Project[] }) {
 						<span className="flex items-center mb-1">
 							{title}{' '}
 							{external && (
-								<ExternalLinkIcon
+								<FiExternalLink
 									width={18}
 									height={18}
 									className="absolute right-3"

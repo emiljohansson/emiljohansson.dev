@@ -11,7 +11,7 @@ export const metadata = {
 export default function Layout({ children }: PropsWithChildren<unknown>) {
 	return (
 		<Content>
-			<Section>{children}</Section>
+			<Section size="large">{children}</Section>
 		</Content>
 	)
 }

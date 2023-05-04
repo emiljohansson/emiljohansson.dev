@@ -10,7 +10,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { sql } from '@vercel/postgres'
 import { Analytics } from '@vercel/analytics/react'
-import { CommandPrompt } from './CommandPrompt'
+import { CommandMenu } from './CommandMenu'
 import { ThemeToggle } from './ThemeToggle'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
 
@@ -84,8 +84,15 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					href="/images/logo/favicon-16x16.png"
 				/> */}
 			</head>
-			<body className="dark:bg-black-rich dark:text-white flex flex-col h-full">
-				<nav className="bg-white dark:bg-black-rich border-b border-slate-200 dark:border-zinc-700 flex justify-between px-4 py-3">
+			<body className="bg-slate-50 dark:bg-gray-900 dark:text-white flex flex-col h-full">
+				<nav
+					className="
+					flex justify-between items-center
+					bg-white dark:bg-black 
+					border-b border-slate-200 dark:border-zinc-700 
+					px-4 py-3
+				"
+				>
 					<div className="flex items-center gap-4 text-sm font-medium">
 						<Link href="/" className="flex items-center gap-2">
 							<Image
@@ -105,7 +112,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					<ThemeToggle initValue={theme?.value} />
 				</nav>
 				<main className="flex-1 relative">{children}</main>
-				<CommandPrompt projects={projects} />
+				<CommandMenu projects={projects} />
 				<Analytics />
 			</body>
 		</html>

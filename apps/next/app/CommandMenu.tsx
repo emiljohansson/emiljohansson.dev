@@ -4,9 +4,27 @@ import type { Project } from './types'
 
 import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
+import { FiSearch } from 'react-icons/fi'
+import { create } from 'zustand'
 
-export function CommandPrompt({ projects }: { projects: Project[] }) {
+type State = {
+	commandMenuIsOpen: boolean
+}
+
+type Action = {
+	openCommandMenu: () => void
+	closeCommandMenu: () => void
+}
+
+export const useCommandMenu = create<State & Action>((set) => ({
+	commandMenuIsOpen: false,
+	openCommandMenu: () => set(() => ({ commandMenuIsOpen: true })),
+	closeCommandMenu: () => set(() => ({ commandMenuIsOpen: false })),
+}))
+
+export function CommandMenu({ projects }: { projects: Project[] }) {
+	const { commandMenuIsOpen, openCommandMenu, closeCommandMenu } =
+		useCommandMenu()
 	const initList = useMemo(
 		() => [
 			{
@@ -20,7 +38,6 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 		[],
 	)
 	const router = useRouter()
-	const [showModal, setShowModal] = useState(false)
 	const [selectedIndex, setSelectedIndex] = useState(0)
 	const [list, setList] = useState(initList)
 	const fieldRef = useRef<HTMLInputElement>(null)
@@ -29,7 +46,7 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 		console.log(action)
 		if (!action) return
 		setList([...initList])
-		setShowModal(false)
+		closeCommandMenu()
 		router.push(action.href)
 	}
 
@@ -38,10 +55,10 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 		const onKeyDown = (event: KeyboardEvent) => {
 			if (event.metaKey && event.key === 'k') {
 				event.preventDefault()
-				setShowModal(true)
+				openCommandMenu()
 				return
 			}
-			if (!showModal) return
+			if (!commandMenuIsOpen) return
 			if (!['ArrowUp', 'ArrowDown', 'Escape', 'Enter'].includes(event.key)) {
 				return
 			}
@@ -63,7 +80,7 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 				if (newIndex >= list.length) newIndex = 0
 				setSelectedIndex(newIndex)
 			}
-			if (event.key === 'Escape') setShowModal(false)
+			if (event.key === 'Escape') closeCommandMenu()
 			if (event.key === 'Enter') {
 				handleAction(list[selectedIndex])
 			}
@@ -72,14 +89,14 @@ export function CommandPrompt({ projects }: { projects: Project[] }) {
 		document.addEventListener('keydown', onKeyDown)
 
 		return () => document.removeEventListener('keydown', onKeyDown)
-	}, [selectedIndex, list, showModal])
+	}, [selectedIndex, list, commandMenuIsOpen])
 
 	return (
 		<>
-			{showModal && (
+			{commandMenuIsOpen && (
 				<Modal>
 					<div className="flex items-center ">
-						<MagnifyingGlassIcon width={20} height={20} />
+						<FiSearch width={20} height={20} />
 						<input
 							ref={fieldRef}
 							id="input1"

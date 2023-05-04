@@ -1,15 +1,6 @@
-'use client'
+import { generateCode } from 'app/api/two-factor/route'
+import TwoWayAuthGenerate from './TwoWayAuthGenerate'
 
-import TwoWayAuthGenerate from '@/components/TwoWayAuthGenerate'
-import Content from '@/components/Content'
-import Section from '@/components/Section'
-
-const TwoWayAuthGeneratePage = () => (
-	<Content>
-		<Section direction="column" size="medium">
-			<TwoWayAuthGenerate />
-		</Section>
-	</Content>
-)
-
-export default TwoWayAuthGeneratePage
+export default async function TwoWayAuthGeneratePage() {
+	return <TwoWayAuthGenerate initFactor={generateCode()} />
+}

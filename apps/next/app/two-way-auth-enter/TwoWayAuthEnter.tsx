@@ -1,10 +1,6 @@
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
 import { Label } from '@radix-ui/react-label'
-import {
-	CheckIcon,
-	Cross2Icon,
-	DotsHorizontalIcon,
-} from '@radix-ui/react-icons'
+import { FiCheck, FiMoreHorizontal, FiX } from 'react-icons/fi'
 
 enum State {
 	idle,
@@ -30,21 +26,21 @@ function EnteredContent({ state }: { state: State }) {
 			return (
 				<>
 					<span className="sr-only">loading</span>
-					<DotsHorizontalIcon />
+					<FiMoreHorizontal />
 				</>
 			)
 		case State.valid:
 			return (
 				<>
 					<span className="sr-only">valid</span>
-					<CheckIcon />
+					<FiCheck />
 				</>
 			)
 		case State.invalid:
 			return (
 				<>
 					<span className="sr-only">invalid</span>
-					<Cross2Icon />
+					<FiX />
 				</>
 			)
 	}
