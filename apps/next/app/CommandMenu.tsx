@@ -6,6 +6,7 @@ import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FiSearch } from 'react-icons/fi'
 import { create } from 'zustand'
+import { useClickOutside } from 'hooks/useClickOutside'
 
 type State = {
 	commandMenuIsOpen: boolean
@@ -43,7 +44,6 @@ export function CommandMenu({ projects }: { projects: Project[] }) {
 	const fieldRef = useRef<HTMLInputElement>(null)
 
 	const handleAction = (action?: Project) => {
-		console.log(action)
 		if (!action) return
 		setList([...initList])
 		closeCommandMenu()
@@ -63,13 +63,6 @@ export function CommandMenu({ projects }: { projects: Project[] }) {
 				return
 			}
 			event.preventDefault()
-			console.log(
-				'key',
-				event.key,
-				selectedIndex,
-				selectedIndex - 1,
-				selectedIndex + 1,
-			)
 			if (event.key === 'ArrowUp') {
 				let newIndex = selectedIndex - 1
 				if (newIndex < 0) newIndex = list.length - 1
@@ -94,8 +87,8 @@ export function CommandMenu({ projects }: { projects: Project[] }) {
 	return (
 		<>
 			{commandMenuIsOpen && (
-				<Modal>
-					<div className="flex items-center ">
+				<Modal onClose={closeCommandMenu}>
+					<div className="flex items-center">
 						<FiSearch width={20} height={20} />
 						<input
 							ref={fieldRef}
@@ -134,11 +127,19 @@ export function CommandMenu({ projects }: { projects: Project[] }) {
 	)
 }
 
-const Modal = ({ children }: PropsWithChildren) => {
+const Modal = ({
+	children,
+	onClose,
+}: PropsWithChildren<{ onClose: () => void }>) => {
+	const rootRef = useClickOutside<HTMLDivElement>(onClose)
+
 	return (
 		<div>
 			<div className="fixed inset-0 z-40 min-h-screen flex items-center justify-center">
-				<div className="w-full max-w-md rounded border-gray-100 shadow-xl overflow-hidden">
+				<div
+					ref={rootRef}
+					className="w-full max-w-md rounded border-gray-100 shadow-xl overflow-hidden"
+				>
 					<div className="bg-white dark:bg-black-rich p-4">{children}</div>
 				</div>
 			</div>
