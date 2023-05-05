@@ -1,4 +1,7 @@
+'use client'
+
 import type { FunctionComponent, ReactNode } from 'react'
+
 import {
 	useState,
 	useEffect,
@@ -17,10 +20,10 @@ const myFont = MuseoModerno({
 })
 
 enum SelectedDifficulty {
-	loading,
-	easy,
-	medium,
-	hard,
+	loading = 'loading',
+	easy = 'easy',
+	medium = 'medium',
+	hard = 'hard',
 }
 
 enum GameState {
@@ -36,6 +39,7 @@ interface BoardStyle {
 }
 
 interface Difficulty {
+	value: SelectedDifficulty
 	title: string
 	bombs: number
 	rows: number
@@ -106,23 +110,41 @@ const boardStyles = {
 const BoardContext = createContext(boardStyles.easy)
 
 const easy = {
+	value: SelectedDifficulty.easy,
 	title: 'Easy',
 	bombs: 10,
 	rows: 8,
 	columns: 10,
 } as Difficulty
 const medium = {
+	value: SelectedDifficulty.medium,
 	title: 'Medium',
 	bombs: 40,
 	rows: 14,
 	columns: 18,
 } as Difficulty
 const hard = {
+	value: SelectedDifficulty.hard,
 	title: 'Hard',
 	bombs: 99,
 	rows: 20,
 	columns: 24,
 } as Difficulty
+
+const difficulties = [
+	{
+		value: SelectedDifficulty.easy,
+		title: easy.title,
+	},
+	{
+		value: SelectedDifficulty.medium,
+		title: medium.title,
+	},
+	{
+		value: SelectedDifficulty.hard,
+		title: hard.title,
+	},
+]
 
 const initialState: DifficultyState = {
 	type: SelectedDifficulty.easy,
@@ -330,19 +352,14 @@ const Tile = ({
 
 	return (
 		<>
-			<style jsx>{`
-				button {
-					background-color: ${Colors.flagged};
-					border: 3px solid rgba(0, 0, 0, 0.1);
-				}
-				button:focus {
-					border-color: rgba(0, 0, 0, 0.4);
-				}
-			`}</style>
 			<button
 				data-testid={`tile-${id}`}
 				data-debug-value={isDebugging ? value : ''}
-				className="leading-none text-center focus:outline-none"
+				className="
+					leading-none text-center focus:outline-none 
+					border-[3px] border-opacity-10 border-black
+					focus:border-opacity-40
+				"
 				onContextMenu={(event) => {
 					event.preventDefault()
 					onRightClick()
@@ -555,28 +572,25 @@ export default function MineSweaper() {
 			<div className="flex mb-3">
 				<div className="mx-1.5">
 					<Select
-						defaultValue={SelectedDifficulty.easy.toString()}
+						defaultValue={easy.value}
+						options={difficulties}
 						onValueChange={(newValue) => {
 							setSelectedDifficulty({
 								type: SelectedDifficulty.loading,
-								queueType: Number(newValue),
+								queueType: newValue as SelectedDifficulty,
 							})
 						}}
 					>
-						<SelectItem value={SelectedDifficulty.easy}>
-							{easy.title}
-						</SelectItem>
-						<SelectItem value={SelectedDifficulty.medium}>
-							{medium.title}
-						</SelectItem>
-						<SelectItem value={SelectedDifficulty.hard}>
-							{hard.title}
-						</SelectItem>
+						{difficulties.map(({ value, title }) => (
+							<SelectItem key={value} value={value}>
+								{title}
+							</SelectItem>
+						))}
 					</Select>
 				</div>
 				<div className="mx-1.5">
 					<button
-						className="btn-secondary"
+						className="btn-outline"
 						onClick={() => {
 							setSelectedDifficulty({
 								type: SelectedDifficulty.loading,

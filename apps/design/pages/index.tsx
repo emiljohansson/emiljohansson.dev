@@ -37,6 +37,34 @@ gray: #e6e6ea
 dark gray: #383838
 */
 
+interface Option {
+	value: string
+	title: string
+	disabled?: true
+}
+
+const fruits: Option[] = [
+	{ value: 'apple', title: 'Apple' },
+	{ value: 'banana', title: 'Banana' },
+	{ value: 'orange', title: 'Orange' },
+	{ value: 'pear', title: 'Pear' },
+	{ value: 'grapes', title: 'Grapes' },
+	{ value: 'pineapple', title: 'Pineapple' },
+]
+const vegetables: Option[] = [
+	{ value: 'aubergine', title: 'Aubergine' },
+	{ value: 'broccoli', title: 'Broccoli' },
+	{ value: 'carrot', title: 'Carrot', disabled: true },
+	{ value: 'courgette', title: 'Courgette' },
+	{ value: 'leek', title: 'Leek' },
+]
+const meats: Option[] = [
+	{ value: 'beef', title: 'Beef' },
+	{ value: 'chicken', title: 'Chicken' },
+	{ value: 'lamb', title: 'Lamb' },
+	{ value: 'pork', title: 'Pork' },
+]
+
 const MotionLine = motion(BorderSolidIcon)
 const spring = {
 	type: 'spring',
@@ -205,45 +233,47 @@ const Home: NextPage = () => {
 				</article>
 				<article>
 					<h2>Select</h2>
-					<Select defaultValue="apple">
-						<SelectItem value="apple">Apple</SelectItem>
-						<SelectItem value="banana">Banana</SelectItem>
-						<SelectItem value="blueberry">Blueberry</SelectItem>
-						<SelectItem value="grapes">Grapes</SelectItem>
-						<SelectItem value="pineapple">Pineapple</SelectItem>
+					<Select defaultValue="apple" options={fruits}>
+						{fruits.map(({ value, title, disabled }) => (
+							<SelectItem key={value} value={value} disabled={disabled}>
+								{title}
+							</SelectItem>
+						))}
 					</Select>
 					<br />
-					<Select defaultValue="blueberry">
+					<Select
+						defaultValue="banana"
+						options={[...fruits, ...vegetables, ...meats]}
+					>
 						<SelectGroup>
 							<SelectLabel>Fruits</SelectLabel>
-							<SelectItem value="apple">Apple</SelectItem>
-							<SelectItem value="banana">Banana</SelectItem>
-							<SelectItem value="blueberry">Blueberry</SelectItem>
-							<SelectItem value="grapes">Grapes</SelectItem>
-							<SelectItem value="pineapple">Pineapple</SelectItem>
+							{fruits.map(({ value, title, disabled }) => (
+								<SelectItem key={value} value={value} disabled={disabled}>
+									{title}
+								</SelectItem>
+							))}
 						</SelectGroup>
 
 						<SelectSeparator />
 
 						<SelectGroup>
 							<SelectLabel>Vegetables</SelectLabel>
-							<SelectItem value="aubergine">Aubergine</SelectItem>
-							<SelectItem value="broccoli">Broccoli</SelectItem>
-							<SelectItem value="carrot" disabled>
-								Carrot
-							</SelectItem>
-							<SelectItem value="courgette">Courgette</SelectItem>
-							<SelectItem value="leek">Leek</SelectItem>
+							{vegetables.map(({ value, title, disabled }) => (
+								<SelectItem key={value} value={value} disabled={disabled}>
+									{title}
+								</SelectItem>
+							))}
 						</SelectGroup>
 
 						<SelectSeparator />
 
 						<SelectGroup>
 							<SelectLabel>Meat</SelectLabel>
-							<SelectItem value="beef">Beef</SelectItem>
-							<SelectItem value="chicken">Chicken</SelectItem>
-							<SelectItem value="lamb">Lamb</SelectItem>
-							<SelectItem value="pork">Pork</SelectItem>
+							{meats.map(({ value, title, disabled }) => (
+								<SelectItem key={value} value={value} disabled={disabled}>
+									{title}
+								</SelectItem>
+							))}
 						</SelectGroup>
 					</Select>
 				</article>
