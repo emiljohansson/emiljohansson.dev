@@ -1,8 +1,5 @@
 'use client'
 
-import type { NextPage } from 'next'
-
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 
 // const usePreload = (path: string) => {
@@ -13,7 +10,7 @@ import { useEffect, useState } from 'react'
 //   return file
 // }
 
-const PreloadPage: NextPage = () => {
+export default function PreloadPage() {
 	const [fps, setFps] = useState(0)
 
 	useEffect(() => {
@@ -36,17 +33,8 @@ const PreloadPage: NextPage = () => {
 
 	return (
 		<>
-			<Head>
-				<title>FPS</title>
-				<meta name="description" content="FPS" />
-			</Head>
-
-			<main>
-				<h1>FPS</h1>
-				<p>FPS: {fps}</p>
-			</main>
+			<h1>FPS</h1>
+			<p>FPS: {fps}</p>
 		</>
 	)
 }
-
-export default PreloadPage
