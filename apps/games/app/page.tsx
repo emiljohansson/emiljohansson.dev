@@ -1,12 +1,10 @@
-import type { NextPage } from 'next'
-
 import Link from 'next/link'
 
-const HomePage: NextPage = () => {
+export default function HomePage() {
 	return (
-		<main>
+		<>
 			<h1>Games</h1>
-			<ul>
+			<ul className="grid gap-2">
 				<li>
 					<Link href="/spider">Spider Solitaire</Link>
 				</li>
@@ -19,8 +17,6 @@ const HomePage: NextPage = () => {
 					<Link href="/wordle">Bad Wordle "clone"</Link>
 				</li>
 			</ul>
-		</main>
+		</>
 	)
 }
-
-export default HomePage
