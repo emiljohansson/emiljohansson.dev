@@ -61,9 +61,6 @@
 	h1 {
 		@apply text-5xl mb-10 font-bold;
 	}
-	h2 {
-		@apply text-3xl mb-6;
-	}
 }
 
 @layer components {
