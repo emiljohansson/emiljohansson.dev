@@ -1,7 +1,6 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+'use client'
+
 import { useEffect, useState } from 'react'
-import { faker } from '@faker-js/faker'
 import { motion } from 'framer-motion'
 import { Header } from 'ui'
 
@@ -10,7 +9,6 @@ enum Color {
 	Yellow = 'yellow',
 	Gray = 'gray',
 }
-
 interface Guess {
 	letters: string[]
 	colors: Color[]
@@ -19,43 +17,12 @@ interface Guess {
 const from = <T,>(length: number, value: T): T[] =>
 	Array.from({ length }, () => value)
 
-const dictionary = [
-	faker.locales.en.word.adjective.filter((word) => word.length === 5),
-	faker.locales.en.word.adverb.filter((word) => word.length === 5),
-	faker.locales.en.word.conjunction.filter((word) => word.length === 5),
-	faker.locales.en.word.noun.filter((word) => word.length === 5),
-	faker.locales.en.word.verb.filter((word) => word.length === 5),
-]
-	.flat()
-	.reduce((r, w) => {
-		r[w.toUpperCase()] = true
-		return r
-	}, {} as { [key: string]: boolean })
-
 enum GameState {
 	Playing,
 	Won,
 	Lost,
 }
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const wordMethods = [
-	faker.word.adjective,
-	faker.word.adverb,
-	faker.word.conjunction,
-	faker.word.noun,
-	faker.word.verb,
-]
-
-export async function getServerSideProps() {
-	const index = Math.floor(Math.random() * wordMethods.length)
-	const method = wordMethods[index]
-
-	return {
-		props: {
-			word: method(5).toUpperCase(),
-		},
-	}
-}
 
 const GuessedWord = ({ guess: { letters, colors } }: { guess: Guess }) => (
 	<div className="flex justify-center">
@@ -111,7 +78,15 @@ const BlankRow = () => {
 	)
 }
 
-const PreloadPage: NextPage = ({ word }: { word: string }) => {
+export function Game({
+	dictionary,
+	word,
+}: {
+	dictionary: {
+		[key: string]: boolean
+	}
+	word: string
+}) {
 	console.log(word)
 
 	const [guesses, setGuesses] = useState<Guess[]>([])
@@ -175,11 +150,6 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
 
 	return (
 		<>
-			<Head>
-				<title>Bad Wordle "clone"</title>
-				<meta name="description" content="Bad Wordle clone" />
-			</Head>
-
 			<Header />
 			<main>
 				<h1>Bad Wordle "clone"</h1>
@@ -217,5 +187,3 @@ const PreloadPage: NextPage = ({ word }: { word: string }) => {
 		</>
 	)
 }
-
-export default PreloadPage

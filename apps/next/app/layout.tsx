@@ -87,11 +87,11 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 			<body className="bg-slate-50 dark:bg-gray-900 dark:text-white flex flex-col h-full">
 				<nav
 					className="
-					flex justify-between items-center
-					bg-white dark:bg-black 
-					border-b border-slate-200 dark:border-zinc-700 
-					px-4 py-3
-				"
+						flex justify-between items-center
+						bg-white dark:bg-black 
+						border-b border-slate-200 dark:border-zinc-700 
+						px-4 py-3
+					"
 				>
 					<div className="flex items-center gap-4 text-sm font-medium">
 						<Link href="/" className="flex items-center gap-2">
