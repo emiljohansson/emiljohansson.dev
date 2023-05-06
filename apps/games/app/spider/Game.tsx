@@ -1,14 +1,13 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+'use client'
+
+import type { Card, Deck, Piles } from '@/types/card-games'
+
 import { useRef, useState } from 'react'
-import shuffle from 'just-shuffle'
-import { ReloadIcon, ResetIcon } from '@radix-ui/react-icons'
+import { FiRefreshCw, FiRotateCcw } from 'react-icons/fi'
 import { isDefined, isEmpty } from 'lib/utils/lang'
 import { classNames } from 'lib/utils/string'
 import { chunk, first, last } from 'lib/utils/array'
 import { Header, HeaderAction } from 'ui'
-import type { Card, Deck, Piles, Rank, Suit } from '@/types/card-games'
-import { createDeck } from '@/lib/deck'
 import {
 	deselectAll,
 	moveCardsToPiles,
@@ -16,54 +15,7 @@ import {
 	scaleGame,
 } from '@/lib/game'
 import { usePreloadCards } from '@/lib/hooks'
-
-enum RankValue {
-	'J' = 11,
-	'Q' = 12,
-	'K' = 13,
-	'A' = 1,
-}
-
-const suits: Suit[] = ['H', 'S']
-const getCardValue = (rank: Rank) =>
-	typeof rank === 'number' ? rank : RankValue[rank]
-const createBaseDeck = () => createDeck(suits, getCardValue)
-
-export async function getServerSideProps() {
-	const deck = shuffle(
-		[
-			createBaseDeck(),
-			createBaseDeck(),
-			createBaseDeck(),
-			createBaseDeck(),
-		].flat(),
-	)
-
-	const initPiles = [
-		deck.splice(0, 6),
-		deck.splice(0, 6),
-		deck.splice(0, 6),
-		deck.splice(0, 6),
-		deck.splice(0, 5),
-		deck.splice(0, 5),
-		deck.splice(0, 5),
-		deck.splice(0, 5),
-		deck.splice(0, 5),
-		deck.splice(0, 5),
-	]
-	initPiles.forEach((pile) => {
-		pile.slice(0, pile.length - 1).forEach((card) => {
-			card.hidden = true
-		})
-	})
-
-	return {
-		props: {
-			remainingCards: deck,
-			initPiles,
-		},
-	}
-}
+import { createBaseDeck } from './createBaseDeck'
 
 const getClickableIndexesFromPile = (pile: Card[]) => {
 	if (pile.length < 1) return []
@@ -80,13 +32,13 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
 	return result
 }
 
-const SpiderPage: NextPage = ({
+export function Game({
 	remainingCards,
 	initPiles,
 }: {
 	remainingCards: Deck
 	initPiles: Piles
-}) => {
+}) {
 	const [deck, setDeck] = useState<Deck>(remainingCards)
 	const [piles, setPiles] = useState<Piles>(initPiles)
 	// const [prevMove, setPrevMove] = useState<number[]>([])
@@ -202,18 +154,13 @@ const SpiderPage: NextPage = ({
 
 	return (
 		<>
-			<Head>
-				<title>Spider Solitaire</title>
-				<meta name="description" content="Spider Solitaire" />
-			</Head>
-
 			<Header>
 				<HeaderAction onClick={() => location.reload()} data-test="new-game">
-					<ReloadIcon width={30} height={30} />
+					<FiRefreshCw size={30} strokeWidth="1.5" />
 					<span className="sr-only">New Game</span>
 				</HeaderAction>
 				<HeaderAction onClick={() => console.log('undo')} data-test="undo">
-					<ResetIcon width={30} height={30} />
+					<FiRotateCcw size={30} strokeWidth="1.5" />
 					<span className="sr-only">Undo</span>
 				</HeaderAction>
 			</Header>
@@ -288,5 +235,3 @@ const SpiderPage: NextPage = ({
 		</>
 	)
 }
-
-export default SpiderPage

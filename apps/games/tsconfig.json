@@ -20,8 +20,13 @@
 			"@/components/*": ["./components/*"],
 			"@/types/*": ["./types/*"],
 			"@/lib/*": ["./lib/*"]
-		}
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
 	},
-	"include": ["*.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": ["*.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
 	"exclude": ["node_modules", "cypress"]
 }

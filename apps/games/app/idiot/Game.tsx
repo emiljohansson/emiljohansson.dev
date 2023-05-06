@@ -1,14 +1,13 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+'use client'
+
+import type { Card, Deck, Piles } from '@/types/card-games'
+
 import { useRef, useState } from 'react'
-import shuffle from 'just-shuffle'
-import { UpdateIcon } from '@radix-ui/react-icons'
+import { FiRefreshCw } from 'react-icons/fi'
+import { Header, HeaderAction } from 'ui'
 import { isDefined, isEmpty } from 'lib/utils/lang'
 import { classNames } from 'lib/utils/string'
 import { first, last, lastIndex, chunk } from 'lib/utils/array'
-import { Header, HeaderAction } from 'ui'
-import type { Card, Deck, Piles, Rank, Suit } from '@/types/card-games'
-import { createDeck } from '@/lib/deck'
 import {
 	deselectAll,
 	moveCardsToPiles,
@@ -17,42 +16,15 @@ import {
 } from '@/lib/game'
 import { usePreloadCards } from '@/lib/hooks'
 
-enum RankValue {
-	'J' = 11,
-	'Q' = 12,
-	'K' = 13,
-	'A' = 14,
-}
-
-const suits: Suit[] = ['C', 'D', 'H', 'S']
-const getCardValue = (rank: Rank) =>
-	typeof rank === 'number' ? rank : RankValue[rank]
-const baseDeck = createDeck(suits, getCardValue)
-
-export async function getServerSideProps() {
-	const deck = shuffle(baseDeck)
-	const initPiles = [
-		deck.splice(0, 1),
-		deck.splice(0, 1),
-		deck.splice(0, 1),
-		deck.splice(0, 1),
-	]
-
-	return {
-		props: {
-			remainingCards: deck,
-			initPiles,
-		},
-	}
-}
-
-const IdiotPage: NextPage = ({
-	remainingCards,
+export function Game({
+	baseDeck,
 	initPiles,
+	remainingCards,
 }: {
-	remainingCards: Deck
+	baseDeck: Deck
 	initPiles: Piles
-}) => {
+	remainingCards: Deck
+}) {
 	const [deck, setDeck] = useState<Deck>(remainingCards)
 	const [piles, setPiles] = useState<Piles>(initPiles)
 	const mainRef = useRef<HTMLElement>(null)
@@ -125,14 +97,9 @@ const IdiotPage: NextPage = ({
 
 	return (
 		<>
-			<Head>
-				<title>The Idiot Card Game</title>
-				<meta name="description" content="The Idiot Card Game" />
-			</Head>
-
 			<Header>
 				<HeaderAction onClick={() => location.reload()} data-test="refresh">
-					<UpdateIcon width={30} height={30} />
+					<FiRefreshCw width={30} height={30} />
 					<span className="sr-only">New Game</span>
 				</HeaderAction>
 			</Header>
@@ -201,5 +168,3 @@ const IdiotPage: NextPage = ({
 		</>
 	)
 }
-
-export default IdiotPage
