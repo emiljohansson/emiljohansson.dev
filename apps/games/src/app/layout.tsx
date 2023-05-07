@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 
 import 'ui/globals.css'
-import '../styles/globals.css'
+import './globals.css'
 
 export const metadata = {
 	title: 'Games',

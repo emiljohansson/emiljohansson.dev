@@ -1,6 +1,6 @@
 'use client'
 
-import type { Card, Deck, Piles } from '@/types/card-games'
+import type { Card, Deck, Piles } from 'src/types/card-games'
 
 import { useRef, useState } from 'react'
 import { FiRefreshCw, FiRotateCcw } from 'react-icons/fi'
@@ -13,8 +13,8 @@ import {
 	moveCardsToPiles,
 	removeEmptyLeadingCards,
 	scaleGame,
-} from '@/lib/game'
-import { usePreloadCards } from '@/lib/hooks'
+} from 'src/lib/game'
+import { usePreloadCards } from 'src/lib/hooks'
 import { createBaseDeck } from './createBaseDeck'
 
 const getClickableIndexesFromPile = (pile: Card[]) => {
