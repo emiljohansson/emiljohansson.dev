@@ -10,7 +10,7 @@ import {
 	useReducer,
 } from 'react'
 import useInterval from 'lib/hooks/useInterval'
-import { Select, SelectItem } from 'ui'
+import { Header, Select, SelectItem } from 'ui'
 import { MuseoModerno } from 'next/font/google'
 
 const myFont = MuseoModerno({
@@ -569,6 +569,7 @@ export default function MineSweaper() {
 
 	return (
 		<>
+			<Header />
 			<div className="flex mb-3">
 				<div className="mx-1.5">
 					<Select

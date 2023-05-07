@@ -16,6 +16,9 @@ export default function HomePage() {
 				<li>
 					<Link href="/wordle">Bad Wordle "clone"</Link>
 				</li>
+				<li>
+					<Link href="/ms">Mine Sweaper</Link>
+				</li>
 			</ul>
 		</>
 	)
