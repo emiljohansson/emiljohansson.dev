@@ -25,7 +25,7 @@ export default function Page() {
 
 	return (
 		<>
-			<h1>FPS</h1>
+			<h1 className="heading1">FPS</h1>
 			<p>FPS: {fps}</p>
 		</>
 	)
