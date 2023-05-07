@@ -32,6 +32,24 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
 	return result
 }
 
+const Image = ({ card, cardImage }: { card: Card; cardImage: string }) => (
+	<img
+		src={`/images/cards/${cardImage}.png`}
+		alt={card?.combined ?? 'blank card'}
+		className={classNames(
+			`
+			border-4 border-transparent border-solid rounded-lg
+			relative top-0 left-0
+			mx-auto
+			w-[calc(100%-0px)]
+		`,
+			{
+				'bg-primary': card?.selected,
+			},
+		)}
+	/>
+)
+
 export function Game({
 	remainingCards,
 	initPiles,
@@ -178,23 +196,6 @@ export function Game({
 									: !card.hidden
 									? card.combined
 									: 'red_back'
-								const Image = () => (
-									<img
-										src={`/images/cards/${cardImage}.png`}
-										alt={card?.combined ?? 'blank card'}
-										className={classNames(
-											`
-                      border-4 border-transparent border-solid rounded-lg
-                      relative top-0 left-0
-                      mx-auto
-                      w-[calc(100%-0px)]
-                    `,
-											{
-												'bg-primary': card?.selected,
-											},
-										)}
-									/>
-								)
 
 								if (clickable) {
 									return (
@@ -203,13 +204,13 @@ export function Game({
 											className="-mt-[110%] first:mt-0"
 											onClick={() => handleSelectedCard(card, pileIndex)}
 										>
-											<Image />
+											<Image card={card} cardImage={cardImage} />
 										</button>
 									)
 								}
 								return (
 									<div key={cardIndex} className="-mt-[110%] first:mt-0">
-										<Image />
+										<Image card={card} cardImage={cardImage} />
 									</div>
 								)
 							})}
