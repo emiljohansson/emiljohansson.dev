@@ -152,7 +152,7 @@ export function Game({
 		<>
 			<Header />
 			<main>
-				<h1>Bad Wordle "clone"</h1>
+				<h1 className="heading1">Bad Wordle "clone"</h1>
 				<div dangerouslySetInnerHTML={{ __html: `<!-- ${word} -->` }} />
 				<div className="flex flex-col justify-center">
 					{guesses.map((guess, index) => (
