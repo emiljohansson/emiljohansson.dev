@@ -1,7 +1,7 @@
 'use client'
 
-import { useCounter } from 'hooks/useCounter'
-import { useEventListener } from 'hooks/useEventListener'
+import { useCounter } from '@/hooks/useCounter'
+import { useEventListener } from '@/hooks/useEventListener'
 
 export function EventListenerExample() {
 	const [count, increment] = useCounter(0, {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Factor } from 'app/two-way-auth/api/route'
+import { Factor } from '@/app/two-way-auth/api/route'
 
 function TwoWayAuthGenerate({ initFactor }: { initFactor: Factor }) {
 	const [value, setValue] = useState(initFactor.value)

@@ -1,7 +1,7 @@
 'use client'
 
-import { useEventListener } from 'hooks/useEventListener'
-import { useRandomString } from 'hooks/useRandomString'
+import { useEventListener } from '@/hooks/useEventListener'
+import { useRandomString } from '@/hooks/useRandomString'
 
 export function RandomStringExample({
 	initialValue,

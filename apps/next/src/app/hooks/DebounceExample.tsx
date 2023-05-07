@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useDebounceValue } from 'hooks/useDebounceValue'
+import { useDebounceValue } from '@/hooks/useDebounceValue'
 
 export function DebounceExample() {
 	const [value, setValue] = useState('')

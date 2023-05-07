@@ -1,6 +1,6 @@
 'use client'
 
-import { useCounter } from 'hooks/useCounter'
+import { useCounter } from '@/hooks/useCounter'
 
 export function CounterExample() {
 	const [count, increment, decrement, reset, set] = useCounter(0, {
