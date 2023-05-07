@@ -1,6 +1,6 @@
-import type { Rank, Suit } from '@/types/card-games'
+import type { Rank, Suit } from 'src/types/card-games'
 
-import { createDeck } from '@/lib/deck'
+import { createDeck } from 'src/lib/deck'
 
 enum RankValue {
 	'J' = 11,

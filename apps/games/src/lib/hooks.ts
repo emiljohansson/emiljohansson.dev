@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Deck } from '@/types/card-games'
+import { Deck } from 'src/types/card-games'
 
 export const usePreloadCards = (deck: Deck) => {
 	useEffect(() => {

@@ -1,6 +1,6 @@
 'use client'
 
-import type { Card, Deck, Piles } from '@/types/card-games'
+import type { Card, Deck, Piles } from 'src/types/card-games'
 
 import { useRef, useState } from 'react'
 import { FiRefreshCw } from 'react-icons/fi'
@@ -13,8 +13,26 @@ import {
 	moveCardsToPiles,
 	removeEmptyLeadingCards,
 	scaleGame,
-} from '@/lib/game'
-import { usePreloadCards } from '@/lib/hooks'
+} from 'src/lib/game'
+import { usePreloadCards } from 'src/lib/hooks'
+
+const Image = ({ card }: { card: Card }) => (
+	<img
+		src={`/images/cards/${card?.combined ?? 'blank'}.png`}
+		alt={card?.combined ?? 'blank card'}
+		className={classNames(
+			`
+			border-4 border-transparent border-solid rounded-lg
+			relative top-0 left-0
+			mx-auto
+			w-[calc(100%-8px)]
+		`,
+			{
+				'bg-primary': card?.selected,
+			},
+		)}
+	/>
+)
 
 export function Game({
 	baseDeck,
@@ -111,23 +129,6 @@ export function Game({
 							{pile.map((card, cardIndex) => {
 								const currentIndexInPile = lastIndex(pile)
 								const clickable = cardIndex === currentIndexInPile
-								const Image = () => (
-									<img
-										src={`/images/cards/${card?.combined ?? 'blank'}.png`}
-										alt={card?.combined ?? 'blank card'}
-										className={classNames(
-											`
-                      border-4 border-transparent border-solid rounded-lg
-                      relative top-0 left-0
-                      mx-auto
-                      w-[calc(100%-8px)]
-                    `,
-											{
-												'bg-primary': card?.selected,
-											},
-										)}
-									/>
-								)
 
 								if (clickable) {
 									return (
@@ -136,13 +137,13 @@ export function Game({
 											className="-mt-[110%] first:mt-0"
 											onClick={() => handleSelectedCard(card, pileIndex)}
 										>
-											<Image />
+											<Image card={card} />
 										</button>
 									)
 								}
 								return (
 									<div key={cardIndex} className="-mt-[110%] first:mt-0">
-										<Image />
+										<Image card={card} />
 									</div>
 								)
 							})}

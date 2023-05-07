@@ -1,6 +1,6 @@
-import type { Rank, Suit } from '@/types/card-games'
+import type { Rank, Suit } from 'src/types/card-games'
 import shuffle from 'just-shuffle'
-import { createDeck } from '@/lib/deck'
+import { createDeck } from 'src/lib/deck'
 import { Game } from './Game'
 
 enum RankValue {

@@ -6,7 +6,7 @@ import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FiSearch } from 'react-icons/fi'
 import { create } from 'zustand'
-import { useClickOutside } from 'hooks/useClickOutside'
+import { useClickOutside } from '@/hooks/useClickOutside'
 
 type State = {
 	commandMenuIsOpen: boolean
