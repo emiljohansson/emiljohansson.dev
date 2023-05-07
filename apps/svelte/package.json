@@ -33,7 +33,7 @@
 		"svelte-check": "3.2.0",
 		"tsconfig": "workspace:*",
 		"tslib": "2.4.1",
-		"typescript": "4.9.3",
+		"typescript": "5.0.4",
 		"ui": "workspace:*",
 		"vite": "4.0.0"
 	},
