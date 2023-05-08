@@ -12,7 +12,7 @@ export const metadata = {
 	description: 'Games by Emil',
 }
 
-export default async function Layout({ children }: PropsWithChildren<unknown>) {
+export default function Layout({ children }: PropsWithChildren<unknown>) {
 	return (
 		<html lang="en">
 			<head></head>

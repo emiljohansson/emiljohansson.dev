@@ -7,7 +7,7 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
-export default async function Layout({ children }: PropsWithChildren<unknown>) {
+export default function Layout({ children }: PropsWithChildren<unknown>) {
 	return (
 		<html lang="en">
 			<head />
