@@ -1,4 +1,7 @@
+'use client'
+
 import type { NextPage } from 'next'
+
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -120,7 +123,7 @@ const Home: NextPage = () => {
 
 			<main className="flex flex-col gap-4 pb-52">
 				<article>
-					<h1>Components / Design System</h1>
+					<h1 className="heading1">Components / Design System</h1>
 					<p>
 						For years parents have espoused the health benefits of eating garlic
 						bread with cheese to their children, with the food earning such an
@@ -133,12 +136,12 @@ const Home: NextPage = () => {
 					</p>
 				</article>
 				<article>
-					<h2>Typography</h2>
-					<h1>Heading 1</h1>
-					<h2>Heading 2</h2>
+					<h2 className="heading2">Typography</h2>
+					<h1 className="heading1">Heading 1</h1>
+					<h2 className="heading2">Heading 2</h2>
 				</article>
 				<article>
-					<h2>Button</h2>
+					<h2 className="heading2">Button</h2>
 					<div className="mb-3">
 						<button className="btn-primary mr-3">Button</button>
 						<Link href="/" className="btn-primary mr-3" role="button">
@@ -153,13 +156,13 @@ const Home: NextPage = () => {
 					</div>
 				</article>
 				<article>
-					<h2>Link</h2>
+					<h2 className="heading2">Link</h2>
 					<Link href="/" className="link">
 						Simple link
 					</Link>
 				</article>
 				<article>
-					<h2>Input</h2>
+					<h2 className="heading2">Input</h2>
 					<div className="flex items-center">
 						<Label htmlFor="input1" className="pr-3">
 							First Name
@@ -168,11 +171,11 @@ const Home: NextPage = () => {
 					</div>
 				</article>
 				<article>
-					<h2>Checkbox</h2>
+					<h2 className="heading2">Checkbox</h2>
 					<CheckboxWithLabel labelText="Accept terms and conditions." />
 				</article>
 				<article>
-					<h2>Radio Group</h2>
+					<h2 className="heading2">Radio Group</h2>
 					<RadioGroup defaultValue="default">
 						<div className="flex items-center mb-2">
 							<RadioGroupRadio
@@ -232,7 +235,7 @@ const Home: NextPage = () => {
 					</RadioGroup>
 				</article>
 				<article>
-					<h2>Select</h2>
+					<h2 className="heading2">Select</h2>
 					<Select defaultValue="apple" options={fruits}>
 						{fruits.map(({ value, title, disabled }) => (
 							<SelectItem key={value} value={value} disabled={disabled}>
@@ -278,7 +281,7 @@ const Home: NextPage = () => {
 					</Select>
 				</article>
 				<article>
-					<h2>Progress</h2>
+					<h2 className="heading2">Progress</h2>
 					<div className="flex items-center">
 						<Progress progress={42} />
 						{/* <div className="flex items-center h-14 p-6 mx-auto rounded bg-gradient-to-r from-purple-700 to-primary">
@@ -286,11 +289,11 @@ const Home: NextPage = () => {
 					</div>
 				</article>
 				<article>
-					<h2>Animated Menu</h2>
+					<h2 className="heading2">Animated Menu</h2>
 					<Toggle />
 				</article>
 				<article>
-					<h2>Slider</h2>
+					<h2 className="heading2">Slider</h2>
 					<Slider defaultValue={50} max={100} label="Volume" />
 				</article>
 			</main>

@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-	reactStrictMode: true,
-	swcMinify: true,
-	experimental: {
-		externalDir: true,
-	},
+module.exports = {
+	transpilePackages: ['ui'],
 	basePath: process.env.NODE_ENV === 'production' ? '/design' : '',
 }
-
-module.exports = nextConfig
