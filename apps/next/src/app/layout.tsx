@@ -13,6 +13,9 @@ import { Analytics } from '@vercel/analytics/react'
 import { CommandMenu } from './CommandMenu'
 import { ThemeToggle } from './ThemeToggle'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
 const name = 'Emil Johansson'
 const siteTitle = 'emiljohansson.dev'
@@ -84,7 +87,9 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					href="/images/logo/favicon-16x16.png"
 				/> */}
 			</head>
-			<body className="bg-slate-50 dark:bg-gray-900 dark:text-white flex flex-col h-full">
+			<body
+				className={`${inter.className} bg-slate-50 dark:bg-gray-900 dark:text-white flex flex-col h-full`}
+			>
 				<nav
 					className="
 						flex justify-between items-center
