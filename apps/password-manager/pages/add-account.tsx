@@ -112,7 +112,7 @@ const AddAccountPage: NextPage<Props> = ({
 
 	return (
 		<>
-			<h1>Add Account</h1>
+			<h1 className="heading1">Add Account</h1>
 			<form action="/api/add-account" method="post" onSubmit={onSubmit}>
 				<input className="input" name="secret" value={secret} type="hidden" />
 				<div className="mb-3">

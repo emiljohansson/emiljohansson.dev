@@ -34,7 +34,7 @@ const AccountsPage: NextPage<{ accounts: Account[]; secret: string }> = ({
 }) => {
 	return (
 		<>
-			<h1>Accounts</h1>
+			<h1 className="heading1">Accounts</h1>
 			<Link
 				href={{
 					pathname: '/add-account',
