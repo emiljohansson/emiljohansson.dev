@@ -49,11 +49,6 @@ export function generateCode() {
 	if (!getValue()) {
 		setValue(randomString())
 	}
-	console.log({
-		value: getValue(),
-		expires: lifespanInSeconds - getDiffInSeconds(getLastUpdated()),
-		lifespan: lifespanInSeconds,
-	})
 	return {
 		value: getValue(),
 		expires: lifespanInSeconds - getDiffInSeconds(getLastUpdated()),

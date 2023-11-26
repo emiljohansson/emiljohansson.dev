@@ -1,11 +1,11 @@
 import { type NextRequest } from 'next/server'
 import { redirect } from 'next/navigation'
 import crypto from 'crypto'
-import kv from '@vercel/kv'
+import { kv } from '@vercel/kv'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(request: NextRequest) {
-	console.log('GET /authorize')
+	console.log('GET /login/authorize')
 	const authCodes =
 		(await kv.get<{
 			[key: string]: number
