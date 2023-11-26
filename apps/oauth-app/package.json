@@ -13,7 +13,7 @@
 		"@types/react": "18.0.15",
 		"@types/react-dom": "18.0.6",
 		"autoprefixer": "10.4.13",
-		"eslint": "8.38.0",
+		"eslint": "8.54.0",
 		"eslint-config-next": "14.0.3",
 		"jsonwebtoken": "9.0.2",
 		"next": "14.0.3",
