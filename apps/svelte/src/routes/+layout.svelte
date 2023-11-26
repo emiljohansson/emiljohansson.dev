@@ -1,7 +1,7 @@
 <script>
 	import "ui/globals.css"
 	import "../app.css"
-	import feather from "feather-icons"
+	// import feather from "feather-icons"
 </script>
 
 <nav class="flex items-center px-6 py-4 bg-white border-b border-slate-200">
@@ -18,10 +18,11 @@
 		target="_blank"
 		rel="noreferrer"
 	>
-		{@html feather.icons.github.toSvg({
+		<!-- TODO look up new solution -->
+		<!-- {@html feather.icons.github.toSvg({
 			width: 16,
 			height: 16,
-		})}
+		})} -->
 		<span class="sr-only">Go to Emil's github</span>
 	</a>
 </nav>
