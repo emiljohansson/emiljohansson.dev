@@ -1,8 +1,8 @@
-import type { Actions } from "@sveltejs/kit"
-import type { PageServerLoad } from "./$types"
+import type { Actions } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types'
 
-import { faker } from "@faker-js/faker"
-import range from "just-range"
+import { faker } from '@faker-js/faker'
+import range from 'just-range'
 
 const wordMethods = [
 	faker.word.adjective,
@@ -22,7 +22,7 @@ function randomWords(numberOfWords: number) {
 			const method = getWordMethod()
 			return method()
 		})
-		.join("-")
+		.join('-')
 }
 
 function getWordMethod() {
@@ -39,7 +39,7 @@ export const load: PageServerLoad = () => {
 export const actions: Actions = {
 	newWords: async ({ request }) => {
 		const data = await request.formData()
-		const numberOfWords = data.get("numberOfWords")?.toString() || "4"
+		const numberOfWords = data.get('numberOfWords')?.toString() || '4'
 
 		return {
 			success: true,
