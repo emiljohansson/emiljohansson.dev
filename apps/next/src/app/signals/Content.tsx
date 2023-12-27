@@ -1,7 +1,6 @@
 'use client'
 
-import { signal, computed } from '@preact/signals-core'
-import './initSignals'
+import { signal, computed } from './signals'
 
 const count = signal(0)
 const double = computed(() => count.value * 2)
