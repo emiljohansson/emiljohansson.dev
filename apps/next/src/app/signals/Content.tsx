@@ -1,6 +1,6 @@
 'use client'
 
-import { signal, computed } from '@/lib/signals'
+import { signal, computed } from 'lib/hooks/signals'
 
 const count = signal(0)
 const double = computed(() => count.value * 2)
