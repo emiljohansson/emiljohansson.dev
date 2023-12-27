@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from "./$types"
-	// import randomString from "@emiljohansson/random-string"
 
 	export let data: PageData
 
