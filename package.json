@@ -19,7 +19,7 @@
 		"cy:run": "cypress run --headless --browser chrome",
 		"cy:open": "cypress open",
 		"prettier:check": "prettier --check .",
-		"format": "prettier --write \"**/*.{ts,tsx,js,md,json,html,css}\"",
+		"format": "prettier --write \"**/*.{ts,tsx,js,md,json,html,css,svelte}\"",
 		"lint": "pnpm lint:eslint && pnpm lint:prettier",
 		"lint:eslint": "turbo run lint",
 		"lint:prettier": "pnpm prettier:check"
