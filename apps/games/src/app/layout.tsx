@@ -16,9 +16,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 	return (
 		<html lang="en">
 			<head></head>
-			<body className={inter.className}>
-				<main>{children}</main>
-			</body>
+			<body className={inter.className}>{children}</body>
 		</html>
 	)
 }
