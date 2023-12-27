@@ -17,7 +17,7 @@
 	.select {
 		@apply h-10
       px-4
-      rounded;
+      rounded-lg;
 	}
 
 	.btn-primary,
@@ -32,21 +32,25 @@
 	}
 
 	.btn-primary {
-		@apply bg-primary
-      border-primary
-      text-black
-      hover:bg-primary-dark;
+		@apply bg-black-rich
+      border-black-rich
+      text-white
+      hover:bg-gray-dark
+      hover:border-black-800
+			dark:bg-white
+			dark:text-black-rich
+			dark:hover:bg-gray-300;
 	}
 	.btn-secondary {
 		@apply bg-transparent
-      border-gray-600
-      hover:border-black-rich
-      text-gray-600
+			hover:bg-gray-light
+      border-slate-200
+      text-black-rich
       hover:text-black-rich
-      dark:text-gray-400
-      dark:border-gray-400
-      dark:hover:text-white
-      dark:hover:border-white;
+			dark:hover:bg-zinc-800
+      dark:text-white
+      dark:border-gray-600
+      dark:hover:text-white;
 	}
 	.btn-outline {
 		@apply dark:border-zinc-700 hover:bg-slate-100 hover:dark:bg-zinc-900;

@@ -9,15 +9,9 @@ import {
 	useContext,
 	useReducer,
 } from 'react'
+import { MuseoModerno } from 'next/font/google'
 import useInterval from 'lib/hooks/useInterval'
 import { Header, Select, SelectItem } from 'ui'
-import { MuseoModerno } from 'next/font/google'
-
-const myFont = MuseoModerno({
-	weight: '300',
-	subsets: ['latin'],
-	display: 'swap',
-})
 
 enum SelectedDifficulty {
 	loading = 'loading',
@@ -89,6 +83,12 @@ enum Colors {
 	uncheckedEven = 'aliceblue',
 	uncheckedOdd = 'antiquewhite',
 }
+
+const myFont = MuseoModerno({
+	weight: '300',
+	subsets: ['latin'],
+	display: 'swap',
+})
 
 const isDebugging = false
 
@@ -475,9 +475,7 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
 	}, delay)
 
 	return (
-		<div
-			className={`${myFont.className} font-light text-4xl relative select-none`}
-		>
+		<div className={`font-light text-4xl relative select-none`}>
 			{board.map((rows, i) => (
 				<FlexRow key={`row-${i}`} radius={context.radius}>
 					{rows.map(([tile, setTile], j) => (
@@ -569,8 +567,10 @@ export default function MineSweaper() {
 
 	return (
 		<>
-			<Header />
-			<div className="flex mb-3">
+			<header>
+				<Header />
+			</header>
+			<nav className="flex mb-3">
 				<div className="mx-1.5">
 					<Select
 						defaultValue={easy.value}
@@ -602,14 +602,16 @@ export default function MineSweaper() {
 						Restart
 					</button>
 				</div>
-			</div>
-			{selectedDifficulty.type === SelectedDifficulty.loading ? (
-				<></>
-			) : (
-				<BoardContext.Provider value={selectedDifficulty.board}>
-					<Board difficulty={selectedDifficulty.level} />
-				</BoardContext.Provider>
-			)}
+			</nav>
+			<main className={myFont.className}>
+				{selectedDifficulty.type === SelectedDifficulty.loading ? (
+					<></>
+				) : (
+					<BoardContext.Provider value={selectedDifficulty.board}>
+						<Board difficulty={selectedDifficulty.level} />
+					</BoardContext.Provider>
+				)}
+			</main>
 		</>
 	)
 }

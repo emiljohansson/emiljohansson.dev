@@ -11,7 +11,7 @@ import Image from 'next/image'
 import { sql } from '@vercel/postgres'
 import { Analytics } from '@vercel/analytics/react'
 import { CommandMenu } from './CommandMenu'
-import { ThemeToggle } from './ThemeToggle'
+// import { ThemeToggle } from './ThemeToggle'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
 import { Inter } from 'next/font/google'
 
@@ -114,7 +114,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 							initProject={currentProject}
 						/>
 					</div>
-					<ThemeToggle initValue={theme?.value} />
+					{/* <ThemeToggle initValue={theme?.value} /> */}
 				</nav>
 				<main className="flex-1 relative">{children}</main>
 				<CommandMenu projects={projects} />
