@@ -27,8 +27,8 @@ const Trigger = ({ value, children }: PropsWithChildren<{ value: string }>) => (
       leading-none
       select-none
       cursor-default
-      rounded
-      state-active:bg-primary
+      state-active:border-b-2
+      state-active:border-black-rich
     "
 	>
 		{children}
