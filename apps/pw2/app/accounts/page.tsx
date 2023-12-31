@@ -1,7 +1,9 @@
+import type { Account } from './types'
+
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
-import { AccountRow } from './AccountRow'
+import { Accounts } from './Accounts'
 
 export default async function AccountsPage() {
 	const cookieStore = cookies()
@@ -17,15 +19,8 @@ export default async function AccountsPage() {
 		.from('account')
 		.select('*')
 		.eq('userId', user.id)
+		.returns<Account[]>()
 	console.log({ user, accounts })
 
-	return (
-		<div className="flex-1 flex flex-col w-full p-8 gap-2">
-			{accounts?.map((account, index) => (
-				<div key={index} className="flex gap-4">
-					<AccountRow account={account} secret="test" />
-				</div>
-			))}
-		</div>
-	)
+	return <Accounts accounts={accounts || []} />
 }

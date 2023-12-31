@@ -1,15 +1,8 @@
 'use client'
 
+import type { Account } from './types'
 import { useState } from 'react'
 import { EyeOpenIcon, CopyIcon } from '@radix-ui/react-icons'
-
-export interface Account {
-	id: string
-	userId: string
-	website: string
-	username: string
-	password: string
-}
 
 const hiddenText = '••••••••••••••••••'
 

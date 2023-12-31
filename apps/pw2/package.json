@@ -13,6 +13,7 @@
 		"autoprefixer": "10.4.15",
 		"crypto-js": "4.2.0",
 		"geist": "^1.0.0",
+		"lib": "workspace:*",
 		"next": "latest",
 		"postcss": "8.4.29",
 		"react": "18.2.0",
