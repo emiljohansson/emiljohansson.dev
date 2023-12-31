@@ -23,8 +23,8 @@
 	"devDependencies": {
 		"@types/crypto-js": "4.2.1",
 		"@types/node": "20.3.1",
-		"@types/react": "18.2.8",
-		"@types/react-dom": "18.2.5",
+		"@types/react": "18.2.46",
+		"@types/react-dom": "18.2.18",
 		"encoding": "^0.1.13"
 	}
 }
