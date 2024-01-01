@@ -1,23 +1,25 @@
 'use client'
 
 import type { Account } from './types'
-import { useSignal } from 'lib/hooks/signals'
 import { AccountRow } from './AccountRow'
 import { useState } from 'react'
+import { useStore } from '../store'
 
 export function Accounts({ accounts }: { accounts: Account[] }) {
-	const secret = useSignal('')
+	const { secret, setSecret } = useStore()
 	const [filter, setFilter] = useState('')
 
 	return (
 		<>
+			Secret: {secret}
 			<div className="flex w-full">
 				<input
 					type="text"
 					placeholder="Secret"
 					className="w-full p-4"
+					value={secret}
 					onChange={({ target }) => {
-						secret.value = target.value
+						setSecret(target.value)
 					}}
 				/>
 				<input
@@ -34,7 +36,7 @@ export function Accounts({ accounts }: { accounts: Account[] }) {
 					.filter((account) => account.website.includes(filter))
 					.map((account, index) => (
 						<div key={index} className="flex gap-4">
-							<AccountRow account={account} secret="test" />
+							<AccountRow account={account} />
 						</div>
 					))}
 			</div>

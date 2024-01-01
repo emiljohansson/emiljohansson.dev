@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useStore } from '../store'
 
 const numbers = '0123456789'
 const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -61,10 +62,11 @@ const createPassword = () =>
 
 export function AddAccount() {
 	const [actual, setActual] = useState(createPassword())
-	const [secret, setSecret] = useState('')
+	const { secret, setSecret } = useStore()
 
 	return (
 		<>
+			Secret: {secret}
 			<input type="text" name="website" placeholder="Website" className="p-4" />
 			<input
 				type="text"

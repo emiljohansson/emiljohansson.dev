@@ -6,7 +6,7 @@ import ConnectSupabaseSteps from '@/components/ConnectSupabaseSteps'
 import SignUpUserSteps from '@/components/SignUpUserSteps'
 import Header from '@/components/Header'
 
-export default async function Index() {
+export default async function HomePage() {
 	const cookieStore = cookies()
 
 	const canInitSupabaseClient = () => {

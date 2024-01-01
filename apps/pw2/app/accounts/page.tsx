@@ -22,5 +22,14 @@ export default async function AccountsPage() {
 		.returns<Account[]>()
 	console.log({ user, accounts })
 
-	return <Accounts accounts={accounts || []} />
+	return (
+		<>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/add">Add account</a>
+			</nav>
+			<h1 className="heading1">Accounts</h1>
+			<Accounts accounts={accounts || []} />
+		</>
+	)
 }

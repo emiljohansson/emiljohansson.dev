@@ -3,16 +3,11 @@
 import type { Account } from './types'
 import { useState } from 'react'
 import { EyeOpenIcon, CopyIcon } from '@radix-ui/react-icons'
+import { secret } from '../store'
 
 const hiddenText = '••••••••••••••••••'
 
-export function AccountRow({
-	account,
-	secret,
-}: {
-	account: Account
-	secret: string
-}) {
+export function AccountRow({ account }: { account: Account }) {
 	const [plaintext, setPlaintext] = useState('')
 
 	function once(fn: () => void) {
@@ -26,7 +21,12 @@ export function AccountRow({
 	}
 
 	async function fetchPlaintext() {
-		const { data } = await fetch('/accounts/api/plaintext', {
+		console.log({
+			secret,
+			password: account.password,
+		})
+
+		const { data, test } = await fetch('/api/plaintext', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -36,6 +36,8 @@ export function AccountRow({
 				password: account.password,
 			}),
 		}).then((res) => res.json())
+		console.log({ data, test })
+
 		setPlaintext(data)
 	}
 
@@ -45,12 +47,12 @@ export function AccountRow({
 
 	return (
 		<>
-			<div className="w-8">{account.id}</div>
-			<div className="w-2/12">{account.website}</div>
-			<div className="w-2/12">{account.username}</div>
+			<div className="min-w-8 w-8">{account.id}</div>
+			<div className="min-w-10 w-10">{account.website}</div>
+			<div className="min-w-10 w-10">{account.username}</div>
 			<div className="flex gap-2">
 				{!plaintext ? (
-					<button onClick={once(fetchPlaintext)}>
+					<button onClick={fetchPlaintext}>
 						<EyeOpenIcon />
 					</button>
 				) : (

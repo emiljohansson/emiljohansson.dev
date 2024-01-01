@@ -44,6 +44,10 @@ async function savePassword(formData: FormData) {
 export default function AddPage() {
 	return (
 		<>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/accounts">Accounts</a>
+			</nav>
 			<h1 className="heading1">Add account</h1>
 			<form action={savePassword} method="post">
 				<AddAccount />
