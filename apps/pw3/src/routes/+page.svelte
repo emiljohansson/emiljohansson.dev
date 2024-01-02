@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { keyword } from '$lib/store'
-	import AccountRow from './AccountRow.svelte'
+	import type { PageData } from './$types'
 	import { enhance } from '$app/forms'
+	import { keyCode } from '$lib/store'
+	import AccountRow from './AccountRow.svelte'
+	import UpdateIcon from '$lib/icons/UpdateIcon.svelte'
 
-	export let data
+	export let data: PageData
 
 	const numbers = '0123456789'
 	const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -38,9 +40,9 @@
 	{/if}
 </div>
 <h1>Accounts</h1>
-<div>Set: <input bind:value={$keyword} /></div>
+<div>Set: <input bind:value={$keyCode} /></div>
 <form action="?/add-account" method="post" use:enhance>
-	<input type="hidden" name="secret" bind:value={$keyword} />
+	<input type="hidden" name="key" bind:value={$keyCode} />
 	<input type="text" name="website" placeholder="website" required />
 	<input type="text" name="username" placeholder="username" />
 	<input
@@ -50,7 +52,11 @@
 		required
 		bind:value={newPassword}
 	/>
-	<button>Save</button>
+	<button type="button" on:click={() => (newPassword = createPassword())}>
+		<UpdateIcon />
+		<span class="sr-only">Re-generate</span>
+	</button>
+	<button>Add</button>
 </form>
 <ul>
 	{#each data.accounts as account}

@@ -1,7 +1,8 @@
+import type { PageServerLoad } from '../$types'
 import { createClient } from '$lib/supabaseClient'
 import { redirect, type Actions } from '@sveltejs/kit'
 
-export async function load({ cookies }) {
+export const load: PageServerLoad = async ({ cookies }) => {
 	const supabase = createClient(cookies)
 	const {
 		data: { user },

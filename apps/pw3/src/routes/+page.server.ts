@@ -1,22 +1,29 @@
-import type { Actions } from '@sveltejs/kit'
+import { redirect, type Actions } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types'
 import pkg from 'crypto-js'
 import { ENCRYPT_SECRET } from '$env/static/private'
 import { createClient } from '$lib/supabaseClient'
+import type { Account } from '$lib/types'
 
 const { AES, enc } = pkg
 
-export async function load({ cookies }) {
+export const load: PageServerLoad = async ({ cookies }) => {
 	const supabase = createClient(cookies)
 	const {
 		data: { user },
 	} = await supabase.auth.getUser()
+
+	if (!user) {
+		throw redirect(302, '/login')
+	}
+
 	const { data } = await supabase
 		.from('account')
 		.select('*')
 		.eq('user_id', user?.id)
 	return {
 		user,
-		accounts: data ?? [],
+		accounts: (data ?? []) as Account[],
 	}
 }
 
@@ -27,9 +34,9 @@ export const actions: Actions = {
 	},
 	plaintext: async ({ request, cookies }) => {
 		const formData = await request.formData()
-		const secret = formData.get('secret') as string
+		const key = formData.get('key') as string
 		const password = formData.get('password') as string
-		console.log({ secret, password })
+		console.log({ secret: key, password })
 
 		const supabase = createClient(cookies)
 		const {
@@ -38,7 +45,7 @@ export const actions: Actions = {
 
 		const step3 = AES.decrypt(password, ENCRYPT_SECRET).toString(enc.Utf8)
 		const step2 = AES.decrypt(step3, user?.id || '').toString(enc.Utf8)
-		const step1 = AES.decrypt(step2, secret).toString(enc.Utf8)
+		const step1 = AES.decrypt(step2, key).toString(enc.Utf8)
 
 		return step1
 	},
@@ -47,8 +54,8 @@ export const actions: Actions = {
 		const website = formData.get('website') as string
 		const username = formData.get('username') as string
 		const password = formData.get('password') as string
-		const secret = formData.get('secret') as string
-		console.log({ website, username, password, secret })
+		const key = formData.get('key') as string
+		console.log({ website, username, password, secret: key })
 
 		const supabase = createClient(cookies)
 		const {
@@ -61,7 +68,7 @@ export const actions: Actions = {
 			.single()
 		const keyId = keysData?.id
 
-		if (secret !== keyId) {
+		if (key !== keyId) {
 			return {
 				status: 400,
 				body: {
@@ -70,7 +77,7 @@ export const actions: Actions = {
 			}
 		}
 
-		const step1 = AES.encrypt(password, secret).toString()
+		const step1 = AES.encrypt(password, key).toString()
 		const step2 = AES.encrypt(step1, user?.id || '').toString()
 		const step3 = AES.encrypt(step2, ENCRYPT_SECRET).toString()
 
