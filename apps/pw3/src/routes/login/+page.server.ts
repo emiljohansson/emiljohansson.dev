@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	} = await supabase.auth.getUser()
 
 	if (user) {
-		throw redirect(302, '/')
+		// throw redirect(302, '/')
 	}
 
 	return {}
