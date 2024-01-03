@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	} = await supabase.auth.getUser()
 
 	if (user) {
-		redirect(302, '/')
+		redirect(302, '/set-key')
 	}
 }
 
@@ -40,6 +40,6 @@ export const actions: Actions = {
 				error: error.message,
 			})
 		}
-		redirect(302, '/')
+		redirect(302, '/set-key')
 	},
 }

@@ -1,11 +1,19 @@
-import { redirect, type Actions, fail } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
+import type { Account } from '$lib/types'
+import { redirect, type Actions, fail, type Cookies } from '@sveltejs/kit'
 import pkg from 'crypto-js'
 import { ENCRYPT_SECRET } from '$env/static/private'
 import { createClient } from '$lib/supabaseClient'
-import type { Account } from '$lib/types'
 
 const { AES, enc } = pkg
+
+function getKey(cookies: Cookies) {
+	const key = cookies.get('key')
+	if (!key) {
+		return null
+	}
+	return AES.decrypt(key, ENCRYPT_SECRET).toString(enc.Utf8)
+}
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const supabase = createClient(cookies)
@@ -21,8 +29,10 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		.from('account')
 		.select('*')
 		.eq('user_id', user?.id)
+	const key = getKey(cookies)
 	return {
 		user,
+		key,
 		accounts: (data ?? []) as Account[],
 	}
 }
@@ -34,7 +44,7 @@ export const actions = {
 	},
 	plaintext: async ({ request, cookies }) => {
 		const formData = await request.formData()
-		const key = formData.get('key') as string
+		const key = getKey(cookies)
 		const password = formData.get('password') as string
 		console.log({ secret: key, password })
 
@@ -42,6 +52,10 @@ export const actions = {
 		const {
 			data: { user },
 		} = await supabase.auth.getUser()
+
+		if (!key || !user) {
+			return fail(400)
+		}
 
 		const step3 = AES.decrypt(password, ENCRYPT_SECRET).toString(enc.Utf8)
 		const step2 = AES.decrypt(step3, user?.id || '').toString(enc.Utf8)
@@ -58,7 +72,7 @@ export const actions = {
 		const website = formData.get('website') as string
 		const username = formData.get('username') as string
 		const password = formData.get('password') as string
-		const key = formData.get('key') as string
+		const key = getKey(cookies)
 		console.log({ website, username, password, secret: key })
 
 		const supabase = createClient(cookies)
@@ -72,11 +86,8 @@ export const actions = {
 			.single()
 		const keyId = keysData?.id
 
-		if (key !== keyId) {
-			return fail(400, {
-				success: false,
-				error: 'Key does not match',
-			})
+		if (!key || key !== keyId) {
+			return fail(400)
 		}
 
 		const step1 = AES.encrypt(password, key).toString()
@@ -91,9 +102,6 @@ export const actions = {
 				user_id: user?.id,
 			},
 		])
-		return {
-			success: true,
-			data,
-		}
+		return data
 	},
 } satisfies Actions

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Account } from '$lib/types'
 	import { enhance } from '$app/forms'
-	import { keyCode } from '$lib/store'
 	import { EyeIcon, EyeOffIcon, LoaderIcon } from 'svelte-feather-icons'
 	import CopyButton from './CopyButton.svelte'
 
@@ -46,7 +45,6 @@
 			class="flex gap-2"
 			use:enhance={onPlaintextSubmit}
 		>
-			<input type="hidden" name="key" bind:value={$keyCode} />
 			<input type="hidden" name="password" bind:value={account.password} />
 		</form>
 	</td>

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types'
 	import { enhance } from '$app/forms'
-	import { keyCode } from '$lib/store'
 	import AccountRow from './AccountRow.svelte'
 	import { RefreshCwIcon } from 'svelte-feather-icons'
 
@@ -42,7 +41,7 @@
 		{/if}
 	</div>
 </div>
-<input bind:value={$keyCode} class="input w-full" />
+
 <form
 	action="?/add-account"
 	method="post"
@@ -57,7 +56,6 @@
 		bg-base-300
 	"
 >
-	<input type="hidden" name="key" bind:value={$keyCode} />
 	<input
 		class="input w-full"
 		type="text"
