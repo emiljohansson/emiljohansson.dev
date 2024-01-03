@@ -33,11 +33,10 @@
 	<div class="flex items-center gap-2 ml-auto">
 		{#if data.user}
 			<span>{data.user.email}</span>
+			<a class="btn btn-ghost" href="/set-key">Key</a>
 			<form action="?/logout" method="post" use:enhance>
-				<button class="btn">Logout</button>
+				<button class="btn btn-link">Logout</button>
 			</form>
-		{:else}
-			<a href="/login">Login</a>
 		{/if}
 	</div>
 </div>

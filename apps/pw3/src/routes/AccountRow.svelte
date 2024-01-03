@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Account } from '$lib/types'
 	import { enhance } from '$app/forms'
-	import { EyeIcon, EyeOffIcon, LoaderIcon } from 'svelte-feather-icons'
+	import { EyeIcon, EyeOffIcon } from 'svelte-feather-icons'
 	import CopyButton from './CopyButton.svelte'
 
 	export let account: Account
@@ -61,7 +61,7 @@
 			</button>
 		{:else if state === 'loading'}
 			<button class="btn btn-ghost btn-xs btn-square">
-				<LoaderIcon size="15" class="animate-spin" />
+				<span class="loading loading-spinner loading-xs"></span>
 				<span class="sr-only">Loading</span>
 			</button>
 		{:else}

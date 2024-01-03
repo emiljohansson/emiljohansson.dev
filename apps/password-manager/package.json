@@ -23,7 +23,7 @@
 		"ui": "workspace:*"
 	},
 	"devDependencies": {
-		"@types/crypto-js": "4.1.1",
+		"@types/crypto-js": "4.2.1",
 		"config": "workspace:*",
 		"tsconfig": "workspace:*"
 	}
