@@ -75,6 +75,7 @@ module.exports = {
 			},
 			fontFamily: {
 				sans: [...defaultTheme.fontFamily.sans],
+				body: ['Inter', ...defaultTheme.fontFamily.body],
 			},
 			fontSize: {
 				'3/6': '50%',

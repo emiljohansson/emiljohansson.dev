@@ -29,39 +29,82 @@
 	let newPassword = createPassword()
 </script>
 
-<div class="flex">
-	{#if data.user}
-		{data.user.email}
-		<form action="?/logout" method="post" use:enhance>
-			<button>Logout</button>
-		</form>
-	{:else}
-		<a href="/login">Login</a>
-	{/if}
+<div class="flex items-center mb-6">
+	<h1 class="mb-0">Accounts</h1>
+	<div class="flex items-center gap-2 ml-auto">
+		{#if data.user}
+			<span>{data.user.email}</span>
+			<form action="?/logout" method="post" use:enhance>
+				<button class="btn">Logout</button>
+			</form>
+		{:else}
+			<a href="/login">Login</a>
+		{/if}
+	</div>
 </div>
-<h1>Accounts</h1>
-<div>Set: <input bind:value={$keyCode} /></div>
-<form action="?/add-account" method="post" use:enhance>
+<input bind:value={$keyCode} class="input w-full" />
+<form
+	action="?/add-account"
+	method="post"
+	use:enhance
+	class="
+		w-full
+		flex gap-2
+		fixed bottom-0 left-0
+		px-6
+		py-4
+		z-10
+		bg-base-300
+	"
+>
 	<input type="hidden" name="key" bind:value={$keyCode} />
-	<input type="text" name="website" placeholder="website" required />
-	<input type="text" name="username" placeholder="username" />
 	<input
+		class="input input w-full"
 		type="text"
-		name="password"
-		placeholder="password"
+		name="website"
+		placeholder="website"
 		required
-		bind:value={newPassword}
 	/>
-	<button type="button" on:click={() => (newPassword = createPassword())}>
-		<UpdateIcon />
-		<span class="sr-only">Re-generate</span>
-	</button>
-	<button>Add</button>
+	<input
+		class="input input w-full"
+		type="text"
+		name="username"
+		placeholder="username"
+	/>
+	<div class="relative w-full">
+		<input
+			class="input input w-full pr-11"
+			type="text"
+			name="password"
+			placeholder="password"
+			required
+			bind:value={newPassword}
+		/>
+		<button
+			class="btn absolute top-0 right-0 h-full"
+			type="button"
+			on:click={() => (newPassword = createPassword())}
+		>
+			<UpdateIcon />
+			<span class="sr-only">Re-generate</span>
+		</button>
+	</div>
+	<button class="btn btn-primary">Add</button>
 </form>
-<ul>
-	{#each data.accounts as account}
-		<li>
+
+<table class="table table-zebra">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Website</th>
+			<th>Username</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#each data.accounts as account}
 			<AccountRow {account} />
-		</li>
-	{/each}
-</ul>
+		{/each}
+	</tbody>
+</table>
+
+<div class="h-20" />

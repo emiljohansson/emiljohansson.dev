@@ -36,6 +36,7 @@
 	"dependencies": {
 		"@supabase/ssr": "^0.0.10",
 		"@supabase/supabase-js": "^2.39.1",
-		"crypto-js": "4.2.0"
+		"crypto-js": "4.2.0",
+		"daisyui": "4.4.24"
 	}
 }
