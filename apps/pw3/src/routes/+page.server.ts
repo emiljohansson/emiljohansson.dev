@@ -1,4 +1,4 @@
-import { redirect, type Actions } from '@sveltejs/kit'
+import { redirect, type Actions, fail } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import pkg from 'crypto-js'
 import { ENCRYPT_SECRET } from '$env/static/private'
@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	} = await supabase.auth.getUser()
 
 	if (!user) {
-		throw redirect(302, '/login')
+		redirect(302, '/login')
 	}
 
 	const { data } = await supabase
@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	}
 }
 
-export const actions: Actions = {
+export const actions = {
 	logout: async ({ cookies }) => {
 		const supabase = createClient(cookies)
 		await supabase.auth.signOut()
@@ -46,6 +46,10 @@ export const actions: Actions = {
 		const step3 = AES.decrypt(password, ENCRYPT_SECRET).toString(enc.Utf8)
 		const step2 = AES.decrypt(step3, user?.id || '').toString(enc.Utf8)
 		const step1 = AES.decrypt(step2, key).toString(enc.Utf8)
+
+		if (!step1) {
+			return fail(400)
+		}
 
 		return step1
 	},
@@ -69,12 +73,10 @@ export const actions: Actions = {
 		const keyId = keysData?.id
 
 		if (key !== keyId) {
-			return {
-				status: 400,
-				body: {
-					error: 'Secret does not match',
-				},
-			}
+			return fail(400, {
+				success: false,
+				error: 'Key does not match',
+			})
 		}
 
 		const step1 = AES.encrypt(password, key).toString()
@@ -89,6 +91,9 @@ export const actions: Actions = {
 				user_id: user?.id,
 			},
 		])
-		return data
+		return {
+			success: true,
+			data,
+		}
 	},
-}
+} satisfies Actions

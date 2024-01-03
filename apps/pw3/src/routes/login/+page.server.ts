@@ -1,6 +1,6 @@
 import type { PageServerLoad } from '../$types'
 import { createClient } from '$lib/supabaseClient'
-import { redirect, type Actions } from '@sveltejs/kit'
+import { redirect, type Actions, fail } from '@sveltejs/kit'
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const supabase = createClient(cookies)
@@ -9,10 +9,8 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	} = await supabase.auth.getUser()
 
 	if (user) {
-		// throw redirect(302, '/')
+		redirect(302, '/')
 	}
-
-	return {}
 }
 
 export const actions: Actions = {
@@ -38,13 +36,10 @@ export const actions: Actions = {
 		})
 		console.log({ error, data })
 		if (error) {
-			return {
-				status: 400,
-				body: {
-					error: error.message,
-				},
-			}
+			return fail(400, {
+				error: error.message,
+			})
 		}
-		throw redirect(302, '/')
+		redirect(302, '/')
 	},
 }

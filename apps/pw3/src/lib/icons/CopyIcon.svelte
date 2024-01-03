@@ -12,4 +12,3 @@
 		clip-rule="evenodd"
 	/>
 </svg>
-<span class="sr-only">Copy</span>

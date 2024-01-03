@@ -1,26 +1,37 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
-	import CopyIcon from '$lib/icons/CopyIcon.svelte'
-	import EyeOpenIcon from '$lib/icons/EyeOpenIcon.svelte'
-	import { keyCode } from '$lib/store'
 	import type { Account } from '$lib/types'
+	import { enhance } from '$app/forms'
+	import { keyCode } from '$lib/store'
+	import { EyeIcon, EyeOffIcon, LoaderIcon } from 'svelte-feather-icons'
+	import CopyButton from './CopyButton.svelte'
 
 	export let account: Account
 
+	const revealStates = ['idle', 'loading', 'revealed'] as const
+	type RevealState = (typeof revealStates)[number]
+
 	const hiddenText = '•••••••••••••••••••'
 	let plaintext = ''
-	let form: HTMLFormElement
+	let formEl: HTMLFormElement
+	let state: RevealState = 'idle'
+	let showPlaintext = false
 
-	function copyText() {
-		navigator.clipboard.writeText(plaintext)
-	}
+	const onPlaintextSubmit = () => {
+		console.log('1')
+		state = 'loading'
 
-	const onPlaintextSubmit =
-		() =>
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		async ({ result }: { result: any }) => {
+		return async ({ result }: { result: any }) => {
+			console.log('2', result)
+			if (result.type === 'failure') {
+				state = 'idle'
+				return
+			}
+			state = 'revealed'
 			plaintext = result.data as string
+			showPlaintext = true
 		}
+	}
 </script>
 
 <tr>
@@ -29,7 +40,7 @@
 	<td class="min-w-10 w-10">{account.username}</td>
 	<td>
 		<form
-			bind:this={form}
+			bind:this={formEl}
 			action="?/plaintext"
 			method="post"
 			class="flex gap-2"
@@ -40,29 +51,54 @@
 		</form>
 	</td>
 	<td class="flex gap-2 w-full">
-		<button
-			class="btn btn-ghost btn-xs"
-			on:click={() => {
-				form.dispatchEvent(new Event('submit'))
-			}}
-		>
-			<EyeOpenIcon />
-		</button>
+		{#if state === 'idle'}
+			<button
+				class="btn btn-ghost btn-xs btn-square"
+				on:click={() => {
+					formEl.dispatchEvent(new Event('submit'))
+				}}
+			>
+				<EyeIcon size="15" />
+				<span class="sr-only">Reveal</span>
+			</button>
+		{:else if state === 'loading'}
+			<button class="btn btn-ghost btn-xs btn-square">
+				<LoaderIcon size="15" class="animate-spin" />
+				<span class="sr-only">Loading</span>
+			</button>
+		{:else}
+			<button
+				class="btn btn-ghost btn-xs btn-square"
+				on:click={() => {
+					showPlaintext = !showPlaintext
+				}}
+			>
+				{#if showPlaintext}
+					<EyeOffIcon size="15" /> <span class="sr-only">Hide</span>
+				{:else}
+					<EyeIcon size="15" /> <span class="sr-only">Reveal</span>
+				{/if}
+			</button>
+		{/if}
 		<tt class="w-full">
-			{#if plaintext}
+			{#if plaintext && showPlaintext}
 				<div class="w-full relative">
 					<input
-						class="input input-xs w-full"
+						class="input input-xs input-ghost w-full"
 						type="text"
 						readonly
 						bind:value={plaintext}
 					/>
-					<button class="btn btn-xs absolute right-0 top-0" on:click={copyText}>
-						<CopyIcon /> Copy
-					</button>
+					<CopyButton text={plaintext} />
 				</div>
 			{:else}
-				{hiddenText}
+				<input
+					class="input input-xs input-ghost w-full"
+					tabindex="-1"
+					type="text"
+					readonly
+					value={hiddenText}
+				/>
 			{/if}
 		</tt>
 	</td>

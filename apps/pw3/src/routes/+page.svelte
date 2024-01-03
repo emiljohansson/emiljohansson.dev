@@ -3,7 +3,7 @@
 	import { enhance } from '$app/forms'
 	import { keyCode } from '$lib/store'
 	import AccountRow from './AccountRow.svelte'
-	import UpdateIcon from '$lib/icons/UpdateIcon.svelte'
+	import { RefreshCwIcon } from 'svelte-feather-icons'
 
 	export let data: PageData
 
@@ -59,21 +59,21 @@
 >
 	<input type="hidden" name="key" bind:value={$keyCode} />
 	<input
-		class="input input w-full"
+		class="input w-full"
 		type="text"
 		name="website"
 		placeholder="website"
 		required
 	/>
 	<input
-		class="input input w-full"
+		class="input w-full"
 		type="text"
 		name="username"
 		placeholder="username"
 	/>
 	<div class="relative w-full">
 		<input
-			class="input input w-full pr-11"
+			class="input w-full pr-11"
 			type="text"
 			name="password"
 			placeholder="password"
@@ -85,7 +85,7 @@
 			type="button"
 			on:click={() => (newPassword = createPassword())}
 		>
-			<UpdateIcon />
+			<RefreshCwIcon size="15" />
 			<span class="sr-only">Re-generate</span>
 		</button>
 	</div>
