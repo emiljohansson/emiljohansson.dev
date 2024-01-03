@@ -14,13 +14,10 @@
 			state = 'idle'
 		}, 5000)
 	}
-
-	function init(el: HTMLInputElement) {
-		el.focus()
-	}
 </script>
 
-<button class="btn btn-xs absolute right-0 top-0" on:click={copyText} use:init>
+<!-- svelte-ignore a11y-autofocus -->
+<button class="btn btn-xs absolute right-0 top-0" on:click={copyText} autofocus>
 	{#if state === 'copied'}
 		<CheckIcon size="15" class="text-success" /> Copied
 	{:else}
