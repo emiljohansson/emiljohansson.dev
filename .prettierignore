@@ -24,4 +24,4 @@ apps/next/tsconfig.json
 
 *.timestamp-*.mjs
 
-apps/pw3/src/app.html
+apps/vault/src/app.html
