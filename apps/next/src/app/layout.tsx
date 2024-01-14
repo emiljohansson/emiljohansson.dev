@@ -89,8 +89,15 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 				/> */}
 			</head>
 			<body
-				className={`${inter.className} bg-slate-50 dark:bg-gray-900 dark:text-white flex flex-col h-full`}
+				className={`
+					${inter.className} 
+					bg-[length:15px_15px] bg-dots
+					bg-slate-50 dark:bg-gray-900 
+					dark:text-white 
+					flex flex-col h-full`}
 			>
+				{/* background-image: conic-gradient(at 92% 8%, rgb(134, 143, 151) 90deg, transparent 0deg, transparent 225deg, transparent 0deg);
+				background-size: 15px 15px; */}
 				<nav
 					className="
 						flex justify-between items-center

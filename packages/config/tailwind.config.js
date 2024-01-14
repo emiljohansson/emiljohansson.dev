@@ -31,6 +31,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			backgroundImage: {
+				dots: 'conic-gradient(at 92% 8%, rgb(200, 200, 200) 90deg, transparent 0deg, transparent 225deg, transparent 0deg)',
+			},
 			boxShadow: {
 				'thin-border': '0 0 0 .5px var(--tw-shadow-color)',
 			},
