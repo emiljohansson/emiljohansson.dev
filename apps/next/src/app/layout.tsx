@@ -5,7 +5,7 @@ import type { Project } from './types'
 import './styles.css'
 import 'ui/globals.css'
 
-import { cookies, headers } from 'next/headers'
+import { headers } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
 import { sql } from '@vercel/postgres'
@@ -63,11 +63,12 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 	const pathname = headersList.get('x-url-pathname') || ''
 	const { rows: projects } = await sql<Project>`select * from projects`
 	const currentProject = projects.find((project) => project.href === pathname)
-	const cookieStore = cookies()
-	const theme = cookieStore.get('theme')
+	// const cookieStore = cookies()
+	// const theme = cookieStore.get('theme')
+	// ${theme?.value}
 
 	return (
-		<html lang="en" className={`h-full ${theme?.value}`}>
+		<html lang="en" className={`h-full`}>
 			<head>
 				{/* <link
 					rel="apple-touch-icon"
