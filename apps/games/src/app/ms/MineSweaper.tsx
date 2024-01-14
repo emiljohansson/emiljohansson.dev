@@ -349,37 +349,36 @@ const Tile = ({
 	isFlagged,
 }: TileProps) => {
 	const context = useContext(BoardContext)
+	const displayValue = isActivated ? display : ''
 
 	return (
-		<>
-			<button
-				data-testid={`tile-${id}`}
-				data-debug-value={isDebugging ? value : ''}
-				className="
+		<button
+			data-testid={`tile-${id}`}
+			data-debug-value={isDebugging ? value : ''}
+			className="
 					leading-none text-center focus:outline-none 
 					border-[3px] border-opacity-10 border-black
 					focus:border-opacity-40
 				"
-				onContextMenu={(event) => {
-					event.preventDefault()
-					onRightClick()
-				}}
-				onClick={onLeftClick}
-				style={{
-					fontSize: `${context.fontSize}rem`,
-					height: `${context.radius}px`,
-					width: `${context.radius}px`,
-					backgroundColor: getTileBackgroundColor({
-						isFlagged,
-						isDead,
-						isActivated,
-						isEven,
-					}),
-				}}
-			>
-				{isActivated ? display : ''}
-			</button>
-		</>
+			onContextMenu={(event) => {
+				event.preventDefault()
+				onRightClick()
+			}}
+			onClick={onLeftClick}
+			style={{
+				fontSize: `${context.fontSize}rem`,
+				height: `${context.radius}px`,
+				width: `${context.radius}px`,
+				backgroundColor: getTileBackgroundColor({
+					isFlagged,
+					isDead,
+					isActivated,
+					isEven,
+				}),
+			}}
+		>
+			{displayValue}
+		</button>
 	)
 }
 
