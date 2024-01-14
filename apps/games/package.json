@@ -16,7 +16,7 @@
 		"lib": "workspace:*",
 		"million": "2.6.4",
 		"nanostores": "0.9.5",
-		"next": "14.0.3",
+		"next": "14.0.4",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-icons": "4.7.1",
