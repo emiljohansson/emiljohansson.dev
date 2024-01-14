@@ -131,6 +131,9 @@ importers:
       '@faker-js/faker':
         specifier: 7.4.0
         version: 7.4.0
+      '@nanostores/react':
+        specifier: 0.7.1
+        version: 0.7.1(nanostores@0.9.5)(react@18.2.0)
       framer-motion:
         specifier: 6.2.3
         version: 6.2.3(react-dom@18.2.0)(react@18.2.0)
@@ -143,6 +146,9 @@ importers:
       million:
         specifier: 2.6.4
         version: 2.6.4
+      nanostores:
+        specifier: 0.9.5
+        version: 0.9.5
       next:
         specifier: 14.0.3
         version: 14.0.3(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
@@ -213,9 +219,6 @@ importers:
       lib:
         specifier: workspace:*
         version: link:../../packages/lib
-      nanostores:
-        specifier: 0.9.5
-        version: 0.9.5
       next:
         specifier: 14.0.3
         version: 14.0.3(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
@@ -1503,6 +1506,17 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  /@nanostores/react@0.7.1(nanostores@0.9.5)(react@18.2.0):
+    resolution: {integrity: sha512-EXQg9N4MdI4eJQz/AZLIx3hxQ6BuBmV4Q55bCd5YCSgEOAW7tGTsIZxpRXxvxLXzflNvHTBvfrDNY38TlSVBkQ==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0
+      react: '>=18.0.0'
+    dependencies:
+      nanostores: 0.9.5
+      react: 18.2.0
+    dev: false
 
   /@neondatabase/serverless@0.6.0:
     resolution: {integrity: sha512-qXxBRYN0m2v8kVQBfMxbzNGn2xFAhTXFibzQlE++NfJ56Shz3m7+MyBBtXDlEH+3Wfa6lToDXf1MElocY4sJ3w==}

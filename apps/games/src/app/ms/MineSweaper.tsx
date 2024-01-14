@@ -2,16 +2,12 @@
 
 import type { FunctionComponent, ReactNode } from 'react'
 
-import {
-	useState,
-	useEffect,
-	createContext,
-	useContext,
-	useReducer,
-} from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import { MuseoModerno } from 'next/font/google'
 import useInterval from 'lib/hooks/useInterval'
 import { Header, Select, SelectItem } from 'ui'
+import { atom } from 'nanostores'
+import { useStore } from '@nanostores/react'
 
 enum SelectedDifficulty {
 	loading = 'loading',
@@ -107,7 +103,7 @@ const boardStyles = {
 	} as BoardStyle,
 }
 
-const BoardContext = createContext(boardStyles.easy)
+const $boardStyles = atom(boardStyles.easy)
 
 const easy = {
 	value: SelectedDifficulty.easy,
@@ -348,7 +344,7 @@ const Tile = ({
 	isDead,
 	isFlagged,
 }: TileProps) => {
-	const context = useContext(BoardContext)
+	const styles = useStore($boardStyles)
 	const displayValue = isActivated ? display : ''
 
 	return (
@@ -366,9 +362,9 @@ const Tile = ({
 			}}
 			onClick={onLeftClick}
 			style={{
-				fontSize: `${context.fontSize}rem`,
-				height: `${context.radius}px`,
-				width: `${context.radius}px`,
+				fontSize: `${styles.fontSize}rem`,
+				height: `${styles.radius}px`,
+				width: `${styles.radius}px`,
 				backgroundColor: getTileBackgroundColor({
 					isFlagged,
 					isDead,
@@ -453,7 +449,7 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
 		),
 	)
 	const board = useBoard(difficulty.rows, difficulty.columns, bombs)
-	const context = useContext(BoardContext)
+	const styles = useStore($boardStyles)
 	const [time, setTime] = useState(0)
 	const [delay, setDelay] = useState<number | null>(null)
 
@@ -476,7 +472,7 @@ const Board = ({ difficulty }: { difficulty: Difficulty }) => {
 	return (
 		<div className={`font-light text-4xl relative select-none`}>
 			{board.map((rows, i) => (
-				<FlexRow key={`row-${i}`} radius={context.radius}>
+				<FlexRow key={`row-${i}`} radius={styles.radius}>
 					{rows.map(([tile, setTile], j) => (
 						<Tile
 							key={`col-${i}-${j}`}
@@ -555,7 +551,10 @@ export default function MineSweaper() {
 	)
 
 	useEffect(() => {
-		if (selectedDifficulty.type !== SelectedDifficulty.loading) return
+		if (selectedDifficulty.type !== SelectedDifficulty.loading) {
+			$boardStyles.set(selectedDifficulty.board)
+			return
+		}
 		const timer = setTimeout(() => {
 			setSelectedDifficulty({
 				type: selectedDifficulty.queueType || SelectedDifficulty.easy,
@@ -606,9 +605,7 @@ export default function MineSweaper() {
 				{selectedDifficulty.type === SelectedDifficulty.loading ? (
 					<></>
 				) : (
-					<BoardContext.Provider value={selectedDifficulty.board}>
-						<Board difficulty={selectedDifficulty.level} />
-					</BoardContext.Provider>
+					<Board difficulty={selectedDifficulty.level} />
 				)}
 			</main>
 		</>
