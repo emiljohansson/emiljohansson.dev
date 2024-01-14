@@ -53,7 +53,12 @@ export default function PasswordGeneratorPage() {
 	const { data: memorablePassword } = useSWR(
 		`/api/random-words?words=${numberOfWords}`,
 		fetchWords,
+		{
+			fallbackData: 'Loading...',
+		},
 	)
+	console.log({ memorablePassword })
+
 	const [pinSelection, setPinSelection] = useState({
 		length: 6,
 		letters: false,
