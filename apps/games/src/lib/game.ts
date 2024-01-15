@@ -1,10 +1,10 @@
 import type { Card, Deck, Piles } from 'src/types/card-games'
 
-export function scaleGame(viewEl: HTMLElement, gameEl: HTMLElement) {
-	const visibleHeight = viewEl.offsetHeight
-	const fullHeight = document.body.offsetHeight
+export function scaleGame(gameEl: HTMLElement) {
+	const visibleHeight = gameEl.offsetHeight
+	const fullHeight = gameEl.scrollHeight
 	if (fullHeight <= visibleHeight) return
-	const newWidth = (viewEl.offsetWidth - 32) * (visibleHeight / fullHeight)
+	const newWidth = (gameEl.offsetWidth - 32) * (visibleHeight / fullHeight)
 	gameEl.style.width = `${newWidth}px`
 }
 
