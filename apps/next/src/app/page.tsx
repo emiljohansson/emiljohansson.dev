@@ -1,10 +1,8 @@
-import type { Project } from './types'
-
-import { sql } from '@vercel/postgres'
 import { Content } from './Content'
+import { getProjects } from '@/lib/supabase'
 
 export default async function Page() {
-	const { rows: projects } = await sql<Project>`select * from projects`
+	const projects = await getProjects()
 
-	return <Content projects={projects} />
+	return <Content projects={projects || []} />
 }

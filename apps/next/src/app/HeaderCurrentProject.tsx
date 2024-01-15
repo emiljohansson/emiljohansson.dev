@@ -1,8 +1,10 @@
 'use client'
 
+import type { Tables } from '@/lib/database.types'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { Project } from './types'
+
+type Project = Tables<'project'>
 
 export function HeaderCurrentProject({
 	projects,

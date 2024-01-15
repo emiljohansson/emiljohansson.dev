@@ -1,15 +1,13 @@
 'use client'
 
-import type { Project } from './types'
-
+import type { Tables } from '@/lib/database.types'
 import Link from 'next/link'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import { FiCommand, FiExternalLink } from 'react-icons/fi'
 import { GrGithub } from 'react-icons/gr'
-import { useCommandMenu } from './CommandMenu'
+import { openCommandMenu } from './CommandMenu'
 
-export function Content({ projects }: { projects: Project[] }) {
-	const { openCommandMenu } = useCommandMenu()
+export function Content({ projects }: { projects: Tables<'project'>[] }) {
 	return (
 		<>
 			<div className="flex flex-col gap-4 items-center justify-center text-center h-1/2">
@@ -48,11 +46,14 @@ export function Content({ projects }: { projects: Project[] }) {
 				</button>
 			</div>
 			<div className="h-screen p-3 m-0 max-w-md mx-auto">
-				{projects.map(({ title, href, description, external, test }, index) => (
-					<Link
-						key={index}
-						href={href}
-						className="
+				{projects.map(({ title, href, description, test }, index) => {
+					const external = href.startsWith('http')
+
+					return (
+						<Link
+							key={index}
+							href={href}
+							className="
               flex flex-col rounded-md p-4 m-3 relative
 							bg-white dark:bg-black
               ease-in-out duration-100
@@ -60,22 +61,25 @@ export function Content({ projects }: { projects: Project[] }) {
               hover:no-underline hover:-translate-y-1 hover:shadow-lg
               dark:shadow-lg-white
             "
-						target={external ? '_blank' : undefined}
-						data-test={test}
-					>
-						<span className="flex items-center mb-1">
-							{title}{' '}
-							{external && (
-								<FiExternalLink
-									width={18}
-									height={18}
-									className="absolute right-3"
-								/>
-							)}
-						</span>
-						<p className="text-gray-600 text-xs no-underline">{description}</p>
-					</Link>
-				))}
+							target={external ? '_blank' : undefined}
+							data-test={test}
+						>
+							<span className="flex items-center mb-1">
+								{title}{' '}
+								{external && (
+									<FiExternalLink
+										width={18}
+										height={18}
+										className="absolute right-3"
+									/>
+								)}
+							</span>
+							<p className="text-gray-600 text-xs no-underline">
+								{description}
+							</p>
+						</Link>
+					)
+				})}
 			</div>
 		</>
 	)

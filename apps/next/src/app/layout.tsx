@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
-import type { Project } from './types'
 
 import './styles.css'
 import 'ui/globals.css'
@@ -8,12 +7,13 @@ import 'ui/globals.css'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
-import { sql } from '@vercel/postgres'
 import { Analytics } from '@vercel/analytics/react'
 import { CommandMenu } from './CommandMenu'
 // import { ThemeToggle } from './ThemeToggle'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
 import { Inter } from 'next/font/google'
+import { getProjects } from '@/lib/supabase'
+import { Tables } from '@/lib/database.types'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
@@ -61,8 +61,10 @@ export const metadata: Metadata = {
 export default async function Layout({ children }: PropsWithChildren<unknown>) {
 	const headersList = headers()
 	const pathname = headersList.get('x-url-pathname') || ''
-	const { rows: projects } = await sql<Project>`select * from projects`
-	const currentProject = projects.find((project) => project.href === pathname)
+	const projects = await getProjects()
+	const currentProject = (projects as Tables<'project'>[]).find(
+		(project) => project.href === pathname,
+	)
 	// const cookieStore = cookies()
 	// const theme = cookieStore.get('theme')
 	// ${theme?.value}
@@ -109,23 +111,24 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					<div className="flex items-center gap-4 text-sm font-medium">
 						<Link href="/" className="flex items-center gap-2">
 							<Image
-								src="/images/profile.jpg"
+								src="/images/profile2.jpeg"
 								alt=""
 								width={32}
 								height={32}
-								className="rounded-full"
+								quality={100}
+								className="rounded-full scale-x-[-1]"
 							/>
 							Emil Johansson
 						</Link>
 						<HeaderCurrentProject
-							projects={projects}
+							projects={projects || []}
 							initProject={currentProject}
 						/>
 					</div>
 					{/* <ThemeToggle initValue={theme?.value} /> */}
 				</nav>
 				<main className="flex-1 relative">{children}</main>
-				<CommandMenu projects={projects} />
+				<CommandMenu projects={projects || []} />
 				<Analytics />
 			</body>
 		</html>
