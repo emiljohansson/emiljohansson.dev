@@ -5,17 +5,18 @@ import type { Card, Deck, Piles } from 'src/types/card-games'
 import { useRef, useState } from 'react'
 import { FiRefreshCw, FiRotateCcw } from 'react-icons/fi'
 import { isDefined, isEmpty } from 'lib/utils/lang'
-import { classNames } from 'lib/utils/string'
 import { chunk, first, last } from 'lib/utils/array'
 import { Header, HeaderAction } from 'ui'
 import {
 	deselectAll,
 	moveCardsToPiles,
 	removeEmptyLeadingCards,
-	scaleGame,
 } from 'src/lib/game'
 import { usePreloadCards } from 'src/lib/hooks'
 import { createBaseDeck } from './createBaseDeck'
+import { useRouter } from 'next/navigation'
+import { Image } from './Image'
+import { restoreGameFromHash, saveGameToHash } from './state'
 
 const getClickableIndexesFromPile = (pile: Card[]) => {
 	if (pile.length < 1) return []
@@ -32,24 +33,6 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
 	return result
 }
 
-const Image = ({ card, cardImage }: { card: Card; cardImage: string }) => (
-	<img
-		src={`/images/cards/${cardImage}.png`}
-		alt={card?.combined ?? 'blank card'}
-		className={classNames(
-			`
-			border-4 border-transparent border-solid rounded-lg
-			relative top-0 left-0
-			mx-auto
-			w-[calc(100%-0px)]
-		`,
-			{
-				'bg-primary': card?.selected,
-			},
-		)}
-	/>
-)
-
 export function Game({
 	remainingCards,
 	initPiles,
@@ -57,20 +40,22 @@ export function Game({
 	remainingCards: Deck
 	initPiles: Piles
 }) {
+	const router = useRouter()
 	const [deck, setDeck] = useState<Deck>(remainingCards)
 	const [piles, setPiles] = useState<Piles>(initPiles)
-	// const [prevMove, setPrevMove] = useState<number[]>([])
 	const mainRef = useRef<HTMLElement>(null)
+
 	usePreloadCards(createBaseDeck())
 
 	function addMoreCards() {
 		deselectAll(piles)
+		initHashState()
 		if (isEmpty(deck)) return
 		const updatedPiles = removeEmptyLeadingCards(piles)
 		const [newPiles, newDeck] = moveCardsToPiles(updatedPiles, deck)
 		setPiles([...newPiles])
 		setDeck([...newDeck])
-		setTimeout(() => scaleGame(mainRef.current))
+		saveGameToHash(newDeck, newPiles)
 	}
 
 	function getSelectedCard() {
@@ -86,6 +71,7 @@ export function Game({
 
 	function handleSelectedCard(current: Card, currentPileIndex: number) {
 		console.log(current)
+		initHashState()
 
 		const [selectedCard, selectedPileIndex, selectedCardIndex] =
 			getSelectedCard()
@@ -167,22 +153,60 @@ export function Game({
 			}
 		}
 		setPiles(newPiles)
-		setTimeout(() => scaleGame(mainRef.current))
+		saveGameToHash(deck, piles)
+	}
+
+	function undoMove() {
+		if (window.location.hash === '') return
+		router.back()
+		setTimeout(() => {
+			const restored = restoreGameFromHash()
+			if (!isDefined(restored)) return
+			setDeck(restored.deck)
+			setPiles(restored.piles)
+		})
+	}
+
+	function initHashState() {
+		if (window.location.hash !== '') return
+		console.log('init game')
+		saveGameToHash(deck, piles)
 	}
 
 	return (
 		<>
 			<Header>
-				<HeaderAction onClick={() => location.reload()} data-test="new-game">
+				<HeaderAction
+					onClick={() => {
+						window.location.hash = ''
+						location.reload()
+					}}
+					data-test="new-game"
+				>
 					<FiRefreshCw size={30} strokeWidth="1.5" />
-					<span className="sr-only">New Game</span>
+					New Game
 				</HeaderAction>
-				<HeaderAction onClick={() => console.log('undo')} data-test="undo">
+				<HeaderAction onClick={undoMove} data-test="undo">
 					<FiRotateCcw size={30} strokeWidth="1.5" />
-					<span className="sr-only">Undo</span>
+					Undo
 				</HeaderAction>
 			</Header>
-			<main ref={mainRef} className="mx-auto p-4 max-w-screen-lg">
+			<nav className="h-16">
+				<button className="h-full w-20 ml-4 relative" onClick={addMoreCards}>
+					{chunk(deck, 10).map((card, index) => (
+						<img
+							key={index}
+							className="h-full py-1 absolute top-0"
+							style={{
+								left: 4 * index,
+							}}
+							src="/images/cards/red_back.png"
+							alt="add more cards"
+						/>
+					))}
+				</button>
+			</nav>
+			<main ref={mainRef} className="mx-auto px-4 max-w-screen-lg">
 				<h1 className="sr-only">Spider Solitaire</h1>
 				<div className="flex">
 					{piles.map((pile, pileIndex) => (
@@ -218,21 +242,6 @@ export function Game({
 					))}
 				</div>
 			</main>
-			<footer className="h-16 relative">
-				<button className="h-full w-20 ml-4 relative" onClick={addMoreCards}>
-					{chunk(deck, 10).map((card, index) => (
-						<img
-							key={index}
-							className="h-full py-1 absolute top-0"
-							style={{
-								left: 4 * index,
-							}}
-							src="/images/cards/red_back.png"
-							alt="add more cards"
-						/>
-					))}
-				</button>
-			</footer>
 		</>
 	)
 }

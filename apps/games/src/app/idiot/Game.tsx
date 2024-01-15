@@ -12,7 +12,6 @@ import {
 	deselectAll,
 	moveCardsToPiles,
 	removeEmptyLeadingCards,
-	scaleGame,
 } from 'src/lib/game'
 import { usePreloadCards } from 'src/lib/hooks'
 
@@ -55,7 +54,6 @@ export function Game({
 		const [newPiles, newDeck] = moveCardsToPiles(updatedPiles, deck)
 		setPiles([...newPiles])
 		setDeck([...newDeck])
-		setTimeout(() => scaleGame(mainRef.current))
 	}
 
 	function handleSelectedCard(current: Card, index: number) {
@@ -117,10 +115,25 @@ export function Game({
 		<>
 			<Header>
 				<HeaderAction onClick={() => location.reload()} data-test="refresh">
-					<FiRefreshCw width={30} height={30} />
+					<FiRefreshCw size={30} />
 					<span className="sr-only">New Game</span>
 				</HeaderAction>
 			</Header>
+			<nav className="h-16">
+				<button className="h-full w-20 ml-4 relative" onClick={addMoreCards}>
+					{chunk(deck, 4).map((card, index) => (
+						<img
+							key={index}
+							className="h-full py-1 absolute top-0"
+							style={{
+								left: 4 * index,
+							}}
+							src="/images/cards/red_back.png"
+							alt="add more cards"
+						/>
+					))}
+				</button>
+			</nav>
 			<main ref={mainRef} className="mx-auto p-4 max-w-screen-lg">
 				<h1 className="sr-only">The Idiot Card Game</h1>
 				<div className="flex">
@@ -151,21 +164,6 @@ export function Game({
 					))}
 				</div>
 			</main>
-			<footer className="h-16 relative">
-				<button className="h-full w-20 ml-4 relative" onClick={addMoreCards}>
-					{chunk(deck, 4).map((card, index) => (
-						<img
-							key={index}
-							className="h-full py-1 absolute top-0"
-							style={{
-								left: 4 * index,
-							}}
-							src="/images/cards/red_back.png"
-							alt="add more cards"
-						/>
-					))}
-				</button>
-			</footer>
 		</>
 	)
 }
