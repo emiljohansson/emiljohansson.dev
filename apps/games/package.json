@@ -14,6 +14,7 @@
 		"framer-motion": "6.2.3",
 		"just-shuffle": "4.1.1",
 		"lib": "workspace:*",
+		"lz-string": "1.5.0",
 		"million": "2.6.4",
 		"nanostores": "0.9.5",
 		"next": "14.0.4",
