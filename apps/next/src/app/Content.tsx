@@ -4,11 +4,10 @@ import Link from 'next/link'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import { FiCommand, FiExternalLink } from 'react-icons/fi'
 import { GrGithub } from 'react-icons/gr'
-import { useCommandMenu } from './CommandMenu'
+import { openCommandMenu } from './CommandMenu'
 import { Tables } from '@/lib/database.types'
 
 export function Content({ projects }: { projects: Tables<'project'>[] }) {
-	const { openCommandMenu } = useCommandMenu()
 	return (
 		<>
 			<div className="flex flex-col gap-4 items-center justify-center text-center h-1/2">

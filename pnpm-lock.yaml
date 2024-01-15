@@ -183,6 +183,9 @@ importers:
       '@faker-js/faker':
         specifier: 7.4.0
         version: 7.4.0
+      '@nanostores/react':
+        specifier: 0.7.1
+        version: 0.7.1(nanostores@0.9.5)(react@18.2.0)
       '@radix-ui/react-accessible-icon':
         specifier: 1.0.2
         version: 1.0.2(react-dom@18.2.0)(react@18.2.0)
@@ -222,6 +225,9 @@ importers:
       lib:
         specifier: workspace:*
         version: link:../../packages/lib
+      nanostores:
+        specifier: 0.9.5
+        version: 0.9.5
       next:
         specifier: 14.0.4
         version: 14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
@@ -240,9 +246,6 @@ importers:
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
-      zustand:
-        specifier: 4.3.8
-        version: 4.3.8(react@18.2.0)
     devDependencies:
       '@types/crypto-js':
         specifier: 4.1.1
@@ -9386,19 +9389,3 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  /zustand@4.3.8(react@18.2.0):
-    resolution: {integrity: sha512-4h28KCkHg5ii/wcFFJ5Fp+k1J3gJoasaIbppdgZFO4BPJnsNxL0mQXBSFgOgAdCdBj35aDTPvdAJReTMntFPGg==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
-    dev: false

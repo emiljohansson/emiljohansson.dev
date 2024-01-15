@@ -2,28 +2,34 @@
 
 import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { create } from 'zustand'
 import { useClickOutside } from '@/hooks/useClickOutside'
 import { Tables } from '@/lib/database.types'
+import { action, atom } from 'nanostores'
+import { useStore } from '@nanostores/react'
 
-type State = {
-	commandMenuIsOpen: boolean
-}
+// type State = {
+// 	commandMenuIsOpen: boolean
+// }
 
-type Action = {
-	openCommandMenu: () => void
-	closeCommandMenu: () => void
-}
+// type Action = {
+// 	openCommandMenu: () => void
+// 	closeCommandMenu: () => void
+// }
 
-export const useCommandMenu = create<State & Action>((set) => ({
-	commandMenuIsOpen: false,
-	openCommandMenu: () => set(() => ({ commandMenuIsOpen: true })),
-	closeCommandMenu: () => set(() => ({ commandMenuIsOpen: false })),
-}))
+export const $commandMenuIsOpen = atom(false)
+export const openCommandMenu = action(
+	$commandMenuIsOpen,
+	'openCommandMenu',
+	() => $commandMenuIsOpen.set(true),
+)
+export const closeCommandMenu = action(
+	$commandMenuIsOpen,
+	'closeCommandMenu',
+	() => $commandMenuIsOpen.set(false),
+)
 
 export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
-	const { commandMenuIsOpen, openCommandMenu, closeCommandMenu } =
-		useCommandMenu()
+	const commandMenuIsOpen = useStore($commandMenuIsOpen)
 	const initList = useMemo(
 		() => [
 			{
