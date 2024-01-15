@@ -7,7 +7,7 @@ export const usePreloadCards = (deck: Deck) => {
 			deck.forEach((card) => {
 				const img = new Image()
 				img.onload = () => {
-					console.log('loaded', card.combined)
+					// console.log('loaded', card.combined)
 				}
 				img.src = `/images/cards/${card?.combined}.png`
 			})
