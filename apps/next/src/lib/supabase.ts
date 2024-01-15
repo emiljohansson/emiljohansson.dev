@@ -1,11 +1,11 @@
-import { Project } from '@/app/types'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { Database } from './database.types'
 
 const createClient = () => {
 	const cookieStore = cookies()
 
-	return createServerClient(
+	return createServerClient<Database>(
 		process.env.SUPABASE_URL!,
 		process.env.SUPABASE_ANON_KEY!,
 		{
@@ -25,6 +25,5 @@ export async function getProjects() {
 		.select('*')
 		.order('id', { ascending: true })
 		.eq('enabled', true)
-		.returns<Project[]>()
 	return projects || []
 }

@@ -23,3 +23,6 @@ yarn.lock
 apps/next/tsconfig.json
 
 *.timestamp-*.mjs
+
+# supabase database types
+apps/next/src/lib/database.types.ts

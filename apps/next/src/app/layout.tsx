@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
-import type { Project } from './types'
 
 import './styles.css'
 import 'ui/globals.css'
@@ -14,6 +13,7 @@ import { CommandMenu } from './CommandMenu'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
 import { Inter } from 'next/font/google'
 import { getProjects } from '@/lib/supabase'
+import { Tables } from '@/lib/database.types'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
@@ -62,8 +62,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 	const headersList = headers()
 	const pathname = headersList.get('x-url-pathname') || ''
 	const projects = await getProjects()
-	console.log(projects)
-	const currentProject = (projects as Project[]).find(
+	const currentProject = (projects as Tables<'project'>[]).find(
 		(project) => project.href === pathname,
 	)
 	// const cookieStore = cookies()

@@ -1,12 +1,11 @@
 'use client'
 
-import type { Project } from './types'
-
 import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FiSearch } from 'react-icons/fi'
 import { create } from 'zustand'
 import { useClickOutside } from '@/hooks/useClickOutside'
+import { Tables } from '@/lib/database.types'
 
 type State = {
 	commandMenuIsOpen: boolean
@@ -23,7 +22,7 @@ export const useCommandMenu = create<State & Action>((set) => ({
 	closeCommandMenu: () => set(() => ({ commandMenuIsOpen: false })),
 }))
 
-export function CommandMenu({ projects }: { projects: Project[] }) {
+export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 	const { commandMenuIsOpen, openCommandMenu, closeCommandMenu } =
 		useCommandMenu()
 	const initList = useMemo(
@@ -33,7 +32,7 @@ export function CommandMenu({ projects }: { projects: Project[] }) {
 				title: 'Home',
 				description: 'Return to the home page.',
 				test: 'home-page',
-			} as Project,
+			} as Tables<'project'>,
 			...projects,
 		],
 		[],
@@ -43,7 +42,7 @@ export function CommandMenu({ projects }: { projects: Project[] }) {
 	const [list, setList] = useState(initList)
 	const fieldRef = useRef<HTMLInputElement>(null)
 
-	const handleAction = (action?: Project) => {
+	const handleAction = (action?: Tables<'project'>) => {
 		if (!action) return
 		setList([...initList])
 		closeCommandMenu()
