@@ -25,7 +25,6 @@
 		"@supabase/ssr": "0.0.10",
 		"@vercel/analytics": "1.1.1",
 		"@vercel/kv": "1.0.0",
-		"@vercel/postgres": "0.5.1",
 		"crypto-js": "4.2.0",
 		"framer-motion": "6.2.3",
 		"jsonwebtoken": "9.0.2",

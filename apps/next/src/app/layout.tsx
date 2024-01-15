@@ -8,12 +8,12 @@ import 'ui/globals.css'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
-import { sql } from '@vercel/postgres'
 import { Analytics } from '@vercel/analytics/react'
 import { CommandMenu } from './CommandMenu'
 // import { ThemeToggle } from './ThemeToggle'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
 import { Inter } from 'next/font/google'
+import { getProjects } from '@/lib/supabase'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
@@ -61,8 +61,11 @@ export const metadata: Metadata = {
 export default async function Layout({ children }: PropsWithChildren<unknown>) {
 	const headersList = headers()
 	const pathname = headersList.get('x-url-pathname') || ''
-	const { rows: projects } = await sql<Project>`select * from projects`
-	const currentProject = projects.find((project) => project.href === pathname)
+	const projects = await getProjects()
+	console.log(projects)
+	const currentProject = (projects as Project[]).find(
+		(project) => project.href === pathname,
+	)
 	// const cookieStore = cookies()
 	// const theme = cookieStore.get('theme')
 	// ${theme?.value}
@@ -118,14 +121,14 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 							Emil Johansson
 						</Link>
 						<HeaderCurrentProject
-							projects={projects}
+							projects={projects || []}
 							initProject={currentProject}
 						/>
 					</div>
 					{/* <ThemeToggle initValue={theme?.value} /> */}
 				</nav>
 				<main className="flex-1 relative">{children}</main>
-				<CommandMenu projects={projects} />
+				<CommandMenu projects={projects || []} />
 				<Analytics />
 			</body>
 		</html>

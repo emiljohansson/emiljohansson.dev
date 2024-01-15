@@ -138,7 +138,7 @@ export default function PasswordGeneratorPage() {
 						/>
 						<span className="ml-4">{randomSelection.length}</span>
 					</div>
-					<fieldset className="grid">
+					<fieldset className="flex">
 						<CheckboxWithLabel
 							labelText="Number"
 							checked={randomSelection.numeric}
