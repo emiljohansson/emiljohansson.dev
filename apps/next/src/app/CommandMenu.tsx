@@ -7,15 +7,6 @@ import { Tables } from '@/lib/database.types'
 import { action, atom } from 'nanostores'
 import { useStore } from '@nanostores/react'
 
-// type State = {
-// 	commandMenuIsOpen: boolean
-// }
-
-// type Action = {
-// 	openCommandMenu: () => void
-// 	closeCommandMenu: () => void
-// }
-
 export const $commandMenuIsOpen = atom(false)
 export const openCommandMenu = action(
 	$commandMenuIsOpen,

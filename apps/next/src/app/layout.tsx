@@ -111,11 +111,12 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 					<div className="flex items-center gap-4 text-sm font-medium">
 						<Link href="/" className="flex items-center gap-2">
 							<Image
-								src="/images/profile.jpg"
+								src="/images/profile2.jpeg"
 								alt=""
 								width={32}
 								height={32}
-								className="rounded-full"
+								quality={100}
+								className="rounded-full scale-x-[-1]"
 							/>
 							Emil Johansson
 						</Link>
