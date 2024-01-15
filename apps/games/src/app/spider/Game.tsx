@@ -17,7 +17,6 @@ import { createBaseDeck } from './createBaseDeck'
 import { useRouter } from 'next/navigation'
 import { Image } from './Image'
 import { restoreGameFromHash, saveGameToHash } from './state'
-// import { atom } from 'nanostores'
 
 const getClickableIndexesFromPile = (pile: Card[]) => {
 	if (pile.length < 1) return []
@@ -33,9 +32,6 @@ const getClickableIndexesFromPile = (pile: Card[]) => {
 	}
 	return result
 }
-
-// const $deck = atom<Deck>([])
-// const $piles = atom<Piles>([])
 
 export function Game({
 	remainingCards,
