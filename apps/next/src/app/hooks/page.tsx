@@ -6,6 +6,7 @@ import { DebounceExample } from './DebounceExample'
 import { CounterExample } from './CounterExample'
 import { EventListenerExample } from './EventListenerExample'
 import { ClickOutsideExample } from './ClickOutsideExample'
+import { ComputedExample } from './ComputedExample'
 
 export default async function HooksPage() {
 	return (
@@ -18,6 +19,7 @@ export default async function HooksPage() {
 					<CounterExample />
 					<EventListenerExample />
 					<ClickOutsideExample />
+					<ComputedExample />
 				</article>
 			</Section>
 		</Content>
