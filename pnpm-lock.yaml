@@ -225,6 +225,9 @@ importers:
       lib:
         specifier: workspace:*
         version: link:../../packages/lib
+      lucide-react:
+        specifier: 0.323.0
+        version: 0.323.0(react@18.2.0)
       nanostores:
         specifier: 0.9.5
         version: 0.9.5
@@ -2605,8 +2608,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/gotrue-js@2.62.0:
-    resolution: {integrity: sha512-4eBuZNXGOk7ewqJuHPYMnk8clCtEx6Hfnu6yHLjZlx7w18TqcojcTRUBZagErtpgwwdfzUwKbquexhbrpH/ysw==}
+  /@supabase/gotrue-js@2.62.2:
+    resolution: {integrity: sha512-AP6e6W9rQXFTEJ7sTTNYQrNf0LCcnt1hUW+RIgUK+Uh3jbWvcIST7wAlYyNZiMlS9+PYyymWQ+Ykz/rOYSO0+A==}
     dependencies:
       '@supabase/node-fetch': 2.6.15
     dev: false
@@ -2694,7 +2697,7 @@ packages:
     resolution: {integrity: sha512-NoltJSaJNKDJNutO5sJPAAi5RIWrn1z2XH+ig1+cHDojT6BTN7TvZPNa3Kq3gFQWfO5H1N9El/bCTZJ3iFW2kQ==}
     dependencies:
       '@supabase/functions-js': 2.1.5
-      '@supabase/gotrue-js': 2.62.0
+      '@supabase/gotrue-js': 2.62.2
       '@supabase/node-fetch': 2.6.15
       '@supabase/postgrest-js': 1.9.2
       '@supabase/realtime-js': 2.9.3
@@ -6889,6 +6892,14 @@ packages:
   /lru_map@0.3.3:
     resolution: {integrity: sha512-Pn9cox5CsMYngeDbmChANltQl+5pi6XmTrraMSzhPmMBbmgcxmqWry0U3PGapCU1yB4/LqCcom7qhHZiF/jGfQ==}
     dev: true
+
+  /lucide-react@0.323.0(react@18.2.0):
+    resolution: {integrity: sha512-rTXZFILl2Y4d1SG9p1Mdcf17AcPvPvpc/egFIzUrp7IUy60MUQo3Oi1mu8LGYXUVwuRZYsSMt3csHRW5mAovJg==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}

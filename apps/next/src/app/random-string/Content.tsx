@@ -3,7 +3,7 @@
 import type { Ref } from '@/components/RandomString'
 
 import { useRef, useState } from 'react'
-import { FiCheck, FiCopy, FiRefreshCw } from 'react-icons/fi'
+import { RefreshCw, Check, Copy } from 'lucide-react'
 import RandomString from '@/components/RandomString'
 import { copyToClipboard } from 'lib/utils/string'
 
@@ -19,7 +19,7 @@ export default function Content({ initialValue }: { initialValue: string }) {
 					onClick={() => randomStringRef.current?.generateNewValue()}
 					data-test="refresh"
 				>
-					<FiRefreshCw width={16} height={16} />
+					<RefreshCw width={16} height={16} />
 					<span>Refresh</span>
 				</button>
 				<button
@@ -32,9 +32,9 @@ export default function Content({ initialValue }: { initialValue: string }) {
 					data-test="copy"
 				>
 					{copied ? (
-						<FiCheck width={16} height={16} />
+						<Check width={16} height={16} />
 					) : (
-						<FiCopy width={16} height={16} />
+						<Copy width={16} height={16} />
 					)}
 					<span>Copy</span>
 				</button>

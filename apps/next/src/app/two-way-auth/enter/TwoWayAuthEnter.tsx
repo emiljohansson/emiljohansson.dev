@@ -2,7 +2,7 @@
 
 import { useState, useRef, FormEvent, ChangeEvent } from 'react'
 import { Label } from '@radix-ui/react-label'
-import { FiCheck, FiMoreHorizontal, FiX } from 'react-icons/fi'
+import { Check, X, MoreHorizontal } from 'lucide-react'
 
 enum State {
 	idle,
@@ -28,21 +28,21 @@ function EnteredContent({ state }: { state: State }) {
 			return (
 				<>
 					<span className="sr-only">loading</span>
-					<FiMoreHorizontal />
+					<MoreHorizontal />
 				</>
 			)
 		case State.valid:
 			return (
 				<>
 					<span className="sr-only">valid</span>
-					<FiCheck />
+					<Check size={16} />
 				</>
 			)
 		case State.invalid:
 			return (
 				<>
 					<span className="sr-only">invalid</span>
-					<FiX />
+					<X />
 				</>
 			)
 	}

@@ -1,9 +1,9 @@
 'use client'
 
-import Content from '@/components/Content'
-import Section from '@/components/Section'
 import { useState } from 'react'
 import { sign } from 'jsonwebtoken'
+import Content from '@/components/Content'
+import Section from '@/components/Section'
 
 export default function Page() {
 	const [encodedValue, setEncodedValue] = useState('')

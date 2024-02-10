@@ -91,8 +91,6 @@ function derived<S, T>(
 		const values: S[] = []
 		const unsubscribers = storesArray.map((store, index) => {
 			return store.subscribe((value) => {
-				console.log('derived.subscribe', value, values)
-
 				values[index] = value
 				set(fn(single ? values[0] : values))
 			})

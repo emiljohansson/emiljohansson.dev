@@ -31,6 +31,7 @@
 		"jsonwebtoken": "9.0.2",
 		"just-range": "4.1.1",
 		"lib": "workspace:*",
+		"lucide-react": "0.323.0",
 		"nanostores": "0.9.5",
 		"next": "14.0.4",
 		"react": "18.2.0",

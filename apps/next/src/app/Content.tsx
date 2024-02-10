@@ -3,8 +3,8 @@
 import type { Tables } from '@/lib/database.types'
 import Link from 'next/link'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
-import { FiCommand, FiExternalLink } from 'react-icons/fi'
 import { GrGithub } from 'react-icons/gr'
+import { Command, ArrowUpRightFromSquare } from 'lucide-react'
 import { openCommandMenu } from './CommandMenu'
 
 export function Content({ projects }: { projects: Tables<'project'>[] }) {
@@ -41,11 +41,11 @@ export function Content({ projects }: { projects: Tables<'project'>[] }) {
 							rounded
 						"
 					>
-						<FiCommand /> K
+						<Command size={12} /> K
 					</span>
 				</button>
 			</div>
-			<div className="h-screen p-3 m-0 max-w-md mx-auto">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 h-screen p-3 m-0 max-w-7xl mx-auto">
 				{projects.map(({ title, href, description, test }, index) => {
 					const external = href.startsWith('http')
 
@@ -54,7 +54,8 @@ export function Content({ projects }: { projects: Tables<'project'>[] }) {
 							key={index}
 							href={href}
 							className="
-              flex flex-col rounded-md p-4 m-3 relative
+              rounded-md p-4 m-3 relative
+							min-h-[100px]
 							bg-white dark:bg-black
               ease-in-out duration-100
 							shadow-sm 
@@ -67,9 +68,8 @@ export function Content({ projects }: { projects: Tables<'project'>[] }) {
 							<span className="flex items-center mb-1">
 								{title}{' '}
 								{external && (
-									<FiExternalLink
-										width={18}
-										height={18}
+									<ArrowUpRightFromSquare
+										size={18}
 										className="absolute right-3"
 									/>
 								)}
