@@ -2,8 +2,8 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { Database } from './database.types'
 
-const createClient = () => {
-	const cookieStore = cookies()
+const createClient = async () => {
+	const cookieStore = await cookies()
 
 	return createServerClient<Database>(
 		process.env.SUPABASE_URL!,
@@ -19,7 +19,7 @@ const createClient = () => {
 }
 
 export async function getProjects() {
-	const supabase = createClient()
+	const supabase = await createClient()
 	const { data: projects } = await supabase
 		.from('project')
 		.select('*')
