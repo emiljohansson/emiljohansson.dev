@@ -3,10 +3,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "PORT=3006 next dev",
-		"build": "PORT=3006 next build",
-		"start": "PORT=3006 next start",
-		"lint": "next lint"
+		"x_dev": "PORT=3006 next dev",
+		"x_build": "PORT=3006 next build",
+		"x_start": "PORT=3006 next start",
+		"x_lint": "next lint"
 	},
 	"dependencies": {
 		"@types/node": "18.0.1",
