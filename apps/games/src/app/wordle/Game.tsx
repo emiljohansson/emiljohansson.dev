@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Header } from 'ui'
+import { Header } from '@repo/ui'
 
 enum Color {
 	Green = 'green',

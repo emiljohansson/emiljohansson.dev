@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 
-import 'ui/globals.css'
+import '@repo/ui/styles.css'
 import '../styles/globals.css'
 
 import { UserProvider } from '@supabase/auth-helpers-react'

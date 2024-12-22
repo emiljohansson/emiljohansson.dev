@@ -3,21 +3,21 @@ import { motion } from 'framer-motion'
 import { classNames } from 'lib/utils/string'
 
 export const Progress = ({ progress }: { progress: number }) => {
-	let colorClass = 'bg-green-400'
+	let colorClass = 'ui-bg-green-400'
 	if (progress <= 25) {
-		colorClass = 'bg-red-400'
+		colorClass = 'ui-bg-red-400'
 	} else if (progress <= 50) {
-		colorClass = 'bg-yellow-200'
+		colorClass = 'ui-bg-yellow-200'
 	}
 	return (
 		<Root
 			value={progress}
-			className="relative overflow-hidden bg-black-rich/50 rounded-full w-96 h-6"
+			className="ui-relative ui-overflow-hidden ui-bg-black-rich/50 ui-rounded-full ui-w-96 ui-h-6"
 			title="Progress"
 		>
-			<Indicator asChild className="h-full">
+			<Indicator asChild className="ui-h-full">
 				<motion.div
-					className={classNames('h-full w-0', colorClass)}
+					className={classNames('ui-h-full ui-w-0', colorClass)}
 					animate={{
 						width: progress + '%',
 					}}

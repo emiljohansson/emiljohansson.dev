@@ -1,31 +1,21 @@
 {
-	"baseBranch": "origin/main",
-	"pipeline": {
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**", ".next/**"]
-		},
-		"export": {
-			"dependsOn": ["^build"],
-			"outputs": ["out/**"]
-		},
-		"test": {
-			"dependsOn": ["^build"],
-			"outputs": []
-		},
-		"test:ci": {
-			"dependsOn": ["^build"],
-			"outputs": []
-		},
-		"start": {
-			"dependsOn": ["^build"],
-			"outputs": []
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": [".next/**", "!.next/cache/**"]
 		},
 		"lint": {
-			"outputs": []
+			"dependsOn": ["^lint"]
+		},
+		"check-types": {
+			"dependsOn": ["^check-types"]
 		},
 		"dev": {
-			"cache": false
+			"cache": false,
+			"persistent": true
 		}
 	}
 }

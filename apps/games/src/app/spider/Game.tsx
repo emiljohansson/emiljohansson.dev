@@ -6,7 +6,7 @@ import { useRef, useState } from 'react'
 import { FiRefreshCw, FiRotateCcw } from 'react-icons/fi'
 import { isDefined, isEmpty } from 'lib/utils/lang'
 import { chunk, first, last } from 'lib/utils/array'
-import { Header, HeaderAction } from 'ui'
+import { Header, HeaderAction } from '@repo/ui'
 import {
 	deselectAll,
 	moveCardsToPiles,

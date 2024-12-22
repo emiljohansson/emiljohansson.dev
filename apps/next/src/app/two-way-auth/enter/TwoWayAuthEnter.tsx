@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useRef, FormEvent, ChangeEvent } from 'react'
+import { useState, useRef, ChangeEvent } from 'react'
 import { Label } from '@radix-ui/react-label'
 import { Check, X, MoreHorizontal } from 'lucide-react'
+import { useFormState, useFormStatus } from 'react-dom'
 
 enum State {
 	idle,
@@ -49,10 +50,18 @@ function EnteredContent({ state }: { state: State }) {
 	return <></>
 }
 
-function TwoWayAuthEnter() {
+function TwoWayAuthEnter({ validate }) {
+	const [state, formAction] = useFormState(State.idle)
+	console.log({
+		state,
+		formAction,
+	})
+
 	const [value, setValue] = useState('')
 	const [state, setState] = useState(State.idle)
 	const inputEl = useRef(null)
+	const { pending } = useFormStatus()
+	console.log({ pending })
 
 	function onChange(event: ChangeEvent<HTMLInputElement>) {
 		setState(State.idle)
@@ -64,6 +73,7 @@ function TwoWayAuthEnter() {
 		setValue(target.value)
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async function onSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 		setState(State.loading)
@@ -81,7 +91,7 @@ function TwoWayAuthEnter() {
 	}
 
 	return (
-		<form action="#" method="POST" onSubmit={onSubmit} className="flex">
+		<form action={validate} className="flex">
 			<div className="flex items-center relative">
 				<Label htmlFor="secret" className="pr-3">
 					Enter Code

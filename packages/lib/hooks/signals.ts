@@ -1,6 +1,5 @@
 // temporary solution from https://github.com/JonAbrams/signals-react-safe/tree/main
 
-import {} from 'react'
 import { type ReactElement, useEffect, useMemo, useRef, useState } from 'react'
 import {
 	Signal,

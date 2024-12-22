@@ -12,16 +12,16 @@ export const CheckboxWithLabel = ({ labelText, ...props }: Props) => {
 	return (
 		<div className="flex items-center">
 			<Root
-				className="bg-white cursor-default w-6 h-6 rounded flex items-center justify-center shadow hover:bg-gray-50"
+				className="ui-bg-white ui-cursor-default ui-w-6 ui-h-6 ui-rounded ui-flex ui-items-center ui-justify-center ui-shadow ui-hover:bg-gray-50"
 				defaultChecked
 				id={id}
 				{...props}
 			>
 				<Indicator>
-					<CheckIcon className="text-primary" />
+					<CheckIcon className="ui-text-primary" />
 				</Indicator>
 			</Root>
-			<label className="pl-3" htmlFor={id}>
+			<label className="ui-pl-3" htmlFor={id}>
 				{labelText}
 			</label>
 		</div>
