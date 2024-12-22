@@ -11,11 +11,11 @@
 	"dependencies": {
 		"@faker-js/faker": "7.4.0",
 		"@nanostores/react": "0.7.1",
-		"framer-motion": "6.2.3",
 		"just-shuffle": "4.1.1",
 		"lib": "workspace:*",
 		"lz-string": "1.5.0",
 		"million": "2.6.4",
+		"motion": "11.15.0",
 		"nanostores": "0.9.5",
 		"next": "15.1.2",
 		"react": "19.0.0",

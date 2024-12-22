@@ -1,5 +1,5 @@
 import { Root, Indicator } from '@radix-ui/react-progress'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { classNames } from 'lib/utils/string'
 
 export const Progress = ({ progress }: { progress: number }) => {
