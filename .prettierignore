@@ -14,6 +14,7 @@ out
 coverage
 pnpm-*
 .vercel
+.turbo
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml

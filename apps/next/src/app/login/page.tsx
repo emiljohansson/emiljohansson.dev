@@ -1,4 +1,4 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
 
@@ -6,8 +6,8 @@ export default function Page() {
 	return (
 		<Content>
 			<Section size="normal" direction="column">
-				<form
-					action="/login/authorize"
+				{/* <form
+					action="/api/login/authorize"
 					method="get"
 					className="bg-white text-black text-center flex flex-col"
 				>
@@ -31,7 +31,7 @@ export default function Page() {
 					<input type="text" placeholder="Email" />
 					<input type="password" placeholder="Password" />
 					<button>Continue</button>
-				</form>
+				</form> */}
 			</Section>
 		</Content>
 	)
