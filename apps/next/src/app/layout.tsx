@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Layout({ children }: PropsWithChildren<unknown>) {
-	const headersList = headers()
+	const headersList = await headers()
 	const pathname = headersList.get('x-url-pathname') || ''
 	const projects = await getProjects()
 	const currentProject = (projects as Tables<'project'>[]).find(
@@ -92,10 +92,10 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 			</head>
 			<body
 				className={`
-					${inter.className} 
+					${inter.className}
 					bg-[length:15px_15px] bg-dots
-					bg-slate-50 dark:bg-gray-900 
-					dark:text-white 
+					bg-slate-50 dark:bg-gray-900
+					dark:text-white
 					flex flex-col h-full`}
 			>
 				{/* background-image: conic-gradient(at 92% 8%, rgb(134, 143, 151) 90deg, transparent 0deg, transparent 225deg, transparent 0deg);
@@ -103,8 +103,8 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 				<nav
 					className="
 						flex justify-between items-center
-						bg-white dark:bg-black 
-						border-b border-slate-200 dark:border-zinc-700 
+						bg-white dark:bg-black
+						border-b border-slate-200 dark:border-zinc-700
 						px-4 py-3
 					"
 				>

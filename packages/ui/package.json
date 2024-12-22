@@ -30,9 +30,9 @@
 		"@radix-ui/react-slider": "1.0.0",
 		"framer-motion": "6.2.3",
 		"lib": "workspace:*",
-		"next": "14.0.4",
-		"react": "18.2.0",
-		"react-dom": "18.2.0",
+		"next": "15.1.2",
+		"react": "19.0.0",
+		"react-dom": "19.0.0",
 		"react-icons": "4.7.1"
 	},
 	"devDependencies": {
