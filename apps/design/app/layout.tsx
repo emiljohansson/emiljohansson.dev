@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 
-import '@repo/ui/styles.css'
+import 'ui/globals.css'
 import './styles.css'
 
 import { Inter } from 'next/font/google'

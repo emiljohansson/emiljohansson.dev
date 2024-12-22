@@ -1,45 +1,45 @@
 {
 	"name": "emiljohansson.dev",
-	"version": "1.2.1",
 	"description": "Playground for Emil Johansson",
+	"version": "1.2.1",
+	"author": "emiljohansson.dev@gmail.com",
 	"keywords": [
 		"emil",
 		"johansson"
 	],
 	"license": "MIT",
-	"author": "emiljohansson.dev@gmail.com",
+	"scripts": {
+		"prepare": "husky install",
+		"build": "turbo run build",
+		"export": "turbo run export",
+		"dev": "turbo run dev --parallel",
+		"start": "turbo run start",
+		"test": "turbo run test",
+		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser chrome\"",
+		"cy:run": "cypress run --headless --browser chrome",
+		"cy:open": "cypress open",
+		"prettier:check": "prettier --check .",
+		"format": "prettier --write \"**/*.{ts,tsx,js,md,json,html,css,svelte}\"",
+		"lint": "pnpm lint:eslint && pnpm lint:prettier",
+		"lint:eslint": "turbo run lint",
+		"lint:prettier": "pnpm prettier:check"
+	},
 	"workspaces": [
 		"packages/*",
 		"apps/*"
 	],
-	"scripts": {
-		"build": "turbo build",
-		"cy:open": "cypress open",
-		"cy:run": "cypress run --headless --browser chrome",
-		"dev": "turbo dev",
-		"export": "turbo export",
-		"format": "prettier --write \"**/*.{ts,tsx,js,md,json,html,css,svelte}\"",
-		"lint": "pnpm lint:eslint && pnpm lint:prettier",
-		"lint:eslint": "turbo run lint",
-		"lint:prettier": "pnpm prettier:check",
-		"prepare": "husky install",
-		"prettier:check": "prettier --check .",
-		"start": "turbo start",
-		"test": "turbo test",
-		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser chrome\""
-	},
 	"dependencies": {
 		"@tailwindcss/typography": "0.5.9",
 		"autoprefixer": "10.4.13",
-		"postcss": "8.4.49",
-		"tailwindcss": "3.4.17"
+		"postcss": "8.4.31",
+		"tailwindcss": "3.4.0"
 	},
 	"devDependencies": {
 		"@cypress-audit/lighthouse": "1.4.2",
 		"@types/jest": "29.5.10",
 		"@types/node": "18.0.1",
-		"@types/react": "18.2.55",
-		"@types/react-dom": "18.2.19",
+		"@types/react": "18.0.15",
+		"@types/react-dom": "18.0.6",
 		"axe-core": "4.4.3",
 		"cypress": "13.6.0",
 		"cypress-axe": "1.5.0",
@@ -48,7 +48,7 @@
 		"prettier": "2.8.4",
 		"start-server-and-test": "2.0.3",
 		"ts-jest": "29.1.1",
-		"turbo": "2.3.3",
+		"turbo": "1.9.3",
 		"typescript": "5.0.4"
 	},
 	"packageManager": "pnpm@7.1.3"

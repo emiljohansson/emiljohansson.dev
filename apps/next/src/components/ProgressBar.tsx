@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Progress } from '@repo/ui'
+import { Progress } from 'ui'
 
 const useIncrementalProgress = () => {
 	const [progress, setProgress] = useState(0)

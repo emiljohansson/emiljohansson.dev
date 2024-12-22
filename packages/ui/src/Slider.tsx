@@ -8,16 +8,16 @@ interface Props extends Omit<SliderProps, 'defaultValue'> {
 
 export const Slider = ({ defaultValue, max, label, ...props }: Props) => (
 	<Root
-		className="ui-relative ui-flex ui-items-center ui-select-none ui-touch-none ui-w-full ui-h-5"
+		className="relative flex items-center select-none touch-none w-full h-5"
 		defaultValue={[defaultValue]}
 		max={max}
 		step={1}
 		aria-label={label}
 		{...props}
 	>
-		<Track className="ui-bg-gray-600 ui-relative ui-flex-grow ui-rounded-full ui-h-[3px]">
-			<Range className="ui-absolute ui-bg-primary ui-rounded-full ui-h-full" />
+		<Track className="bg-gray-600 relative flex-grow rounded-full h-[3px]">
+			<Range className="absolute bg-primary rounded-full h-full" />
 		</Track>
-		<Thumb className="ui-block ui-w-5 ui-h-5 ui-bg-primary ui-shadow-md ui-rounded-full ui-hover:bg-primary-dark" />
+		<Thumb className="block w-5 h-5 bg-primary shadow-md rounded-full hover:bg-primary-dark" />
 	</Root>
 )

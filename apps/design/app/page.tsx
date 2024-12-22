@@ -18,7 +18,7 @@ import {
 	Progress,
 	Slider,
 	CheckboxWithLabel,
-} from '@repo/ui'
+} from 'ui'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item

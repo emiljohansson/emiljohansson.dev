@@ -26,5 +26,3 @@ apps/next/tsconfig.json
 
 # supabase database types
 apps/next/src/lib/database.types.ts
-
-.turbo

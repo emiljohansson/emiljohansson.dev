@@ -1,7 +1,7 @@
 'use client'
 
 import { MuseoModerno } from 'next/font/google'
-import { Header, Select, SelectItem } from '@repo/ui'
+import { Header, Select, SelectItem } from 'ui'
 import { useStore } from '@nanostores/react'
 import { Board } from './Board'
 import { $selectedDifficulty } from './store'

@@ -1,3 +1,5 @@
+import './globals.css'
+
 export * from './CheckboxWithLabel'
 export * from './Slider'
 export * from './Header'
