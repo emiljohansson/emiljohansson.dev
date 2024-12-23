@@ -18,6 +18,8 @@
 		"@emiljohansson/random-string": "1.1.2",
 		"@faker-js/faker": "7.4.0",
 		"@nanostores/react": "0.7.1",
+		"@preact/signals-core": "1.8.0",
+		"@preact/signals-react": "2.3.0",
 		"@radix-ui/react-accessible-icon": "1.1.1",
 		"@radix-ui/react-label": "2.1.1",
 		"@radix-ui/react-progress": "1.1.1",
