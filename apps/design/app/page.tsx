@@ -8,7 +8,7 @@ import { useState } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import { BorderSolidIcon } from '@radix-ui/react-icons'
 import { Label } from '@radix-ui/react-label'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import {
 	Select,
 	SelectGroup,
