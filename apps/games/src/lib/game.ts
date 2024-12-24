@@ -1,4 +1,4 @@
-import type { Card, Deck, Piles } from 'src/types/card-games'
+import type { Card, Deck, Piles } from '@/types/card-games'
 
 export function scaleGame(gameEl: HTMLElement) {
 	const visibleHeight = gameEl.offsetHeight

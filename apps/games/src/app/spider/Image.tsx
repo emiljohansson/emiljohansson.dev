@@ -1,4 +1,4 @@
-import type { Card } from 'src/types/card-games'
+import type { Card } from '@/types/card-games'
 import { classNames } from 'lib/utils/string'
 
 export const Image = ({
