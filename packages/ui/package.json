@@ -6,7 +6,10 @@
 		"**/*.css"
 	],
 	"exports": {
-		".": "./dist",
+		"./*": {
+			"import": "./dist/*.mjs",
+			"types": "./dist/*.d.ts"
+		},
 		"./globals.css": "./dist/index.css",
 		"./dist/Header": {
 			"import": "./dist/Header.mjs",

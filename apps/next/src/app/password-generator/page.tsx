@@ -3,7 +3,8 @@
 import { type PropsWithChildren, useState } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import useSWR from 'swr'
-import { Slider, CheckboxWithLabel } from 'ui'
+import { Slider } from 'ui/Slider'
+import { CheckboxWithLabel } from 'ui/CheckboxWithLabel'
 import { randomString } from 'lib/utils/string'
 
 interface Selection {

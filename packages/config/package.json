@@ -20,6 +20,6 @@
 		"eslint-plugin-node": "11.1.0",
 		"eslint-plugin-promise": "6.0.0",
 		"eslint-plugin-react": "7.33.2",
-		"typescript": "5.0.4"
+		"typescript": "5.7.2"
 	}
 }

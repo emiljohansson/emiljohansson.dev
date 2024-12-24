@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getCurrentTime } from '../utils/date'
 
 function useInterval(callback: () => void, delay: number) {
-	const savedCallback = useRef<() => void>()
+	const savedCallback = useRef<() => void>(null)
 
 	// Remember the latest callback.
 	useEffect(() => {
