@@ -36,7 +36,10 @@
 		"react-icons": "4.7.1"
 	},
 	"devDependencies": {
+		"autoprefixer": "10.4.20",
 		"config": "workspace:*",
+		"postcss": "8.4.49",
+		"tailwindcss": "3.4.17",
 		"tsconfig": "workspace:*",
 		"tsup": "5.11.13"
 	},

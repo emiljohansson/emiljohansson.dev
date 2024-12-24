@@ -26,7 +26,8 @@
 		"prettier:check": "prettier --check .",
 		"start": "turbo run start",
 		"test": "turbo run test",
-		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser chrome\""
+		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser chrome\"",
+		"type-check": "turbo type-check"
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "0.5.9"
@@ -36,7 +37,7 @@
 		"@types/jest": "29.5.10",
 		"@types/node": "18.0.1",
 		"@types/react": "19.0.2",
-		"@types/react-dom": "18.0.6",
+		"@types/react-dom": "19.0.2",
 		"axe-core": "4.4.3",
 		"cypress": "13.6.0",
 		"cypress-axe": "1.5.0",
