@@ -1,6 +1,6 @@
 'use client'
 
-// import { signal, computed, effect } from 'lib/hooks/signals'
+// import { signal, computed, effect } from '@repo/lib/hooks/signals'
 // import { useSignals } from '@preact/signals-react/runtime'
 import { useSignal, useComputed, useSignalEffect } from '@preact/signals-react'
 // import { signal, computed, effect } from '@preact/signals-core'

@@ -1,4 +1,4 @@
-import { uniqueId } from 'lib/utils/string'
+import { uniqueId } from '@repo/lib/utils/string'
 import type { Card, Rank, Suit } from '@/types/card-games'
 
 export const ranks: Rank[] = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']

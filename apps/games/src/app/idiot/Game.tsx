@@ -5,9 +5,9 @@ import type { Card, Deck, Piles } from '@/types/card-games'
 import { useRef, useState } from 'react'
 import { FiRefreshCw } from 'react-icons/fi'
 import { Header, HeaderAction } from '@repo/ui'
-import { isDefined, isEmpty } from 'lib/utils/lang'
-import { classNames } from 'lib/utils/string'
-import { first, last, lastIndex, chunk } from 'lib/utils/array'
+import { isDefined, isEmpty } from '@repo/lib/utils/lang'
+import { classNames } from '@repo/lib/utils/string'
+import { first, last, lastIndex, chunk } from '@repo/lib/utils/array'
 import {
 	deselectAll,
 	moveCardsToPiles,

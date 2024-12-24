@@ -14,6 +14,7 @@
 	"devDependencies": {
 		"@emiljohansson/random-string": "1.1.2",
 		"@faker-js/faker": "7.4.0",
+		"@repo/lib": "workspace:*",
 		"@sveltejs/adapter-auto": "2.1.1",
 		"@sveltejs/kit": "1.27.6",
 		"@types/feather-icons": "4.29.1",
@@ -26,7 +27,6 @@
 		"feather-icons": "4.29.0",
 		"just-debounce-it": "3.2.0",
 		"just-range": "4.1.1",
-		"lib": "workspace:*",
 		"prettier": "2.8.0",
 		"prettier-plugin-svelte": "3.1.2",
 		"svelte": "4.2.7",
@@ -34,7 +34,6 @@
 		"tsconfig": "workspace:*",
 		"tslib": "2.4.1",
 		"typescript": "5.7.2",
-		"ui": "workspace:*",
 		"vite": "5.0.11"
 	},
 	"type": "module"

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy } from "svelte"
-	import { getCurrentTime } from "lib/utils/date"
+	import { getCurrentTime } from "@repo/lib/utils/date"
 
 	let { hours, minutes, meridiem } = getCurrentTime()
 

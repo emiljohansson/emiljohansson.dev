@@ -1,12 +1,13 @@
 {
-	"name": "lib",
+	"name": "@repo/lib",
 	"version": "0.0.0",
 	"license": "MIT",
 	"scripts": {
 		"lint": "eslint ./{hooks,tests,utils}/*.ts",
 		"test": "jest --coverage",
 		"test:ci": "npm run test",
-		"test:watch": "jest --coverage --watchAll"
+		"test:watch": "jest --coverage --watchAll",
+		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@preact/signals-core": "1.8.0",

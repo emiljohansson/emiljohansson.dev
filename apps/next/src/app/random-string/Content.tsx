@@ -5,7 +5,7 @@ import type { Ref } from '@/components/RandomString'
 import { useRef, useState } from 'react'
 import { RefreshCw, Check, Copy } from 'lucide-react'
 import RandomString from '@/components/RandomString'
-import { copyToClipboard } from 'lib/utils/string'
+import { copyToClipboard } from '@repo/lib/utils/string'
 
 export default function Content({ initialValue }: { initialValue: string }) {
 	const randomStringRef = useRef<Ref>(null)

@@ -1,6 +1,6 @@
 'use client'
 
-import useCurrentTime from 'lib/hooks/useCurrentTime'
+import useCurrentTime from '@repo/lib/hooks/useCurrentTime'
 
 const CurrentTimePage = () => {
 	const { hours, minutes, meridiem } = useCurrentTime()
