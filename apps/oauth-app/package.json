@@ -3,14 +3,14 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"x_dev": "PORT=3006 next dev",
 		"x_build": "PORT=3006 next build",
-		"x_start": "PORT=3006 next start",
-		"x_lint": "next lint"
+		"x_dev": "PORT=3006 next dev",
+		"x_lint": "next lint",
+		"x_start": "PORT=3006 next start"
 	},
 	"dependencies": {
 		"@types/node": "18.0.1",
-		"@types/react": "18.0.15",
+		"@types/react": "19.0.2",
 		"@types/react-dom": "18.0.6",
 		"autoprefixer": "10.4.13",
 		"eslint": "8.54.0",

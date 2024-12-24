@@ -2,11 +2,11 @@
 	"name": "design-app",
 	"private": true,
 	"scripts": {
-		"dev": "PORT=3001 next dev",
 		"build": "next build",
+		"dev": "PORT=3001 next dev",
 		"export": "next export",
-		"start": "PORT=3001 next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"start": "PORT=3001 next start"
 	},
 	"dependencies": {
 		"@radix-ui/react-icons": "1.3.2",

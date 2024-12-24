@@ -1,18 +1,18 @@
 {
 	"name": "next-app",
-	"description": "Playground for Emil Johansson",
 	"version": "1.2.1",
-	"author": "emiljohansson.dev@gmail.com",
+	"description": "Playground for Emil Johansson",
 	"keywords": [
 		"emil",
 		"johansson"
 	],
 	"license": "MIT",
+	"author": "emiljohansson.dev@gmail.com",
 	"scripts": {
-		"dev": "next dev",
 		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
+		"dev": "next dev",
+		"lint": "next lint",
+		"start": "next start"
 	},
 	"dependencies": {
 		"@emiljohansson/random-string": "1.1.2",
@@ -25,6 +25,9 @@
 		"@radix-ui/react-progress": "1.1.1",
 		"@radix-ui/react-select": "2.1.4",
 		"@radix-ui/react-tabs": "1.1.2",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/tailwind-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
 		"@supabase/ssr": "0.0.10",
 		"@vercel/analytics": "1.1.1",
 		"@vercel/kv": "1.0.0",

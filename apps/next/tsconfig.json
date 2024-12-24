@@ -1,42 +1,31 @@
 {
-  "extends": "tsconfig/nextjs.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": false,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "paths": {
+	"extends": "@repo/typescript-config/nextjs.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "es5",
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext"
+		],
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": false,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"isolatedModules": true,
+		"paths": {
 			"@/*": ["./src/*"]
 		},
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "strictNullChecks": true
-  },
-  "include": [
-    "*.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+		"strictNullChecks": true
+	},
+	"include": [
+		"*.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

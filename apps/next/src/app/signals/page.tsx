@@ -22,7 +22,7 @@ export default function Page() {
 					</div>
 
 					<div>
-						<h2 className="heading2">Global 1</h2>
+						<h2 className="heading2">Global</h2>
 						<div className="grid gap-3">
 							<div>
 								<GlobalContent />
