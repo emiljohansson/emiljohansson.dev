@@ -1,10 +1,10 @@
 'use client'
 
-import type { Card, Deck, Piles } from 'src/types/card-games'
+import type { Card, Deck, Piles } from '@/types/card-games'
 
 import { useRef, useState } from 'react'
 import { FiRefreshCw } from 'react-icons/fi'
-import { Header, HeaderAction } from 'ui'
+import { Header, HeaderAction } from '@repo/ui'
 import { isDefined, isEmpty } from 'lib/utils/lang'
 import { classNames } from 'lib/utils/string'
 import { first, last, lastIndex, chunk } from 'lib/utils/array'
@@ -12,8 +12,8 @@ import {
 	deselectAll,
 	moveCardsToPiles,
 	removeEmptyLeadingCards,
-} from 'src/lib/game'
-import { usePreloadCards } from 'src/lib/hooks'
+} from '@/lib/game'
+import { usePreloadCards } from '@/lib/hooks'
 
 const Image = ({ card }: { card: Card }) => (
 	<img
@@ -65,7 +65,7 @@ export function Game({
 				)
 				piles[index].splice(lastIndex(piles[index]), 1, moveCard)
 				if (piles[selectedIndex].length < 1) {
-					piles[selectedIndex].push(undefined)
+					piles[selectedIndex].push(undefined as unknown as Card)
 				}
 			}
 			deselectAll(piles)
@@ -85,11 +85,11 @@ export function Game({
 				.map((card, index) =>
 					card?.combined === current.combined ? index : undefined,
 				)
-				.filter(isDefined)[0]
+				.filter(isDefined)[0]!
 			const newPiles = [...piles]
 			newPiles[pileIndex].splice(lastIndex(newPiles[pileIndex]), 1)
 			if (piles[pileIndex].length < 1) {
-				piles[pileIndex].push(undefined)
+				piles[pileIndex].push(undefined as unknown as Card)
 			}
 			setPiles(newPiles)
 			return

@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.select {
+		@apply ui-h-10
+			ui-px-2
+			ui-rounded;
+	}
+
+	.select {
+		@apply ui-inline-flex
+      ui-items-center
+      ui-justify-center
+      ui-cursor-default
+      ui-gap-1
+      ui-outline-none
+      ui-border
+      ui-border-gray-300
+      hover:ui-border-black-rich
+      focus:ui-border-black-rich
+      dark:ui-border-gray-600
+      dark:hover:ui-border-white
+      dark:focus:ui-border-white;
+	}
+	.select-item {
+		@apply ui-border-0
+		ui-text-sm
+      focus:ui-bg-primary
+      focus:ui-text-white
+      dark:ui-text-primary
+      dark:focus:ui-text-white
+      focus-visible:ui-outline-none
+      ui-rounded
+      ui-flex
+      ui-items-center
+      ui-h-6
+      ui-py-0
+      ui-px-6
+      ui-relative
+      ui-select-none
+      data-disabled:ui-text-zinc-300
+      data-disabled:ui-pointer-events-none;
+	}
+	.select-item-indicator {
+		@apply ui-absolute
+      ui-left-0
+      ui-inline-flex
+      ui-items-center
+      ui-justify-center
+      ui-w-6;
+	}
+	.select-label {
+		@apply ui-text-slate-600 ui-text-xs ui-leading-6 ui-py-0 ui-px-6;
+	}
+	.select-separator {
+		@apply ui-h-px ui-m-1 ui-bg-gray-300;
+	}
+
+	/* ----------- */
+	/* ----------- */
+	/* ----------- */
+	/* ----------- */
+
+	/* .btn-primary,
+	.btn-secondary,
+	.input,
+	.select {
+		@apply h-10
+      px-2
+      rounded;
+	}
+
+	.btn-primary,
+	.btn-secondary {
+		@apply border
+      no-underline;
+	}
+
+	.btn-primary {
+		@apply bg-primary
+      border-primary
+      text-black
+      hover:bg-primary-dark;
+	}
+	.btn-secondary {
+		@apply bg-transparent
+      border-gray-600
+      hover:border-black-rich
+      text-gray-600
+      hover:text-black-rich
+      dark:text-gray-400
+      dark:border-gray-400
+      dark:hover:text-white
+      dark:hover:border-white;
+	}
+	button.btn-primary,
+	button.btn-secondary {
+		@apply hover:cursor-auto;
+	}
+	a.btn-primary,
+	a.btn-secondary {
+		@apply inline-flex
+      items-center;
+	}
+
+	.link {
+		@apply no-underline
+      hover:underline;
+	}
+
+	.input {
+		@apply inline-flex
+      items-center
+      justify-center
+      h-10
+      leading-none
+      bg-transparent
+      outline-none
+      border
+      border-gray-300
+      focus:border-black-rich
+      dark:border-gray-600
+      dark:focus:border-white;
+	}
+
+	 */
+}

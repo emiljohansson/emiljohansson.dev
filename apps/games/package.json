@@ -3,14 +3,15 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "PORT=3002 next dev",
 		"build": "next build",
-		"start": "PORT=3002 next start",
-		"lint": "next lint"
+		"dev": "PORT=3002 next dev",
+		"lint": "next lint",
+		"start": "PORT=3002 next start"
 	},
 	"dependencies": {
 		"@faker-js/faker": "7.4.0",
 		"@nanostores/react": "0.7.1",
+		"@repo/ui": "workspace:*",
 		"just-shuffle": "4.1.1",
 		"lib": "workspace:*",
 		"lz-string": "1.5.0",
@@ -24,7 +25,13 @@
 		"ui": "workspace:*"
 	},
 	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/tailwind-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"autoprefixer": "10.4.20",
 		"config": "workspace:*",
+		"postcss": "8.4.49",
+		"tailwindcss": "3.4.17",
 		"tsconfig": "workspace:*"
 	}
 }

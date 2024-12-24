@@ -1,20 +1,20 @@
 'use client'
 
-import type { Card, Deck, Piles } from 'src/types/card-games'
+import type { Card, Deck, Piles } from '@/types/card-games'
 
+import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { FiRefreshCw, FiRotateCcw } from 'react-icons/fi'
 import { isDefined, isEmpty } from 'lib/utils/lang'
 import { chunk, first, last } from 'lib/utils/array'
-import { Header, HeaderAction } from 'ui'
+import { Header, HeaderAction } from '@repo/ui'
 import {
 	deselectAll,
 	moveCardsToPiles,
 	removeEmptyLeadingCards,
-} from 'src/lib/game'
-import { usePreloadCards } from 'src/lib/hooks'
+} from '@/lib/game'
+import { usePreloadCards } from '@/lib/hooks'
 import { createBaseDeck } from './createBaseDeck'
-import { useRouter } from 'next/navigation'
 import { Image } from './Image'
 import { restoreGameFromHash, saveGameToHash } from './state'
 
@@ -121,7 +121,7 @@ export function Game({
 		)
 
 		if (newPiles[selectedPileIndex].length < 1) {
-			newPiles[selectedPileIndex].push(undefined)
+			newPiles[selectedPileIndex].push(undefined as unknown as Card)
 		} else {
 			newPiles[selectedPileIndex][
 				newPiles[selectedPileIndex].length - 1
@@ -147,7 +147,7 @@ export function Game({
 				clickableIndexes[clickableIndexes.length - 1] + 1,
 			)
 			if (newPiles[currentPileIndex].length < 1) {
-				newPiles[currentPileIndex].push(undefined)
+				newPiles[currentPileIndex].push(undefined as unknown as Card)
 			} else {
 				last(newPiles[currentPileIndex]).hidden = false
 			}

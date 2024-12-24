@@ -3,10 +3,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "PORT=3004 next dev",
 		"build": "next build",
-		"start": "PORT=3004 next start",
-		"lint": "next lint"
+		"dev": "PORT=3004 next dev",
+		"lint": "next lint",
+		"start": "PORT=3004 next start"
 	},
 	"dependencies": {
 		"next": "15.1.2",

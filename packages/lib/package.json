@@ -5,8 +5,8 @@
 	"scripts": {
 		"lint": "eslint ./{hooks,tests,utils}/*.ts",
 		"test": "jest --coverage",
-		"test:watch": "jest --coverage --watchAll",
-		"test:ci": "npm run test"
+		"test:ci": "npm run test",
+		"test:watch": "jest --coverage --watchAll"
 	},
 	"dependencies": {
 		"@preact/signals-core": "1.8.0",

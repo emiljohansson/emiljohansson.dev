@@ -9,11 +9,11 @@ const wordMethods = [
 	faker.word.verb,
 ]
 const dictionary = [
-	faker.locales.en.word.adjective.filter((word) => word.length === 5),
-	faker.locales.en.word.adverb.filter((word) => word.length === 5),
-	faker.locales.en.word.conjunction.filter((word) => word.length === 5),
-	faker.locales.en.word.noun.filter((word) => word.length === 5),
-	faker.locales.en.word.verb.filter((word) => word.length === 5),
+	faker.locales.en!.word!.adjective!.filter((word) => word.length === 5),
+	faker.locales.en!.word!.adverb!.filter((word) => word.length === 5),
+	faker.locales.en!.word!.conjunction!.filter((word) => word.length === 5),
+	faker.locales.en!.word!.noun!.filter((word) => word.length === 5),
+	faker.locales.en!.word!.verb!.filter((word) => word.length === 5),
 ]
 	.flat()
 	.reduce((r, w) => {
