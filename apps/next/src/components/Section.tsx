@@ -1,5 +1,5 @@
 import type { FunctionComponent, ReactNode } from 'react'
-import { classNames } from 'lib/utils/string'
+import { classNames } from '@repo/lib/utils/string'
 
 const Section: FunctionComponent<{
 	children: ReactNode

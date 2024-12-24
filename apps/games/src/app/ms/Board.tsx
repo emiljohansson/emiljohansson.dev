@@ -4,7 +4,7 @@ import {
 	type FunctionComponent,
 	type ReactNode,
 } from 'react'
-import useInterval from 'lib/hooks/useInterval'
+import useInterval from '@repo/lib/hooks/useInterval'
 import { type Difficulty, type Rows, type RowTile } from './types'
 import { $boardStyles, $isDebugging } from './store'
 import { useStore } from '@nanostores/react'

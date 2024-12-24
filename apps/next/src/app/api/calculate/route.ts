@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { add } from 'lib/utils/math'
+import { add } from '@repo/lib/utils/math'
 
 const toNumber = (value: string): number => parseFloat(value)
 

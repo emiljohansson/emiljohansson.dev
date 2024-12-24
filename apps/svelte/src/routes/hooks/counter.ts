@@ -1,4 +1,4 @@
-import { clamp } from 'lib/utils/number'
+import { clamp } from '@repo/lib/utils/number'
 import { writable } from 'svelte/store'
 
 export function createCounter(

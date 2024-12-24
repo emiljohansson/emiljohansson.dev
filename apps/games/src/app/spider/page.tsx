@@ -4,7 +4,7 @@ import shuffle from 'just-shuffle'
 import { Game } from './Game'
 import { createBaseDeck } from './createBaseDeck'
 import { useEffect, useState } from 'react'
-import { isDefined } from 'lib/utils/lang'
+import { isDefined } from '@repo/lib/utils/lang'
 import { Deck, Piles } from '@/types/card-games'
 import { restoreGameFromHash } from './state'
 

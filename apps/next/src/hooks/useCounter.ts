@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { clamp } from 'lib/utils/number'
+import { clamp } from '@repo/lib/utils/number'
 
 export const useCounter = (
 	initialValue = 0,

@@ -6,14 +6,15 @@
 		"build": "next build",
 		"dev": "PORT=3002 next dev",
 		"lint": "next lint",
-		"start": "PORT=3002 next start"
+		"start": "PORT=3002 next start",
+		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@faker-js/faker": "7.4.0",
 		"@nanostores/react": "0.7.1",
+		"@repo/lib": "workspace:*",
 		"@repo/ui": "workspace:*",
 		"just-shuffle": "4.1.1",
-		"lib": "workspace:*",
 		"lz-string": "1.5.0",
 		"million": "2.6.4",
 		"motion": "11.15.0",
@@ -21,8 +22,7 @@
 		"next": "15.1.2",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
-		"react-icons": "4.7.1",
-		"ui": "workspace:*"
+		"react-icons": "4.7.1"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
