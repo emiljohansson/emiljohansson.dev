@@ -1,6 +1,11 @@
-<script>
-	// import '@repo/ui/styles.css'
-	import "../app.css"
+<script lang="ts">
+	import '@repo/ui/styles.css'
+	import '../app.css'
+	interface Props {
+		children?: import('svelte').Snippet
+	}
+
+	let { children }: Props = $props()
 	// import feather from "feather-icons"
 </script>
 
@@ -27,4 +32,4 @@
 	</a>
 </nav>
 
-<slot />
+{@render children?.()}

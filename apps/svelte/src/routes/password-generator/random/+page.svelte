@@ -1,12 +1,16 @@
 <script lang="ts">
-	import { randomString } from "@repo/lib/utils/string"
+	import { run } from 'svelte/legacy'
 
-	let value = randomString()
-	let length = 20
-	let numeric = false
-	let symbols = false
+	import { randomString } from '@repo/lib/utils/string'
 
-	$: value = randomString({ length, numeric, symbols })
+	let value = $state(randomString())
+	let length = $state(20)
+	let numeric = $state(false)
+	let symbols = $state(false)
+
+	run(() => {
+		value = randomString({ length, numeric, symbols })
+	})
 </script>
 
 <h2 class="text-2xl font-semibold mb-6">Random Password</h2>

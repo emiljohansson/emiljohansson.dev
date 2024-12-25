@@ -27,3 +27,6 @@ apps/next/tsconfig.json
 
 # supabase database types
 apps/next/src/lib/database.types.ts
+
+# unfixable/dont have time for
+apps/svelte/src/app.html

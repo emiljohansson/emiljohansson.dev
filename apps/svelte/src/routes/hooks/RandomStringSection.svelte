@@ -1,12 +1,16 @@
 <script lang="ts">
-	import { randomString } from "./randomString"
+	import { randomString } from './randomString'
 
-	export let initValue: string
+	interface Props {
+		initValue: string
+	}
 
-	let {value: random, generate} = randomString(initValue)
+	let { initValue }: Props = $props()
+
+	let { value: random, generate } = randomString(initValue)
 </script>
 
 <article>
 	<h2>Random String</h2>
-	<button on:click={generate}>{$random}</button>
+	<button onclick={generate}>{$random}</button>
 </article>
