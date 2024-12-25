@@ -1,7 +1,9 @@
 <script lang="ts">
-	let isValid = false
+	import { preventDefault } from 'svelte/legacy'
 
-	async function onSubmit(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement; }) {
+	let isValid = $state(false)
+
+	async function onSubmit(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		if (!event.target) return
 		const formData = new FormData(event.target as HTMLFormElement)
 		const value = formData.get('value')
@@ -10,10 +12,10 @@
 			method: 'POST',
 			body: JSON.stringify({ value }),
 			headers: {
-				'content-type': 'application/json'
-			}
+				'content-type': 'application/json',
+			},
 		})
-		const data: { isValid: boolean } = await response.json();
+		const data: { isValid: boolean } = await response.json()
 		isValid = data.isValid
 	}
 </script>
@@ -27,10 +29,10 @@
 	<h1 class="text-4xl font-medium mb-0">Two-Factor Authentication<br />Enter Code</h1>
 </header>
 
-<form on:submit|preventDefault={onSubmit}>
+<form onsubmit={preventDefault(onSubmit)}>
 	<label>
 		Code
-		<input name="value" type="text">
+		<input name="value" type="text" />
 	</label>
 	<button>Validate</button>
 </form>

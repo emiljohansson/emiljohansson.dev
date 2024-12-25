@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onDestroy } from "svelte"
-	import { getCurrentTime } from "@repo/lib/utils/date"
+	import { onDestroy } from 'svelte'
+	import { getCurrentTime } from '@repo/lib/utils/date'
 
-	let { hours, minutes, meridiem } = getCurrentTime()
+	let { hours, minutes, meridiem } = $state(getCurrentTime())
 
 	const interval = setInterval(() => {
 		const newTime = getCurrentTime()

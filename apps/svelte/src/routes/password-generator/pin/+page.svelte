@@ -1,13 +1,16 @@
 <script lang="ts">
-	import { randomString } from "@repo/lib/utils/string"
+	import { randomString } from '@repo/lib/utils/string'
+	import { untrack } from 'svelte'
 
 	const letters = false
 	const numeric = true
 	const symbols = false
-	let length = 6
-	let value = randomString({ length, letters, numeric, symbols })
+	let length = $state(6)
+	let value = $state(randomString({ length: untrack(() => length), letters, numeric, symbols }))
 
-	$: value = randomString({ length, letters, numeric, symbols })
+	$effect(() => {
+		value = randomString({ length, letters, numeric, symbols })
+	})
 </script>
 
 <h2 class="text-2xl font-semibold mb-6">PIN</h2>

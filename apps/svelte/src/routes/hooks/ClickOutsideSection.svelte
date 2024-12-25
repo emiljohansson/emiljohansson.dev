@@ -1,16 +1,18 @@
 <script lang="ts">
-	let isWithin = false
+	import { stopPropagation } from 'svelte/legacy'
+
+	let isWithin = $state(false)
 
 	function onGlobalClick() {
-		isWithin = false;
+		isWithin = false
 	}
 </script>
 
-<svelte:document on:click={onGlobalClick} />
+<svelte:document onclick={onGlobalClick} />
 
 <article>
 	<h2>Click Outside</h2>
-	<button class="btn-primary" on:click|stopPropagation={() => isWithin = true}>
+	<button class="btn-primary" onclick={stopPropagation(() => (isWithin = true))}>
 		{isWithin ? 'Within' : 'Outside'}
 	</button>
 </article>

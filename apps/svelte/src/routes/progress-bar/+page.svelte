@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { onDestroy } from "svelte"
-	import { tweened } from "svelte/motion"
-	import { quadOut } from "svelte/easing"
+	import { onDestroy } from 'svelte'
+	import { tweened } from 'svelte/motion'
+	import { quadOut } from 'svelte/easing'
 
-	let percentage = 0
+	let percentage = $state(0)
 	const progress = tweened(0, {
 		duration: 600,
 		easing: quadOut,

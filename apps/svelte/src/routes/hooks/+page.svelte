@@ -5,7 +5,11 @@
 	import DebounceSection from './DebounceSection.svelte'
 	import RandomStringSection from './RandomStringSection.svelte'
 
-	export let data: PageData
+	interface Props {
+		data: PageData
+	}
+
+	let { data }: Props = $props()
 </script>
 
 <svelte:head>

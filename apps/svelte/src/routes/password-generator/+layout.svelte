@@ -1,16 +1,21 @@
 <script lang="ts">
+	interface Props {
+		children?: import('svelte').Snippet
+	}
+
+	let { children }: Props = $props()
 	const links = [
 		{
-			href: "/password-generator/random",
-			title: "Random",
+			href: '/password-generator/random',
+			title: 'Random',
 		},
 		{
-			href: "/password-generator/memorable",
-			title: "Memorable",
+			href: '/password-generator/memorable',
+			title: 'Memorable',
 		},
 		{
-			href: "/password-generator/pin",
-			title: "PIN",
+			href: '/password-generator/pin',
+			title: 'PIN',
 		},
 	]
 </script>
@@ -39,7 +44,7 @@
 		</nav>
 
 		<main>
-			<slot />
+			{@render children?.()}
 		</main>
 	</div>
 </section>
