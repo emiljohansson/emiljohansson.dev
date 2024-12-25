@@ -18,7 +18,6 @@
 	},
 	"devDependencies": {
 		"config": "workspace:*",
-		"tsconfig": "workspace:*",
-		"tsup": "5.11.13"
+		"tsconfig": "workspace:*"
 	}
 }
