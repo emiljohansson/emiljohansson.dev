@@ -1,23 +1,23 @@
 <script lang="ts">
-	import { createCounter } from "./counter"
+	import { createCounter } from "./counter.svelte"
 
-	let {count, increment, decrement, reset, set} = createCounter()
+	let counter = createCounter()
 </script>
 
 <article>
 	<h2>Counter</h2>
-	<p>Count: {$count}</p>
+	<p>Count: {counter.count}</p>
 	<div class="flex">
-		<button class="btn-secondary" on:click={increment}>
+		<button class="btn-secondary" on:click={counter.increment}>
 			Increment
 		</button>
-		<button class="btn-secondary" on:click={decrement}>
+		<button class="btn-secondary" on:click={counter.decrement}>
 			Decrement
 		</button>
-		<button class="btn-secondary" on:click={reset}>
+		<button class="btn-secondary" on:click={counter.reset}>
 			Reset
 		</button>
-		<button class="btn-secondary" on:click={() => set(5)}>
+		<button class="btn-secondary" on:click={() => counter.set(5)}>
 			Set 5
 		</button>
 	</div>

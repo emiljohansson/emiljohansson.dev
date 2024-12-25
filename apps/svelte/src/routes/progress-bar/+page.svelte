@@ -54,7 +54,7 @@
 				data-value="100"
 				data-max="100"
 				style="width: {$progress}%;"
-			/>
+			></div>
 		</div>
 		<div class="ml-2">
 			{percentage}%

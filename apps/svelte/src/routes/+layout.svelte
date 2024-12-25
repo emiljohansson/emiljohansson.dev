@@ -1,5 +1,5 @@
 <script>
-	// import '@repo/ui/styles.css'
+	import '@repo/ui/styles.css'
 	import "../app.css"
 	// import feather from "feather-icons"
 </script>
