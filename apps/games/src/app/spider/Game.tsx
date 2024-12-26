@@ -53,11 +53,6 @@ export function Game({
 	usePreloadCards(createBaseDeck())
 
 	useEffect(() => {
-		console.log({
-			shouldScale,
-			scale,
-		})
-
 		if (!shouldScale || scale <= 0.5) return
 
 		const parent = mainContentRef.current!
@@ -248,7 +243,7 @@ export function Game({
 				<div
 					ref={mainContentRef}
 					style={{
-						transform: `scale(${scale})`,
+						// transform: `scale(${scale})`,
 						transformOrigin: 'top center',
 						position: 'absolute',
 						top: 0,
