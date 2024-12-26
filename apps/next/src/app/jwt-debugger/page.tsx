@@ -1,27 +1,53 @@
 'use client'
 
-import { verify, JsonWebTokenError, Jwt } from 'jsonwebtoken'
+import { useEffect, useState } from 'react'
+import { JWTPayload, SignJWT, jwtVerify, JWTVerifyResult } from 'jose'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
-import { useEffect, useState } from 'react'
+
+const authSecret = 'very long secret'
+const key = new TextEncoder().encode(authSecret)
+
+async function signToken(payload: JWTPayload, expiresIn = '1h') {
+	return await new SignJWT(payload)
+		.setProtectedHeader({ alg: 'HS256' })
+		.setIssuedAt()
+		.setExpirationTime(expiresIn)
+		.sign(key)
+}
 
 export default function Page() {
-	const [encodedValue, setEncodedValue] = useState(
-		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9obiBEb2UiLCJzdWIiOiIxMjM0NSIsImlhdCI6MTY4MDk5MTA5MjczMSwiZXhwIjoxNjgwOTkxMDk2MzMxfQ.DNsQr2mhnP0aRK2luQcjTcZKwRTmm1MOqaZADx_quUE',
-	)
-	const [decodedValue, setDecodedValue] = useState<Jwt | null>(null)
+	const [encodedValue, setEncodedValue] = useState('')
+	const [decodedValue, setDecodedValue] =
+		useState<JWTVerifyResult<JWTPayload> | null>(null)
 	const [secret, setSecret] = useState('shhhh')
 	const [errorMessage, setErrorMessage] = useState('')
 
 	useEffect(() => {
+		async function initToken() {
+			const payload = {
+				sub: '1234567890',
+				name: 'John Doe',
+			}
+			const token = await signToken(payload)
+			return token
+		}
+
+		async function sign() {
+			const token = encodedValue || (await initToken())
+			const verified = await jwtVerify(token, key, { algorithms: ['HS256'] })
+
+			setEncodedValue(token)
+			setDecodedValue(verified)
+		}
 		setErrorMessage('')
 		try {
-			const token = verify(encodedValue, secret, { complete: true })
-			setDecodedValue(token)
+			sign()
 		} catch (error) {
-			setErrorMessage((error as JsonWebTokenError).message)
+			setErrorMessage((error as Error).message)
 		}
 	}, [encodedValue, secret])
+
 	return (
 		<Content>
 			<Section size="normal" direction="column">
@@ -50,8 +76,8 @@ export default function Page() {
 								<div className="flex flex-col gap-1">
 									<div className="text-xs">Header</div>
 									<div className="text-sm">
-										{decodedValue?.header &&
-											JSON.stringify(decodedValue.header, null, 2)}
+										{decodedValue?.protectedHeader &&
+											JSON.stringify(decodedValue.protectedHeader, null, 2)}
 									</div>
 								</div>
 								<div className="flex flex-col gap-1">
@@ -59,13 +85,6 @@ export default function Page() {
 									<div className="text-sm">
 										{decodedValue?.payload &&
 											JSON.stringify(decodedValue.payload, null, 2)}
-									</div>
-								</div>
-								<div className="flex flex-col gap-1">
-									<div className="text-xs">Signature</div>
-									<div className="text-sm">
-										{decodedValue?.signature &&
-											JSON.stringify(decodedValue.signature, null, 2)}
 									</div>
 								</div>
 							</div>

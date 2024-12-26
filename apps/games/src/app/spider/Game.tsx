@@ -3,7 +3,7 @@
 import type { Card, Deck, Piles } from '@/types/card-games'
 
 import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FiRefreshCw, FiRotateCcw } from 'react-icons/fi'
 import { isDefined, isEmpty } from '@repo/lib/utils/lang'
 import { chunk, first, last } from '@repo/lib/utils/array'
@@ -43,9 +43,38 @@ export function Game({
 	const router = useRouter()
 	const [deck, setDeck] = useState<Deck>(remainingCards)
 	const [piles, setPiles] = useState<Piles>(initPiles)
-	const mainRef = useRef<HTMLElement>(null)
+	const headerRef = useRef<HTMLElement>(null)
+	const navRef = useRef<HTMLElement>(null)
+	const mainRef = useRef<HTMLDivElement>(null)
+	const mainContentRef = useRef<HTMLDivElement>(null)
+	const [shouldScale, setShouldScale] = useState(false)
+	const [scale, setScale] = useState(1)
 
 	usePreloadCards(createBaseDeck())
+
+	useEffect(() => {
+		console.log({
+			shouldScale,
+			scale,
+		})
+
+		if (!shouldScale || scale <= 0.5) return
+
+		const parent = mainContentRef.current!
+		const child = mainRef.current!
+		let newScale = 1
+		if (child.scrollHeight > parent.clientHeight) {
+			newScale = scale - 0.1
+		} else {
+			newScale = scale + 0.1
+		}
+
+		if (newScale >= 1) {
+			newScale = 1
+		}
+		setShouldScale(false)
+		setScale(newScale)
+	}, [shouldScale, scale])
 
 	function addMoreCards() {
 		deselectAll(piles)
@@ -154,6 +183,12 @@ export function Game({
 		}
 		setPiles(newPiles)
 		saveGameToHash(deck, piles)
+
+		const parent = mainContentRef.current!
+		const child = mainRef.current!
+		if (scale !== 1 || child.scrollHeight > parent.clientHeight) {
+			setShouldScale(true)
+		}
 	}
 
 	function undoMove() {
@@ -174,8 +209,8 @@ export function Game({
 	}
 
 	return (
-		<>
-			<Header>
+		<div className="flex flex-col h-screen">
+			<Header ref={headerRef}>
 				<HeaderAction
 					onClick={() => {
 						window.location.hash = ''
@@ -191,7 +226,7 @@ export function Game({
 					Undo
 				</HeaderAction>
 			</Header>
-			<nav className="h-16">
+			<nav ref={navRef} className="h-16">
 				<button className="h-full w-20 ml-4 relative" onClick={addMoreCards}>
 					{chunk(deck, 10).map((card, index) => (
 						<img
@@ -206,42 +241,57 @@ export function Game({
 					))}
 				</button>
 			</nav>
-			<main ref={mainRef} className="mx-auto px-4 max-w-screen-lg">
-				<h1 className="sr-only">Spider Solitaire</h1>
-				<div className="flex">
-					{piles.map((pile, pileIndex) => (
-						<div key={pileIndex} className="w-full">
-							{pile.map((card, cardIndex) => {
-								const clickableIndexes = getClickableIndexesFromPile(pile)
-								const clickable =
-									!isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
-								const cardImage = !isDefined(card)
-									? 'blank'
-									: !card.hidden
-									? card.combined
-									: 'red_back'
-
-								if (clickable) {
+			<main
+				ref={mainRef}
+				className="flex-grow mx-auto px-4 max-w-screen-lg relative w-full"
+			>
+				<div
+					ref={mainContentRef}
+					style={{
+						transform: `scale(${scale})`,
+						transformOrigin: 'top center',
+						position: 'absolute',
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+					}}
+				>
+					<h1 className="sr-only">Spider Solitaire</h1>
+					<div className="flex">
+						{piles.map((pile, pileIndex) => (
+							<div key={pileIndex} className="w-full">
+								{pile.map((card, cardIndex) => {
+									const clickableIndexes = getClickableIndexesFromPile(pile)
+									const clickable =
+										!isDefined(card) || clickableIndexes.indexOf(cardIndex) > -1
+									const cardImage = !isDefined(card)
+										? 'blank'
+										: !card.hidden
+										? card.combined
+										: 'red_back'
+									if (clickable) {
+										return (
+											<button
+												key={cardIndex}
+												className="-mt-[110%] first:mt-0"
+												onClick={() => handleSelectedCard(card, pileIndex)}
+											>
+												<Image card={card} cardImage={cardImage} />
+											</button>
+										)
+									}
 									return (
-										<button
-											key={cardIndex}
-											className="-mt-[110%] first:mt-0"
-											onClick={() => handleSelectedCard(card, pileIndex)}
-										>
+										<div key={cardIndex} className="-mt-[110%] first:mt-0">
 											<Image card={card} cardImage={cardImage} />
-										</button>
+										</div>
 									)
-								}
-								return (
-									<div key={cardIndex} className="-mt-[110%] first:mt-0">
-										<Image card={card} cardImage={cardImage} />
-									</div>
-								)
-							})}
-						</div>
-					))}
+								})}
+							</div>
+						))}
+					</div>
 				</div>
 			</main>
-		</>
+		</div>
 	)
 }
