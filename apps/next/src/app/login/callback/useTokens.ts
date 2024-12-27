@@ -1,3 +1,5 @@
+'use client'
+
 import { SignJWT } from 'jose'
 import { useEffect, useState } from 'react'
 
