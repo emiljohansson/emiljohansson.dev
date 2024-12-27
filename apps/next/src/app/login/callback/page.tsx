@@ -1,13 +1,12 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { createTokens } from '../tokens'
+import { useTokens } from './useTokens'
 
-export default async function Page() {
-	console.log('GET /login/callback')
+export default function Page() {
 	const searchParams = useSearchParams()
 	const code = searchParams.get('code') || 'error'
-	const json = await createTokens(code)
+	const json = useTokens(code)
 
 	return (
 		<main>
