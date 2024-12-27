@@ -6,6 +6,7 @@ import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import { GrGithub } from 'react-icons/gr'
 import { Command, ArrowUpRightFromSquare } from 'lucide-react'
 import { openCommandMenu } from './CommandMenu'
+import { Button } from '@/components/ui/button'
 
 export function Content({ projects }: { projects: Tables<'project'>[] }) {
 	return (
@@ -30,7 +31,11 @@ export function Content({ projects }: { projects: Tables<'project'>[] }) {
 						</span>
 					</Link>
 				</h1>
-				<button className="btn-outline flex" onClick={() => openCommandMenu()}>
+				<Button
+					variant="outline"
+					className="flex"
+					onClick={() => openCommandMenu()}
+				>
 					Command Menu{' '}
 					<span
 						className="
@@ -43,7 +48,7 @@ export function Content({ projects }: { projects: Tables<'project'>[] }) {
 					>
 						<Command size={12} /> K
 					</span>
-				</button>
+				</Button>
 			</div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 h-screen p-3 m-0 max-w-7xl mx-auto">
 				{projects.map(({ title, href, description, test }, index) => {
