@@ -16,7 +16,6 @@
 		"@repo/ui": "workspace:*",
 		"just-shuffle": "4.1.1",
 		"lz-string": "1.5.0",
-		"million": "2.6.4",
 		"motion": "11.15.0",
 		"nanostores": "0.9.5",
 		"next": "15.1.2",

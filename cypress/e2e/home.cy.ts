@@ -6,15 +6,12 @@ context('Landing Page', () => {
 		cy.injectAxe()
 	})
 
-	it('audits the page', () => {
-		cy.lighthouse()
-	})
-
 	it('validate accessibility', () => {
 		cy.checkA11y(null, null, console.log)
 	})
 
-	it('test dark mode and random string', () => {
+	// the feature is disabled
+	it.skip('test dark mode and random string', () => {
 		cy.get('[data-test="toggle-dark-mode"]').click()
 		cy.get('[data-test="toggle-dark-mode"]').click()
 

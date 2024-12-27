@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"target": "es5",
-		"types": ["cypress", "node", "@cypress-audit/lighthouse", "cypress-axe"],
+		"types": ["cypress", "node", "cypress-axe"],
 		"isolatedModules": false
 	},
 	"include": ["**/*.ts"]

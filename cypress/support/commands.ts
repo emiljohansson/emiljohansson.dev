@@ -35,7 +35,6 @@
 //     }
 //   }
 // }
-import '@cypress-audit/lighthouse/commands'
 import 'cypress-axe'
 
 Cypress.Commands.add('injectAxe', () => {

@@ -28,7 +28,7 @@
 - Testing
   - End to end
     - Cypress
-    - Lighthouse
+    - ~~Lighthouse~~
     - AXE
   - Unit testing
     - Jest
