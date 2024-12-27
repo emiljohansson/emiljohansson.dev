@@ -23,7 +23,7 @@
 		"@typescript-eslint/eslint-plugin": "6.12.0",
 		"@typescript-eslint/parser": "6.12.0",
 		"config": "workspace:*",
-		"eslint": "8.54.0",
+		"eslint": "8.57.0",
 		"eslint-config-prettier": "8.5.0",
 		"eslint-plugin-svelte": "^2.45.1",
 		"feather-icons": "4.29.0",
