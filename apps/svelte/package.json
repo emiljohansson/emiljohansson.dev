@@ -17,7 +17,7 @@
 		"@repo/lib": "workspace:*",
 		"@repo/ui": "workspace:*",
 		"@sveltejs/adapter-auto": "3.3.1",
-		"@sveltejs/kit": "2.15.0",
+		"@sveltejs/kit": "2.15.1",
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
 		"@types/feather-icons": "4.29.1",
 		"@typescript-eslint/eslint-plugin": "6.12.0",

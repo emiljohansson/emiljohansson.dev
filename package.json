@@ -48,6 +48,11 @@
 		"turbo": "2.3.3",
 		"typescript": "5.7.2"
 	},
-	"packageManager": "pnpm@9.15.1"
+	"packageManager": "pnpm@9.15.1",
+	"pnpm": {
+		"overrides": {
+			"cookie": "^0.7.0"
+		}
+	}
 }
 
