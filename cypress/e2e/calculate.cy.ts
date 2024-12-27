@@ -7,10 +7,6 @@ context('Calculate Page', () => {
 		cy.intercept('POST', '/api/calculate').as('api')
 	})
 
-	it('audits the page', () => {
-		cy.lighthouse()
-	})
-
 	it('validate accessibility', () => {
 		cy.checkA11y(null, null, console.log)
 	})

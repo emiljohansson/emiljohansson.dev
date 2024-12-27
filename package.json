@@ -15,7 +15,7 @@
 	"scripts": {
 		"build": "turbo build",
 		"cy:open": "cypress open",
-		"cy:run": "cypress run --headless --browser chrome",
+		"cy:run": "cypress run --headless --browser electron",
 		"dev": "turbo dev --parallel",
 		"export": "turbo export",
 		"format": "prettier --write \"**/*.{ts,tsx,js,md,json,html,css,svelte}\"",
@@ -26,14 +26,13 @@
 		"prettier:check": "prettier --check .",
 		"start": "turbo start",
 		"test": "turbo test",
-		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser chrome\"",
+		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser electron\"",
 		"type-check": "turbo type-check"
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "0.5.9"
 	},
 	"devDependencies": {
-		"@cypress-audit/lighthouse": "1.4.2",
 		"@types/jest": "29.5.14",
 		"@types/node": "18.0.1",
 		"@types/react": "19.0.2",
