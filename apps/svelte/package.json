@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@emiljohansson/random-string": "1.1.2",
-		"@faker-js/faker": "7.4.0",
+		"@faker-js/faker": "9.3.0",
 		"@repo/lib": "workspace:*",
 		"@repo/ui": "workspace:*",
 		"@sveltejs/adapter-auto": "3.3.1",

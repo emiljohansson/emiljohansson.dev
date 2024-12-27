@@ -129,8 +129,8 @@ importers:
   apps/games:
     dependencies:
       '@faker-js/faker':
-        specifier: 7.4.0
-        version: 7.4.0
+        specifier: 9.3.0
+        version: 9.3.0
       '@nanostores/react':
         specifier: 0.7.1
         version: 0.7.1(nanostores@0.9.5)(react@19.0.0)
@@ -196,8 +196,8 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
       '@faker-js/faker':
-        specifier: 7.4.0
-        version: 7.4.0
+        specifier: 9.3.0
+        version: 9.3.0
       '@nanostores/react':
         specifier: 0.7.1
         version: 0.7.1(nanostores@0.9.5)(react@19.0.0)
@@ -424,8 +424,8 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
       '@faker-js/faker':
-        specifier: 7.4.0
-        version: 7.4.0
+        specifier: 9.3.0
+        version: 9.3.0
       '@repo/lib':
         specifier: workspace:*
         version: link:../../packages/lib
@@ -1109,10 +1109,9 @@ packages:
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@faker-js/faker@7.4.0':
-    resolution: {integrity: sha512-xDd3Tvkt2jgkx1LkuwwxpNBy/Oe+LkZBTwkgEFTiWpVSZgQ5sc/LenbHKRHbFl0dq/KFeeq/szyyPtpJRKY0fg==}
-    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-    deprecated: Please update to a newer version.
+  '@faker-js/faker@9.3.0':
+    resolution: {integrity: sha512-r0tJ3ZOkMd9xsu3VRfqlFR6cz0V/jFYRswAIpC+m/DIfAUXq7g8N7wTAlhSANySXYGKzGryfDXwtwsY8TxEIDw==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
   '@floating-ui/core@1.6.8':
     resolution: {integrity: sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==}
@@ -6027,7 +6026,7 @@ snapshots:
 
   '@eslint/js@8.57.0': {}
 
-  '@faker-js/faker@7.4.0': {}
+  '@faker-js/faker@9.3.0': {}
 
   '@floating-ui/core@1.6.8':
     dependencies:
