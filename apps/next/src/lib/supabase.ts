@@ -10,8 +10,8 @@ const createClient = async () => {
 		process.env.SUPABASE_ANON_KEY!,
 		{
 			cookies: {
-				get(name: string) {
-					return cookieStore.get(name)?.value
+				getAll() {
+					return cookieStore.getAll()
 				},
 			},
 		},
