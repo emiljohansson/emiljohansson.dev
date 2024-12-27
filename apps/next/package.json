@@ -32,6 +32,7 @@
 		"@vercel/analytics": "1.1.1",
 		"@vercel/kv": "1.0.0",
 		"crypto-js": "4.2.0",
+		"jose": "5.9.6",
 		"jsonwebtoken": "9.0.2",
 		"just-range": "4.1.1",
 		"lucide-react": "0.323.0",

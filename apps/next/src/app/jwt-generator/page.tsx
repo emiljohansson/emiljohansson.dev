@@ -1,9 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import { sign } from 'jsonwebtoken'
 import Content from '@/components/Content'
 import Section from '@/components/Section'
+import { JWTPayload, SignJWT } from 'jose'
+
+const authSecret = 'very long secret'
+const key = new TextEncoder().encode(authSecret)
+
+async function signToken(payload: JWTPayload, expiresIn = '1h') {
+	return await new SignJWT(payload)
+		.setProtectedHeader({ alg: 'HS256' })
+		.setIssuedAt()
+		.setExpirationTime(expiresIn)
+		.sign(key)
+}
 
 export default function Page() {
 	const [encodedValue, setEncodedValue] = useState('')
@@ -12,35 +23,28 @@ export default function Page() {
 	const [expiresIn, setExpiresIn] = useState('1h')
 	const [secret, setSecret] = useState('')
 
+	async function onSubmit(event: React.FormEvent) {
+		event.preventDefault()
+		if (!subject || !secret) {
+			return
+		}
+		const payload = {
+			...JSON.parse(data),
+			sub: subject,
+			iat: Date.now(),
+		}
+		const token2 = signToken(payload, expiresIn)
+
+		setEncodedValue(await token2)
+	}
+
 	return (
 		<Content>
 			<Section size="normal" direction="column">
 				<h1 className="sr-only">JWT Generator</h1>
 
 				<article className="flex flex-col gap-4">
-					<form
-						className="flex flex-col gap-4"
-						onSubmit={(event) => {
-							event.preventDefault()
-							console.log('submit')
-							if (!subject || !secret) {
-								return
-							}
-							const payload = {
-								...JSON.parse(data),
-								sub: subject,
-								iat: Date.now(),
-							}
-							const token = sign(payload, secret, {
-								expiresIn: expiresIn || '1h',
-							})
-							console.log({
-								token,
-							})
-
-							setEncodedValue(token)
-						}}
-					>
+					<form className="flex flex-col gap-4" onSubmit={onSubmit}>
 						<div className="flex flex-col gap-2">
 							<label htmlFor="jwt-sub">Subject</label>
 							<input

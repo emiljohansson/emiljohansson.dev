@@ -18,7 +18,8 @@ interface Option {
 	title: string
 }
 
-const scrollButtonClassNames = 'flex items-center justify-center h-7 bg-white'
+const scrollButtonClassNames =
+	'ui-flex ui-items-center ui-justify-center ui-h-7 ui-bg-white'
 
 function getTitleFromValue(options: Option[], selectedValue: string) {
 	const option = options.find((option) => option.value === selectedValue)
@@ -51,12 +52,12 @@ export default function Select({
 				</Icon>
 			</Trigger>
 			<Portal>
-				<Content className="overflow-hidden bg-white rounded shadow z-50">
+				<Content className="ui-overflow-hidden ui-bg-white ui-rounded ui-shadow ui-z-50">
 					<ScrollUpButton className={scrollButtonClassNames}>
 						<ChevronUpIcon />
 					</ScrollUpButton>
 
-					<Viewport className="p-1">{children}</Viewport>
+					<Viewport className="ui-p-1">{children}</Viewport>
 
 					<ScrollDownButton className={scrollButtonClassNames}>
 						<ChevronDownIcon />

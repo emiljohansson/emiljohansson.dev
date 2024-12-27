@@ -9,7 +9,7 @@ export const HeaderAction = ({
 	onClick: () => void
 	attributes?: { [key: string]: string }[]
 }>) => (
-	<button className="ml-2" onClick={onClick} {...attributes}>
+	<button className="ui-ml-2" onClick={onClick} {...attributes}>
 		{children}
 	</button>
 )

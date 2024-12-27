@@ -1,15 +1,20 @@
-import type { PropsWithChildren } from 'react'
+import type { PropsWithChildren, RefObject } from 'react'
 import Link from 'next/link'
 import { FiArrowLeft } from 'react-icons/fi'
 
-export const Header = ({ children }: PropsWithChildren) => {
+export const Header = ({
+	children,
+	ref,
+}: PropsWithChildren<{
+	ref?: RefObject<HTMLElement | null>
+}>) => {
 	return (
-		<header className="flex p-4">
+		<header ref={ref} className="ui-flex ui-p-4">
 			<Link href="/" data-test="back-link">
 				<FiArrowLeft size={30} strokeWidth="1.5" />
-				<span className="sr-only">Back</span>
+				<span className="ui-sr-only">Back</span>
 			</Link>
-			<div className="ml-auto">{children}</div>
+			<div className="ui-ml-auto">{children}</div>
 		</header>
 	)
 }
