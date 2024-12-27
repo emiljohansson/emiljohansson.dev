@@ -29,9 +29,7 @@
 		"test:ci": "start-server-and-test start http://localhost:3000 \"cypress run --headless --browser electron\"",
 		"type-check": "turbo type-check"
 	},
-	"dependencies": {
-		"@tailwindcss/typography": "0.5.9"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@types/node": "18.0.1",
 		"@types/react": "19.0.2",
