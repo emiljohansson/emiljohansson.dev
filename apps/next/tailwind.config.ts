@@ -3,7 +3,7 @@ import sharedConfig from '@repo/tailwind-config'
 
 const config = {
 	darkMode: ['class'],
-	content: ['./src/app/**/*.tsx'],
+	content: ['./src/**/*.tsx'],
 	presets: [sharedConfig],
 	plugins: [require('tailwindcss-animate')],
 	theme: {
