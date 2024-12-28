@@ -13,6 +13,17 @@ export default function LocalContent() {
 	useSignalEffect(() => {
 		console.log('Count:', count.value)
 		console.log('Double:', double.value)
+
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key === 'ArrowUp') {
+				count.value++
+			} else if (event.key === 'ArrowDown') {
+				count.value--
+			}
+		}
+
+		document.addEventListener('keydown', onKeyDown)
+		return () => document.removeEventListener('keydown', onKeyDown)
 	})
 
 	return (

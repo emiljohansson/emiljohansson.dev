@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+import { fakerEN_US as faker, en } from '@faker-js/faker'
 import { Game } from './Game'
 
 const wordMethods = [
@@ -9,14 +9,15 @@ const wordMethods = [
 	faker.word.verb,
 ]
 const dictionary = [
-	faker.locales.en!.word!.adjective!.filter((word) => word.length === 5),
-	faker.locales.en!.word!.adverb!.filter((word) => word.length === 5),
-	faker.locales.en!.word!.conjunction!.filter((word) => word.length === 5),
-	faker.locales.en!.word!.noun!.filter((word) => word.length === 5),
-	faker.locales.en!.word!.verb!.filter((word) => word.length === 5),
+	en.word?.adjective?.filter((word) => word.length === 5),
+	en.word?.adverb?.filter((word) => word.length === 5),
+	en.word?.conjunction?.filter((word) => word.length === 5),
+	en.word?.noun?.filter((word) => word.length === 5),
+	en.word?.verb?.filter((word) => word.length === 5),
 ]
 	.flat()
 	.reduce((r, w) => {
+		if (!w) return r
 		r[w.toUpperCase()] = true
 		return r
 	}, {} as { [key: string]: boolean })
