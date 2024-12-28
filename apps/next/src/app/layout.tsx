@@ -14,6 +14,7 @@ import { HeaderCurrentProject } from './HeaderCurrentProject'
 import { Inter } from 'next/font/google'
 import { getProjects } from '@/lib/supabase'
 import { Tables } from '@/lib/database.types'
+import { WeatherWidget } from '@/components/WeatherWidget'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
@@ -126,6 +127,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 						/>
 					</div>
 					{/* <ThemeToggle initValue={theme?.value} /> */}
+					<WeatherWidget />
 				</nav>
 				<main className="flex-1 relative">{children}</main>
 				<CommandMenu projects={projects || []} />

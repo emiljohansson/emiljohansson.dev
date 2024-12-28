@@ -1,25 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { updateLocation } from './actions'
-import { ChevronRight } from 'lucide-react'
+import { type Data } from './types'
 
-type Data = {
-	location: {
-		name: string
-	}
-	current: {
-		temp_f: number
-		temp_c: number
-		condition: {
-			text: string
-		}
-	}
-}
-
-export function Form({ initData }: { initData: Data }) {
+export function Content({ initData }: { initData: Data }) {
 	const [data, setData] = useState<Data>(initData)
 	const [location, setLocation] = useState('Denver')
 	const [errorMessage, setErrorMessage] = useState('')

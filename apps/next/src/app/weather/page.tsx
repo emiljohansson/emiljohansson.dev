@@ -1,5 +1,5 @@
 import { updateLocation } from './actions'
-import { Form } from './Content'
+import { Content } from './Content'
 
 export default async function Page() {
 	const formData = new FormData()
@@ -10,7 +10,7 @@ export default async function Page() {
 		<>
 			<h1 className="sr-only">Current Weather</h1>
 
-			<Form initData={data} />
+			<Content initData={data} />
 		</>
 	)
 }
