@@ -4,13 +4,13 @@
 name: E2E on Chrome
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches:
-      - main
-      - feature/**
-      - bugfix/**
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - feature/**
+  #     - bugfix/**
 
 jobs:
   build:
