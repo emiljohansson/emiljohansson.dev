@@ -30,3 +30,10 @@ export type Data = {
 		}
 	}
 }
+
+export type Error = {
+	error: {
+		code: number
+		message: string
+	}
+}
