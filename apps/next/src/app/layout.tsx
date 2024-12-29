@@ -9,11 +9,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Analytics } from '@vercel/analytics/react'
 import { CommandMenu } from './CommandMenu'
-// import { ThemeToggle } from './ThemeToggle'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
 import { Inter } from 'next/font/google'
 import { getProjects } from '@/lib/supabase'
 import { Tables } from '@/lib/database.types'
+import { WeatherWidget } from '@/components/weather/WeatherWidget'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
@@ -65,9 +65,6 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 	const currentProject = (projects as Tables<'project'>[]).find(
 		(project) => project.href === pathname,
 	)
-	// const cookieStore = cookies()
-	// const theme = cookieStore.get('theme')
-	// ${theme?.value}
 
 	return (
 		<html lang="en" className={`h-full`}>
@@ -126,6 +123,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 						/>
 					</div>
 					{/* <ThemeToggle initValue={theme?.value} /> */}
+					<WeatherWidget />
 				</nav>
 				<main className="flex-1 relative">{children}</main>
 				<CommandMenu projects={projects || []} />
