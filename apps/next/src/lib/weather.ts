@@ -8,7 +8,7 @@ let initialized = false
 export async function initWeather() {
 	if (initialized) return
 	initialized = true
-	const response = await fetch('http://localhost:3000/api/weather')
+	const response = await fetch('/api/weather')
 	const data = (await response.json()) as Data
 	weather.value = data
 }

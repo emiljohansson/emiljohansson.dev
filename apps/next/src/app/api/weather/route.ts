@@ -14,11 +14,8 @@ export async function GET(request: Request) {
 	try {
 		const response = await fetch(url, { cache: 'no-store' })
 		const data = (await response.json()) as Data | Error
-		console.log(data)
-		console.log('error' in data)
 
 		if (newLocation && !('error' in data)) {
-			console.log('setting new location')
 			cookieStore.set('location', newLocation)
 		}
 		return Response.json(data)
