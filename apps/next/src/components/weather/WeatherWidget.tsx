@@ -1,38 +1,28 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import type { Data } from '@/app/weather/types'
-import { initWeather, weather } from '@/lib/weather'
 import { WeatherIcon } from './WeatherIcon'
+import { useWeather } from '@/hooks/useWeather'
+import { Skeleton } from '../ui/skeleton'
 
 export function WeatherWidget() {
-	const [data, setData] = useState<Data>()
+	const data = useWeather()
 
-	useEffect(() => {
-		initWeather()
-	}, [])
-
-	useEffect(() => {
-		weather.subscribe((data) => {
-			console.log('in weather widget', data)
-
-			if (!data) return
-			setData(data)
-		})
-	}, [])
+	if (!data)
+		return (
+			<div className="flex items-center gap-1">
+				<Skeleton className="h-4 w-[22px]" />
+				<Skeleton className="w-[28px] h-[18px]" />
+			</div>
+		)
 
 	return (
-		<>
-			{data && (
-				<Link
-					href="/weather"
-					className="flex items-center gap-1 text-sm font-medium"
-				>
-					<WeatherIcon condition={data.current.condition.text} />{' '}
-					{data.current.temp_c}°
-				</Link>
-			)}
-		</>
+		<Link
+			href="/weather"
+			className="flex items-center gap-1 text-sm font-medium"
+		>
+			<WeatherIcon condition={data.current.condition.text} />{' '}
+			{data.current.temp_c}°
+		</Link>
 	)
 }

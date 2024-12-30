@@ -31,8 +31,15 @@ const conditionsToIcon: Record<Condition, LucideIcon> = {
 	'Volcanic ash': Cloud,
 }
 
-export function WeatherIcon({ condition }: { condition: Condition }) {
+export function WeatherIcon({
+	condition,
+	size = 'small',
+}: {
+	condition: Condition
+	size?: 'small' | 'large'
+}) {
 	const Icon = conditionsToIcon[condition || 'Clear']
+	const fontSize = size === 'small' ? 22 : 50
 
-	return <Icon size={22} strokeWidth={1.75} />
+	return <Icon size={fontSize} strokeWidth={1.75} />
 }

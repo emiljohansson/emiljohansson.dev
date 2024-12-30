@@ -8,7 +8,7 @@ const CurrentTimePage = () => {
 	return (
 		<>
 			{hours}:{minutes}
-			<span className="text-3/6 meridiem -mb-4.5">{meridiem}</span>
+			<span className="text-3/6 meridiem -mb-5">{meridiem}</span>
 		</>
 	)
 }
