@@ -1,14 +1,7 @@
-'use client'
-
-import { currentTime } from '@/lib/currentTime'
+import { CurrentTime } from '@/components/current-time/CurrentTime'
 
 const CurrentTimePage = () => {
-	return (
-		<>
-			{currentTime.hours}:{currentTime.minutes}
-			<span className="text-3/6 meridiem -mb-5">{currentTime.meridiem}</span>
-		</>
-	)
+	return <CurrentTime />
 }
 
 export default CurrentTimePage

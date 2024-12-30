@@ -39,7 +39,7 @@ export function WeatherIcon({
 	size?: 'small' | 'large'
 }) {
 	const Icon = conditionsToIcon[condition || 'Clear']
-	const fontSize = size === 'small' ? 22 : 50
+	const fontSize = size === 'small' ? 22 : 40
 
 	return <Icon size={fontSize} strokeWidth={1.75} />
 }
