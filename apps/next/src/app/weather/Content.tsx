@@ -5,12 +5,11 @@ import { ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { updateLocation } from './actions'
-import { type Data } from './types'
-import { initWeather, weather } from '@/lib/weather'
 import { WeatherIcon } from '@/components/weather/WeatherIcon'
+import { useWeather, updateWeatherData } from '@/hooks/useWeather'
 
 export function Content() {
-	const [data, setData] = useState<Data>()
+	const data = useWeather()
 	const [location, setLocation] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
 
@@ -24,22 +23,13 @@ export function Content() {
 			setErrorMessage(data.error.message)
 			return
 		}
-		weather.value = data
+		updateWeatherData(data)
 	}
 
 	useEffect(() => {
-		initWeather()
-	}, [])
-
-	useEffect(() => {
-		weather.subscribe((data) => {
-			console.log('in content', data)
-
-			if (!data) return
-			setData(data)
-			setLocation(data.location.name)
-		})
-	}, [])
+		if (!data) return
+		setLocation(data.location.name)
+	}, [data])
 
 	return (
 		<>

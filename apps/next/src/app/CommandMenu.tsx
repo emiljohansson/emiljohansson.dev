@@ -6,6 +6,8 @@ import { useClickOutside } from '@/hooks/useClickOutside'
 import { Tables } from '@/lib/database.types'
 import { action, atom } from 'nanostores'
 import { useStore } from '@nanostores/react'
+import { Command } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export const $commandMenuIsOpen = atom(false)
 export const openCommandMenu = action(
@@ -18,6 +20,29 @@ export const closeCommandMenu = action(
 	'closeCommandMenu',
 	() => $commandMenuIsOpen.set(false),
 )
+
+export function CommandTrigger() {
+	return (
+		<Button
+			variant="outline"
+			className="flex"
+			onClick={() => openCommandMenu()}
+		>
+			Command Menu{' '}
+			<span
+				className="
+							flex items-center gap-1
+							bg-gray-300 dark:bg-zinc-900
+							px-1 py-0.5
+							text-xs text-gray-600
+							rounded
+						"
+			>
+				<Command size={12} /> K
+			</span>
+		</Button>
+	)
+}
 
 export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 	const commandMenuIsOpen = useStore($commandMenuIsOpen)

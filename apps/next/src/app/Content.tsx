@@ -1,12 +1,38 @@
-'use client'
-
 import type { Tables } from '@/lib/database.types'
 import Link from 'next/link'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import { GrGithub } from 'react-icons/gr'
-import { Command, ArrowUpRightFromSquare } from 'lucide-react'
-import { openCommandMenu } from './CommandMenu'
-import { Button } from '@/components/ui/button'
+import { ArrowUpRightFromSquare } from 'lucide-react'
+import { CommandTrigger } from './CommandMenu'
+import { Card as CurrentTimeCard } from './current-time/Card'
+import { Card as RandomStringCard } from './random-string/Card'
+import { Card as WeatherCard } from './weather/Card'
+
+const customCards = {
+	default: DefaultCard,
+	'current-time': CurrentTimeCard,
+	'random-string': RandomStringCard,
+	weather: WeatherCard,
+}
+type CardKeys = keyof typeof customCards
+
+function DefaultCard({
+	title,
+	description,
+	external,
+}: Partial<Tables<'project'>> & { external: boolean }) {
+	return (
+		<>
+			<span className="flex items-center mb-1">
+				{title}{' '}
+				{external && (
+					<ArrowUpRightFromSquare size={18} className="absolute right-3" />
+				)}
+			</span>
+			<p className="text-gray-600 text-xs no-underline">{description}</p>
+		</>
+	)
+}
 
 export function Content({ projects }: { projects: Tables<'project'>[] }) {
 	return (
@@ -31,28 +57,16 @@ export function Content({ projects }: { projects: Tables<'project'>[] }) {
 						</span>
 					</Link>
 				</h1>
-				<Button
-					variant="outline"
-					className="flex"
-					onClick={() => openCommandMenu()}
-				>
-					Command Menu{' '}
-					<span
-						className="
-							flex items-center gap-1
-							bg-gray-300 dark:bg-zinc-900
-							px-1 py-0.5 
-							text-xs text-gray-600 
-							rounded
-						"
-					>
-						<Command size={12} /> K
-					</span>
-				</Button>
+				<CommandTrigger />
 			</div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 h-screen p-3 m-0 max-w-7xl mx-auto">
-				{projects.map(({ title, href, description, test }, index) => {
+				{projects.map((project, index) => {
+					const { href, test } = project
 					const external = href.startsWith('http')
+					const key = (
+						test !== null && test in customCards ? test : 'default'
+					) as CardKeys
+					const Card = customCards[key]
 
 					return (
 						<Link
@@ -70,18 +84,7 @@ export function Content({ projects }: { projects: Tables<'project'>[] }) {
 							target={external ? '_blank' : undefined}
 							data-test={test}
 						>
-							<span className="flex items-center mb-1">
-								{title}{' '}
-								{external && (
-									<ArrowUpRightFromSquare
-										size={18}
-										className="absolute right-3"
-									/>
-								)}
-							</span>
-							<p className="text-gray-600 text-xs no-underline">
-								{description}
-							</p>
+							<Card {...project} external={external} />
 						</Link>
 					)
 				})}
