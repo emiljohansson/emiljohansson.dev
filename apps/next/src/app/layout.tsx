@@ -14,6 +14,7 @@ import { Inter } from 'next/font/google'
 import { getProjects } from '@/lib/supabase'
 import { Tables } from '@/lib/database.types'
 import { WeatherWidget } from '@/components/weather/WeatherWidget'
+import { CurrentTimeWidget } from '@/components/current-time/CurrentTimeWidget'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
@@ -122,8 +123,15 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 							initProject={currentProject}
 						/>
 					</div>
-					{/* <ThemeToggle initValue={theme?.value} /> */}
-					<WeatherWidget />
+					<div className="flex items-center text-sm font-medium divide-x divide-solid ">
+						{/* <ThemeToggle initValue={theme?.value} /> */}
+						<div className="px-2">
+							<WeatherWidget />
+						</div>
+						<div className="px-2">
+							<CurrentTimeWidget />
+						</div>
+					</div>
 				</nav>
 				<main className="flex-1 relative">{children}</main>
 				<CommandMenu projects={projects || []} />

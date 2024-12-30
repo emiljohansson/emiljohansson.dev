@@ -1,16 +1,7 @@
-'use client'
-
-import useCurrentTime from '@repo/lib/hooks/useCurrentTime'
+import { CurrentTime } from '@/components/current-time/CurrentTime'
 
 const CurrentTimePage = () => {
-	const { hours, minutes, meridiem } = useCurrentTime()
-
-	return (
-		<>
-			{hours}:{minutes}
-			<span className="text-3/6 meridiem -mb-5">{meridiem}</span>
-		</>
-	)
+	return <CurrentTime />
 }
 
 export default CurrentTimePage

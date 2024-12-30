@@ -17,10 +17,7 @@ export function WeatherWidget() {
 		)
 
 	return (
-		<Link
-			href="/weather"
-			className="flex items-center gap-1 text-sm font-medium"
-		>
+		<Link href="/weather" className="flex items-center gap-1">
 			<WeatherIcon condition={data.current.condition.text} />{' '}
 			{data.current.temp_c}°
 		</Link>
