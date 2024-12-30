@@ -14,7 +14,6 @@
 		"@preact/signals-react": "2.3.0",
 		"@types/jest": "29.5.14",
 		"jest": "29.7.0",
-		"nanostores": "0.9.5",
 		"next": "15.1.2",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
