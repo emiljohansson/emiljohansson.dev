@@ -9,7 +9,7 @@ export function DebounceExample() {
 
 	return (
 		<article>
-			<h2>Debounce</h2>
+			<h2 className="heading2">Debounce</h2>
 			<input
 				className="input"
 				type="text"

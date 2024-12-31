@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useCounter } from '@/hooks/useCounter'
 import { useComputed } from '@/hooks/useComputed'
+import { Button } from '@/components/ui/button'
 
 export function ComputedExample() {
 	const [count, increment] = useCounter(0)
@@ -16,13 +17,13 @@ export function ComputedExample() {
 
 	return (
 		<article>
-			<h2>Computed</h2>
+			<h2 className="heading2">Computed</h2>
 			<p>Count: {count}</p>
 			<p>Doubled: {doubled}</p>
 			<div className="flex">
-				<button className="btn-secondary" onClick={() => increment()}>
+				<Button variant="outline" onClick={() => increment()}>
 					Increment
-				</button>
+				</Button>
 			</div>
 			<div className="flex flex-col">
 				<label>

@@ -13,7 +13,7 @@ export default async function HooksPage() {
 		<Content>
 			<Section size="normal">
 				<h1 className="sr-only">Hooks</h1>
-				<article className="flex flex-col gap-4">
+				<article className="flex flex-col gap-4 my-6">
 					<RandomStringExample initialValue={randomString()} />
 					<DebounceExample />
 					<CounterExample />

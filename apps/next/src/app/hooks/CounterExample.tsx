@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { useCounter } from '@/hooks/useCounter'
 
 export function CounterExample() {
@@ -10,21 +11,21 @@ export function CounterExample() {
 
 	return (
 		<article>
-			<h2>Counter</h2>
+			<h2 className="heading2">Counter</h2>
 			<p>Count: {count}</p>
 			<div className="flex">
-				<button className="btn-secondary" onClick={() => increment()}>
+				<Button variant="outline" onClick={() => increment()}>
 					Increment
-				</button>
-				<button className="btn-secondary" onClick={() => decrement()}>
+				</Button>
+				<Button variant="outline" onClick={() => decrement()}>
 					Decrement
-				</button>
-				<button className="btn-secondary" onClick={() => reset()}>
+				</Button>
+				<Button variant="outline" onClick={() => reset()}>
 					Reset
-				</button>
-				<button className="btn-secondary" onClick={() => set(5)}>
+				</Button>
+				<Button variant="outline" onClick={() => set(5)}>
 					Set 5
-				</button>
+				</Button>
 			</div>
 		</article>
 	)
