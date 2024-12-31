@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
+import { Button } from './ui/button'
 
 interface Props {
 	duration?: number
@@ -18,18 +19,29 @@ function ConfirmButton({ duration = 3, onComfirm }: Props) {
 	}, [active])
 
 	return (
-		<button
-			className="border-2 rounded relative p-5 overflow-hidden"
+		<Button
+			variant="outline"
+			className="relative"
 			onMouseDown={() => setActive(true)}
 			onMouseUp={() => setActive(false)}
+			onMouseLeave={() => setActive(false)}
 		>
 			<motion.div
 				className="bg-slate-400 absolute h-full w-full top-0 left-0 z-10 origin-left opacity-40"
-				animate={{ scaleX: active ? 1 : 0, scaleY: 1, scale: 1 }}
-				transition={{ duration: active ? duration : 0 }}
+				initial={{
+					scale: 0,
+				}}
+				animate={{
+					scaleX: active ? 1 : 0,
+					scaleY: 1,
+					scale: 1,
+				}}
+				transition={{
+					duration: active ? duration : 0,
+				}}
 			/>
-			<div className="text-3xl relative z-20">Submit Something</div>
-		</button>
+			Submit Something
+		</Button>
 	)
 }
 
