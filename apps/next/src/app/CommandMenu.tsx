@@ -8,6 +8,11 @@ import { action, atom } from 'nanostores'
 import { useStore } from '@nanostores/react'
 import { Command } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useTheme } from 'next-themes'
+
+type Action = Partial<Tables<'project'>> & {
+	select: () => void
+}
 
 export const $commandMenuIsOpen = atom(false)
 export const openCommandMenu = action(
@@ -46,15 +51,36 @@ export function CommandTrigger() {
 
 export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 	const commandMenuIsOpen = useStore($commandMenuIsOpen)
-	const initList = useMemo(
+	const { setTheme } = useTheme()
+	const initList = useMemo<Action[]>(
 		() => [
 			{
 				href: '/',
 				title: 'Home',
 				description: 'Return to the home page.',
 				test: 'home-page',
-			} as Tables<'project'>,
-			...projects,
+				select() {
+					router.push(this.href!)
+				},
+			},
+			...projects.map((project) => ({
+				...project,
+				select() {
+					router.push(project.href)
+				},
+			})),
+			{
+				title: 'Light',
+				select() {
+					setTheme('light')
+				},
+			},
+			{
+				title: 'Dark',
+				select() {
+					setTheme('dark')
+				},
+			},
 		],
 		[],
 	)
@@ -63,11 +89,11 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 	const [list, setList] = useState(initList)
 	const fieldRef = useRef<HTMLInputElement>(null)
 
-	const handleAction = (action?: Tables<'project'>) => {
+	function handleAction(action?: Action) {
 		if (!action) return
 		setList([...initList])
 		closeCommandMenu()
-		router.push(action.href)
+		action.select()
 	}
 
 	useEffect(() => {
@@ -119,7 +145,7 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 						setList(
 							initList.filter(
 								({ title }) =>
-									title.toLowerCase().indexOf(event.currentTarget.value) > -1,
+									title!.toLowerCase().indexOf(event.currentTarget.value) > -1,
 							),
 						)
 					}}
@@ -166,7 +192,7 @@ function Modal({
 					</div>
 				</div>
 			</div>
-			<div className="fixed inset-0 z-30 bg-gray-100 bg-opacity-10 backdrop-blur"></div>
+			<div className="fixed inset-0 z-30 bg-gray-100 bg-opacity-10 backdrop-blur" />
 		</>
 	)
 }
