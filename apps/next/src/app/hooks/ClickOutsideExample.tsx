@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useClickOutside } from '@/hooks/useClickOutside'
+import { Button } from '@/components/ui/button'
 
 export function ClickOutsideExample() {
 	const [isWithin, setWithin] = useState(false)
@@ -11,10 +12,10 @@ export function ClickOutsideExample() {
 
 	return (
 		<article>
-			<h2>Click Outside</h2>
-			<button className="btn-primary" onClick={() => setWithin(true)} ref={ref}>
+			<h2 className="heading2">Click Outside</h2>
+			<Button onClick={() => setWithin(true)} ref={ref}>
 				{isWithin ? 'Within' : 'Outside'}
-			</button>
+			</Button>
 		</article>
 	)
 }

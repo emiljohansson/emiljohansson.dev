@@ -2,11 +2,11 @@ import type { Tables } from '@/lib/database.types'
 import Link from 'next/link'
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon'
 import { GrGithub } from 'react-icons/gr'
-import { ArrowUpRightFromSquare } from 'lucide-react'
 import { CommandTrigger } from './CommandMenu'
 import { Card as CurrentTimeCard } from './current-time/Card'
 import { Card as RandomStringCard } from './random-string/Card'
 import { Card as WeatherCard } from './weather/Card'
+import { DefaultCard } from './DefaultCard'
 
 const customCards = {
 	default: DefaultCard,
@@ -15,24 +15,6 @@ const customCards = {
 	weather: WeatherCard,
 }
 type CardKeys = keyof typeof customCards
-
-function DefaultCard({
-	title,
-	description,
-	external,
-}: Partial<Tables<'project'>> & { external: boolean }) {
-	return (
-		<>
-			<span className="flex items-center mb-1">
-				{title}{' '}
-				{external && (
-					<ArrowUpRightFromSquare size={18} className="absolute right-3" />
-				)}
-			</span>
-			<p className="text-gray-600 text-xs no-underline">{description}</p>
-		</>
-	)
-}
 
 export function Content({ projects }: { projects: Tables<'project'>[] }) {
 	return (

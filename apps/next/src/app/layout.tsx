@@ -10,15 +10,13 @@ import Image from 'next/image'
 import { Analytics } from '@vercel/analytics/react'
 import { CommandMenu } from './CommandMenu'
 import { HeaderCurrentProject } from './HeaderCurrentProject'
-import { Inter } from 'next/font/google'
 import { getProjects } from '@/lib/supabase'
 import { Tables } from '@/lib/database.types'
 import { WeatherWidget } from '@/components/weather/WeatherWidget'
 import { CurrentTimeWidget } from '@/components/current-time/CurrentTimeWidget'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { ThemeToggle } from './ThemeToggle'
-
-const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
+import { GeistSans } from 'geist/font/sans'
 
 const name = 'Emil Johansson'
 const siteTitle = 'emiljohansson.dev'
@@ -92,7 +90,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 			</head>
 			<body
 				className={`
-					${inter.className}
+					${GeistSans.className}
 					bg-[length:15px_15px] bg-dots dark:bg-dots-dark
 					bg-slate-50 dark:bg-gray-900
 					dark:text-white

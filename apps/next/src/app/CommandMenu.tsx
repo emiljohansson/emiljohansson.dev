@@ -6,11 +6,12 @@ import { useClickOutside } from '@/hooks/useClickOutside'
 import { Tables } from '@/lib/database.types'
 import { action, atom } from 'nanostores'
 import { useStore } from '@nanostores/react'
-import { Command } from 'lucide-react'
+import { Command, File, Sun, Moon, LucideIcon, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
 
 type Action = Partial<Tables<'project'>> & {
+	Icon: LucideIcon
 	select: () => void
 }
 
@@ -59,24 +60,28 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 				title: 'Home',
 				description: 'Return to the home page.',
 				test: 'home-page',
+				Icon: File,
 				select() {
 					router.push(this.href!)
 				},
 			},
 			...projects.map((project) => ({
 				...project,
+				Icon: File,
 				select() {
 					router.push(project.href)
 				},
 			})),
 			{
 				title: 'Light',
+				Icon: Sun,
 				select() {
 					setTheme('light')
 				},
 			},
 			{
 				title: 'Dark',
+				Icon: Moon,
 				select() {
 					setTheme('dark')
 				},
@@ -134,11 +139,13 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 
 	return (
 		<Modal onClose={closeCommandMenu}>
-			<div className="flex items-center border-gray-200 border-b">
+			<div className="flex items-center border-gray-200 border-b pl-1.5">
+				<div className="p-2">
+					<Search size={20} strokeWidth={1.25} />
+				</div>
 				<input
 					ref={fieldRef}
-					id="input1"
-					className="input text-sm border-none px-4 py-6 flex-1"
+					className="input text-sm border-none pr-4 pl-0 py-6 flex-1"
 					placeholder="Type a command or search..."
 					onChange={(event) => {
 						setSelectedIndex(0)
@@ -156,12 +163,12 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 				{list.map((project, index) => (
 					<div
 						key={index}
-						className="aria-selected:bg-gray-300 dark:aria-selected:bg-accent text-sm px-2 py-2 rounded"
+						className="flex gap-2 aria-selected:bg-gray-300 dark:aria-selected:bg-accent text-sm  px-2 py-2 rounded"
 						aria-selected={index === selectedIndex}
 						onMouseOver={() => setSelectedIndex(index)}
 						onClick={() => handleAction(list[index])}
 					>
-						{project.title}
+						<project.Icon size={20} /> {project.title}
 					</div>
 				))}
 				{list.length < 1 && (

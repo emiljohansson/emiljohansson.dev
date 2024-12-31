@@ -13,7 +13,7 @@ export function RandomStringExample({
 
 	return (
 		<article>
-			<h2>Random String</h2>
+			<h2 className="heading2">Random String</h2>
 			<p ref={randomRef}>{random}</p>
 		</article>
 	)
