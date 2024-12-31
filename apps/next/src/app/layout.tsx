@@ -15,6 +15,8 @@ import { getProjects } from '@/lib/supabase'
 import { Tables } from '@/lib/database.types'
 import { WeatherWidget } from '@/components/weather/WeatherWidget'
 import { CurrentTimeWidget } from '@/components/current-time/CurrentTimeWidget'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import { ThemeToggle } from './ThemeToggle'
 
 const inter = Inter({ weight: ['400', '500', '700'], subsets: ['latin'] })
 
@@ -68,7 +70,7 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 	)
 
 	return (
-		<html lang="en" className={`h-full`}>
+		<html lang="en" className="h-full" suppressHydrationWarning>
 			<head>
 				{/* <link
 					rel="apple-touch-icon"
@@ -91,51 +93,60 @@ export default async function Layout({ children }: PropsWithChildren<unknown>) {
 			<body
 				className={`
 					${inter.className}
-					bg-[length:15px_15px] bg-dots
+					bg-[length:15px_15px] bg-dots dark:bg-dots-dark
 					bg-slate-50 dark:bg-gray-900
 					dark:text-white
 					flex flex-col h-full`}
 			>
-				{/* background-image: conic-gradient(at 92% 8%, rgb(134, 143, 151) 90deg, transparent 0deg, transparent 225deg, transparent 0deg);
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					{/* background-image: conic-gradient(at 92% 8%, rgb(134, 143, 151) 90deg, transparent 0deg, transparent 225deg, transparent 0deg);
 				background-size: 15px 15px; */}
-				<nav
-					className="
+					<nav
+						className="
 						flex justify-between items-center
 						bg-white dark:bg-black
 						border-b border-slate-200 dark:border-zinc-700
 						px-4 py-3
 					"
-				>
-					<div className="flex items-center gap-4 text-sm font-medium">
-						<Link href="/" className="flex items-center gap-2">
-							<Image
-								src="/images/profile2.jpeg"
-								alt=""
-								width={32}
-								height={32}
-								quality={100}
-								className="rounded-full scale-x-[-1]"
+					>
+						<div className="flex items-center gap-4 text-sm font-medium">
+							<Link href="/" className="flex items-center gap-2">
+								<Image
+									src="/images/profile2.jpeg"
+									alt=""
+									width={32}
+									height={32}
+									quality={100}
+									className="rounded-full scale-x-[-1]"
+								/>
+								Emil Johansson
+							</Link>
+							<HeaderCurrentProject
+								projects={projects || []}
+								initProject={currentProject}
 							/>
-							Emil Johansson
-						</Link>
-						<HeaderCurrentProject
-							projects={projects || []}
-							initProject={currentProject}
-						/>
-					</div>
-					<div className="flex items-center text-sm font-medium divide-x divide-solid ">
-						{/* <ThemeToggle initValue={theme?.value} /> */}
-						<div className="px-2">
-							<WeatherWidget />
 						</div>
-						<div className="px-2">
-							<CurrentTimeWidget />
+						<div className="flex items-center text-sm font-medium divide-x divide-solid ">
+							<div className="px-2">
+								<WeatherWidget />
+							</div>
+							<div className="px-2">
+								<ThemeToggle />
+							</div>
+							<div className="px-2">
+								<CurrentTimeWidget />
+							</div>
 						</div>
-					</div>
-				</nav>
-				<main className="flex-1 relative">{children}</main>
-				<CommandMenu projects={projects || []} />
-				<Analytics />
+					</nav>
+					<main className="flex-1 relative">{children}</main>
+					<CommandMenu projects={projects || []} />
+					<Analytics />
+				</ThemeProvider>
 			</body>
 		</html>
 	)

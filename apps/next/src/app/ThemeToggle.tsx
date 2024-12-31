@@ -1,78 +1,26 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
-import { FiSun, FiMoon } from 'react-icons/fi'
+import { Moon, Sun } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { useTheme } from 'next-themes'
 
-const darkClassName = 'dark'
-
-function cookies() {
-	const cookieStore = new Map()
-	const cookieString = typeof document !== 'undefined' ? document.cookie : ''
-	const cookieArray = cookieString.split(';')
-	cookieArray.forEach((cookie) => {
-		const [key, value] = cookie.split('=')
-		cookieStore.set(key.trim(), value)
-	})
-	return {
-		get(key: string) {
-			return {
-				key,
-				value: cookieStore.get(key),
-			}
-		},
-		set(key: string, value: string) {
-			document.cookie = `${key}=${value}`
-		},
-		has(key: string) {
-			return cookieStore.has(key)
-		},
-	}
-}
-
-function useCookieStore() {
-	const cookieStore = useMemo(() => cookies(), [])
-	return cookieStore
-}
-
-export const ThemeToggle = ({
-	initValue,
-}: {
-	initValue: string | undefined
-}) => {
-	const cookieStore = useCookieStore()
-	const [darkMode, setDarkMode] = useState<boolean | undefined>(
-		initValue === darkClassName,
-	)
+export function ThemeToggle() {
+	const { theme, setTheme } = useTheme()
 
 	function toggleMode() {
-		setDarkMode(!darkMode)
+		setTheme(theme === 'light' ? 'dark' : 'light')
 	}
 
-	useEffect(() => {
-		if (darkMode === undefined) return
-		cookieStore.set('theme', darkMode ? darkClassName : '')
-		document.documentElement.classList.toggle(darkClassName, darkMode)
-	}, [darkMode])
-
 	return (
-		<button
-			className="
-				btn-outline
-				justify-center
-				h-7
-				w-7
-				p-0
-				shadow-thin-border
-			"
+		<Button
+			variant="ghost"
+			size="icon"
 			onClick={() => toggleMode()}
 			data-test="toggle-dark-mode"
 		>
-			<span className="sr-only">Use {darkMode ? 'dark' : 'light'} mode</span>
-			{darkMode ? (
-				<FiMoon className="block" width="16" height="16" />
-			) : (
-				<FiSun className="block" width="16" height="16" />
-			)}
-		</button>
+			<Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+			<Sun className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+			<span className="sr-only">Toggle theme</span>
+		</Button>
 	)
 }

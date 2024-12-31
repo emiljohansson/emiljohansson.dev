@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { WeatherIcon } from './WeatherIcon'
 import { useWeather } from '@/hooks/useWeather'
 import { Skeleton } from '../ui/skeleton'
+import { buttonVariants } from '@/components/ui/button'
 
 export function WeatherWidget() {
 	const data = useWeather()
@@ -17,7 +18,12 @@ export function WeatherWidget() {
 		)
 
 	return (
-		<Link href="/weather" className="flex items-center gap-1">
+		<Link
+			href="/weather"
+			className={`flex items-center gap-1 ${buttonVariants({
+				variant: 'ghost',
+			})}`}
+		>
 			<WeatherIcon condition={data.current.condition.text} />{' '}
 			{data.current.temp_c}°
 		</Link>

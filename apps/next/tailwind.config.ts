@@ -8,6 +8,11 @@ const config = {
 	plugins: [require('tailwindcss-animate')],
 	theme: {
 		extend: {
+			backgroundImage: {
+				dots: 'conic-gradient(at 92% 8%, rgb(200, 200, 200) 90deg, transparent 0deg, transparent 225deg, transparent 0deg)',
+				'dots-dark':
+					'conic-gradient(at 92% 8%, rgb(50, 50, 50) 90deg, transparent 0deg, transparent 225deg, transparent 0deg)',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

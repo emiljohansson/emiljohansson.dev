@@ -8,6 +8,11 @@ import { action, atom } from 'nanostores'
 import { useStore } from '@nanostores/react'
 import { Command } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useTheme } from 'next-themes'
+
+type Action = Partial<Tables<'project'>> & {
+	select: () => void
+}
 
 export const $commandMenuIsOpen = atom(false)
 export const openCommandMenu = action(
@@ -31,12 +36,12 @@ export function CommandTrigger() {
 			Command Menu{' '}
 			<span
 				className="
-							flex items-center gap-1
-							bg-gray-300 dark:bg-zinc-900
-							px-1 py-0.5
-							text-xs text-gray-600
-							rounded
-						"
+					flex items-center gap-1
+					bg-gray-300 dark:bg-zinc-900
+					px-1 py-0.5
+					text-xs text-gray-600
+					rounded
+				"
 			>
 				<Command size={12} /> K
 			</span>
@@ -46,15 +51,36 @@ export function CommandTrigger() {
 
 export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 	const commandMenuIsOpen = useStore($commandMenuIsOpen)
-	const initList = useMemo(
+	const { setTheme } = useTheme()
+	const initList = useMemo<Action[]>(
 		() => [
 			{
 				href: '/',
 				title: 'Home',
 				description: 'Return to the home page.',
 				test: 'home-page',
-			} as Tables<'project'>,
-			...projects,
+				select() {
+					router.push(this.href!)
+				},
+			},
+			...projects.map((project) => ({
+				...project,
+				select() {
+					router.push(project.href)
+				},
+			})),
+			{
+				title: 'Light',
+				select() {
+					setTheme('light')
+				},
+			},
+			{
+				title: 'Dark',
+				select() {
+					setTheme('dark')
+				},
+			},
 		],
 		[],
 	)
@@ -63,11 +89,11 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 	const [list, setList] = useState(initList)
 	const fieldRef = useRef<HTMLInputElement>(null)
 
-	const handleAction = (action?: Tables<'project'>) => {
+	function handleAction(action?: Action) {
 		if (!action) return
 		setList([...initList])
 		closeCommandMenu()
-		router.push(action.href)
+		action.select()
 	}
 
 	useEffect(() => {
@@ -119,7 +145,7 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 						setList(
 							initList.filter(
 								({ title }) =>
-									title.toLowerCase().indexOf(event.currentTarget.value) > -1,
+									title!.toLowerCase().indexOf(event.currentTarget.value) > -1,
 							),
 						)
 					}}
@@ -130,7 +156,7 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 				{list.map((project, index) => (
 					<div
 						key={index}
-						className="aria-selected:bg-gray-300 text-sm px-2 py-2 rounded"
+						className="aria-selected:bg-gray-300 dark:aria-selected:bg-accent text-sm px-2 py-2 rounded"
 						aria-selected={index === selectedIndex}
 						onMouseOver={() => setSelectedIndex(index)}
 						onClick={() => handleAction(list[index])}
@@ -138,15 +164,20 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 						{project.title}
 					</div>
 				))}
+				{list.length < 1 && (
+					<div className="py-4 text-center text-sm" role="presentation">
+						No results found.
+					</div>
+				)}
 			</div>
 		</Modal>
 	)
 }
 
-const Modal = ({
+function Modal({
 	children,
 	onClose,
-}: PropsWithChildren<{ onClose: () => void }>) => {
+}: PropsWithChildren<{ onClose: () => void }>) {
 	const rootRef = useClickOutside<HTMLDivElement>(onClose)
 
 	return (
@@ -161,7 +192,7 @@ const Modal = ({
 					</div>
 				</div>
 			</div>
-			<div className="fixed inset-0 z-30 bg-gray-100 bg-opacity-10 backdrop-blur"></div>
+			<div className="fixed inset-0 z-30 bg-gray-100 bg-opacity-10 backdrop-blur" />
 		</>
 	)
 }
