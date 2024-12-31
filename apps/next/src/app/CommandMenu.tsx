@@ -31,12 +31,12 @@ export function CommandTrigger() {
 			Command Menu{' '}
 			<span
 				className="
-							flex items-center gap-1
-							bg-gray-300 dark:bg-zinc-900
-							px-1 py-0.5
-							text-xs text-gray-600
-							rounded
-						"
+					flex items-center gap-1
+					bg-gray-300 dark:bg-zinc-900
+					px-1 py-0.5
+					text-xs text-gray-600
+					rounded
+				"
 			>
 				<Command size={12} /> K
 			</span>
@@ -130,7 +130,7 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 				{list.map((project, index) => (
 					<div
 						key={index}
-						className="aria-selected:bg-gray-300 text-sm px-2 py-2 rounded"
+						className="aria-selected:bg-gray-300 dark:aria-selected:bg-accent text-sm px-2 py-2 rounded"
 						aria-selected={index === selectedIndex}
 						onMouseOver={() => setSelectedIndex(index)}
 						onClick={() => handleAction(list[index])}
