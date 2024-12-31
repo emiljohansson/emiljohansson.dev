@@ -138,15 +138,20 @@ export function CommandMenu({ projects }: { projects: Tables<'project'>[] }) {
 						{project.title}
 					</div>
 				))}
+				{list.length < 1 && (
+					<div className="py-4 text-center text-sm" role="presentation">
+						No results found.
+					</div>
+				)}
 			</div>
 		</Modal>
 	)
 }
 
-const Modal = ({
+function Modal({
 	children,
 	onClose,
-}: PropsWithChildren<{ onClose: () => void }>) => {
+}: PropsWithChildren<{ onClose: () => void }>) {
 	const rootRef = useClickOutside<HTMLDivElement>(onClose)
 
 	return (
