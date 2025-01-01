@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useCounter } from '@/hooks/useCounter'
 import { useComputed } from '@/hooks/useComputed'
-import { Button } from '@/components/ui/button'
+import { Button } from '@repo/ui/button'
 
 export function ComputedExample() {
 	const [count, increment] = useCounter(0)

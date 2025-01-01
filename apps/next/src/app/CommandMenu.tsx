@@ -7,7 +7,7 @@ import { Tables } from '@/lib/database.types'
 import { action, atom } from 'nanostores'
 import { useStore } from '@nanostores/react'
 import { Command, File, Sun, Moon, LucideIcon, Search } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@repo/ui/button'
 import { useTheme } from 'next-themes'
 
 type Action = Partial<Tables<'project'>> & {

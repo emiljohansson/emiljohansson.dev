@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useClickOutside } from '@/hooks/useClickOutside'
-import { Button } from '@/components/ui/button'
+import { Button } from '@repo/ui/button'
 
 export function ClickOutsideExample() {
 	const [isWithin, setWithin] = useState(false)
