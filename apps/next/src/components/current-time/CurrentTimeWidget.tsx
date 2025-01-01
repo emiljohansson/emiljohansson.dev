@@ -2,7 +2,7 @@
 
 import { CurrentTime } from '@/components/current-time/CurrentTime'
 import Link from 'next/link'
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@repo/ui/button'
 
 export function CurrentTimeWidget() {
 	return (
