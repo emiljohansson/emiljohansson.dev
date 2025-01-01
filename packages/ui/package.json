@@ -7,7 +7,9 @@
 	],
 	"exports": {
 		"./styles.css": "./dist/index.css",
-		".": "./src/index.tsx"
+		".": "./src/index.tsx",
+		"./button": "./src/button.tsx",
+		"./typography": "./src/typography.tsx"
 	},
 	"files": [
 		"dist"
@@ -24,12 +26,18 @@
 		"@radix-ui/react-progress": "1.1.1",
 		"@radix-ui/react-select": "2.1.4",
 		"@radix-ui/react-slider": "1.2.2",
+		"@radix-ui/react-slot": "1.1.1",
 		"@repo/lib": "workspace:*",
+		"class-variance-authority": "0.7.1",
+		"clsx": "2.1.1",
+		"lucide-react": "0.323.0",
 		"motion": "11.15.0",
 		"next": "15.1.2",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
-		"react-icons": "4.7.1"
+		"react-icons": "4.7.1",
+		"tailwind-merge": "2.6.0",
+		"tailwindcss-animate": "1.0.7"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
