@@ -19,6 +19,7 @@ import {
 	Slider,
 	CheckboxWithLabel,
 } from '@repo/ui'
+import { Typography } from '@repo/ui/typography'
 
 const RadioGroup = RadioGroupPrimitive.Root
 const RadioGroupRadio = RadioGroupPrimitive.Item
@@ -123,25 +124,33 @@ const Home: NextPage = () => {
 
 			<main className="flex flex-col gap-4 pb-52">
 				<article>
-					<h1 className="heading1">Components / Design System</h1>
-					<p>
+					<Typography variant="h1">Components / Design System</Typography>
+					<Typography>
 						For years parents have espoused the health benefits of eating garlic
 						bread with cheese to their children, with the food earning such an
 						iconic status in our culture that kids will often dress up as warm,
 						cheesy loaf for Halloween.
-					</p>
-					<p>
+					</Typography>
+					<Typography>
 						But a recent study shows that the celebrated appetizer may be linked
 						to a series of rabies cases springing up around the country.
-					</p>
+					</Typography>
 				</article>
 				<article>
-					<h2 className="heading2">Typography</h2>
-					<h1 className="heading1">Heading 1</h1>
-					<h2 className="heading2">Heading 2</h2>
+					<Typography variant="h2">Typography</Typography>
+					<Typography variant="h1" as="h2">
+						Heading 1
+					</Typography>
+					<Typography variant="h2">Heading 2</Typography>
+					<Typography>
+						Once upon a time, in a far-off land, there was a very lazy king who
+						spent all day lounging on his throne. One day, his advisors came to
+						him with a problem: the kingdom was running out of money.
+					</Typography>
+					<Typography variant="h2">The People of the Kingdom</Typography>
 				</article>
 				<article>
-					<h2 className="heading2">Button</h2>
+					<Typography variant="h2">Button</Typography>
 					<div className="mb-3">
 						<button className="btn-primary mr-3">Button</button>
 						<Link href="/" className="btn-primary mr-3" role="button">
@@ -156,13 +165,13 @@ const Home: NextPage = () => {
 					</div>
 				</article>
 				<article>
-					<h2 className="heading2">Link</h2>
+					<Typography variant="h2">Link</Typography>
 					<Link href="/" className="link">
 						Simple link
 					</Link>
 				</article>
 				<article>
-					<h2 className="heading2">Input</h2>
+					<Typography variant="h2">Input</Typography>
 					<div className="flex items-center">
 						<Label htmlFor="input1" className="pr-3">
 							First Name
@@ -171,11 +180,11 @@ const Home: NextPage = () => {
 					</div>
 				</article>
 				<article>
-					<h2 className="heading2">Checkbox</h2>
+					<Typography variant="h2">Checkbox</Typography>
 					<CheckboxWithLabel labelText="Accept terms and conditions." />
 				</article>
 				<article>
-					<h2 className="heading2">Radio Group</h2>
+					<Typography variant="h2">Radio Group</Typography>
 					<RadioGroup defaultValue="default">
 						<div className="flex items-center mb-2">
 							<RadioGroupRadio
@@ -235,7 +244,7 @@ const Home: NextPage = () => {
 					</RadioGroup>
 				</article>
 				<article>
-					<h2 className="heading2">Select</h2>
+					<Typography variant="h2">Select</Typography>
 					<Select defaultValue="apple" options={fruits}>
 						{fruits.map(({ value, title, disabled }) => (
 							<SelectItem key={value} value={value} disabled={disabled}>
@@ -281,7 +290,7 @@ const Home: NextPage = () => {
 					</Select>
 				</article>
 				<article>
-					<h2 className="heading2">Progress</h2>
+					<Typography variant="h2">Progress</Typography>
 					<div className="flex items-center">
 						<Progress progress={42} />
 						{/* <div className="flex items-center h-14 p-6 mx-auto rounded bg-gradient-to-r from-purple-700 to-primary">
@@ -289,11 +298,11 @@ const Home: NextPage = () => {
 					</div>
 				</article>
 				<article>
-					<h2 className="heading2">Animated Menu</h2>
+					<Typography variant="h2">Animated Menu</Typography>
 					<Toggle />
 				</article>
 				<article>
-					<h2 className="heading2">Slider</h2>
+					<Typography variant="h2">Slider</Typography>
 					<Slider defaultValue={50} max={100} label="Volume" />
 				</article>
 			</main>
