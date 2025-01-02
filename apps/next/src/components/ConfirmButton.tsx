@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
-import { Button } from './ui/button'
+import { Button } from '@repo/ui/button'
 
 interface Props {
 	duration?: number

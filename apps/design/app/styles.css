@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-	.heading1 {
-		@apply text-5xl mb-10 font-bold;
-	}
-	.heading2 {
-		@apply text-3xl mb-6;
-	}
-
 	.btn-primary,
 	.btn-secondary,
 	.input,

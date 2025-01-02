@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@repo/ui/button'
 import { useCounter } from '@/hooks/useCounter'
 import { useEventListener } from '@/hooks/useEventListener'
 

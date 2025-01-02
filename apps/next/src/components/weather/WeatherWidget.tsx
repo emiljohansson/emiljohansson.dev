@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { WeatherIcon } from './WeatherIcon'
 import { useWeather } from '@/hooks/useWeather'
 import { Skeleton } from '../ui/skeleton'
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@repo/ui/button'
 
 export function WeatherWidget() {
 	const data = useWeather()

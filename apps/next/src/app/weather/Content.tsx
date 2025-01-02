@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@repo/ui/button'
 import { Input } from '@/components/ui/input'
 import { updateLocation } from './actions'
 import { WeatherIcon } from '@/components/weather/WeatherIcon'
