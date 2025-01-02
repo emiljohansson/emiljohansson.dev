@@ -1,7 +1,11 @@
-import type { Rank, Suit } from '@/types/card-games'
+'use client'
+
+import type { Card, Rank, Suit } from '@/types/card-games'
+
+import { useEffect, useState } from 'react'
 import shuffle from 'just-shuffle'
-import { createDeck } from '@/lib/deck'
 import { Game } from './Game'
+import { createDeck } from '@/lib/deck'
 
 enum RankValue {
 	'J' = 11,
@@ -15,19 +19,27 @@ const getCardValue = (rank: Rank) =>
 	typeof rank === 'number' ? rank : RankValue[rank]
 const baseDeck = createDeck(suits, getCardValue)
 
-export const metadata = {
-	title: 'Idiot',
-	description: 'The Idiot Card Game',
-}
+// export const metadata = {
+// 	title: 'Idiot',
+// 	description: 'The Idiot Card Game',
+// }
 
-export default function IdiotPage() {
-	const deck = shuffle(baseDeck)
-	const initPiles = [
-		deck.splice(0, 1),
-		deck.splice(0, 1),
-		deck.splice(0, 1),
-		deck.splice(0, 1),
-	]
+export default function Page() {
+	const [deck, setDeck] = useState<Card[]>()
+	const [initPiles, setInitPiles] = useState<Card[][]>()
+
+	useEffect(() => {
+		const initDeck = shuffle(baseDeck)
+		setDeck(initDeck)
+		setInitPiles([
+			initDeck.splice(0, 1),
+			initDeck.splice(0, 1),
+			initDeck.splice(0, 1),
+			initDeck.splice(0, 1),
+		])
+	}, [])
+
+	if (!deck || !initPiles) return <></>
 
 	return (
 		<Game baseDeck={baseDeck} initPiles={initPiles} remainingCards={deck} />
